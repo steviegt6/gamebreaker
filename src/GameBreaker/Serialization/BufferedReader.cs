@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text;
 using GameBreaker.Abstractions;
-using GameBreaker.Abstractions.Positionable;
+using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Util;
 
-namespace GameBreaker.Positionable
+namespace GameBreaker.Serialization
 {
     public class BufferedReader : IPositionableReader
     {

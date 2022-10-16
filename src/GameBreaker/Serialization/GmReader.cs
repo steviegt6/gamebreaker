@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace GameBreaker.Positionable
+namespace GameBreaker.Serialization
 {
     public class GmReader : BufferedReader
     {

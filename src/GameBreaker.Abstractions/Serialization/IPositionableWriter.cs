@@ -1,4 +1,4 @@
-﻿namespace GameBreaker.Abstractions.Positionable
+﻿namespace GameBreaker.Abstractions.Serialization
 {
     public interface IPositionableWriter : IPositionable
     {

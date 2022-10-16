@@ -1,4 +1,4 @@
-﻿namespace GameBreaker.Positionable
+﻿namespace GameBreaker.Serialization
 {
     public class GmWriter : BufferedWriter
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace GameBreaker.Abstractions.Positionable
+namespace GameBreaker.Abstractions.Serialization
 {
     public interface IPositionable
     {

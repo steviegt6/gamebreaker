@@ -2,10 +2,10 @@
 using System.IO;
 using System.Text;
 using GameBreaker.Abstractions;
-using GameBreaker.Abstractions.Positionable;
+using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Util;
 
-namespace GameBreaker.Positionable
+namespace GameBreaker.Serialization
 {
     public class BufferedWriter : IPositionableWriter
     {

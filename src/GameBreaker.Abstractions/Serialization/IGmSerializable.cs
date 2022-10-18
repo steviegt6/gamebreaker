@@ -5,6 +5,8 @@ namespace GameBreaker.Abstractions.Serialization
 {
     public interface IGmSerializable
     {
-        
+        void Serialize(IGmDataSerializer serializer);
+
+        void Deserialize(IGmDataDeserializer deserializer);
     }
 }

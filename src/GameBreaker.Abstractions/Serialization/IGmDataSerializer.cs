@@ -3,12 +3,18 @@
 
 namespace GameBreaker.Abstractions.Serialization
 {
-    public interface IGmDataWriter
+    public interface IGmDataSerializer
     {
         IGmData Data { get; }
 
         IPositionableWriter Writer { get; }
 
         void SerializeData();
+
+        void WritePointer(IGmSerializable? ptr);
+
+        void WritePointerString(GmString? ptr);
+
+        void WriteObjectPointer(IGmSerializable ptr);
     }
 }

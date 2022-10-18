@@ -37,7 +37,7 @@ namespace GameBreaker.Abstractions.Tests
         }
         
         private static byte[] GetBytes(int value) {
-            return new[] {(byte) (value & 0xFF), (byte) ((value >> 8) & 0xFF), (byte) ((value >> 16) & 255)};
+            return new[] {(byte) (value & 0xFF), (byte) ((value >> 8) & 0xFF), (byte) ((value >> 16) & 0xFF)};
         }
     }
 }

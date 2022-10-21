@@ -1,10 +1,10 @@
+> **Warning** | GameBreaker is still under heavy, active development. Expect things to shift around often.
+
 # GameBreaker
 
 > GameMaker reverse-engineering tooling, done right.
 
 ---
-
-> **Warning** | GameBreaker is still under heavy, active development. Expect things to shift around often.
 
 GameBreaker is a set of .NET projects written in C#, targeting the reverse-engineering of GameMaker games.
 

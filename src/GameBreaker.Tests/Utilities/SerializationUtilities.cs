@@ -5,7 +5,7 @@ using System.IO;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Serialization;
 
-namespace GameBreaker.Abstractions.Tests.Utilities;
+namespace GameBreaker.Tests.Utilities;
 
 public static class SerializationUtilities
 {

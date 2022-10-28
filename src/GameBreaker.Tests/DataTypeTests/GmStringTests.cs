@@ -5,12 +5,13 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.Exceptions;
 using GameBreaker.Abstractions.Serialization;
-using GameBreaker.Abstractions.Tests.Utilities;
 using GameBreaker.Serialization;
+using GameBreaker.Tests.Utilities;
 
-namespace GameBreaker.Abstractions.Tests.DataTypeTests;
+namespace GameBreaker.Tests.DataTypeTests;
 
 [TestFixture]
 public static class GmStringTests

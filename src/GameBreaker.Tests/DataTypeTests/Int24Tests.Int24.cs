@@ -4,11 +4,12 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.Serialization;
-using GameBreaker.Abstractions.Tests.Utilities;
+using GameBreaker.Tests.Utilities;
 using NUnit.Framework.Constraints;
 
-namespace GameBreaker.Abstractions.Tests.DataTypeTests;
+namespace GameBreaker.Tests.DataTypeTests;
 
 partial class Int24Tests
 {

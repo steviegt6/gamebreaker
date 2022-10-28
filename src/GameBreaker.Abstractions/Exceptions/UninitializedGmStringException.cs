@@ -7,13 +7,13 @@ using System.Runtime.Serialization;
 namespace GameBreaker.Abstractions.Exceptions
 {
     [Serializable]
-    public class UninitializedGmStringExceptionException : Exception
+    public class UninitializedGmStringException : Exception
     {
-        public UninitializedGmStringExceptionException() { }
-        public UninitializedGmStringExceptionException(string message) : base(message) { }
-        public UninitializedGmStringExceptionException(string message, Exception inner) : base(message, inner) { }
+        public UninitializedGmStringException() { }
+        public UninitializedGmStringException(string message) : base(message) { }
+        public UninitializedGmStringException(string message, Exception inner) : base(message, inner) { }
 
-        protected UninitializedGmStringExceptionException(
+        protected UninitializedGmStringException(
             SerializationInfo info,
             StreamingContext context
         ) : base(info, context) { }

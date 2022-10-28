@@ -43,6 +43,7 @@ namespace GameBreaker.Serialization
             int length = Encoding.GetByteCount(value.Value);
             Write(length);
             Write(Encoding.GetBytes(value.Value, 0, value.Value.Length));
+            Write(0); // write null terminator
         }
     }
 }

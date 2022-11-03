@@ -1,10 +1,14 @@
 ﻿// Copyright (c) Tomat. Licensed under the GPL License, version 2.
 // See the LICENSE file in the repository root for full terms and conditions.
 
+using System;
+
 namespace GameBreaker.Abstractions.Serialization
 {
     public interface IPositionableWriter : IPositionable
     {
+        event Action<IPositionableWriter> OnFlush;
+
         void Write(byte value);
 
         void Write(byte[] value);

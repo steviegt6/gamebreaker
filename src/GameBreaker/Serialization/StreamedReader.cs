@@ -30,7 +30,7 @@ namespace GameBreaker.Serialization
 
         protected virtual Stream Stream { get; }
 
-        public StreamedReader(Stream stream, Encoding? encoding = null, ulong size = 1024 * 1024 * 32) {
+        public StreamedReader(Stream stream, Encoding? encoding = null) {
             Stream = stream;
             Encoding = encoding ?? Encoding.UTF8;
         }

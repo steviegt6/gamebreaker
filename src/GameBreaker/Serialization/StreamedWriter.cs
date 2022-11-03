@@ -19,23 +19,25 @@ namespace GameBreaker.Serialization
 
         public virtual long Position { get; set; }
 
+        public virtual event Action<IPositionableWriter>? OnFlush;
+
         public StreamedWriter(Stream stream, Encoding? encoding = null) : base(stream) {
             Encoding = encoding ?? Encoding.UTF8;
         }
 
         public virtual void Write(Int24 value) {
             Span<byte> buffer = stackalloc byte[3];
-            buffer[0] = (byte)(value.Value & 0xFF);
-            buffer[1] = (byte)((value.Value >> 8) & 0xFF);
-            buffer[2] = (byte)((value.Value >> 16) & 0xFF);
+            buffer[0] = (byte) (value.Value & 0xFF);
+            buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
+            buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
             OutStream.Write(buffer);
         }
 
         public virtual void Write(UInt24 value) {
             Span<byte> buffer = stackalloc byte[3];
-            buffer[0] = (byte)(value.Value & 0xFF);
-            buffer[1] = (byte)((value.Value >> 8) & 0xFF);
-            buffer[2] = (byte)((value.Value >> 16) & 0xFF);
+            buffer[0] = (byte) (value.Value & 0xFF);
+            buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
+            buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
             OutStream.Write(buffer);
         }
 
@@ -44,6 +46,12 @@ namespace GameBreaker.Serialization
             Write(length);
             Write(Encoding.GetBytes(value.Value, 0, value.Value.Length));
             Write(0); // write null terminator
+        }
+
+        public override void Flush() {
+            base.Flush();
+
+            OnFlush?.Invoke(this);
         }
     }
 }

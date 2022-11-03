@@ -11,7 +11,7 @@ namespace GameBreaker.Serialization
 {
     public class GmReader : StreamedReader
     {
-        public GmReader(Stream stream, Encoding? encoding = null, ulong size = 33554432) : base(stream, encoding, size) { }
+        public GmReader(Stream stream, Encoding? encoding = null) : base(stream, encoding) { }
 
         public override bool ReadBoolean() {
             Debug.Assert(Position + 1 <= Length, "ReadBoolean: Read out of bounds.");

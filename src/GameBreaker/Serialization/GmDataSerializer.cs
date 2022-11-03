@@ -18,18 +18,28 @@ namespace GameBreaker.Serialization
         public virtual IPositionableWriter Writer { get; }
 
         protected virtual Dictionary<IGmSerializable, int> PointerOffsets { get; } = new();
+
         protected virtual Dictionary<IGmSerializable, List<long>> PendingPointerWrites { get; } = new();
+
         protected virtual Dictionary<GmString, List<long>> PendingStringPointerWrites { get; } = new();
 
-        // protected virtual Dictionary<GmVariable, List<int>> VariableReferences { get; } = new();
-        // protected virtual Dictionary<GmFunctionEntry, List<int>> FunctionReferences { get; } = new();
+        protected virtual Dictionary<GmVariable, List<int>> VariableReferences { get; } = new();
+
+        protected virtual Dictionary<GmFunctionEntry, List<int>> FunctionReferences { get; } = new();
 
         public GmDataSerializer(IPositionableWriter writer) {
             Writer = writer;
+
+            writer.OnFlush += _ =>
+            {
+                // Finalize all other file write operations if any exist.
+                Data.FileWrites.Complete();
+                Data.FileWrites.Completion.GetAwaiter().GetResult();
+            };
         }
 
         public virtual void SerializeData() {
-            Writer.Write(FORM);
+            Data.Root.Serialize(this);
 
             // Handle serialization of pointer offsets
             Parallel.ForEach(PendingPointerWrites, PerformPointerWrite);
@@ -80,7 +90,7 @@ namespace GameBreaker.Serialization
                     Writer.WriteAt(addr, ptr);
             else
                 foreach (long addr in kvp.Value)
-                    Writer.WriteAt(addr, ptr);
+                    Writer.WriteAt(addr, 0);
         }
 
         protected virtual void PerformStringPointerWrite(KeyValuePair<GmString, List<long>> kvp) {
@@ -90,10 +100,10 @@ namespace GameBreaker.Serialization
 
                 foreach (long addr in kvp.Value) Writer.WriteAt(addr, ptr);
             }
-            else {
+            else
                 // If the string doesn't exist, write null
-                foreach (long addr in kvp.Value) Writer.WriteAt(addr, 0);
-            }
+                foreach (long addr in kvp.Value)
+                    Writer.WriteAt(addr, 0);
         }
     }
 }

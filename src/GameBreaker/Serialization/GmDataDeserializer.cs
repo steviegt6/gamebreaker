@@ -13,13 +13,20 @@ namespace GameBreaker.Serialization
     {
         public virtual IGmData Data { get; } = null!;
 
+        public virtual GmVersionInfo VersionInfo => Data.VersionInfo;
+
         public virtual IPositionableReader Reader { get; }
 
-        protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; }
-        // protected virtual Dictionary<int, Instruction> Instructions { get; }
+        protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; } = new();
+
+        protected virtual Dictionary<int, Instruction> Instructions { get; } = new();
+
+        protected virtual List<(GmTextureData, int)> TexturesToDecompress { get; } = new();
 
         public GmDataDeserializer(IPositionableReader reader) {
             Reader = reader;
+            
+            Data = new GmData();
         }
 
         public virtual void DeserializeData() {

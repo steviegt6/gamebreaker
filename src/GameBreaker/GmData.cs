@@ -27,7 +27,7 @@ public class GmData : IGmData
 
     public virtual T? GetChunk<T>()
         where T : IGmChunk {
-        if (Root.Chunks.TryGetValue(CHUNKS_R[typeof(T)], out IGmChunk? chunk)) return (T) chunk;
+        // if (Root.Chunks.TryGetValue(CHUNKS_R[typeof(T)], out IGmChunk? chunk)) return (T) chunk;
         return default;
     }
 

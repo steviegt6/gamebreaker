@@ -19,9 +19,9 @@ namespace GameBreaker.Serialization
 
         protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; } = new();
 
-        protected virtual Dictionary<int, Instruction> Instructions { get; } = new();
+        // protected virtual Dictionary<int, Instruction> Instructions { get; } = new();
 
-        protected virtual List<(GmTextureData, int)> TexturesToDecompress { get; } = new();
+        // protected virtual List<(GmTextureData, int)> TexturesToDecompress { get; } = new();
 
         public GmDataDeserializer(IPositionableReader reader) {
             Reader = reader;

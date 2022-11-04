@@ -9,7 +9,7 @@ namespace GameBreaker.Models;
 /// <summary>
 ///     Contains a GameMaker sequence.
 /// </summary>
-public class GmAnimCurve : IGmSerializable
+/*public class GmAnimCurve : IGmSerializable
 {
     public enum GraphType
     {
@@ -22,4 +22,4 @@ public class GmAnimCurve : IGmSerializable
     public GraphType Type { get; }
 
     public GmList<Channel> Channels { get; }
-}
+}*/

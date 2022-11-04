@@ -23,9 +23,9 @@ namespace GameBreaker.Util.Extensions
         /// </summary>
         /// <param name="writer"></param>
         /// <returns></returns>
-        public static long BeginLength(this IPositionableWriter writer) {
+        public static uint BeginLength(this IPositionableWriter writer) {
             writer.Write(DEADGAME);
-            return writer.Position;
+            return (uint) writer.Position;
         }
 
         /// <summary>
@@ -34,12 +34,12 @@ namespace GameBreaker.Util.Extensions
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="begin"></param>
-        public static void EndLength(this IPositionableWriter writer, long begin) {
+        public static void EndLength(this IPositionableWriter writer, uint begin) {
             long offset = writer.Position;
             writer.Position = begin - 4;
 
-            // TODO: Is the int32 conversion here safe?
-            writer.Write((int) (offset - begin));
+            // TODO: Is the uint32 conversion here safe?
+            writer.Write((uint) (offset - begin));
 
             writer.Position = offset;
         }

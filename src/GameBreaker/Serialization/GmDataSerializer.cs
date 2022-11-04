@@ -23,9 +23,9 @@ namespace GameBreaker.Serialization
 
         protected virtual Dictionary<GmString, List<long>> PendingStringPointerWrites { get; } = new();
 
-        protected virtual Dictionary<GmVariable, List<int>> VariableReferences { get; } = new();
+        // protected virtual Dictionary<GmVariable, List<int>> VariableReferences { get; } = new();
 
-        protected virtual Dictionary<GmFunctionEntry, List<int>> FunctionReferences { get; } = new();
+        // protected virtual Dictionary<GmFunctionEntry, List<int>> FunctionReferences { get; } = new();
 
         public GmDataSerializer(IPositionableWriter writer) {
             Writer = writer;

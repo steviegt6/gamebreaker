@@ -79,7 +79,7 @@ namespace GameBreaker.Util
         public static readonly char[] FEDS_C = FEDS.ToCharArray();
         public static readonly char[] FEAT_C = FEAT.ToCharArray();
         
-        public static readonly Dictionary<string, Type> CHUNKS = new()
+        /*public static readonly Dictionary<string, Type> CHUNKS = new()
         {
             {GEN8, typeof(GmChunk.GEN8)},
             {OPTN, typeof(GmChunk.OPTN)},
@@ -113,8 +113,8 @@ namespace GameBreaker.Util
             {SEQN, typeof(GmChunk.SEQN)},
             {FEDS, typeof(GmChunk.FEDS)},
             {FEAT, typeof(GmChunk.FEAT)}
-        };
+        };*/
 
-        public static readonly Dictionary<Type, string> CHUNKS_R = CHUNKS.ToDictionary(x => x.Value, x => x.Key);
+        // public static readonly Dictionary<Type, string> CHUNKS_R = CHUNKS.ToDictionary(x => x.Value, x => x.Key);
     }
 }

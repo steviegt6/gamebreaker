@@ -14,7 +14,7 @@ namespace GameBreaker.Serialization
 {
     public class GmDataSerializer : IGmDataSerializer
     {
-        public virtual IGameMakerFile Iff { get; } = null!;
+        public virtual IGameMakerFile GameMakerFile { get; } = null!;
 
         public virtual IPositionableWriter Writer { get; }
 
@@ -34,13 +34,13 @@ namespace GameBreaker.Serialization
             writer.OnFlush += _ =>
             {
                 // Finalize all other file write operations if any exist.
-                Iff.FileWrites.Complete();
-                Iff.FileWrites.Completion.GetAwaiter().GetResult();
+                GameMakerFile.FileWrites.Complete();
+                GameMakerFile.FileWrites.Completion.GetAwaiter().GetResult();
             };
         }
 
         public virtual void SerializeData() {
-            Iff.Root.Serialize(this);
+            GameMakerFile.Root.Serialize(this);
 
             // Handle serialization of pointer offsets
             Parallel.ForEach(PendingPointerWrites, PerformPointerWrite);

@@ -14,9 +14,9 @@ namespace GameBreaker.Serialization
 {
     public class GmDataDeserializer : IGmDataDeserializer
     {
-        public virtual IGameMakerFile Iff { get; } = null!;
+        public virtual IGameMakerFile GameMakerFile { get; } = null!;
 
-        public virtual GmVersionInfo VersionInfo => Iff.VersionInfo;
+        public virtual GmVersionInfo VersionInfo => GameMakerFile.VersionInfo;
 
         public virtual IPositionableReader Reader { get; }
 
@@ -29,7 +29,7 @@ namespace GameBreaker.Serialization
         public GmDataDeserializer(IPositionableReader reader, IChunkedFileMetadata chunkFileMetadata) {
             Reader = reader;
             
-            Iff = new GameMakerFile(chunkFileMetadata);
+            GameMakerFile = new GameMakerFile(chunkFileMetadata);
         }
 
         public virtual void DeserializeData() {

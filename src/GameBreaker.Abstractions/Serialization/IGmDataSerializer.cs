@@ -7,7 +7,7 @@ namespace GameBreaker.Abstractions.Serialization
 {
     public interface IGmDataSerializer
     {
-        IGameMakerFile Iff { get; }
+        IGameMakerFile GameMakerFile { get; }
 
         IPositionableWriter Writer { get; }
 

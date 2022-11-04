@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace GameBreaker.Abstractions
 {
-    // TODO: Proper implementation?
     [StructLayout(LayoutKind.Sequential, Size = 3)]
     public readonly record struct UInt24
     {

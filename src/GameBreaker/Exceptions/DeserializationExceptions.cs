@@ -7,26 +7,26 @@ using System.Runtime.Serialization;
 namespace GameBreaker.Exceptions;
 
 [Serializable]
-public class GmDeserializationException : Exception
+public class GameMakerDeserializationException : Exception
 {
-    public GmDeserializationException() { }
-    public GmDeserializationException(string message) : base(message) { }
-    public GmDeserializationException(string message, Exception inner) : base(message, inner) { }
+    public GameMakerDeserializationException() { }
+    public GameMakerDeserializationException(string message) : base(message) { }
+    public GameMakerDeserializationException(string message, Exception inner) : base(message, inner) { }
 
-    protected GmDeserializationException(
+    protected GameMakerDeserializationException(
         SerializationInfo info,
         StreamingContext context
     ) : base(info, context) { }
 }
 
 [Serializable]
-public class FormGmDeserializationException : GmDeserializationException
+public class FormGameMakerDeserializationException : GameMakerDeserializationException
 {
-    public FormGmDeserializationException() { }
-    public FormGmDeserializationException(string message) : base(message) { }
-    public FormGmDeserializationException(string message, Exception inner) : base(message, inner) { }
+    public FormGameMakerDeserializationException() { }
+    public FormGameMakerDeserializationException(string message) : base(message) { }
+    public FormGameMakerDeserializationException(string message, Exception inner) : base(message, inner) { }
 
-    protected FormGmDeserializationException(
+    protected FormGameMakerDeserializationException(
         SerializationInfo info,
         StreamingContext context
     ) : base(info, context) { }

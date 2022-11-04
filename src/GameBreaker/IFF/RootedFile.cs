@@ -31,6 +31,6 @@ public class RootedFile : ChunkedFile, IRootedFile
 
         // TODO: ReadBytes instead.
         if (deserializer.Reader.ReadChars(4) != FORM_C)
-            throw new FormGmDeserializationException("Expected 'FORM' chunk header! - is this a GameMaker IFF file?");
+            throw new FormGameMakerDeserializationException("Expected 'FORM' chunk header! - is this a GameMaker IFF file?");
     }
 }

@@ -2,8 +2,8 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System;
+using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
-using GameBreaker.IFF.Abstractions;
 using GameBreaker.Util.Extensions;
 
 namespace GameBreaker.IFF;

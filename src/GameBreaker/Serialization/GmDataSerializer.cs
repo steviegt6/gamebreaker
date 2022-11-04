@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameBreaker.Abstractions;
-using GameBreaker.Abstractions.IFF;
+using GameBreaker.Abstractions.IFF.GM;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Util.Extensions;
 
@@ -14,7 +14,7 @@ namespace GameBreaker.Serialization
 {
     public class GmDataSerializer : IGmDataSerializer
     {
-        public virtual IGmIFF Iff { get; } = null!;
+        public virtual IGameMakerFile Iff { get; } = null!;
 
         public virtual IPositionableWriter Writer { get; }
 

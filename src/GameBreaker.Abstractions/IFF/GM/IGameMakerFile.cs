@@ -4,13 +4,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks.Dataflow;
 
-namespace GameBreaker.Abstractions.IFF
+namespace GameBreaker.Abstractions.IFF.GM
 {
-    public interface IGmIFF
+    public interface IGameMakerFile : IRootedFile
     {
         GmVersionInfo VersionInfo { get; }
-
-        IRootGmChunk Root { get; }
 
         ActionBlock<KeyValuePair<string, byte[]>> FileWrites { get; }
 
@@ -28,14 +26,6 @@ namespace GameBreaker.Abstractions.IFF
         ///     The <see cref="SHA1"/> hash of this data file.
         /// </summary>
         byte[] Hash { get; }
-
-        /// <summary>
-        ///     The length of the data file in bytes.
-        /// </summary>
-        long Length { get; }
-
-        T? GetChunk<T>()
-            where T : IGmChunk;
 
         GmString DefineString(string value, out int index);
     }

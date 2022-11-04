@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using GameBreaker.Abstractions.Serialization;
 
-namespace GameBreaker.IFF.Abstractions;
+namespace GameBreaker.Abstractions.IFF;
 
 /// <summary>
 ///     Describes a file with data separated into chunks containing four-byte headers as identities and four-byte integers representing their length.

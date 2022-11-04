@@ -2,9 +2,9 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Text;
-using GameBreaker.IFF.Abstractions.Exceptions;
+using GameBreaker.Abstractions.Exceptions;
 
-namespace GameBreaker.IFF.Abstractions;
+namespace GameBreaker.Abstractions.IFF;
 
 /// <summary>
 ///     A read-only wrapper around a <see cref="string"/> with constructor checks to ensure that the <see cref="Value"/> is only ever four bytes.

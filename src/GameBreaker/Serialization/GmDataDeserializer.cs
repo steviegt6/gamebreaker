@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.IFF;
+using GameBreaker.Abstractions.IFF.GM;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.IFF;
 
@@ -13,7 +14,7 @@ namespace GameBreaker.Serialization
 {
     public class GmDataDeserializer : IGmDataDeserializer
     {
-        public virtual IGmIFF Iff { get; } = null!;
+        public virtual IGameMakerFile Iff { get; } = null!;
 
         public virtual GmVersionInfo VersionInfo => Iff.VersionInfo;
 
@@ -25,10 +26,10 @@ namespace GameBreaker.Serialization
 
         // protected virtual List<(GmTextureData, int)> TexturesToDecompress { get; } = new();
 
-        public GmDataDeserializer(IPositionableReader reader) {
+        public GmDataDeserializer(IPositionableReader reader, IChunkedFileMetadata chunkFileMetadata) {
             Reader = reader;
             
-            Iff = new GmIff();
+            Iff = new GameMakerFile(chunkFileMetadata);
         }
 
         public virtual void DeserializeData() {

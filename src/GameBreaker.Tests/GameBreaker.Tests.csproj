@@ -18,7 +18,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameBreaker.Abstractions\GameBreaker.Abstractions.csproj" />
-      <ProjectReference Include="..\GameBreaker.IFF.Abstractions\GameBreaker.IFF.Abstractions.csproj" />
       <ProjectReference Include="..\GameBreaker\GameBreaker.csproj" />
     </ItemGroup>
 

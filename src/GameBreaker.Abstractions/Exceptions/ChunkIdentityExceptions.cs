@@ -4,7 +4,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace GameBreaker.IFF.Abstractions.Exceptions;
+namespace GameBreaker.Abstractions.Exceptions;
 
 [Serializable]
 public class InvalidChunkIdentityLengthException : Exception

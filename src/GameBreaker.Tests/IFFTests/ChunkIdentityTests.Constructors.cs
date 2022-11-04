@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Tomat. Licensed under the GPL License, version 2.
 // See the LICENSE file in the repository root for full terms and conditions.
 
-using System.Text;
-using GameBreaker.IFF.Abstractions;
-using GameBreaker.IFF.Abstractions.Exceptions;
+using GameBreaker.Abstractions.Exceptions;
+using GameBreaker.Abstractions.IFF;
 
 namespace GameBreaker.Tests.IFFTests;
 

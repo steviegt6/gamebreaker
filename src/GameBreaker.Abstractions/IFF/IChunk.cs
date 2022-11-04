@@ -3,7 +3,7 @@
 
 using GameBreaker.Abstractions.Serialization;
 
-namespace GameBreaker.IFF.Abstractions;
+namespace GameBreaker.Abstractions.IFF;
 
 /// <summary>
 ///     Represents a chunk of data with a four-byte header identity and four-byte integer length.

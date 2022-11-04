@@ -2,9 +2,8 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Collections.Generic;
+using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
-using GameBreaker.Exceptions;
-using GameBreaker.IFF.Abstractions;
 using GameBreaker.Util.Extensions;
 
 namespace GameBreaker.IFF;
@@ -20,8 +19,6 @@ public class ChunkedFile : IChunkedFile
     }
 
     public virtual void Serialize(IGmDataSerializer serializer) {
-        serializer.Writer.Write(FORM_C);
-        
         uint length = serializer.Writer.BeginLength();
 
         // Serialize chunks in metadata-denoted order.
@@ -36,8 +33,6 @@ public class ChunkedFile : IChunkedFile
     }
 
     public virtual void Deserialize(IGmDataDeserializer deserializer) {
-        // TODO: ReadBytes instead.
-        if (deserializer.Reader.ReadChars(4) != FORM_C)
-            throw new FormGmDeserializationException("Expected 'FORM' chunk header! - is this a GameMaker IFF file?");
+        // TODO: Deserialization.
     }
 }

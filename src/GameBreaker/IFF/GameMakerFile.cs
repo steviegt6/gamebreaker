@@ -6,30 +6,23 @@ using System.Threading.Tasks.Dataflow;
 using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.Exceptions;
 using GameBreaker.Abstractions.IFF;
+using GameBreaker.Abstractions.IFF.GM;
 
 namespace GameBreaker.IFF;
 
-public class GmIff : IGmIFF
+public class GameMakerFile : RootedFile, IGameMakerFile
 {
     public virtual GmVersionInfo VersionInfo { get; } = new();
 
-    public virtual IRootGmChunk Root => throw new System.NotImplementedException();
-    
     public virtual ActionBlock<KeyValuePair<string, byte[]>> FileWrites { get; }
-    
-    public virtual string Directory { get; }
-    
-    public virtual string Filename { get; }
-    
-    public virtual byte[] Hash { get; }
-    
-    public virtual long Length { get; }
 
-    public virtual T? GetChunk<T>()
-        where T : IGmChunk {
-        // if (Root.Chunks.TryGetValue(CHUNKS_R[typeof(T)], out IGmChunk? chunk)) return (T) chunk;
-        return default;
-    }
+    public virtual string Directory { get; }
+
+    public virtual string Filename { get; }
+
+    public virtual byte[] Hash { get; }
+
+    public GameMakerFile(IChunkedFileMetadata metadata) : base(metadata) { }
 
     public virtual GmString DefineString(string value, out int index) {
         if (value is null) throw new UninitializedGmStringException("Attempted to define GmString with a null value!");

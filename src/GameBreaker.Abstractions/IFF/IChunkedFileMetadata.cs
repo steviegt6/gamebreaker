@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace GameBreaker.IFF.Abstractions;
+namespace GameBreaker.Abstractions.IFF;
 
 /// <summary>
 ///     Describes data revolving around the expected chunks of a <see cref="IChunkedFile"/>.

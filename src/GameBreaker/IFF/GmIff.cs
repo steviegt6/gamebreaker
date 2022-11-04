@@ -2,14 +2,14 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks.Dataflow;
 using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.Exceptions;
+using GameBreaker.Abstractions.IFF;
 
-namespace GameBreaker;
+namespace GameBreaker.IFF;
 
-public class GmData : IGmData
+public class GmIff : IGmIFF
 {
     public virtual GmVersionInfo VersionInfo { get; } = new();
 

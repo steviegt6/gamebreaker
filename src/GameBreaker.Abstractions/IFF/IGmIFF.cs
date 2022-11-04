@@ -4,9 +4,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks.Dataflow;
 
-namespace GameBreaker.Abstractions
+namespace GameBreaker.Abstractions.IFF
 {
-    public interface IGmData
+    public interface IGmIFF
     {
         GmVersionInfo VersionInfo { get; }
 

@@ -1,11 +1,13 @@
 ﻿// Copyright (c) Tomat. Licensed under the GPL License, version 2.
 // See the LICENSE file in the repository root for full terms and conditions.
 
+using GameBreaker.Abstractions.IFF;
+
 namespace GameBreaker.Abstractions.Serialization
 {
     public interface IGmDataSerializer
     {
-        IGmData Data { get; }
+        IGmIFF Iff { get; }
 
         IPositionableWriter Writer { get; }
 

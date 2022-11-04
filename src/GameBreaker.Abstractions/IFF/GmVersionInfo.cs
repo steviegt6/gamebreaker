@@ -3,7 +3,7 @@
 // Copyright (c) colinator27. Licensed under the MIT License.
 // See the LICENSE-DogScepter file in the repository root for full terms and conditions.
 
-namespace GameBreaker.Abstractions;
+namespace GameBreaker.Abstractions.IFF;
 
 public class GmVersionInfo
 {

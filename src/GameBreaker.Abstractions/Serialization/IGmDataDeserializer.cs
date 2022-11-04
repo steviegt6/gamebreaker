@@ -2,12 +2,13 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Collections.Generic;
+using GameBreaker.Abstractions.IFF;
 
 namespace GameBreaker.Abstractions.Serialization
 {
     public interface IGmDataDeserializer
     {
-        IGmData Data { get; }
+        IGmIFF Iff { get; }
 
         IPositionableReader Reader { get; }
 

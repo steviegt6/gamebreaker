@@ -5,15 +5,17 @@
 
 using System.Collections.Generic;
 using GameBreaker.Abstractions;
+using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
+using GameBreaker.IFF;
 
 namespace GameBreaker.Serialization
 {
     public class GmDataDeserializer : IGmDataDeserializer
     {
-        public virtual IGmData Data { get; } = null!;
+        public virtual IGmIFF Iff { get; } = null!;
 
-        public virtual GmVersionInfo VersionInfo => Data.VersionInfo;
+        public virtual GmVersionInfo VersionInfo => Iff.VersionInfo;
 
         public virtual IPositionableReader Reader { get; }
 
@@ -26,7 +28,7 @@ namespace GameBreaker.Serialization
         public GmDataDeserializer(IPositionableReader reader) {
             Reader = reader;
             
-            Data = new GmData();
+            Iff = new GmIff();
         }
 
         public virtual void DeserializeData() {

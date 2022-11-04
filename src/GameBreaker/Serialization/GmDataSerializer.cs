@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameBreaker.Abstractions;
+using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Util.Extensions;
 
@@ -13,7 +14,7 @@ namespace GameBreaker.Serialization
 {
     public class GmDataSerializer : IGmDataSerializer
     {
-        public virtual IGmData Data { get; } = null!;
+        public virtual IGmIFF Iff { get; } = null!;
 
         public virtual IPositionableWriter Writer { get; }
 
@@ -33,13 +34,13 @@ namespace GameBreaker.Serialization
             writer.OnFlush += _ =>
             {
                 // Finalize all other file write operations if any exist.
-                Data.FileWrites.Complete();
-                Data.FileWrites.Completion.GetAwaiter().GetResult();
+                Iff.FileWrites.Complete();
+                Iff.FileWrites.Completion.GetAwaiter().GetResult();
             };
         }
 
         public virtual void SerializeData() {
-            Data.Root.Serialize(this);
+            Iff.Root.Serialize(this);
 
             // Handle serialization of pointer offsets
             Parallel.ForEach(PendingPointerWrites, PerformPointerWrite);

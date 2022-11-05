@@ -19,5 +19,5 @@ public interface IChunkedFile : IGmSerializable
     /// <summary>
     ///     The chunks stored within this chunked file.
     /// </summary>
-    IDictionary<string, IChunk> Chunks { get; }
+    IDictionary<string, IChunk>? Chunks { get; }
 }

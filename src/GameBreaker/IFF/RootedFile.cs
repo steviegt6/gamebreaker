@@ -2,6 +2,7 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System;
+using System.Collections.Generic;
 using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.Exceptions;
@@ -12,6 +13,8 @@ namespace GameBreaker.IFF;
 public class RootedFile : ChunkedFile, IRootedFile
 {
     public virtual IChunkedFile? Root { get; protected set; }
+
+    public override IDictionary<string, IChunk>? Chunks => Root?.Chunks;
 
     public RootedFile(IChunkedFileMetadata metadata) : base(metadata) { }
 

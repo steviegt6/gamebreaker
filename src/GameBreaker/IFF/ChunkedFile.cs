@@ -12,7 +12,7 @@ public class ChunkedFile : IChunkedFile
 {
     public virtual IChunkedFileMetadata Metadata { get; }
     
-    public virtual IDictionary<string, IChunk> Chunks { get; protected set; } = new Dictionary<string, IChunk>();
+    public virtual IDictionary<string, IChunk>? Chunks { get; protected set; } = new Dictionary<string, IChunk>();
 
     public ChunkedFile(IChunkedFileMetadata metadata) {
         Metadata = metadata;

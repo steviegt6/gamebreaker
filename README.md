@@ -1,4 +1,4 @@
-> **Warning** | GameBreaker is still under heavy, active development. Expect things to shift around often.
+> **Warning** — GameBreaker is still under heavy, active development. Expect things to shift around often.
 
 # GameBreaker
 

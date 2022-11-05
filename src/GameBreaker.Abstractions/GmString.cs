@@ -24,11 +24,11 @@ namespace GameBreaker.Abstractions
         }
 
         public void Serialize(IGmDataSerializer serializer) {
-            serializer.Writer.Write(this);
+            serializer.Write(this);
         }
 
         public void Deserialize(IGmDataDeserializer deserializer) {
-            value = deserializer.Reader.ReadGmString().Value;
+            value = deserializer.ReadGmString().Value;
         }
 
         public override string ToString() {

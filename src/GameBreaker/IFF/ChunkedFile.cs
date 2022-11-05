@@ -19,7 +19,7 @@ public class ChunkedFile : IChunkedFile
     }
 
     public virtual void Serialize(IGmDataSerializer serializer) {
-        uint length = serializer.Writer.BeginLength();
+        uint length = serializer.BeginLength();
 
         // Serialize chunks in metadata-denoted order.
         foreach (string chunkName in Metadata.ChunkNames) {
@@ -29,7 +29,7 @@ public class ChunkedFile : IChunkedFile
             chunk.Serialize(serializer);
         }
         
-        serializer.Writer.EndLength(length);
+        serializer.EndLength(length);
     }
 
     public virtual void Deserialize(IGmDataDeserializer deserializer) {

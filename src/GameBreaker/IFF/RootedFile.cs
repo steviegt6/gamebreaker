@@ -19,18 +19,18 @@ public class RootedFile : ChunkedFile, IRootedFile
         // base.Serialize(serializer);
         if (Root is null) throw new Exception(); // TODO: Error handling.
 
-        serializer.Writer.Write(FORM_C);
+        serializer.Write(FORM_C);
 
-        uint length = serializer.Writer.BeginLength();
+        uint length = serializer.BeginLength();
         Root.Serialize(serializer);
-        serializer.Writer.EndLength(length);
+        serializer.EndLength(length);
     }
 
     public override void Deserialize(IGmDataDeserializer deserializer) {
         base.Deserialize(deserializer);
 
         // TODO: ReadBytes instead.
-        if (deserializer.Reader.ReadChars(4) != FORM_C)
+        if (deserializer.ReadChars(4) != FORM_C)
             throw new FormGameMakerDeserializationException("Expected 'FORM' chunk header! - is this a GameMaker IFF file?");
     }
 }

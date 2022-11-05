@@ -16,19 +16,10 @@ public static class SerializationUtilities
         public IEnumerable<string> ChunkNames { get; } = new List<string>();
     }
 
-    public static (
-        MemoryStream ms,
-        IPositionableWriter writer,
-        IPositionableReader reader,
-        IGmDataSerializer serializer,
-        IGmDataDeserializer deserializer)
-        PrepareSerializationTest() {
+    public static (MemoryStream ms, IGmDataSerializer serializer, IGmDataDeserializer deserializer) PrepareSerializationTest() {
         MemoryStream ms = new();
-        IPositionableWriter writer = new GmWriter(ms);
-        IPositionableReader reader = new GmReader(ms);
-        IGmDataSerializer serializer = new GmDataSerializer(writer);
-        IGmDataDeserializer deserializer = new GmDataDeserializer(reader, new EmptyMetadata());
-
-        return (ms, writer, reader, serializer, deserializer);
+        IGmDataSerializer serializer = new GmDataSerializer(new GmWriter(ms));
+        IGmDataDeserializer deserializer = new GmDataDeserializer(new GmReader(ms), new EmptyMetadata());
+        return (ms, serializer, deserializer);
     }
 }

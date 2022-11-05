@@ -32,18 +32,16 @@ partial class Int24Tests
     public static void Int24_SerializationTests(int value) {
         (
             MemoryStream ms,
-            IPositionableWriter writer,
-            IPositionableReader reader,
-            IGmDataSerializer _,
-            IGmDataDeserializer _
+            IGmDataSerializer serializer,
+            IGmDataDeserializer deserializer
         ) = SerializationUtilities.PrepareSerializationTest();
         
         Int24 directInt = new(value);
-        writer.Write(directInt);
+        serializer.Write(directInt);
 
         ms.Position = 0;
 
-        Int24 readerInt = reader.ReadInt24();
+        Int24 readerInt = deserializer.ReadInt24();
 
         Assert.That(value, Is.EqualTo(directInt.Value));
         Assert.That(value, Is.EqualTo(readerInt.Value));

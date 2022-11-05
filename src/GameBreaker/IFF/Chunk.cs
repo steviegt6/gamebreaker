@@ -23,25 +23,25 @@ public abstract class Chunk : IChunk
 
     public void Serialize(IGmDataSerializer serializer) {
         // Write chunk name.
-        serializer.Writer.Write(Identity.ToBytes());
+        serializer.Write(Identity.ToBytes());
 
         // Write chunk and then the new length.
-        Length = serializer.Writer.BeginLength();
+        Length = serializer.BeginLength();
         SerializeChunk(serializer);
-        serializer.Writer.EndLength(Length);
+        serializer.EndLength(Length);
     }
 
     public void Deserialize(IGmDataDeserializer deserializer) {
         // Read name and length.
         Identity = ReadHeader(deserializer);
-        Length = deserializer.Reader.ReadUInt32();
+        Length = deserializer.ReadUInt32();
 
         // Read chunk.
         DeserializeChunk(deserializer);
     }
 
     protected virtual ChunkIdentity ReadHeader(IGmDataDeserializer deserializer) {
-        var id = new ChunkIdentity(deserializer.Reader.ReadBytes(4));
+        var id = new ChunkIdentity(deserializer.ReadBytes(4));
 
         if (id.Value != ExpectedIdentity.Value) {
             // TODO: Custom exception type and message.

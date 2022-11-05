@@ -5,11 +5,9 @@ using GameBreaker.Abstractions.IFF.GM;
 
 namespace GameBreaker.Abstractions.Serialization
 {
-    public interface IGmDataSerializer
+    public interface IGmDataSerializer : IPositionableWriter
     {
         IGameMakerFile GameMakerFile { get; }
-
-        IPositionableWriter Writer { get; }
 
         void SerializeData();
 

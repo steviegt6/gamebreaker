@@ -38,8 +38,6 @@ public static class GmStringTests
     public static void SerializationTests(string value) {
         (
             MemoryStream ms,
-            IPositionableWriter writer,
-            IPositionableReader reader,
             IGmDataSerializer serializer,
             IGmDataDeserializer deserializer
         ) = SerializationUtilities.PrepareSerializationTest();
@@ -52,7 +50,7 @@ public static class GmStringTests
 
             ms.Position = 0;
 
-            GmString readerString = reader.ReadGmString();
+            GmString readerString = deserializer.ReadGmString();
 
             ms.Position = 0;
 
@@ -64,7 +62,7 @@ public static class GmStringTests
             Assert.That(value, Is.EqualTo(deserializerString.Value));
         }
 
-        InnerTest(x => writer.Write(x));
+        InnerTest(x => serializer.Write(x));
         InnerTest(x => x.Serialize(serializer));
     }
 }

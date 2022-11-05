@@ -36,5 +36,7 @@ namespace GameBreaker.Abstractions.Serialization
         double ReadDouble();
 
         GmString ReadGmString();
+
+        IPositionableReader CreateChildReader(long length);
     }
 }

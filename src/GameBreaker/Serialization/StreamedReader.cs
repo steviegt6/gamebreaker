@@ -16,6 +16,31 @@ namespace GameBreaker.Serialization
 {
     public class StreamedReader : IPositionableReader
     {
+        public class SlicedReader : StreamedReader
+        {
+            public override long Length {
+                get => EndSlice - StartSlice;
+                set => throw new NotSupportedException("Cannot adjust length of a sliced reader!");
+            }
+
+            public override long Position {
+                get => Reader.Position - StartSlice;
+                set => Reader.Position = value + StartSlice;
+            }
+
+            protected virtual StreamedReader Reader { get; }
+
+            protected virtual long StartSlice { get; }
+
+            protected virtual long EndSlice { get; }
+
+            public SlicedReader(long startSlice, long endSlice, StreamedReader reader) : base(reader.Stream, reader.Encoding) {
+                Reader = reader;
+                StartSlice = startSlice;
+                EndSlice = endSlice;
+            }
+        }
+        
         public virtual Encoding Encoding { get; }
 
         public virtual long Length {
@@ -143,6 +168,10 @@ namespace GameBreaker.Serialization
             Debug.Assert(Dbg(), "ReadGmString: String was not null-terminated!");
             Position++;
             return new GmString(res);
+        }
+
+        public virtual IPositionableReader CreateChildReader(long length) {
+            return new SlicedReader(Position, Position + length, this);
         }
 
         protected virtual void Dispose(bool disposing) {

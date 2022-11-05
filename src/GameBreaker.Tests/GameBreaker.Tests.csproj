@@ -21,4 +21,9 @@
       <ProjectReference Include="..\GameBreaker\GameBreaker.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="TestFiles\data.win" />
+      <EmbeddedResource Include="TestFiles\data.win" />
+    </ItemGroup>
+
 </Project>

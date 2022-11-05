@@ -28,9 +28,8 @@ namespace GameBreaker.Serialization
 
         // protected virtual List<(GmTextureData, int)> TexturesToDecompress { get; } = new();
 
-        public GmDataDeserializer(IPositionableReader reader, IChunkedFileMetadata chunkFileMetadata) {
+        public GmDataDeserializer(IPositionableReader reader) {
             Reader = reader;
-            GameMakerFile = new GameMakerFile(chunkFileMetadata);
         }
 
         #region IGmDataDeserializer Impl
@@ -75,6 +74,10 @@ namespace GameBreaker.Serialization
 
         public virtual GmString ReadStringPointerObject() {
             throw new NotImplementedException();
+        }
+
+        public virtual IGmDataDeserializer CreateChildDeserializer(long length) {
+            return new GmDataDeserializer(Reader.CreateChildReader(length));
         }
 
         #endregion
@@ -155,6 +158,10 @@ namespace GameBreaker.Serialization
 
         public virtual GmString ReadGmString() {
             return Reader.ReadGmString();
+        }
+
+        public virtual IPositionableReader CreateChildReader(long length) {
+            return Reader.CreateChildReader(length);
         }
 
         #endregion

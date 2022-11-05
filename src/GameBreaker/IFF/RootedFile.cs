@@ -27,10 +27,15 @@ public class RootedFile : ChunkedFile, IRootedFile
     }
 
     public override void Deserialize(IGmDataDeserializer deserializer) {
-        base.Deserialize(deserializer);
+        var id = new ChunkIdentity(deserializer.ReadBytes(4));
+        // TODO: Constant value for FORM later.
+        if (id.Value != "FORM")
+            throw new FormGameMakerDeserializationException(
+                $"Expected \"FORM\" chunk header but got \"{id.Value}\"! - is this a GameMaker IFF file?"
+            );
 
-        // TODO: ReadBytes instead.
-        if (deserializer.ReadChars(4) != FORM_C)
-            throw new FormGameMakerDeserializationException("Expected 'FORM' chunk header! - is this a GameMaker IFF file?");
+        uint length = deserializer.ReadUInt32();
+        Root = new ChunkedFile(Metadata);
+        Root.Deserialize(deserializer.CreateChildDeserializer(length));
     }
 }

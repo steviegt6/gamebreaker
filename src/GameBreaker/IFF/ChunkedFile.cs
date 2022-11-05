@@ -19,8 +19,6 @@ public class ChunkedFile : IChunkedFile
     }
 
     public virtual void Serialize(IGmDataSerializer serializer) {
-        uint length = serializer.BeginLength();
-
         // Serialize chunks in metadata-denoted order.
         foreach (string chunkName in Metadata.ChunkNames) {
             if (!Chunks.TryGetValue(chunkName, out IChunk? chunk)) continue;
@@ -28,11 +26,36 @@ public class ChunkedFile : IChunkedFile
             // Chunks should handle serialization of their names and lengths.
             chunk.Serialize(serializer);
         }
-        
-        serializer.EndLength(length);
     }
 
     public virtual void Deserialize(IGmDataDeserializer deserializer) {
-        // TODO: Deserialization.
+        while (true) {
+            // Ensure enough room to read the header.
+            if (deserializer.Position + 4 > deserializer.Length) break;
+            
+            byte[] header = deserializer.ReadBytes(4);
+            
+            // Ensure enough room to read the chunk length.
+            if (deserializer.Position + 4 > deserializer.Length) {
+                deserializer.Position -= 4;
+                break;
+            }
+
+            uint length = deserializer.ReadUInt32();
+            
+            // Ensure enough room to read the chunk,
+            if (deserializer.Position + length > deserializer.Length) {
+                deserializer.Position -= 8;
+                break;
+            }
+
+            deserializer.Position -= 8;
+            length += 8;
+
+            var id = new ChunkIdentity(header);
+            var chunk = Metadata.DeserializeChunk(id, length);
+            chunk.Deserialize(deserializer.CreateChildDeserializer(length));
+            Chunks[id.Value] = chunk;
+        }
     }
 }

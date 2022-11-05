@@ -15,4 +15,6 @@ public interface IChunkedFileMetadata
     ///     A collection of chunk names that describe the expected order of chunks in the IFF file.
     /// </summary>
     IEnumerable<string> ChunkNames { get; }
+
+    IChunk DeserializeChunk(ChunkIdentity identity, uint length);
 }

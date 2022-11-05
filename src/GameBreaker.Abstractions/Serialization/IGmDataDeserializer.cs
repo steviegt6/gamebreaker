@@ -32,5 +32,7 @@ namespace GameBreaker.Abstractions.Serialization
         GmString ReadStringPointer();
 
         GmString ReadStringPointerObject();
+
+        IGmDataDeserializer CreateChildDeserializer(long length);
     }
 }

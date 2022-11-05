@@ -14,8 +14,6 @@ public static class SerializationUtilities
 {
     private sealed class EmptyMetadata : IChunkedFileMetadata
     {
-        public IEnumerable<string> ChunkNames { get; } = new List<string>();
-        
         public IChunk DeserializeChunk(ChunkIdentity identity, uint length) {
             throw new System.NotImplementedException();
         }

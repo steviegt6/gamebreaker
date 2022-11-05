@@ -10,11 +10,11 @@ namespace GameBreaker.Abstractions.IFF;
 /// </summary>
 public interface IChunkedFileMetadata
 {
-    // TODO: Does order truly matter here? One advantage of IFF is that chunk orders are not important. Needs testing...
+    /*// TODO: Does order truly matter here? One advantage of IFF is that chunk orders are not important. Needs testing...
     /// <summary>
     ///     A collection of chunk names that describe the expected order of chunks in the IFF file.
     /// </summary>
-    IEnumerable<string> ChunkNames { get; }
+    IEnumerable<string> ChunkNames { get; }*/
 
     IChunk DeserializeChunk(ChunkIdentity identity, uint length);
 }

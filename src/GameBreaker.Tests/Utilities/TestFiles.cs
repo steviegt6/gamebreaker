@@ -10,8 +10,8 @@ public static class TestFiles
 {
     public static Stream GetEmbeddedBytes(string path) {
         path = "GameBreaker.Tests.TestFiles." + path;
-        Assembly asm = typeof(TestFiles).Assembly;
-        Stream? stream = asm.GetManifestResourceStream(path);
+        var asm = typeof(TestFiles).Assembly;
+        var stream = asm.GetManifestResourceStream(path);
         if (stream == null) throw new FileNotFoundException($"Could not find embedded resource \"{path}\"!");
         return stream;
     }

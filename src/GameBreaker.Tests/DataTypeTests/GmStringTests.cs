@@ -37,9 +37,9 @@ public static class GmStringTests
     [TestCase("Hello, world!\0")]
     public static void SerializationTests(string value) {
         (
-            MemoryStream ms,
-            IGmDataSerializer serializer,
-            IGmDataDeserializer deserializer
+            var ms,
+            var serializer,
+            var deserializer
         ) = SerializationUtilities.PrepareSerializationTest();
 
         void InnerTest(Action<GmString> write) {
@@ -50,7 +50,7 @@ public static class GmStringTests
 
             ms.Position = 0;
 
-            GmString readerString = deserializer.ReadGmString();
+            var readerString = deserializer.ReadGmString();
 
             ms.Position = 0;
 

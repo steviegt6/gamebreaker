@@ -20,7 +20,7 @@ partial class Int24Tests
     [TestCase((int) UInt24.MaxValue, true)]
     [TestCase((int) UInt24.MaxValue + 1, false)]
     public static void UInt24_MemoryMarshalTests(int value, bool expected) {
-        EqualConstraint constraint = expected ? Is.EqualTo(value) : Is.Not.EqualTo(value);
+        var constraint = expected ? Is.EqualTo(value) : Is.Not.EqualTo(value);
         Assert.That((int) MemoryMarshal.Read<UInt24>(GetBytes(value)).Value, constraint);
     }
     
@@ -28,9 +28,9 @@ partial class Int24Tests
     [TestCase((int) UInt24.MaxValue)]
     public static void UInt24_SerializationTests(int value) {
         (
-            MemoryStream ms,
-            IGmDataSerializer serializer,
-            IGmDataDeserializer deserializer
+            var ms,
+            var serializer,
+            var deserializer
         ) = SerializationUtilities.PrepareSerializationTest();
         
         UInt24 directUInt = new((uint) value);
@@ -38,7 +38,7 @@ partial class Int24Tests
 
         ms.Position = 0;
 
-        UInt24 readerUInt = deserializer.ReadUInt24();
+        var readerUInt = deserializer.ReadUInt24();
 
         Assert.That(value, Is.EqualTo(directUInt.Value));
         Assert.That(value, Is.EqualTo(readerUInt.Value));

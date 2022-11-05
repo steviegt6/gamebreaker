@@ -15,9 +15,15 @@ namespace GameBreaker.Serialization
     {
         public virtual Encoding Encoding { get; }
 
-        public virtual long Length { get; set; }
+        public virtual long Length {
+            get => OutStream.Length;
+            set => OutStream.SetLength(value);
+        }
 
-        public virtual long Position { get; set; }
+        public virtual long Position {
+            get => OutStream.Position;
+            set => OutStream.Position = value;
+        }
 
         public virtual event Action<IPositionableWriter>? OnFlush;
 

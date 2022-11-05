@@ -26,9 +26,9 @@ public abstract class Chunk : IChunk
         serializer.Write(Identity.ToBytes());
 
         // Write chunk and then the new length.
-        Length = serializer.BeginLength();
+        uint length = serializer.BeginLength();
         SerializeChunk(serializer);
-        serializer.EndLength(Length);
+        serializer.EndLength(length);
     }
 
     public void Deserialize(IGmDataDeserializer deserializer) {

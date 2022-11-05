@@ -6,14 +6,12 @@
 
 ---
 
-GameBreaker is a set of .NET projects written in C#, targeting the reverse-engineering of GameMaker games.
+GameBreaker is a GameMaker reverse-engineering and modding toolchain written in C# for .NET 6.
 
-GameBreaker utilizes research and code by myself, as well as the hard work of others, including:
-- [krzys-h/UndertaleModTool](https://github.com/krzys-h/UndertaleModTool)
-- [colinator27/DogScepter](https://github.com/colinator27/DogScepter)
-- [PoroCYon](https://gitlab.com/PoroCYon)
-  - [pcy.ulyssis.be/undertale](https://pcy.ulyssis.be/undertale/) (mirror of Mirrawr's site)
-  - [PoroCYon/Altar.NET](https://gitlab.com/PoroCYon/Altar.NET)
-  - and several gists
+Taking into consideration previous projects' (subjective) successes and failures, GameBreaker intends to create a powerful, efficient, fast toolchain that reverse-engineering and modding GameMaker games significantly easier.
 
-Taking in considerations of what has been done well and poorly in the past, GameBreaker hopes to create a powerful toolchain that makes tools for reverse-engineering and modding significantly easier. The current goal is to craft a powerful, efficient, and accurate compiler and decompiler.
+Currently planned is a reliable deserialization and serialization system. If all goes well, decompilation- and compilation-related projects will undergo experimentation. A free (as in free speech and free beer) desktop runner exists in an idealistic future as well.
+
+## Licensing
+
+GameBreaker utilizes research and code by myself and others, see [COPYING.md](COPYING.md) for peoples' hard work and relevant software licenses.

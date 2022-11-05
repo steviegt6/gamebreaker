@@ -7,8 +7,6 @@ namespace GameBreaker.Abstractions.Serialization
 {
     public interface IPositionableWriter : IPositionable
     {
-        event Action<IPositionableWriter> OnFlush;
-
         void Write(byte value);
 
         void Write(byte[] value);

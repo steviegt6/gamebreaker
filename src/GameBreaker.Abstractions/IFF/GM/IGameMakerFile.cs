@@ -10,23 +10,6 @@ namespace GameBreaker.Abstractions.IFF.GM
     {
         GmVersionInfo VersionInfo { get; }
 
-        ActionBlock<KeyValuePair<string, byte[]>> FileWrites { get; }
-
-        /// <summary>
-        ///     The directory of this data file.
-        /// </summary>
-        string Directory { get; }
-
-        /// <summary>
-        ///     The file name of this data file.
-        /// </summary>
-        string Filename { get; }
-
-        /// <summary>
-        ///     The <see cref="SHA1"/> hash of this data file.
-        /// </summary>
-        byte[] Hash { get; }
-
         GmString DefineString(string value, out int index);
     }
 }

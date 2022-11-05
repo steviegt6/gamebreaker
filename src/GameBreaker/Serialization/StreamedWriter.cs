@@ -25,8 +25,6 @@ namespace GameBreaker.Serialization
             set => OutStream.Position = value;
         }
 
-        public virtual event Action<IPositionableWriter>? OnFlush;
-
         public StreamedWriter(Stream stream, Encoding? encoding = null) : base(stream) {
             Encoding = encoding ?? Encoding.UTF8;
         }
@@ -52,12 +50,6 @@ namespace GameBreaker.Serialization
             Write(length);
             Write(Encoding.GetBytes(value.Value, 0, value.Value.Length));
             Write(0); // write null terminator
-        }
-
-        public override void Flush() {
-            base.Flush();
-
-            OnFlush?.Invoke(this);
         }
     }
 }

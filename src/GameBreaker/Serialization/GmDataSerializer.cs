@@ -31,13 +31,6 @@ namespace GameBreaker.Serialization
         // protected virtual Dictionary<GmFunctionEntry, List<int>> FunctionReferences { get; } = new();
 
         public GmDataSerializer(IPositionableWriter writer) {
-            writer.OnFlush += _ =>
-            {
-                // Finalize all other file write operations if any exist.
-                GameMakerFile.FileWrites.Complete();
-                GameMakerFile.FileWrites.Completion.GetAwaiter().GetResult();
-            };
-
             Writer = writer;
         }
 
@@ -103,11 +96,6 @@ namespace GameBreaker.Serialization
         public virtual long Position {
             get => Writer.Position;
             set => Writer.Position = value;
-        }
-
-        public virtual event Action<IPositionableWriter>? OnFlush {
-            add => Writer.OnFlush += value;
-            remove => Writer.OnFlush -= value;
         }
 
         public virtual void Write(byte value) {

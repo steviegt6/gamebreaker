@@ -43,7 +43,7 @@ public sealed class ChunkShufflerExample : BaseRunnerCommand
     }
 
     [CommandOption("preserve-gen8", /*'g',*/ Description = "Whether to preserve GEN8's position and not shuffle it.")]
-    public bool PreserveGEN8 { get; set; } = true;
+    public bool PreserveGEN8 { get; set; } = false;
 
     public override async ValueTask ExecuteAsync(IConsole console) {
         var iff = await GetGameMakerFile(new SimpleMetadata());

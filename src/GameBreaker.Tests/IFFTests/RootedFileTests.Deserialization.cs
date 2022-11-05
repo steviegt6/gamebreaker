@@ -43,8 +43,8 @@ partial class RootedFileTests
         }
     }
 
-    [TestCase(new string[] { }, "data.win")]
-    public static void Deserialize_GetExpectedChunksTest(string[] expectedChunks, string filePath) {
+    [TestCase("data.win")]
+    public static void Deserialize_GetExpectedChunksTest(string filePath) {
         var file = new GameMakerFile(new SimpleMetadata());
         var deserializer = new GmDataDeserializer(new GmReader(TestFiles.GetEmbeddedBytes(filePath)));
         file.Deserialize(deserializer);

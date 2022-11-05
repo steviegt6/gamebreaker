@@ -13,7 +13,7 @@ public abstract class Chunk : IChunk
     /// <summary>
     ///     The expected chunk identity.
     /// </summary>
-    public abstract ChunkIdentity ExpectedIdentity { get; }
+    protected abstract ChunkIdentity ExpectedIdentity { get; }
 
     /// <inheritdoc cref="IChunk.Identity"/>
     public virtual ChunkIdentity Identity { get; protected set; }

@@ -34,10 +34,6 @@ namespace GameBreaker.Serialization
 
         #region IGmDataDeserializer Impl
 
-        public virtual void DeserializeData() {
-            throw new NotImplementedException();
-        }
-
         public virtual T ReadPointer<T>(int ptr)
             where T : IGmSerializable, new() {
             throw new NotImplementedException();

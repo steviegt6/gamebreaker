@@ -36,14 +36,6 @@ namespace GameBreaker.Serialization
 
         #region IGmDataSerializer Impl
 
-        public virtual void SerializeData() {
-            GameMakerFile.Root.Serialize(this);
-
-            // Handle serialization of pointer offsets
-            Parallel.ForEach(PendingPointerWrites, PerformPointerWrite);
-            Parallel.ForEach(PendingStringPointerWrites, PerformStringPointerWrite);
-        }
-
         public virtual void WritePointer(IGmSerializable? ptr) {
             // If the object does not exist, write a null pointer.
             if (ptr is null) {

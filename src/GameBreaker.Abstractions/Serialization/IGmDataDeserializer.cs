@@ -9,8 +9,6 @@ namespace GameBreaker.Abstractions.Serialization
     {
         IGameMakerFile GameMakerFile { get; }
 
-        void DeserializeData();
-
         T ReadPointer<T>(int ptr)
             where T : IGmSerializable, new();
 

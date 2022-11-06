@@ -9,8 +9,6 @@ namespace GameBreaker.Abstractions.Serialization
     {
         IGameMakerFile GameMakerFile { get; }
 
-        void SerializeData();
-
         void WritePointer(IGmSerializable? ptr);
 
         void WritePointerString(GmString? ptr);

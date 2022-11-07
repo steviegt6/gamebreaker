@@ -5,8 +5,4 @@ namespace GameBreaker.Tests.IFFTests;
 
 [TestFixture]
 public static partial class ChunkIdentityTests
-{
-    private static byte[] GetBytes(int value) {
-        return new[] {(byte) (value & 0xFF), (byte) ((value >> 8) & 0xFF), (byte) ((value >> 16) & 0xFF), (byte) ((value >> 24) & 0xFF)};
-    }
-}
+{ }

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
-using GameBreaker.Util.Extensions;
 
 namespace GameBreaker.IFF;
 

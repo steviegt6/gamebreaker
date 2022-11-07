@@ -7,17 +7,16 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace GameBreaker.Serialization
-{
-    public class GmReader : StreamedReader
-    {
-        public GmReader(Stream stream, Encoding? encoding = null) : base(stream, encoding) { }
+namespace GameBreaker.Serialization;
 
-        public override bool ReadBoolean() {
-            Debug.Assert(Position + 1 <= Length, "ReadBoolean: Read out of bounds.");
-            int val = ReadInt32();
-            Debug.Assert(val is 0 or 1, $"ReadBoolean: Value was not 0 or 1 ({val}).");
-            return val != 0;
-        }
+public class GmReader : StreamedReader
+{
+    public GmReader(Stream stream, Encoding? encoding = null) : base(stream, encoding) { }
+
+    public override bool ReadBoolean() {
+        Debug.Assert(Position + 1 <= Length, "ReadBoolean: Read out of bounds.");
+        int val = ReadInt32();
+        Debug.Assert(val is 0 or 1, $"ReadBoolean: Value was not 0 or 1 ({val}).");
+        return val != 0;
     }
 }

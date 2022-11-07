@@ -6,7 +6,6 @@ using CliFx.Infrastructure;
 using GameBreaker.Abstractions.IFF;
 using GameBreaker.Abstractions.Serialization;
 using GameBreaker.IFF;
-using GameBreaker.Serialization;
 using GameBreaker.Utilities;
 
 namespace GameBreaker.Examples.ChunkManipulation;

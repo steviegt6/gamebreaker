@@ -9,47 +9,46 @@ using System.Text;
 using GameBreaker.Abstractions;
 using GameBreaker.Abstractions.Serialization;
 
-namespace GameBreaker.Serialization
+namespace GameBreaker.Serialization;
+
+public class StreamedWriter : BinaryWriter, IPositionableWriter
 {
-    public class StreamedWriter : BinaryWriter, IPositionableWriter
-    {
-        public virtual Encoding Encoding { get; }
+    public virtual Encoding Encoding { get; }
 
-        public virtual long Length {
-            get => OutStream.Length;
-            set => OutStream.SetLength(value);
-        }
+    public virtual long Length {
+        get => OutStream.Length;
+        set => OutStream.SetLength(value);
+    }
 
-        public virtual long Position {
-            get => OutStream.Position;
-            set => OutStream.Position = value;
-        }
+    public virtual long Position {
+        get => OutStream.Position;
+        set => OutStream.Position = value;
+    }
 
-        public StreamedWriter(Stream stream, Encoding? encoding = null) : base(stream) {
-            Encoding = encoding ?? Encoding.UTF8;
-        }
+    public StreamedWriter(Stream stream, Encoding? encoding = null) : base(stream) {
+        Encoding = encoding ?? Encoding.UTF8;
+    }
 
-        public virtual void Write(Int24 value) {
-            Span<byte> buffer = stackalloc byte[3];
-            buffer[0] = (byte) (value.Value & 0xFF);
-            buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
-            buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
-            OutStream.Write(buffer);
-        }
+    public virtual void Write(Int24 value) {
+        Span<byte> buffer = stackalloc byte[3];
+        buffer[0] = (byte) (value.Value & 0xFF);
+        buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
+        buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
+        OutStream.Write(buffer);
+    }
 
-        public virtual void Write(UInt24 value) {
-            Span<byte> buffer = stackalloc byte[3];
-            buffer[0] = (byte) (value.Value & 0xFF);
-            buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
-            buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
-            OutStream.Write(buffer);
-        }
+    public virtual void Write(UInt24 value) {
+        Span<byte> buffer = stackalloc byte[3];
+        buffer[0] = (byte) (value.Value & 0xFF);
+        buffer[1] = (byte) ((value.Value >> 8) & 0xFF);
+        buffer[2] = (byte) ((value.Value >> 16) & 0xFF);
+        OutStream.Write(buffer);
+    }
 
-        public virtual void Write(GmString value) {
-            int length = Encoding.GetByteCount(value.Value);
-            Write(length);
-            Write(Encoding.GetBytes(value.Value, 0, value.Value.Length));
-            Write(0); // write null terminator
-        }
+    public virtual void Write(GmString value) {
+        int length = Encoding.GetByteCount(value.Value);
+        Write(length);
+        Write(Encoding.GetBytes(value.Value, 0, value.Value.Length));
+        Write(0); // write null terminator
     }
 }

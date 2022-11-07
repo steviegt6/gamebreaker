@@ -6,15 +6,14 @@
 using System.IO;
 using System.Text;
 
-namespace GameBreaker.Serialization
-{
-    public class GmWriter : StreamedWriter
-    {
-        public GmWriter(Stream stream, Encoding? encoding = null) : base(stream, encoding) { }
+namespace GameBreaker.Serialization;
 
-        public override void Write(bool value) {
-            // Int32
-            Write(value ? 1 : 0);
-        }
+public class GmWriter : StreamedWriter
+{
+    public GmWriter(Stream stream, Encoding? encoding = null) : base(stream, encoding) { }
+
+    public override void Write(bool value) {
+        // Int32
+        Write(value ? 1 : 0);
     }
 }

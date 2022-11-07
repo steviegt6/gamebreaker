@@ -5,7 +5,6 @@ using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using GameBreaker.Abstractions.IFF;
-using GameBreaker.Abstractions.Serialization;
 using GameBreaker.IFF;
 using GameBreaker.Serialization;
 

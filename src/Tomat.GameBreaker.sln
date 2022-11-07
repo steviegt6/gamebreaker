@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Tests", "GameBr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Examples", "GameBreaker.Examples\GameBreaker.Examples.csproj", "{6E5EC7BA-D4C7-4725-A373-70204EC6265B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Common", "GameBreaker.Common\GameBreaker.Common.csproj", "{71777B21-EC13-4BA9-A01E-77DBE3021D69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{6E5EC7BA-D4C7-4725-A373-70204EC6265B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E5EC7BA-D4C7-4725-A373-70204EC6265B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E5EC7BA-D4C7-4725-A373-70204EC6265B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71777B21-EC13-4BA9-A01E-77DBE3021D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71777B21-EC13-4BA9-A01E-77DBE3021D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71777B21-EC13-4BA9-A01E-77DBE3021D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71777B21-EC13-4BA9-A01E-77DBE3021D69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

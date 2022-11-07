@@ -4,8 +4,7 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using GameBreaker.Abstractions.IFF;
-using GameBreaker.Abstractions.Serialization;
-using GameBreaker.IFF;
+using GameBreaker.Common;
 using GameBreaker.Utilities;
 
 namespace GameBreaker.Examples.ChunkManipulation;
@@ -13,34 +12,6 @@ namespace GameBreaker.Examples.ChunkManipulation;
 [Command("chunk-shuffler", Description = "Shuffles the chunks within the root FORM chunk.")]
 public sealed class ChunkShufflerExample : BaseRunnerCommand
 {
-    private sealed class SimpleChunk : Chunk
-    {
-        protected override ChunkIdentity ExpectedIdentity => throw new System.NotImplementedException();
-
-        private byte[]? Data { get; set; }
-
-        protected override ChunkIdentity ReadHeader(IGmDataDeserializer deserializer) {
-            return new ChunkIdentity(deserializer.ReadBytes(4));
-        }
-
-        protected override void SerializeChunk(IGmDataSerializer serializer) {
-            if (Data is null) throw new System.InvalidOperationException("Attempted to serialize non-deserialized chunk.");
-
-            serializer.Write(Data);
-        }
-
-        protected override void DeserializeChunk(IGmDataDeserializer deserializer) {
-            Data = deserializer.ReadBytes((int) Length);
-        }
-    }
-
-    private sealed class SimpleMetadata : IChunkedFileMetadata
-    {
-        public IChunk DeserializeChunk(ChunkIdentity identity, uint length) {
-            return new SimpleChunk();
-        }
-    }
-
     [CommandOption("preserve-gen8", /*'g',*/ Description = "Whether to preserve GEN8's position and not shuffle it.")]
     public bool PreserveGEN8 { get; set; } = false;
 

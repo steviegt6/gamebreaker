@@ -12,6 +12,24 @@ Taking into consideration previous projects' (subjective) successes and failures
 
 Currently planned is a reliable deserialization and serialization system. If all goes well, decompilation- and compilation-related projects will undergo experimentation. A free (as in free speech and free beer) desktop runner exists in an idealistic future as well.
 
+## Progress
+
+- [ ] IFF/chunk library.
+  - [ ] IFF/chunk abstractions.
+    - [x] Funamental layout.
+    - [ ] Plan out extensibility structure to abstract away GameMaker-specific behavior.
+  - [ ] Extensibility structure to abstract away GameMaker-specific behavior.
+- [ ] Core (de)serialization library.
+  - [ ] Core (de)serialization abstractions.
+    - [x] `IGMSerializable` + basic layout for handling deserializable data.
+    - [ ] Plan out extensibility structure to abstract away version-dependent behavior.
+  - [ ] Extensibility structure to abstract away version-dependent behavior.
+- [ ] GMS modification library.
+  - [ ] Chunk (de)serialization.
+    - [ ] Proper version detection.
+    - [ ] Account for conditional chunk padding.
+    - [x] `GEN8` chunk (de)serialization.
+
 ## Examples
 
 > For a more detailed list of examples, see various usages in `./src/GameBreaker.Tests/` and `./GameBreaker.Examples/`.

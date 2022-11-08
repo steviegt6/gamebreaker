@@ -13,7 +13,6 @@ Taking into consideration previous projects' (subjective) successes and failures
 Currently planned is a reliable deserialization and serialization system. If all goes well, decompilation- and compilation-related projects will undergo experimentation. A free (as in free speech and free beer) desktop runner exists in an idealistic future as well.
 
 ## Progress
-
 - [ ] IFF/chunk library.
   - [ ] IFF/chunk abstractions.
     - [x] Funamental layout.
@@ -28,7 +27,99 @@ Currently planned is a reliable deserialization and serialization system. If all
   - [ ] Chunk (de)serialization.
     - [ ] Proper version detection.
     - [ ] Account for conditional chunk padding.
-    - [x] `GEN8` chunk (de)serialization.
+    - [x] `GEN8` chunk.
+      - [x] Serialization.
+      - [x] Deserialization.
+    - [ ] `LANG` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `EXTN` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `STRG` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `TPAG` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `TXTR` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `AGRP` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `AUDO` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `SONG` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `BGND` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `PATH` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `EMBI` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `DAFL` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `TGIN` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `FONT` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `SPRT` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `ACRV` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `FUNC` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `VARI` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `SCPT` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `TAGS` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `ROOM` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `OBJT` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `TMLN` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `GLOB` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `GMEN` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `SHDR` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `CODE` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `SEQN` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `FEDS` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
+    - [ ] `FEAT` chunk.
+      - [ ] Serialization.
+      - [ ] Deserialization.
 
 ## Examples
 

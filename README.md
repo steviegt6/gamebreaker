@@ -8,7 +8,7 @@
 
 GameBreaker is a GameMaker reverse-engineering and modding toolchain written in C# for .NET 6.
 
-Taking into consideration previous projects' (subjective) successes and failures, GameBreaker intends to create a powerful, efficient, fast toolchain that reverse-engineering and modding GameMaker games significantly easier.
+Taking into consideration previous projects' (subjective) successes and failures, GameBreaker intends to create a powerful, efficient, fast toolchain that makes reverse-engineering and modding GameMaker games significantly easier. **GameBreaker considers programmatic capabilities to be a first-class priority. GameBreaker is designed and optimized around being used as a library, not as a UI application background. No officially-supported UI is currently planned.**
 
 Currently planned is a reliable deserialization and serialization system. If all goes well, decompilation- and compilation-related projects will undergo experimentation. A free (as in free speech and free beer) desktop runner exists in an idealistic future as well.
 

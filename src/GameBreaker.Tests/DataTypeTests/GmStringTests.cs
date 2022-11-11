@@ -2,8 +2,8 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System;
-using GameBreaker.Abstractions;
-using GameBreaker.Abstractions.Exceptions;
+using GameBreaker.Core.Abstractions;
+using GameBreaker.Core.Abstractions.Exceptions;
 using GameBreaker.Tests.Utilities;
 
 namespace GameBreaker.Tests.DataTypeTests;

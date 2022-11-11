@@ -2,7 +2,7 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Runtime.InteropServices;
-using GameBreaker.Abstractions;
+using GameBreaker.Core.Abstractions;
 using GameBreaker.Tests.Utilities;
 
 namespace GameBreaker.Tests.DataTypeTests;

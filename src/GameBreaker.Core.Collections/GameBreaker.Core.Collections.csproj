@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GameBreaker.Core.Abstractions\GameBreaker.Core.Abstractions.csproj" />
+      <ProjectReference Include="..\GameBreaker.Core.Collections.Abstractions\GameBreaker.Core.Collections.Abstractions.csproj" />
+    </ItemGroup>
+</Project>

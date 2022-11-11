@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameBreaker.Abstractions\GameBreaker.Abstractions.csproj" />
+      <ProjectReference Include="..\GameBreaker.Core.Collections\GameBreaker.Core.Collections.csproj" />
+      <ProjectReference Include="..\GameBreaker.Common\GameBreaker.Common.csproj" />
+      <ProjectReference Include="..\GameBreaker.Core\GameBreaker.Core.csproj" />
     </ItemGroup>
 
 </Project>

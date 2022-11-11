@@ -3,8 +3,8 @@
 
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using GameBreaker.Abstractions.IFF;
 using GameBreaker.Common;
+using GameBreaker.Core.Abstractions.IFF;
 using GameBreaker.Utilities;
 
 namespace GameBreaker.Examples.ChunkManipulation;

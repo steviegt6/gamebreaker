@@ -22,7 +22,7 @@ public static class Program
 
     private static async Task PrintLicense() {
         await Console.Out.WriteLineAsync(@"
-GameBreaker.Examples - Example usages for GameBreaker.
+GameBreaker.Core.Examples - Example usages for GameBreaker.Core and GameBreaker.Core.
 Copyright (C) 2022  Tomat (Steviegt6)
 
 This program is free software; you can redistribute it and/or modify

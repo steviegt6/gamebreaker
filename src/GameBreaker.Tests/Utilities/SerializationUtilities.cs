@@ -2,8 +2,8 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.IO;
-using GameBreaker.Abstractions.Serialization;
-using GameBreaker.Serialization;
+using GameBreaker.Core.Abstractions.Serialization;
+using GameBreaker.Core.Serialization;
 
 namespace GameBreaker.Tests.Utilities;
 

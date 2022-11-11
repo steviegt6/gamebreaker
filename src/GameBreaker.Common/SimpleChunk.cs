@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Tomat. Licensed under the GPL License, version 2.
 // See the LICENSE file in the repository root for full terms and conditions.
 
-using GameBreaker.Abstractions.IFF;
-using GameBreaker.Abstractions.Serialization;
-using GameBreaker.IFF;
+using GameBreaker.Core.Abstractions.IFF;
+using GameBreaker.Core.Abstractions.Serialization;
+using GameBreaker.Core.IFF;
 
 namespace GameBreaker.Common;
 

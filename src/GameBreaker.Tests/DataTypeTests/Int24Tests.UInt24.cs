@@ -2,7 +2,7 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Runtime.InteropServices;
-using GameBreaker.Abstractions;
+using GameBreaker.Core.Abstractions;
 using GameBreaker.Tests.Utilities;
 
 namespace GameBreaker.Tests.DataTypeTests;
@@ -20,7 +20,7 @@ partial class Int24Tests
         var constraint = expected ? Is.EqualTo(value) : Is.Not.EqualTo(value);
         Assert.That((int) MemoryMarshal.Read<UInt24>(GetBytes(value)).Value, constraint);
     }
-    
+
     [TestCase((int) UInt24.MinValue)]
     [TestCase((int) UInt24.MaxValue)]
     public static void UInt24_SerializationTests(int value) {
@@ -29,7 +29,7 @@ partial class Int24Tests
             var serializer,
             var deserializer
         ) = SerializationUtilities.PrepareSerializationTest();
-        
+
         UInt24 directUInt = new((uint) value);
         serializer.Write(directUInt);
 

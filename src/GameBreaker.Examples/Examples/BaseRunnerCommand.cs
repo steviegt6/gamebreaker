@@ -4,9 +4,9 @@
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using GameBreaker.Abstractions.IFF;
-using GameBreaker.IFF;
-using GameBreaker.Serialization;
+using GameBreaker.Core.Abstractions.IFF;
+using GameBreaker.Core.IFF;
+using GameBreaker.Core.Serialization;
 
 namespace GameBreaker.Examples;
 
@@ -25,7 +25,7 @@ public abstract class BaseRunnerCommand : ICommand
         if (!File.Exists(Path)) throw new FileNotFoundException($"File does not exist at path: {Path}");
 
         await using var stream = File.OpenRead(Path);
-        var file = new GameMakerFile(metadata);
+        var file = new RootedFile(metadata);
         var deserializer = new GmDataDeserializer(new GmReader(stream));
         file.Deserialize(deserializer);
         return await Task.FromResult(file);

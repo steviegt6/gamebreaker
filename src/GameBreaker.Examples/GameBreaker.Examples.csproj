@@ -13,7 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameBreaker.Common\GameBreaker.Common.csproj" />
       <ProjectReference Include="..\GameBreaker.Core\GameBreaker.Core.csproj" />
     </ItemGroup>
 

@@ -29,6 +29,17 @@ public class DataSerializer : BinaryWriter, IDataSerializer
         Encoding = encoding ?? Encoding.UTF8;
     }
 
+    public override void Write(bool value) {
+        Write(value, true);
+    }
+
+    public virtual void Write(bool value, bool wide) {
+        if (wide)
+            Write(value ? 1 : 0);
+        else
+            Write((byte) (value ? 1 : 0));
+    }
+
     public virtual void Write(Int24 value) {
         Span<byte> buffer = stackalloc byte[3];
         buffer[0] = (byte) (value.Value & 0xFF);

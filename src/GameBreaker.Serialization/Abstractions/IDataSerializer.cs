@@ -11,7 +11,7 @@ public interface IDataSerializer : IPositionable
 
     void Write(byte[] value);
 
-    void Write(bool value);
+    void Write(bool value, bool wide = true);
 
     void Write(char value);
 

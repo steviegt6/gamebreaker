@@ -2,7 +2,6 @@
 // See the LICENSE file in the repository root for full terms and conditions.
 
 using System.Collections.Generic;
-using GameBreaker.Core.Abstractions.Serialization;
 
 namespace GameBreaker.Core.Collections.Abstractions;
 

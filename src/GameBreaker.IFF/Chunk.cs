@@ -25,7 +25,7 @@ public abstract class Chunk : IChunk
         Identity = ReadIdentity(deserializer, file, endPosition);
         uint length = ReadLength(deserializer, file, endPosition);
 
-        DeserializeChunk(deserializer, file, (uint) deserializer.Position + length);
+        DeserializeChunk(deserializer, file, length);
     }
 
     protected virtual ChunkIdentity ReadIdentity(IDataDeserializer deserializer, IChunkedFile file, uint endPosition) {
@@ -40,5 +40,5 @@ public abstract class Chunk : IChunk
         return deserializer.ReadUInt32();
     }
 
-    protected abstract void DeserializeChunk(IDataDeserializer deserializer, IChunkedFile file, uint endPosition);
+    protected abstract void DeserializeChunk(IDataDeserializer deserializer, IChunkedFile file, uint length);
 }

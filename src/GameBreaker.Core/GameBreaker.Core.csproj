@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\GameBreaker.Core.Abstractions\GameBreaker.Core.Abstractions.csproj" />
-    </ItemGroup>
-
 </Project>

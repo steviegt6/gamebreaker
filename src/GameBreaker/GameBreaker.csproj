@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameBreaker.Core.Collections\GameBreaker.Core.Collections.csproj" />
-      <ProjectReference Include="..\GameBreaker.Core\GameBreaker.Core.csproj" />
     </ItemGroup>
 
 </Project>

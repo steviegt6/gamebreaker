@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Core", "GameBreaker.Core\GameBreaker.Core.csproj", "{CBFA5534-3592-41F1-B474-18158192E5C7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Tests", "GameBreaker.Tests\GameBreaker.Tests.csproj", "{8873C1B0-B7A1-454A-9CA4-89A34A8FBD9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Examples", "GameBreaker.Examples\GameBreaker.Examples.csproj", "{6E5EC7BA-D4C7-4725-A373-70204EC6265B}"
@@ -32,10 +30,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CBFA5534-3592-41F1-B474-18158192E5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBFA5534-3592-41F1-B474-18158192E5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBFA5534-3592-41F1-B474-18158192E5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBFA5534-3592-41F1-B474-18158192E5C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8873C1B0-B7A1-454A-9CA4-89A34A8FBD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8873C1B0-B7A1-454A-9CA4-89A34A8FBD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8873C1B0-B7A1-454A-9CA4-89A34A8FBD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,7 +65,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4AA814C7-7193-4092-BA3E-CA009AA8D856} = {64836630-411E-462E-AE67-4EE6EBD3C77D}
-		{CBFA5534-3592-41F1-B474-18158192E5C7} = {64836630-411E-462E-AE67-4EE6EBD3C77D}
 		{D536B687-9AE0-45E4-A48A-E530A72AFE23} = {64836630-411E-462E-AE67-4EE6EBD3C77D}
 		{69C9E6C9-8F2F-43E1-B5FF-06183C63345C} = {64836630-411E-462E-AE67-4EE6EBD3C77D}
 		{6E5EC7BA-D4C7-4725-A373-70204EC6265B} = {64836630-411E-462E-AE67-4EE6EBD3C77D}

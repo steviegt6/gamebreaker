@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Core.Collection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Core.Collections.Abstractions", "GameBreaker.Core.Collections.Abstractions\GameBreaker.Core.Collections.Abstractions.csproj", "{69C9E6C9-8F2F-43E1-B5FF-06183C63345C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.DataTypes", "GameBreaker.DataTypes\GameBreaker.DataTypes.csproj", "{ADA758A4-742C-4B6D-BC39-90165664349B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{69C9E6C9-8F2F-43E1-B5FF-06183C63345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C9E6C9-8F2F-43E1-B5FF-06183C63345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C9E6C9-8F2F-43E1-B5FF-06183C63345C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA758A4-742C-4B6D-BC39-90165664349B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA758A4-742C-4B6D-BC39-90165664349B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA758A4-742C-4B6D-BC39-90165664349B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA758A4-742C-4B6D-BC39-90165664349B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

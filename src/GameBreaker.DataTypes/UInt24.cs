@@ -3,7 +3,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace GameBreaker.Core.Abstractions
+namespace GameBreaker.DataTypes
 {
     /// <summary>
     ///     Represents a 24-bit unsigned integer.

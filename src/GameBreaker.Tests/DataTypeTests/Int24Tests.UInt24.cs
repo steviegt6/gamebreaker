@@ -3,6 +3,7 @@
 
 using System.Runtime.InteropServices;
 using GameBreaker.Core.Abstractions;
+using GameBreaker.DataTypes;
 using GameBreaker.Tests.Utilities;
 
 namespace GameBreaker.Tests.DataTypeTests;

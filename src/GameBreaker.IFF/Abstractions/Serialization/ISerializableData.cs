@@ -5,9 +5,9 @@ using GameBreaker.Serialization.Abstractions;
 
 namespace GameBreaker.IFF.Abstractions.Serialization;
 
-public delegate void SerializeDataDelegate(IDataSerializer serializer, IChunk chunk, object? value);
+public delegate void SerializeDataDelegate(IDataSerializer serializer, IChunkedFile file, IChunk chunk, object? value);
 
-public delegate object? DeserializeDataDelegate(IDataDeserializer deserializer, IChunk chunk);
+public delegate object? DeserializeDataDelegate(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
 
 public interface ISerializableData
 {
@@ -17,24 +17,27 @@ public interface ISerializableData
 
     DeserializationState DeserializationState { get; }
 
-    object? Value { get; }
+    object? Value { get; set; }
 }
 
-public delegate void SerializeDelegate<in T>(IDataSerializer serializer, IChunk chunk, T? value);
+public delegate void SerializeDelegate<in T>(IDataSerializer serializer, IChunkedFile file, IChunk chunk, T? value);
 
-public delegate T? DeserializeDelegate<out T>(IDataDeserializer deserializer, IChunk chunk);
+public delegate T? DeserializeDelegate<out T>(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
 
 public interface ISerializableData<T> : ISerializableData
 {
-    SerializeDataDelegate ISerializableData.Serializer => (s, c, v) => Serializer(s, c, (T?) v);
+    SerializeDataDelegate ISerializableData.Serializer => (s, f, c, v) => Serializer(s, f, c, (T?) v);
 
-    DeserializeDataDelegate ISerializableData.Deserializer => (d, c) => Deserializer(d, c);
+    DeserializeDataDelegate ISerializableData.Deserializer => (d, f, c) => Deserializer(d, f, c);
 
-    object? ISerializableData.Value => Value;
+    object? ISerializableData.Value {
+        get => Value;
+        set => Value = (T?) value;
+    }
     
     new SerializeDelegate<T> Serializer { get; }
 
     new DeserializeDelegate<T> Deserializer { get; }
     
-    new T Value { get; }
+    new T? Value { get; set; }
 }

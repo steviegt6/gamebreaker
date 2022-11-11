@@ -216,7 +216,7 @@ partial class GMSChunk
         }
 
         protected override void DeserializeChunk(IGmDataDeserializer d) {
-            if (d.GameMakerFile is not GameMakerFile gmFile) throw new Exception(); // TODO
+            /*if (d.GameMakerFile is not GameMakerFile gmFile) throw new Exception(); // TODO
             
             DisableDebug                           = d.ReadByte() != 0; // only time a boolean isn't wide
             gmFile.VersionInfo.FormatID = FormatID = d.ReadByte();
@@ -244,7 +244,7 @@ partial class GMSChunk
             if (Major >= 2) { GMS2_RandomUID       = d.ReadRandomUID(this, gmFile);
                               GMS2_FPS             = d.ReadSingle();
                               GMS2_AllowStatistics = d.ReadBoolean();
-                              GMS2_GameGUID        = d.ReadGuid(); }
+                              GMS2_GameGUID        = d.ReadGuid(); }*/
         }
     }
 }

@@ -18,7 +18,7 @@ public class GmDataDeserializer : IGmDataDeserializer
 
     protected virtual IPositionableReader Reader { get; }
 
-    protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; } = new();
+    // protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; } = new();
 
     // protected virtual Dictionary<int, Instruction> Instructions { get; } = new();
 
@@ -30,7 +30,7 @@ public class GmDataDeserializer : IGmDataDeserializer
 
     #region IGmDataDeserializer Impl
 
-    public virtual T ReadPointer<T>(int ptr)
+    /*public virtual T ReadPointer<T>(int ptr)
         where T : IGmSerializable, new() {
         if (ptr == 0) return default;
         if (PointerOffsets.TryGetValue(ptr, out IGmSerializable? s)) return (T) s;
@@ -90,7 +90,7 @@ public class GmDataDeserializer : IGmDataDeserializer
 
     public virtual GmString ReadStringPointerObject() {
         return ReadPointerObject<GmString>(ReadInt32() - 4);
-    }
+    }*/
 
     #endregion
 

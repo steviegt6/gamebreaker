@@ -10,10 +10,10 @@ namespace GameBreaker.Chunks;
 
 public abstract partial class GMSChunk : Chunk
 {
-    protected virtual GmPointerList<T> ReadPointerList<T>(IGmDataDeserializer deserializer, DeserializeCollectionElementDelegate elementReader)
+    /*protected virtual GmPointerList<T> ReadPointerList<T>(IGmDataDeserializer deserializer, DeserializeCollectionElementDelegate elementReader)
         where T : IGmSerializable, new() {
         GmPointerList<T> list = new();
         list.Deserialize(deserializer, null, null, elementReader);
         return list;
-    }
+    }*/
 }

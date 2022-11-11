@@ -9,10 +9,10 @@ namespace GameBreaker.Core.Abstractions.Serialization
     {
         IRootedFile? GameMakerFile { get; set; }
 
-        void WritePointer(IGmSerializable? ptr);
+        // void WritePointer(IGmSerializable? ptr);
 
         void WritePointerString(GmString? ptr);
 
-        void WriteObjectPointer(IGmSerializable ptr);
+        // void WriteObjectPointer(IGmSerializable ptr);
     }
 }

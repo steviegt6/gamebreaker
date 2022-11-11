@@ -12,7 +12,7 @@ namespace GameBreaker.Core.Abstractions
     /// <remarks>
     ///     Implements <see cref="IGmSerializable"/>.
     /// </remarks>
-    public record GmString : IGmSerializable
+    public record GmString
     {
         public const string DEFAULT_CTOR_FAILURE_MESSAGE = "GmString value was null, the default constructor should only be used during deserialization.";
         public const string CTOR_FAILURE_MESSAGE = "GmString was initialized as null, use the default constructor if initialization must be deferred.";

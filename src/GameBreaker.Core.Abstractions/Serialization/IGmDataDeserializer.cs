@@ -9,7 +9,7 @@ namespace GameBreaker.Core.Abstractions.Serialization
     {
         IRootedFile? GameMakerFile { get; set; }
 
-        T ReadPointer<T>(int ptr)
+        /*T ReadPointer<T>(int ptr)
             where T : IGmSerializable, new();
 
         T ReadPointer<T>()
@@ -29,6 +29,6 @@ namespace GameBreaker.Core.Abstractions.Serialization
 
         GmString ReadStringPointer();
 
-        GmString ReadStringPointerObject();
+        GmString ReadStringPointerObject();*/
     }
 }

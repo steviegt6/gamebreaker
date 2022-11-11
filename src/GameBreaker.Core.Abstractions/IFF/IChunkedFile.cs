@@ -9,7 +9,7 @@ namespace GameBreaker.Core.Abstractions.IFF;
 /// <summary>
 ///     Describes a file with data separated into chunks containing four-byte headers as identities and four-byte integers representing their length.
 /// </summary>
-public interface IChunkedFile : IGmSerializable
+public interface IChunkedFile
 {
     /// <summary>
     ///     Describes metadata for (de)serialization.
@@ -20,4 +20,8 @@ public interface IChunkedFile : IGmSerializable
     ///     The chunks stored within this chunked file.
     /// </summary>
     IDictionary<string, IChunk>? Chunks { get; }
+
+    void Serialize(IGmDataSerializer serializer);
+
+    void Deserialize(IGmDataDeserializer deserializer);
 }

@@ -8,7 +8,7 @@ namespace GameBreaker.Core.Abstractions.IFF;
 /// <summary>
 ///     Represents a chunk of data with a four-byte header identity and four-byte integer length.
 /// </summary>
-public interface IChunk : IGmSerializable
+public interface IChunk
 {
     /// <summary>
     ///     The chunk's four-byte identity.
@@ -19,4 +19,8 @@ public interface IChunk : IGmSerializable
     ///     The chunk's four-byte length (determined during deserialization, updated during serialization).
     /// </summary>
     uint Length { get; }
+
+    void Serialize(IGmDataSerializer serializer);
+
+    void Deserialize(IGmDataDeserializer deserializer);
 }

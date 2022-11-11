@@ -19,9 +19,9 @@ public class GmDataSerializer : IGmDataSerializer
 
     protected virtual IPositionableWriter Writer { get; }
 
-    protected virtual Dictionary<IGmSerializable, int> PointerOffsets { get; } = new();
+    // protected virtual Dictionary<IGmSerializable, int> PointerOffsets { get; } = new();
 
-    protected virtual Dictionary<IGmSerializable, List<long>> PendingPointerWrites { get; } = new();
+    // protected virtual Dictionary<IGmSerializable, List<long>> PendingPointerWrites { get; } = new();
 
     protected virtual Dictionary<GmString, List<long>> PendingStringPointerWrites { get; } = new();
 
@@ -35,7 +35,7 @@ public class GmDataSerializer : IGmDataSerializer
 
     #region IGmDataSerializer Impl
 
-    public virtual void WritePointer(IGmSerializable? ptr) {
+   /* public virtual void WritePointer(IGmSerializable? ptr) {
         // If the object does not exist, write a null pointer.
         if (ptr is null) {
             Write(0);
@@ -50,7 +50,7 @@ public class GmDataSerializer : IGmDataSerializer
 
         // Placeholder pointer value, will be overwritten in the future.
         Write(DEADGAME);
-    }
+    }*/
 
     public virtual void WritePointerString(GmString? ptr) {
         // If this string does not exist, write a null pointer.
@@ -68,10 +68,10 @@ public class GmDataSerializer : IGmDataSerializer
         Writer.Write(DEADGAME);
     }
 
-    public virtual void WriteObjectPointer(IGmSerializable ptr) {
+    /*public virtual void WriteObjectPointer(IGmSerializable ptr) {
         // TODO: Pointers are 32-bit integers - what do we do if the position exceeds 2^32-1?
         PointerOffsets.Add(ptr, (int) Writer.Position);
-    }
+    }*/
 
     #endregion
 
@@ -170,7 +170,7 @@ public class GmDataSerializer : IGmDataSerializer
 
     #endregion
 
-    protected virtual void PerformPointerWrite(KeyValuePair<IGmSerializable, List<long>> kvp) {
+    /*protected virtual void PerformPointerWrite(KeyValuePair<IGmSerializable, List<long>> kvp) {
         if (PointerOffsets.TryGetValue(kvp.Key, out int ptr))
             foreach (long addr in kvp.Value)
                 this.WriteAt(addr, ptr);
@@ -190,5 +190,5 @@ public class GmDataSerializer : IGmDataSerializer
             // If the string doesn't exist, write null
             foreach (long addr in kvp.Value)
                 this.WriteAt(addr, 0);
-    }
+    }*/
 }

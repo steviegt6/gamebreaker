@@ -14,8 +14,6 @@ namespace GameBreaker.Core.Serialization;
 
 public class GmDataDeserializer : IGmDataDeserializer
 {
-    public virtual IRootedFile? GameMakerFile { get; set; }
-
     protected virtual IPositionableReader Reader { get; }
 
     // protected virtual Dictionary<int, IGmSerializable> PointerOffsets { get; } = new();

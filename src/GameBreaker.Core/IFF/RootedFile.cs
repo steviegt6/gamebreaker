@@ -19,8 +19,6 @@ public class RootedFile : ChunkedFile, IRootedFile
     public RootedFile(IChunkedFileMetadata metadata) : base(metadata) { }
 
     public override void Serialize(IGmDataSerializer serializer) {
-        serializer.GameMakerFile = this;
-        
         // base.Serialize(serializer);
         if (Root is null) throw new Exception(); // TODO: Error handling.
 
@@ -32,8 +30,6 @@ public class RootedFile : ChunkedFile, IRootedFile
     }
 
     public override void Deserialize(IGmDataDeserializer deserializer) {
-        deserializer.GameMakerFile = this;
-        
         var id = new ChunkIdentity(deserializer.ReadBytes(4));
         // TODO: Constant value for FORM later.
         if (id.Value != "FORM")

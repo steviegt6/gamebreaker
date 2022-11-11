@@ -7,8 +7,6 @@ namespace GameBreaker.Core.Abstractions.Serialization
 {
     public interface IGmDataDeserializer : IPositionableReader
     {
-        IRootedFile? GameMakerFile { get; set; }
-
         /*T ReadPointer<T>(int ptr)
             where T : IGmSerializable, new();
 

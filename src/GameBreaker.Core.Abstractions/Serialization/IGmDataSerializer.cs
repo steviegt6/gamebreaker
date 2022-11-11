@@ -7,8 +7,6 @@ namespace GameBreaker.Core.Abstractions.Serialization
 {
     public interface IGmDataSerializer : IPositionableWriter
     {
-        IRootedFile? GameMakerFile { get; set; }
-
         // void WritePointer(IGmSerializable? ptr);
 
         void WritePointerString(GmString? ptr);

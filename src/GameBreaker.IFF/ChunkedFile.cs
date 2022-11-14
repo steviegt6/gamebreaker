@@ -25,6 +25,6 @@ public class ChunkedFile : IChunkedFile
     public virtual void Deserialize(IDataDeserializer deserializer) {
         if (new ChunkIdentity(deserializer.ReadBytes(4)).Value != "FORM") throw new Exception(); // TODO
         uint length = deserializer.ReadUInt32();
-        Root.Deserialize(deserializer, length);
+        Root.Deserialize(deserializer, length + 8);
     }
 }

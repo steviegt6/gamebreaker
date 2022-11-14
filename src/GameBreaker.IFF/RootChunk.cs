@@ -29,7 +29,7 @@ public abstract class RootChunk : IRootChunk
     }
 
     protected virtual void SerializeChunk(IDataSerializer serializer, IChunk chunk, int index, bool last) {
-        chunk.Serialize(serializer, File);
+        chunk.Serialize(serializer, File!);
     }
 
     public void Deserialize(IDataDeserializer deserializer, uint endPosition) {
@@ -40,7 +40,7 @@ public abstract class RootChunk : IRootChunk
         foreach ((var id, uint pos) in scannedIdentities) {
             deserializer.Position = pos;
             var chunk = CreateChunk(id);
-            chunk.Deserialize(deserializer, File, pos);
+            chunk.Deserialize(deserializer, File, endPosition);
             Chunks[id] = chunk;
         }
     }

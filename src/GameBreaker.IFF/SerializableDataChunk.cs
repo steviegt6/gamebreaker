@@ -13,10 +13,10 @@ public abstract class SerializableDataChunk : Chunk
     protected abstract List<ISerializableData> Data { get; }
 
     protected override void SerializeChunk(IDataSerializer serializer, IChunkedFile file) {
-        Data.ForEach(x => x.Serializer(serializer, file, this, x.Value));
+        Data.ForEach(x => x.Serializer(serializer, file, this));
     }
 
     protected override void DeserializeChunk(IDataDeserializer deserializer, IChunkedFile file, uint length) {
-        Data.ForEach(x => x.Value = x.Deserializer(deserializer, file, this));
+        Data.ForEach(x => x.Deserializer(deserializer, file, this));
     }
 }

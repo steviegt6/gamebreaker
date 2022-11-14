@@ -16,5 +16,5 @@ public interface IChunkedFile
 
     void Serialize(IDataSerializer serializer);
 
-    void Deserialize(IDataDeserializer deserializer, uint endPosition);
+    void Deserialize(IDataDeserializer deserializer);
 }

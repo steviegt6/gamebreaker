@@ -5,9 +5,9 @@ using GameBreaker.Serialization.Abstractions;
 
 namespace GameBreaker.IFF.Abstractions.Serialization;
 
-public delegate void SerializeDataDelegate(IDataSerializer serializer, IChunkedFile file, IChunk chunk, object? value);
+public delegate void SerializeDataDelegate(IDataSerializer serializer, IChunkedFile file, IChunk chunk);
 
-public delegate object? DeserializeDataDelegate(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
+public delegate void DeserializeDataDelegate(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
 
 public interface ISerializableData
 {
@@ -15,29 +15,27 @@ public interface ISerializableData
 
     DeserializeDataDelegate Deserializer { get; }
 
-    DeserializationState DeserializationState { get; }
-
     object? Value { get; set; }
 }
 
-public delegate void SerializeDelegate<in T>(IDataSerializer serializer, IChunkedFile file, IChunk chunk, T? value);
+public delegate void SerializeDelegate<in T>(IDataSerializer serializer, IChunkedFile file, IChunk chunk);
 
-public delegate T? DeserializeDelegate<out T>(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
+public delegate void DeserializeDelegate<out T>(IDataDeserializer deserializer, IChunkedFile file, IChunk chunk);
 
 public interface ISerializableData<T> : ISerializableData
 {
-    SerializeDataDelegate ISerializableData.Serializer => (s, f, c, v) => Serializer(s, f, c, (T?) v);
+    SerializeDataDelegate ISerializableData.Serializer => (s, f, c) => Serialize(s, f, c);
 
-    DeserializeDataDelegate ISerializableData.Deserializer => (d, f, c) => Deserializer(d, f, c);
+    DeserializeDataDelegate ISerializableData.Deserializer => (d, f, c) => Deserialize(d, f, c);
 
     object? ISerializableData.Value {
         get => Value;
         set => Value = (T?) value;
     }
     
-    new SerializeDelegate<T> Serializer { get; }
+    new SerializeDelegate<T> Serialize { get; }
 
-    new DeserializeDelegate<T> Deserializer { get; }
+    new DeserializeDelegate<T> Deserialize { get; }
     
     new T? Value { get; set; }
 }

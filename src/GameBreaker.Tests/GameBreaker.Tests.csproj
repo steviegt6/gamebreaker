@@ -17,7 +17,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameBreaker\GameBreaker.csproj" />
+      <ProjectReference Include="..\GameBreaker.DataTypes\GameBreaker.DataTypes.csproj" />
+      <ProjectReference Include="..\GameBreaker.IFF\GameBreaker.IFF.csproj" />
+      <ProjectReference Include="..\GameBreaker.Serialization\GameBreaker.Serialization.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -9,7 +9,7 @@ using GameBreaker.Core.Collections.Abstractions;
 namespace GameBreaker.Core.Collections;
 
 public class GmPointerList<T> : GmList<T>, IGmPointerList<T>
-    where T : IGmSerializable, new()
+    where T : IGmSerializable, new() // TODO
 {
     public virtual bool UsePointerMap => true;
 

@@ -11,6 +11,6 @@ public delegate void SerializeCollectionDelegate(IGmDataSerializer serializer, i
 
 public delegate void DeserializeCollectionDelegate(IGmDataDeserializer deserializer, int index, int count);
 
-public delegate void SerializeCollectionElementDelegate(IGmDataSerializer serializer, IGmSerializable element);
+public delegate void SerializeCollectionElementDelegate(IGmDataSerializer serializer, IGmSerializable element); // TODO
 
 public delegate IGmSerializable DeserializeCollectionElementDelegate(IGmDataDeserializer deserializer, bool notLast);

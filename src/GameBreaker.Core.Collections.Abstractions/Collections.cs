@@ -11,7 +11,7 @@ namespace GameBreaker.Core.Collections.Abstractions;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public interface IGmCollection<T> : ICollection<T>, IGmSerializable
-    where T : IGmSerializable, new()
+    where T : IGmSerializable, new() // TODO
 {
     void Serialize(
         IGmDataSerializer serializer,

@@ -13,7 +13,7 @@ partial class GMSChunk
 {
     public class STRG : GMSChunk
     {
-        public IGmPointerList<GmString> Strings { get; protected set; }
+        // public IGmPointerList<GmString> Strings { get; protected set; }
 
         protected override ChunkIdentity ExpectedIdentity => new("STRG");
 
@@ -22,14 +22,14 @@ partial class GMSChunk
         }
 
         protected override void DeserializeChunk(IGmDataDeserializer deserializer) {
-            Strings = ReadPointerList<GmString>(
+            /*Strings = ReadPointerList<GmString>(
                 deserializer,
                 (reader, notLast) =>
                 {
                     int ptr = reader.ReadInt32();
                     return reader.ReadPointerObject<GmString>(ptr, notLast);
                 }
-            );
+            );*/
         }
     }
 }

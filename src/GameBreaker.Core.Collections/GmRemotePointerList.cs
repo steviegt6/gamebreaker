@@ -7,16 +7,16 @@ using GameBreaker.Core.Collections.Abstractions;
 namespace GameBreaker.Core.Collections;
 
 public class GmRemotePointerList<T> : GmList<T>, IGmRemotePointerList<T>
-    where T : IGmSerializable, new()
+    where T : IGmSerializable, new() // TODO
 {
-        public virtual void Serialize(
+    public virtual void Serialize(
         IGmDataSerializer serializer,
         SerializeCollectionDelegate? before = null,
         SerializeCollectionDelegate? after = null,
         SerializeCollectionElementDelegate? elementWriter = null,
         SerializeCollectionElementDelegate? elementPointerWriter = null
     ) {
-        }
+    }
 
     public virtual void Deserialize(
         IGmDataDeserializer deserializer,

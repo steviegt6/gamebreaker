@@ -17,10 +17,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameBreaker.Core.Abstractions\GameBreaker.Core.Abstractions.csproj" />
-      <ProjectReference Include="..\GameBreaker.Common\GameBreaker.Common.csproj" />
-      <ProjectReference Include="..\GameBreaker.Core\GameBreaker.Core.csproj" />
-      <ProjectReference Include="..\GameBreaker\GameBreaker.csproj" />
+      <ProjectReference Include="..\GameBreaker.DataTypes\GameBreaker.DataTypes.csproj" />
+      <ProjectReference Include="..\GameBreaker.IFF\GameBreaker.IFF.csproj" />
+      <ProjectReference Include="..\GameBreaker.Serialization\GameBreaker.Serialization.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -9,7 +9,7 @@ namespace GameBreaker.Core.Collections;
 
 /// <inheritdoc cref="IGmList{T}"/>
 public class GmList<T> : List<T>, IGmList<T>
-    where T : IGmSerializable, new()
+    where T : IGmSerializable, new() // TODO
 {
     public GmList() { }
 

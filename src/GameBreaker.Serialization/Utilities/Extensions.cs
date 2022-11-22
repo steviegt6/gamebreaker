@@ -3,5 +3,8 @@
 
 namespace GameBreaker.Serialization.Utilities;
 
+/// <summary>
+///     Extensions.
+/// </summary>
 public static partial class Extensions
 { }

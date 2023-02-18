@@ -84,12 +84,14 @@ public class BufferedWriter : IWriter {
         ResizeRelative(2);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(ushort value) {
         ResizeRelative(2);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void WriteInt24(int value) {
@@ -110,36 +112,42 @@ public class BufferedWriter : IWriter {
         ResizeRelative(4);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(uint value) {
         ResizeRelative(4);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(long value) {
         ResizeRelative(8);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(ulong value) {
         ResizeRelative(8);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(float value) {
         ResizeRelative(4);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(double value) {
         ResizeRelative(8);
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
+        Position += bytes.Length;
     }
 
     public virtual void Write(ISerializable serializable) {

@@ -29,16 +29,15 @@ public abstract class FormChunkData : IChunkData {
     }
 
     public virtual void Serialize(IWriter writer) {
-        writer.WriteLength(() => {
-            foreach (var t in ChunkNames) {
-                if (!Chunks.TryGetValue(t, out var chunk))
-                    continue;
+        foreach (var name in ChunkNames) {
+            if (!Chunks.TryGetValue(name, out var chunk))
+                continue;
 
-                writer.Write(new SerializableChunk(chunk));
+            writer.Write(name.ToCharArray());
+            writer.Write(new SerializableChunk(chunk));
 
-                // TODO: PADDING CODE UGH
-            }
-        });
+            // TODO: PADDING CODE UGH
+        }
     }
 
     public virtual void Deserialize(IReader reader, ChunkPosInfo posInfo) {

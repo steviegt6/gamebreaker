@@ -9,7 +9,7 @@ public static class WriterExtensions {
         writer.Write(DEAD_GAME);
         action();
         var end = writer.Position;
-        var length = end - start;
+        var length = end - start - 4; // 4 bytes for the length itself
         writer.Position = start;
         writer.Write(length);
         writer.Position = end;

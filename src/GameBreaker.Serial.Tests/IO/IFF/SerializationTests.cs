@@ -1,23 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using GameBreaker.Serial.GMS;
 using GameBreaker.Serial.IO;
 using GameBreaker.Serial.IO.IFF;
 
 namespace GameBreaker.Serial.Tests.IO.IFF;
-
-internal class RawByteChunkData : ChunkData {
-    private byte[]? data;
-
-    public override void Serialize(IWriter writer) {
-        Debug.Assert(data is not null);
-        writer.Write(data);
-    }
-
-    public override void Deserialize(IReader reader, ChunkPosInfo posInfo) {
-        data = reader.ReadBytes(posInfo.Length);
-    }
-}
 
 internal class TestFormChunkData : FormChunkData {
     protected override List<int> ResolveChunks(

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial", "GameB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial.Tests", "GameBreaker.Serial.Tests\GameBreaker.Serial.Tests.csproj", "{2BBDC574-5F42-4EEF-8EED-554E1F800CE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial.GMS", "GameBreaker.Serial.GMS\GameBreaker.Serial.GMS.csproj", "{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{2BBDC574-5F42-4EEF-8EED-554E1F800CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBDC574-5F42-4EEF-8EED-554E1F800CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBDC574-5F42-4EEF-8EED-554E1F800CE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

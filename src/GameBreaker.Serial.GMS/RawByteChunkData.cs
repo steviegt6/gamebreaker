@@ -4,6 +4,11 @@ using GameBreaker.Serial.IO.IFF;
 
 namespace GameBreaker.Serial.GMS; 
 
+/// <summary>
+///     Chunk data that specifically just stores the raw byte contents of a
+///     chunk. Intended to be used for testing on in situations where a chunk is
+///     not yet implemented.
+/// </summary>
 public class RawByteChunkData : ChunkData {
     private byte[]? data;
 

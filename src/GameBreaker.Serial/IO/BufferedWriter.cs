@@ -18,8 +18,8 @@ public class BufferedWriter : IWriter {
 
     public BufferedWriter(
         byte[] buffer,
-        int position,
-        Encoding? encoding
+        int position = 0,
+        Encoding? encoding = null
     ) {
         Encoding = encoding ?? new UTF8Encoding(false); // don't emit BOM
 

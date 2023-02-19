@@ -19,6 +19,7 @@ public partial class App : Application {
         ThemeManager.Initialize(this);
         IconManager.Initialize(AvaloniaLocator.Current);
         AvaloniaXamlLoader.Load(this);
+        ThemeManager.SetTheme(ThemeVariant.Default);
     }
 
     public override void OnFrameworkInitializationCompleted() {

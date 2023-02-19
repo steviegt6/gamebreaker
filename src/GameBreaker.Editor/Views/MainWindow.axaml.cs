@@ -2,6 +2,7 @@ using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
+using GameBreaker.Editor.Util.Extensions;
 
 namespace GameBreaker.Editor.Views;
 
@@ -37,20 +38,30 @@ public partial class MainWindow : Window {
                 CommandParameter = theme,
             };
 
-            var icon = App.Current?.IconManager["VSCodeDark.check"];
-
-            if (icon is not null) {
-                var image = new Image {
-                    Source = icon,
-                };
-                themeItem.Icon = image;
-            }
-
             themesMenu.Add(themeItem);
         }
+
+        if (App.Current is null)
+            return;
+
+        void onThemeChanged(object? _, ThemeVariant theme) {
+            var icon = App.Current?.IconManager["VSCodeDark.check"];
+
+            foreach (var themeItem in themesMenu!) {
+                if (themeItem.CommandParameter is ThemeVariant themeVariant)
+                    themeItem.Icon = themeVariant == theme
+                        ? icon?.AsImage()
+                        : null;
+            }
+        }
+
+        var app = App.Current;
+        var currTheme = app.RequestedThemeVariant ?? app.ActualThemeVariant;
+        app.ThemeManager.ThemeChanged += onThemeChanged;
+        onThemeChanged(null, currTheme);
     }
 
-    private void ClickTheme(ThemeVariant theme) {
+    private static void ClickTheme(ThemeVariant theme) {
         App.Current?.ThemeManager.SetTheme(theme);
     }
 }

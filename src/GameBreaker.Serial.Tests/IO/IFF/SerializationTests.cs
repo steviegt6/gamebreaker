@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using GameBreaker.Serial.GMS;
 using GameBreaker.Serial.IO;

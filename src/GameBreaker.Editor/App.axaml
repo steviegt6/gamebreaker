@@ -5,8 +5,4 @@
     <Application.DataTemplates>
         <local:ViewLocator />
     </Application.DataTemplates>
-    <Application.Styles>
-        <StyleInclude Source="avares://GameBreaker.Editor/Icons/VSCodeLight.xaml" />
-        <StyleInclude Source="avares://GameBreaker.Editor/Icons/VSCodeDark.xaml" />
-    </Application.Styles>
 </Application>

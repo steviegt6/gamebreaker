@@ -39,7 +39,14 @@ public partial class MainWindow : Window {
                 CommandParameter = theme,
             };
 
-            themeItem.Icon = App.Current?.IconManager.Icons["VSCodeDark.check"];
+            var icon = App.Current?.IconManager["VSCodeDark.check"];
+
+            if (icon is not null) {
+                var image = new Image {
+                    Source = icon,
+                };
+                themeItem.Icon = image;
+            }
 
             themesMenu.Add(themeItem);
         }

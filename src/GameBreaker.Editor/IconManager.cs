@@ -1,35 +1,29 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Xml;
+﻿using System;
+using System.Collections.Generic;
 using Avalonia;
-using Avalonia.IconPacks.ViewModels;
-using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 
 namespace GameBreaker.Editor;
 
 public sealed class IconManager {
-    public Dictionary<string, Drawing> Icons { get; } = new();
+    private readonly Dictionary<string, Bitmap> iconCache = new();
+    private IAssetLoader? loader;
+    
+    public Bitmap? this[string key] => GetIcon(key);
 
-    public void Initialize(Application app) {
-        foreach (var path in Directory.EnumerateFiles("Icons", "*.xaml")) {
-            using var stream = File.Open(path, FileMode.Open);
-            LoadIcons(stream);
-        }
+    public void Initialize(IAvaloniaDependencyResolver locator) {
+        loader = locator.GetService<IAssetLoader>();
     }
 
-    private void LoadIcons(Stream stream) {
-        using var reader = XmlReader.Create(stream);
-        reader.MoveToContent();
+    private Bitmap? GetIcon(string key) {
+        if (loader is null)
+            return null;
 
-        while (reader.Read()) {
-            if (reader.NodeType != XmlNodeType.Element)
-                continue;
-
-            if (reader.Name is not ("GeometryDrawing" or "DrawingGroup"))
-                continue;
-
-            var icon = new IconVM(reader.ReadOuterXml());
-            Icons.Add(icon.Name, icon.Drawing);
-        }
+        if (iconCache.TryGetValue(key, out var icon))
+            return icon;
+        
+        var path = $"avares://GameBreaker.Editor/Assets/Icons/{key}.png";
+        return iconCache[key] = new Bitmap(loader.Open(new Uri(path)));
     }
 }

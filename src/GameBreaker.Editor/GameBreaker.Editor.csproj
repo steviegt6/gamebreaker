@@ -34,22 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="..\Avalonia.IconPacks\src\Avalonia.IconPacks\Parsers\DrawingParser.cs">
-        <Link>Parsers\DrawingParser.cs</Link>
-      </Compile>
-      <Compile Include="..\Avalonia.IconPacks\src\Avalonia.IconPacks\Utils\IconFile.cs">
-        <Link>Utils\IconFile.cs</Link>
-      </Compile>
-      <Compile Include="..\Avalonia.IconPacks\src\Avalonia.IconPacks\ViewModels\IconVM.cs">
-        <Link>ViewModels\IconVM.cs</Link>
-      </Compile>
       <None Remove="Icons\VSCodeDark.xaml" />
-      <Compile Include="Icons\VSCodeDark.xaml">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Compile>
       <None Remove="Icons\VSCodeLight.xaml" />
-      <Compile Include="Icons\VSCodeLight.xaml">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Compile>
     </ItemGroup>
 </Project>

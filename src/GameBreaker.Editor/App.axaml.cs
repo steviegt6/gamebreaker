@@ -17,7 +17,7 @@ public partial class App : Application {
 
     public override void Initialize() {
         ThemeManager.Initialize(this);
-        IconManager.Initialize(this);
+        IconManager.Initialize(AvaloniaLocator.Current);
         AvaloniaXamlLoader.Load(this);
     }
 

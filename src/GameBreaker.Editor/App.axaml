@@ -1,0 +1,12 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:GameBreaker.Editor"
+             x:Class="GameBreaker.Editor.App">
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+    <Application.Styles>
+        <StyleInclude Source="avares://GameBreaker.Editor/Icons/VSCodeLight.xaml" />
+        <StyleInclude Source="avares://GameBreaker.Editor/Icons/VSCodeDark.xaml" />
+    </Application.Styles>
+</Application>

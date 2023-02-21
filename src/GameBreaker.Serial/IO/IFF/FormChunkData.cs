@@ -53,7 +53,7 @@ public abstract class FormChunkData : IChunkData {
 
             writer.Write(name.ToCharArray());
             writer.WriteLength(() => {
-                writer.Write(new SerializableChunk(chunk));
+                new SerializableChunk(chunk).Serialize(writer, this, iffFile);
 
                 if (iffFile.Metadata.AlignFinalChunk || name != ChunkNames[^1])
                     writer.Align(iffFile.Metadata.ChunkAlignment);

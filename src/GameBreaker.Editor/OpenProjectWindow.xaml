@@ -1,0 +1,80 @@
+﻿<mah:MetroWindow x:Class="GameBreaker.Editor.OpenProjectWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:GameBreaker.Editor"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 mc:Ignorable="d"
+                 Title="GameBreaker Editor" Height="675" Width="1012" MinWidth="890" MinHeight="625"
+                 WindowStartupLocation="CenterScreen"
+                 Icon="{StaticResource Icon}"
+                 TitleCharacterCasing="Normal"
+                 ShowTitleBar="False"
+                 BorderBrush="#3D3D3D"
+                 NonActiveBorderBrush="#3D3D3D" d:DataContext="{d:SampleData}">
+    <Grid>
+        <Grid Margin="24,29,24,24">
+            <!-- 30 pixels of empty space, then the title "GameBreaker Editor" -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="29" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Text="GameBreaker Editor" FontFamily="Segoe UI" FontSize="24" VerticalAlignment="Center" />
+            </Grid>
+            <!-- The main content of the window -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="94" />
+                    <ColumnDefinition Width="360" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Open recent" FontSize="19" FontFamily="Segoe UI" FontWeight="Normal"
+                               Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <!-- search bar -->
+                    <Grid Grid.Row="1" Margin="5,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding SearchText}" />
+                        <Button Grid.Column="1" Content="Search" />
+                    </Grid>
+                    <ListBox Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding RecentProjects}"
+                             SelectedItem="{Binding SelectedRecentProject}"
+                             SelectionChanged="RecentProjectSelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Get started" FontSize="19" FontFamily="Segoe UI" FontWeight="Normal"
+                               VerticalAlignment="Center" />
+                    <ListBox Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding OpenProjects}"
+                             SelectedItem="{Binding SelectedOpenProject}"
+                             SelectionChanged="OpenProjectSelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</mah:MetroWindow>

@@ -1,41 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>images\icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
-        <AvaloniaResource Include="Assets\**" />
-        <AvaloniaResource Include="Icons\**">
-            <SubType>Designer</SubType>
-        </AvaloniaResource>
-        <None Remove=".gitignore" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+        <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <TrimmerRootDescriptor Include="Roots.xml" />
+        <None Remove="images\icon.ico" />
+        <Resource Include="images\icon.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.0.0-preview5" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview5" />
-        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview5" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview5" />
-        <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+      <Page Update="Images.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
-      <UpToDateCheckInput Remove="Controls\ThemeSelectMenuItem.axaml" />
+      <Folder Include="Shell\Controls" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="Icons\VSCodeDark.xaml" />
-      <None Remove="Icons\VSCodeLight.xaml" />
-    </ItemGroup>
 </Project>

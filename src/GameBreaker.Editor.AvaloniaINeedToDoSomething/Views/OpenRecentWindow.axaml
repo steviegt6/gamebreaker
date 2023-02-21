@@ -1,0 +1,30 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GameBreaker.Editor.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1012" d:DesignHeight="674"
+        x:Class="GameBreaker.Editor.Views.OpenRecentWindow"
+        Icon="/Assets/logo.ico"
+        Title="GameBreaker.Editor"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        ExtendClientAreaTitleBarHeightHint="-1">
+
+    <Design.DataContext>
+        <vm:OpenRecentViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_View">
+                <MenuItem Header="_Themes" Name="ThemesControl" />
+            </MenuItem>
+        </Menu>
+
+        <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    </DockPanel>
+
+</Window>

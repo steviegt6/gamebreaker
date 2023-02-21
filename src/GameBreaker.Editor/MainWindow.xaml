@@ -1,0 +1,31 @@
+﻿<mah:MetroWindow x:Class="GameBreaker.Editor.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:GameBreaker.Editor"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 mc:Ignorable="d"
+                 Title="GameBreaker Editor" Height="675" Width="1012"
+                 WindowStartupLocation="CenterScreen"
+                 Icon="{StaticResource Icon}"
+                 TitleCharacterCasing="Normal"
+                 ShowTitleBar="False"
+                 BorderBrush="#3D3D3D"
+                 NonActiveBorderBrush="#3D3D3D"
+                 >
+    <!-- TODO: Shadow. -->
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Click="OpenGitHub" ToolTip="Open on GitHub">
+                <iconPacks:FontAwesome Width="22" Height="22" Kind="GithubBrands" />
+            </Button>
+            <Button Click="OpenDiscord" ToolTip="Join our Discord">
+                <iconPacks:FontAwesome Width="22" Height="22" Kind="DiscordBrands" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    
+    <ContentPresenter Name="ContentPresenter" />
+</mah:MetroWindow>

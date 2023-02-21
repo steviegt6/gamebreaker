@@ -18,7 +18,7 @@ internal class TestFormChunkData : FormChunkData {
             offsets.Add(reader.Position);
             var name = new string(reader.ReadChars(4));
             ChunkNames.Add(name);
-            RegisterFactory(name, () => new RawByteChunkData());
+            RegisterFactory(name, () => new RawByteChunkData(), () => IffFile!);
             var len = reader.ReadInt32();
             reader.Position += len;
         }
@@ -36,7 +36,7 @@ public static class SerializationTests {
             throw new FileNotFoundException("Could not find data.win");
 
         var reader = new BufferedReader(stream.ToBytes());
-        var iff = new IffFile(new TestFormChunkData());
+        var iff = new IffFile(new TestFormChunkData(), new IffMetadata());
         iff.Deserialize(reader);
     }
 
@@ -51,7 +51,7 @@ public static class SerializationTests {
 
         var reader = new BufferedReader(bytes);
         var writer = new BufferedWriter(serializedBytes);
-        var iff = new IffFile(new TestFormChunkData());
+        var iff = new IffFile(new TestFormChunkData(), new IffMetadata());
         iff.Deserialize(reader);
         iff.Serialize(writer);
 

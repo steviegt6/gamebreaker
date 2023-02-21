@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using GameBreaker.Serial.Exceptions;
-using GameBreaker.Serial.Extensions;
-using Factory = System.Func<GameBreaker.Serial.IO.IFF.IChunkData>;
-using Factories = System.Collections.Generic.Dictionary<
+using CdFactory = System.Func<GameBreaker.Serial.IO.IFF.IChunkData>;
+using CdFactories = System.Collections.Generic.Dictionary<
     string,
     System.Func<GameBreaker.Serial.IO.IFF.IChunkData>
+>;
+using IffFactory = System.Func<GameBreaker.Serial.IO.IFF.IffFile>;
+using IffFactories = System.Collections.Generic.Dictionary<
+    string,
+    System.Func<GameBreaker.Serial.IO.IFF.IffFile>
 >;
 using Chunks = System.Collections.Generic.Dictionary<
     string,
@@ -14,18 +18,31 @@ using Chunks = System.Collections.Generic.Dictionary<
 namespace GameBreaker.Serial.IO.IFF;
 
 public abstract class FormChunkData : IChunkData {
-    protected Factories Factories { get; }
+    protected CdFactories CdFactories { get; }
+
+    protected IffFactories IffFactories { get; }
+    
+    protected internal IffFile? IffFile { get; internal set; }
 
     protected List<string> ChunkNames { get; } = new();
 
     protected Chunks Chunks { get; } = new();
 
-    protected FormChunkData(Factories? factories = null) {
-        Factories = factories ?? new Factories();
+    protected FormChunkData(
+        CdFactories? cdFactories = null,
+        IffFactories? iffFactories = null
+    ) {
+        CdFactories = cdFactories ?? new CdFactories();
+        IffFactories = iffFactories ?? new IffFactories();
     }
 
-    public virtual void RegisterFactory(string id, Factory factory) {
-        Factories.Add(id, factory);
+    public virtual void RegisterFactory(
+        string id,
+        CdFactory cdFactory,
+        IffFactory iffFactory
+    ) {
+        CdFactories.Add(id, cdFactory);
+        IffFactories.Add(id, iffFactory);
     }
 
     public virtual void Serialize(IWriter writer) {
@@ -48,12 +65,17 @@ public abstract class FormChunkData : IChunkData {
         for (var i = 0; i < ChunkNames.Count; i++) {
             reader.Position = offsets[i] + 4; // 4 to skip past chunk name
 
-            if (!Factories.TryGetValue(ChunkNames[i], out var factory))
+            if (!CdFactories.TryGetValue(ChunkNames[i], out var cdFactory))
+                throw new DeserializationException(
+                    $"Invalid IFF: unknown/unsupported chunk \"{ChunkNames[i]}\""
+                );
+            
+            if (!IffFactories.TryGetValue(ChunkNames[i], out var iffFactory))
                 throw new DeserializationException(
                     $"Invalid IFF: unknown/unsupported chunk \"{ChunkNames[i]}\""
                 );
 
-            var chunk = new Chunk(factory());
+            var chunk = new Chunk(cdFactory(), iffFactory());
             chunk.Deserialize(reader);
             Chunks.Add(ChunkNames[i], chunk);
         }

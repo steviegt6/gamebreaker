@@ -4,9 +4,12 @@ namespace GameBreaker.Serial.IO.IFF;
 
 public class Chunk {
     public IChunkData Data { get; set; }
+    
+    public IffFile IffFile { get; set; }
 
-    public Chunk(IChunkData data) {
+    public Chunk(IChunkData data, IffFile iffFile) {
         Data = data;
+        IffFile = iffFile;
     }
 
     public virtual void Serialize(IWriter writer) {
@@ -26,5 +29,5 @@ public class Chunk<T> : Chunk where T : IChunkData {
         set => base.Data = value;
     }
 
-    public Chunk(T data) : base(data) { }
+    public Chunk(T data, IffFile iffFile) : base(data, iffFile) { }
 }

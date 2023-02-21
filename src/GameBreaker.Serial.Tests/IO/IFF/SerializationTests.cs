@@ -64,7 +64,7 @@ public static class SerializationTests {
         var stream = Util.FromAssembly(Path.Combine("assets", "data.win"));
         if (stream is null)
             throw new FileNotFoundException("Could not find data.win");
-        
+
         var bytes = stream.ToBytes();
         var serializedBytes = new byte[bytes.Length];
 

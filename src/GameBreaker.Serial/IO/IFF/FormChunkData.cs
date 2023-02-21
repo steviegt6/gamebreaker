@@ -27,7 +27,7 @@ public abstract class FormChunkData : IChunkData {
 
     protected List<string> ChunkNames { get; } = new();
 
-    protected Chunks Chunks { get; } = new();
+    public Chunks Chunks { get; } = new();
 
     protected FormChunkData(
         CdFactories? cdFactories = null,

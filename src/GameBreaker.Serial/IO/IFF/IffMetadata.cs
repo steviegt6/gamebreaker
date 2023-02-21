@@ -8,7 +8,11 @@ namespace GameBreaker.Serial.IO.IFF;
 ///     specified, such as the GameMaker version to deserialize based on.
 /// </summary>
 public class IffMetadata {
-    public VersionInfo Version { get; init; } = new();
+    public VersionInfo VersionInfo { get; init; } = new();
+
+    public bool RunFromIde { get; set; }
+
+    public byte FormatId { get; set; }
 }
 
 /// <summary>

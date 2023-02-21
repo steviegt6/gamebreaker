@@ -24,5 +24,8 @@ public class IffFile {
             throw new DeserializationException("Invalid IFF: wrong header");
 
         Root.Deserialize(reader);
+        
+        if (Metadata.VersionInfo.IsInferring())
+            Metadata.VersionInfo.MarkInferred();
     }
 }

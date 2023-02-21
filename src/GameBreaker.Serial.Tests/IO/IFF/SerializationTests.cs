@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using GameBreaker.Serial.GMS;
+using GameBreaker.Serial.Chunks;
 using GameBreaker.Serial.IO;
 using GameBreaker.Serial.IO.IFF;
 
@@ -52,6 +52,24 @@ public static class SerializationTests {
         var reader = new BufferedReader(bytes);
         var writer = new BufferedWriter(serializedBytes);
         var iff = new IffFile(new TestFormChunkData(), new IffMetadata());
+        iff.Deserialize(reader);
+        iff.Serialize(writer);
+
+        CollectionAssert.AreEqual(bytes, serializedBytes);
+    }
+
+    [Test]
+    public static void TestRealChunks() {
+        var stream = Util.FromAssembly(Path.Combine("assets", "data.win"));
+        if (stream is null)
+            throw new FileNotFoundException("Could not find data.win");
+        
+        var bytes = stream.ToBytes();
+        var serializedBytes = new byte[bytes.Length];
+
+        var reader = new BufferedReader(bytes);
+        var writer = new BufferedWriter(serializedBytes);
+        var iff = new IffFile(new ModernFormChunkData(), new IffMetadata());
         iff.Deserialize(reader);
         iff.Serialize(writer);
 

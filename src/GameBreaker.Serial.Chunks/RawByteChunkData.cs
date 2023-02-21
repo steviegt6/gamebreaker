@@ -2,7 +2,7 @@
 using GameBreaker.Serial.IO;
 using GameBreaker.Serial.IO.IFF;
 
-namespace GameBreaker.Serial.GMS; 
+namespace GameBreaker.Serial.Chunks;
 
 /// <summary>
 ///     Chunk data that specifically just stores the raw byte contents of a
@@ -12,12 +12,16 @@ namespace GameBreaker.Serial.GMS;
 public class RawByteChunkData : ChunkData {
     private byte[]? data;
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(IWriter writer, IffFile iffFile) {
         Debug.Assert(data is not null);
         writer.Write(data);
     }
 
-    public override void Deserialize(IReader reader, ChunkPosInfo posInfo) {
+    public override void Deserialize(
+        IReader reader,
+        IffFile iffFile,
+        ChunkPosInfo posInfo
+    ) {
         data = reader.ReadBytes(posInfo.Length);
     }
 }

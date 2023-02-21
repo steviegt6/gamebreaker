@@ -21,7 +21,7 @@ public abstract class FormChunkData : IChunkData {
     protected CdFactories CdFactories { get; }
 
     protected IffFactories IffFactories { get; }
-    
+
     protected internal IffFile? IffFile { get; internal set; }
 
     protected List<string> ChunkNames { get; } = new();
@@ -36,7 +36,7 @@ public abstract class FormChunkData : IChunkData {
         IffFactories = iffFactories ?? new IffFactories();
     }
 
-    public virtual void RegisterFactory(
+    protected void RegisterFactory(
         string id,
         CdFactory cdFactory,
         IffFactory iffFactory
@@ -45,7 +45,7 @@ public abstract class FormChunkData : IChunkData {
         IffFactories.Add(id, iffFactory);
     }
 
-    public virtual void Serialize(IWriter writer) {
+    public virtual void Serialize(IWriter writer, IffFile iffFile) {
         foreach (var name in ChunkNames) {
             if (!Chunks.TryGetValue(name, out var chunk))
                 continue;
@@ -57,7 +57,11 @@ public abstract class FormChunkData : IChunkData {
         }
     }
 
-    public virtual void Deserialize(IReader reader, ChunkPosInfo posInfo) {
+    public virtual void Deserialize(
+        IReader reader,
+        IffFile iffFile,
+        ChunkPosInfo posInfo
+    ) {
         var offsets = ResolveChunks(reader, posInfo);
 
         reader.Position = posInfo.Start;
@@ -69,7 +73,7 @@ public abstract class FormChunkData : IChunkData {
                 throw new DeserializationException(
                     $"Invalid IFF: unknown/unsupported chunk \"{ChunkNames[i]}\""
                 );
-            
+
             if (!IffFactories.TryGetValue(ChunkNames[i], out var iffFactory))
                 throw new DeserializationException(
                     $"Invalid IFF: unknown/unsupported chunk \"{ChunkNames[i]}\""

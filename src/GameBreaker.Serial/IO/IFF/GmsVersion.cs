@@ -20,6 +20,7 @@ public record GmsVersion(
     public static readonly GmsVersion UNKNOWN = new();
     public static readonly GmsVersion DEFAULT = new(1);
 
+    public static readonly GmsVersion GMS_2 = new(2);
     public static readonly GmsVersion GMS_2_2_2_302 = new(2, 2, 2, 302);
     public static readonly GmsVersion GMS_2_3 = new(2, 3);
     public static readonly GmsVersion GMS_2_3_1 = new(2, 3, 1);

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial", "GameB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial.Tests", "GameBreaker.Serial.Tests\GameBreaker.Serial.Tests.csproj", "{2BBDC574-5F42-4EEF-8EED-554E1F800CE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial.GMS", "GameBreaker.Serial.GMS\GameBreaker.Serial.GMS.csproj", "{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Serial.Chunks", "GameBreaker.Serial.Chunks\GameBreaker.Serial.Chunks.csproj", "{C5FDB29B-F836-4E6A-9907-AA2CE6B568FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Editor", "GameBreaker.Editor\GameBreaker.Editor.csproj", "{A2C44034-AC39-40C5-BB39-61BAA62C8FAC}"
 EndProject

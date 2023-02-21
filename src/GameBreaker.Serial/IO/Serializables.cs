@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace GameBreaker.Serial.IO;
 
@@ -245,5 +246,28 @@ public class SerializableDouble : Serializable<double> {
 
     public override void Deserialize(IReader reader) {
         Value = reader.ReadDouble();
+    }
+}
+
+public class SerializableGmString : Serializable<string> {
+    private int ugh;
+    
+    public override void Serialize(IWriter writer) {
+        writer.Write(ugh);
+    }
+
+    public override void Deserialize(IReader reader) {
+        ugh = reader.ReadInt32();
+        Value = "TODO";
+    }
+}
+
+public class SerializableGuid : Serializable<Guid> {
+    public override void Serialize(IWriter writer) {
+        writer.Write(Value.ToByteArray());
+    }
+
+    public override void Deserialize(IReader reader) {
+        Value = new Guid(reader.ReadBytes(16));
     }
 }

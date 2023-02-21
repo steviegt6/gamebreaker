@@ -4,7 +4,7 @@ namespace GameBreaker.Serial.IO.IFF;
 
 public class Chunk {
     public IChunkData Data { get; set; }
-    
+
     public IffFile IffFile { get; set; }
 
     public Chunk(IChunkData data, IffFile iffFile) {
@@ -13,13 +13,17 @@ public class Chunk {
     }
 
     public virtual void Serialize(IWriter writer) {
-        writer.WriteLength(() => Data.Serialize(writer));
+        writer.WriteLength(() => Data.Serialize(writer, IffFile));
     }
 
     public virtual void Deserialize(IReader reader) {
         var len = reader.ReadInt32();
         var pos = reader.Position;
-        Data.Deserialize(reader, new ChunkPosInfo(len, pos, pos + len));
+        Data.Deserialize(
+            reader,
+            IffFile,
+            new ChunkPosInfo(len, pos, pos + len)
+        );
     }
 }
 

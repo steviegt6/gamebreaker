@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameBreaker.Serial.GMS\GameBreaker.Serial.GMS.csproj" />
+      <ProjectReference Include="..\GameBreaker.Serial.Chunks\GameBreaker.Serial.Chunks.csproj" />
       <ProjectReference Include="..\GameBreaker.Serial\GameBreaker.Serial.csproj" />
     </ItemGroup>
 

@@ -75,16 +75,16 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<Gen8FunctionClassification> FunctionClasses { get; }
         = new SerializableGen8FunctionClassification();
 
-    public ISerializable<int> SteamAppId { get; } 
+    public ISerializable<int> SteamAppId { get; }
         = new SerializableInt();
 
-    public ISerializable<int> DebuggerPort { get; } 
+    public ISerializable<int> DebuggerPort { get; }
         = new SerializableInt();
 
     public ISerializable<Gen8RoomData> RoomData { get; } =
         new SerializableGen8RoomData();
 
-    public SerializableGen8RandomUid RandomUid { get; } 
+    public SerializableGen8RandomUid RandomUid { get; }
         = new();
 
     public ISerializable<float> Fps { get; }
@@ -93,7 +93,7 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<bool> AllowStatistics { get; } =
         new SerializableWideBool();
 
-    public ISerializable<Guid> GameGuid { get; } 
+    public ISerializable<Guid> GameGuid { get; }
         = new SerializableGuid();
 
     public GmsVersion GmsVersion => new(
@@ -188,27 +188,7 @@ public class Gen8ChunkData : ChunkData {
         Minor.Deserialize(reader);
         Release.Deserialize(reader);
         Build.Deserialize(reader);
-
-        switch (iffFile.Metadata.VersionInfo.Inference) {
-            case VersionInferenceState.NotInferred:
-                if (iffFile.Metadata.VersionInfo.Version < GmsVersion)
-                    throw new InvalidOperationException("Bad version");
-
-                break;
-
-            case VersionInferenceState.Inferring:
-                iffFile.Metadata.VersionInfo.Version.Update(GmsVersion);
-                break;
-
-            case VersionInferenceState.Inferred:
-                throw new InvalidOperationException(
-                    "Impossible inference state"
-                );
-
-            default:
-                throw new InvalidOperationException("Bad inference state");
-        }
-
+        iffFile.Metadata.VersionInfo.AttemptUpdate(GmsVersion);
         DefaultWindowWidth.Deserialize(reader);
         DefaultWindowHeight.Deserialize(reader);
         Info.Deserialize(reader);

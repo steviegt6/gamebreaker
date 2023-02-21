@@ -5,7 +5,9 @@ namespace GameBreaker.Serial.IO.IFF;
 
 /// <summary>
 ///     Describes elements of an IFF file that are either inferred or manually
-///     specified, such as the GameMaker version to deserialize based on.
+///     specified, such as the GameMaker version to deserialize based on. <br />
+///     Includes both data stored in the IFF file itself, and options specified
+///     by the user.
 /// </summary>
 public class IffMetadata {
     public VersionInfo VersionInfo { get; init; } = new();
@@ -71,5 +73,19 @@ public static class VersionInfoExtensions {
             ViState.NotInferred => !vi.IsUnknown(),
             _ => throw new ArgumentOutOfRangeException(nameof(vi)),
         };
+    }
+
+    public static void AttemptUpdate(this VersionInfo vi, GmsVersion version) {
+        // If we're already of the same version or greater, we're fine.
+        if (vi.Version >= version)
+            return;
+
+        // TODO: Better error message, include both versions.
+        if (!vi.IsInferring())
+            throw new InvalidOperationException(
+                "Cannot update version info when not inferring"
+            );
+        
+        vi.Version.Update(version);
     }
 }

@@ -62,9 +62,10 @@ public class ModernFormChunkData : FormChunkData {
             ChunkNames.Add(name);
 
             if (!CdFactories.ContainsKey(name))
-                RegisterFactory(name,
-                                () => new RawByteChunkData(),
-                                () => IffFile!
+                RegisterFactory(
+                    name,
+                    () => new RawByteChunkData(),
+                    () => IffFile!
                 );
 
             var len = reader.ReadInt32();

@@ -13,7 +13,8 @@ public class Chunk {
     }
 
     public virtual void Serialize(IWriter writer) {
-        writer.WriteLength(() => Data.Serialize(writer, IffFile));
+        // Length written by FormChunkData instead due to alignment.
+        Data.Serialize(writer, IffFile);
     }
 
     public virtual void Deserialize(IReader reader) {

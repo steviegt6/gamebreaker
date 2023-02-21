@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameBreaker.Serial.Exceptions;
+using GameBreaker.Serial.Extensions;
 using CdFactory = System.Func<GameBreaker.Serial.IO.IFF.IChunkData>;
 using CdFactories = System.Collections.Generic.Dictionary<
     string,
@@ -51,9 +52,12 @@ public abstract class FormChunkData : IChunkData {
                 continue;
 
             writer.Write(name.ToCharArray());
-            writer.Write(new SerializableChunk(chunk));
+            writer.WriteLength(() => {
+                writer.Write(new SerializableChunk(chunk));
 
-            // TODO: PADDING CODE UGH
+                if (iffFile.Metadata.AlignFinalChunk || name != ChunkNames[^1])
+                    writer.Align(iffFile.Metadata.ChunkAlignment);
+            });
         }
     }
 
@@ -62,7 +66,7 @@ public abstract class FormChunkData : IChunkData {
         IffFile iffFile,
         ChunkPosInfo posInfo
     ) {
-        var offsets = ResolveChunks(reader, posInfo);
+        var offsets = ResolveChunks(reader, iffFile, posInfo);
 
         reader.Position = posInfo.Start;
 
@@ -87,6 +91,7 @@ public abstract class FormChunkData : IChunkData {
 
     protected abstract List<int> ResolveChunks(
         IReader reader,
+        IffFile iffFile,
         ChunkPosInfo posInfo
     );
 }

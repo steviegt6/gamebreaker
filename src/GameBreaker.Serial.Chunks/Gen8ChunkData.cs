@@ -133,10 +133,6 @@ public class Gen8ChunkData : ChunkData {
                 );
 
             case VersionInferenceState.Inferred:
-                // TODO: Allow people to change the version?
-                if (iffFile.Metadata.VersionInfo.Version != GmsVersion)
-                    throw new InvalidOperationException("Bad version");
-
                 break;
 
             default:

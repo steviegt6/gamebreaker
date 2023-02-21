@@ -9,6 +9,7 @@ namespace GameBreaker.Serial.Tests.IO.IFF;
 internal class TestFormChunkData : FormChunkData {
     protected override List<int> ResolveChunks(
         IReader reader,
+        IffFile iffFile,
         ChunkPosInfo posInfo
     ) {
         ChunkNames.Clear();

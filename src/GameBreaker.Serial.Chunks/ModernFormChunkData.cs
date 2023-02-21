@@ -51,6 +51,7 @@ public class ModernFormChunkData : FormChunkData {
 
     protected override List<int> ResolveChunks(
         IReader reader,
+        IffFile iffFile,
         ChunkPosInfo posInfo
     ) {
         ChunkNames.Clear();
@@ -70,6 +71,33 @@ public class ModernFormChunkData : FormChunkData {
 
             var len = reader.ReadInt32();
             reader.Position += len;
+
+            switch (name) {
+                case "SEQN":
+                    iffFile.Metadata.VersionInfo.AttemptUpdate(
+                        GmsVersion.GMS_2_3
+                    );
+                    break;
+
+                case "FEDS":
+                    iffFile.Metadata.VersionInfo.AttemptUpdate(
+                        GmsVersion.GMS_2_3_6
+                    );
+                    break;
+
+                case "FEAT":
+                    iffFile.Metadata.VersionInfo.AttemptUpdate(
+                        GmsVersion.GMS_2022_8
+                    );
+                    break;
+            }
+
+            if (reader.Position >= posInfo.End)
+                continue;
+
+            // Assume chunks are aligned to 16 - if they aren't, uh oh?
+            if (reader.Position % 16 == 0)
+                iffFile.Metadata.ChunkAlignment = 16;
         }
 
         return offsets;

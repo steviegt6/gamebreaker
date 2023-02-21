@@ -15,6 +15,10 @@ public class IffMetadata {
     public bool RunFromIde { get; set; }
 
     public byte FormatId { get; set; }
+
+    public int ChunkAlignment { get; set; }
+
+    public bool AlignFinalChunk { get; set; }
 }
 
 /// <summary>

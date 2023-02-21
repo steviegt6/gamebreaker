@@ -147,10 +147,6 @@ public class BufferedReader : IReader {
         Position += amount;
         return val;
     }
-
-    public void ReadSerializable(ISerializable serializable) {
-        serializable.Deserialize(this);
-    }
 #endregion
 
 #region IDisposable Impl

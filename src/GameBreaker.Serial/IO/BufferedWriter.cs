@@ -149,10 +149,6 @@ public class BufferedWriter : IWriter {
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
         Position += bytes.Length;
     }
-
-    public virtual void Write(ISerializable serializable) {
-        serializable.Serialize(this);
-    }
 #endregion
 
 #region IDisposable Impl

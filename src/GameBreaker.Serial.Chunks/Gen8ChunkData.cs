@@ -84,8 +84,8 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<Gen8RoomData> RoomData { get; } =
         new SerializableGen8RoomData();
 
-    public SerializableGen8RandomUid RandomUid { get; }
-        = new();
+    public ISerializable<Gen8RandomUid> RandomUid { get; }
+        = new SerializableGen8RandomUid();
 
     public ISerializable<float> Fps { get; }
         = new SerializableFloat();
@@ -104,21 +104,21 @@ public class Gen8ChunkData : ChunkData {
     );
 
     public override void Serialize(IWriter writer, IffFile iffFile) {
-        DisableDebug.Serialize(writer);
-        FormatId.Serialize(writer);
+        DisableDebug.Serialize(writer, this, iffFile);
+        FormatId.Serialize(writer, this, iffFile);
         iffFile.Metadata.FormatId = FormatId.Value;
-        Unknown.Serialize(writer);
-        FileName.Serialize(writer);
-        Config.Serialize(writer);
-        LastObjectId.Serialize(writer);
-        LastTileId.Serialize(writer);
-        GameId.Serialize(writer);
-        LegacyGuid.Serialize(writer);
-        GameName.Serialize(writer);
-        Major.Serialize(writer);
-        Minor.Serialize(writer);
-        Release.Serialize(writer);
-        Build.Serialize(writer);
+        Unknown.Serialize(writer, this, iffFile);
+        FileName.Serialize(writer, this, iffFile);
+        Config.Serialize(writer, this, iffFile);
+        LastObjectId.Serialize(writer, this, iffFile);
+        LastTileId.Serialize(writer, this, iffFile);
+        GameId.Serialize(writer, this, iffFile);
+        LegacyGuid.Serialize(writer, this, iffFile);
+        GameName.Serialize(writer, this, iffFile);
+        Major.Serialize(writer, this, iffFile);
+        Minor.Serialize(writer, this, iffFile);
+        Release.Serialize(writer, this, iffFile);
+        Build.Serialize(writer, this, iffFile);
 
         switch (iffFile.Metadata.VersionInfo.Inference) {
             case VersionInferenceState.NotInferred:
@@ -139,29 +139,29 @@ public class Gen8ChunkData : ChunkData {
                 throw new InvalidOperationException("Bad inference state");
         }
 
-        DefaultWindowWidth.Serialize(writer);
-        DefaultWindowHeight.Serialize(writer);
-        Info.Serialize(writer);
-        LicenseCrc32.Serialize(writer);
-        LicenseMd5.Serialize(writer);
-        Timestamp.Serialize(writer);
-        DisplayName.Serialize(writer);
-        ActiveTargets.Serialize(writer);
-        FunctionClasses.Serialize(writer);
-        SteamAppId.Serialize(writer);
+        DefaultWindowWidth.Serialize(writer, this, iffFile);
+        DefaultWindowHeight.Serialize(writer, this, iffFile);
+        Info.Serialize(writer, this, iffFile);
+        LicenseCrc32.Serialize(writer, this, iffFile);
+        LicenseMd5.Serialize(writer, this, iffFile);
+        Timestamp.Serialize(writer, this, iffFile);
+        DisplayName.Serialize(writer, this, iffFile);
+        ActiveTargets.Serialize(writer, this, iffFile);
+        FunctionClasses.Serialize(writer, this, iffFile);
+        SteamAppId.Serialize(writer, this, iffFile);
 
         if (FormatId.Value >= 14)
-            DebuggerPort.Serialize(writer);
+            DebuggerPort.Serialize(writer, this, iffFile);
 
-        RoomData.Serialize(writer);
+        RoomData.Serialize(writer, this, iffFile);
 
         if (GmsVersion < GmsVersion.GMS_2)
             return;
 
         RandomUid.Serialize(writer, this, iffFile);
-        Fps.Serialize(writer);
-        AllowStatistics.Serialize(writer);
-        GameGuid.Serialize(writer);
+        Fps.Serialize(writer, this, iffFile);
+        AllowStatistics.Serialize(writer, this, iffFile);
+        GameGuid.Serialize(writer, this, iffFile);
     }
 
     public override void Deserialize(
@@ -169,45 +169,45 @@ public class Gen8ChunkData : ChunkData {
         IffFile iffFile,
         ChunkPosInfo posInfo
     ) {
-        DisableDebug.Deserialize(reader);
-        FormatId.Deserialize(reader);
+        DisableDebug.Deserialize(reader, this, iffFile);
+        FormatId.Deserialize(reader, this, iffFile);
         iffFile.Metadata.FormatId = FormatId.Value;
-        Unknown.Deserialize(reader);
-        FileName.Deserialize(reader);
-        Config.Deserialize(reader);
-        LastObjectId.Deserialize(reader);
-        LastTileId.Deserialize(reader);
-        GameId.Deserialize(reader);
-        LegacyGuid.Deserialize(reader);
-        GameName.Deserialize(reader);
-        Major.Deserialize(reader);
-        Minor.Deserialize(reader);
-        Release.Deserialize(reader);
-        Build.Deserialize(reader);
+        Unknown.Deserialize(reader, this, iffFile);
+        FileName.Deserialize(reader, this, iffFile);
+        Config.Deserialize(reader, this, iffFile);
+        LastObjectId.Deserialize(reader, this, iffFile);
+        LastTileId.Deserialize(reader, this, iffFile);
+        GameId.Deserialize(reader, this, iffFile);
+        LegacyGuid.Deserialize(reader, this, iffFile);
+        GameName.Deserialize(reader, this, iffFile);
+        Major.Deserialize(reader, this, iffFile);
+        Minor.Deserialize(reader, this, iffFile);
+        Release.Deserialize(reader, this, iffFile);
+        Build.Deserialize(reader, this, iffFile);
         iffFile.Metadata.VersionInfo.AttemptUpdate(GmsVersion);
-        DefaultWindowWidth.Deserialize(reader);
-        DefaultWindowHeight.Deserialize(reader);
-        Info.Deserialize(reader);
-        LicenseCrc32.Deserialize(reader);
-        LicenseMd5.Deserialize(reader);
-        Timestamp.Deserialize(reader);
-        DisplayName.Deserialize(reader);
-        ActiveTargets.Deserialize(reader);
-        FunctionClasses.Deserialize(reader);
-        SteamAppId.Deserialize(reader);
+        DefaultWindowWidth.Deserialize(reader, this, iffFile);
+        DefaultWindowHeight.Deserialize(reader, this, iffFile);
+        Info.Deserialize(reader, this, iffFile);
+        LicenseCrc32.Deserialize(reader, this, iffFile);
+        LicenseMd5.Deserialize(reader, this, iffFile);
+        Timestamp.Deserialize(reader, this, iffFile);
+        DisplayName.Deserialize(reader, this, iffFile);
+        ActiveTargets.Deserialize(reader, this, iffFile);
+        FunctionClasses.Deserialize(reader, this, iffFile);
+        SteamAppId.Deserialize(reader, this, iffFile);
 
         if (FormatId.Value >= 14)
-            DebuggerPort.Deserialize(reader);
+            DebuggerPort.Deserialize(reader, this, iffFile);
 
-        RoomData.Deserialize(reader);
+        RoomData.Deserialize(reader, this, iffFile);
 
         if (GmsVersion < GmsVersion.GMS_2)
             return;
 
         RandomUid.Deserialize(reader, this, iffFile);
-        Fps.Deserialize(reader);
-        AllowStatistics.Deserialize(reader);
-        GameGuid.Deserialize(reader);
+        Fps.Deserialize(reader, this, iffFile);
+        AllowStatistics.Deserialize(reader, this, iffFile);
+        GameGuid.Deserialize(reader, this, iffFile);
     }
 }
 

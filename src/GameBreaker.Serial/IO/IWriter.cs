@@ -34,6 +34,4 @@ public interface IWriter : IPositionable,
     void Write(float value);
     
     void Write(double value);
-
-    void Write(ISerializable serializable);
 }

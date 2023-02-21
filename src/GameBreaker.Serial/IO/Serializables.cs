@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using GameBreaker.Serial.IO.IFF;
 
 namespace GameBreaker.Serial.IO;
 
@@ -12,9 +13,17 @@ public abstract class Serializable<T> : ISerializable<T> {
         Value = value;
     }
 
-    public abstract void Serialize(IWriter writer);
+    public abstract void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    );
 
-    public abstract void Deserialize(IReader reader);
+    public abstract void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    );
 }
 
 public class SerializableByte : Serializable<byte> {
@@ -22,11 +31,19 @@ public class SerializableByte : Serializable<byte> {
 
     public SerializableByte(byte value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadByte();
     }
 }
@@ -35,15 +52,23 @@ public class SerializableByteArray : Serializable<byte[]> {
     public SerializableByteArray() { }
 
     public SerializableByteArray(byte[] value) : base(value) { }
-    
+
     public SerializableByteArray(int length) : base(new byte[length]) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Debug.Assert(Value is not null);
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Debug.Assert(Value is not null);
         Value = reader.ReadBytes(Value.Length);
     }
@@ -54,11 +79,19 @@ public class SerializableChar : Serializable<char> {
 
     public SerializableChar(char value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadChar();
     }
 }
@@ -70,12 +103,20 @@ public class SerializableCharArray : Serializable<char[]> {
 
     public SerializableCharArray(int length) : base(new char[length]) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Debug.Assert(Value is not null);
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Debug.Assert(Value is not null);
         Value = reader.ReadChars(Value.Length);
     }
@@ -86,11 +127,19 @@ public class SerializableBool : Serializable<bool> {
 
     public SerializableBool(bool value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadBool();
     }
 }
@@ -100,11 +149,19 @@ public class SerializableWideBool : Serializable<bool> {
 
     public SerializableWideBool(bool value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value, true);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadBool(true);
     }
 }
@@ -114,11 +171,19 @@ public class SerializableShort : Serializable<short> {
 
     public SerializableShort(short value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadInt16();
     }
 }
@@ -128,11 +193,19 @@ public class SerializableUShort : Serializable<ushort> {
 
     public SerializableUShort(ushort value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadUInt16();
     }
 }
@@ -142,11 +215,19 @@ public class SerializableInt24 : Serializable<int> {
 
     public SerializableInt24(int value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.WriteInt24(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadInt24();
     }
 }
@@ -156,11 +237,19 @@ public class SerializableUInt24 : Serializable<uint> {
 
     public SerializableUInt24(uint value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.WriteUInt24(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadUInt24();
     }
 }
@@ -170,11 +259,19 @@ public class SerializableInt : Serializable<int> {
 
     public SerializableInt(int value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadInt32();
     }
 }
@@ -184,11 +281,19 @@ public class SerializableUInt : Serializable<uint> {
 
     public SerializableUInt(uint value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadUInt32();
     }
 }
@@ -198,11 +303,19 @@ public class SerializableLong : Serializable<long> {
 
     public SerializableLong(long value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadInt64();
     }
 }
@@ -212,11 +325,19 @@ public class SerializableULong : Serializable<ulong> {
 
     public SerializableULong(ulong value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadUInt64();
     }
 }
@@ -226,11 +347,19 @@ public class SerializableFloat : Serializable<float> {
 
     public SerializableFloat(float value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadSingle();
     }
 }
@@ -240,34 +369,58 @@ public class SerializableDouble : Serializable<double> {
 
     public SerializableDouble(double value) : base(value) { }
 
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = reader.ReadDouble();
     }
 }
 
 public class SerializableGmString : Serializable<string> {
     private int ugh;
-    
-    public override void Serialize(IWriter writer) {
+
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(ugh);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         ugh = reader.ReadInt32();
         Value = "TODO";
     }
 }
 
 public class SerializableGuid : Serializable<Guid> {
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write(Value.ToByteArray());
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = new Guid(reader.ReadBytes(16));
     }
 }

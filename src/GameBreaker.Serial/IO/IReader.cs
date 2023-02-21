@@ -34,6 +34,4 @@ public interface IReader : IPositionable,
     float ReadSingle();
 
     double ReadDouble();
-
-    void ReadSerializable(ISerializable serializable);
 }

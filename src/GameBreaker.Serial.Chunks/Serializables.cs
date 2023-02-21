@@ -7,35 +7,59 @@ using GameBreaker.Serial.IO.IFF;
 namespace GameBreaker.Serial.Chunks;
 
 public class SerializableGen8InfoFlags : Serializable<Gen8InfoFlags> {
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write((uint) Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = (Gen8InfoFlags) reader.ReadUInt32();
     }
 }
 
 public class SerializableGen8FunctionClassification :
     Serializable<Gen8FunctionClassification> {
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         writer.Write((ulong) Value);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Value = (Gen8FunctionClassification) reader.ReadUInt64();
     }
 }
 
 public class SerializableGen8RoomData : Serializable<Gen8RoomData> {
-    public override void Serialize(IWriter writer) {
+    public override void Serialize(
+        IWriter writer,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         Debug.Assert(Value is not null);
         writer.Write(Value.RoomOrder.Count);
         foreach (var room in Value.RoomOrder)
             writer.Write(room);
     }
 
-    public override void Deserialize(IReader reader) {
+    public override void Deserialize(
+        IReader reader,
+        IChunkData chunk,
+        IffFile iffFile
+    ) {
         var count  = reader.ReadInt32();
         Value = new Gen8RoomData {
             RoomOrder = new List<int>(count),
@@ -46,19 +70,15 @@ public class SerializableGen8RoomData : Serializable<Gen8RoomData> {
 }
 
 public class SerializableGen8RandomUid : Serializable<Gen8RandomUid> {
-    [Obsolete("Use Serialize(IWriter,Gen8ChunkData,IffFile)", error: true)]
-    public override void Serialize(IWriter writer) {
-        throw new InvalidOperationException(
-            "Cannot serialize random UID without additional context."
-        );
-    }
-
-    public void Serialize(
+    public override void Serialize(
         IWriter writer,
-        Gen8ChunkData chunk,
+        IChunkData iChunk,
         IffFile iffFile
     ) {
         Debug.Assert(Value is not null);
+
+        if (iChunk is not Gen8ChunkData chunk)
+            throw new Exception(); // TODO
 
         // TODO: Option to write random UID as is instead of recalculating it?
 
@@ -99,18 +119,14 @@ public class SerializableGen8RandomUid : Serializable<Gen8RandomUid> {
         }
     }
 
-    [Obsolete("Use Deserialize(IReader,Gen8ChunkData,IffFile)", error: true)]
-    public override void Deserialize(IReader reader) {
-        throw new InvalidOperationException(
-            "Cannot deserialize random UID without additional context."
-        );
-    }
-
-    public void Deserialize(
+    public override void Deserialize(
         IReader reader,
-        Gen8ChunkData chunk,
+        IChunkData iChunk,
         IffFile iffFile
     ) {
+        if (iChunk is not Gen8ChunkData chunk)
+            throw new Exception(); // TODO
+
         var seed = (int) (chunk.Timestamp.Value & 0xFFFFFFFFL);
         var numerator = (int) chunk.Timestamp.Value & 0xFFFF;
         var quotient = numerator / 7;

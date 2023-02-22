@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
@@ -14,6 +15,8 @@ public class BufferedReader : IReader {
 #region IEncodable Impl
     public Encoding Encoding { get; }
 #endregion
+
+    public Dictionary<int, IPointerSerializable> Pointers { get; } = new();
 
     protected byte[] Buffer { get; }
 
@@ -146,6 +149,61 @@ public class BufferedReader : IReader {
         var val = BitConverter.ToDouble(Buffer, Position);
         Position += amount;
         return val;
+    }
+
+    public virtual IPointerSerializable? ReadPointer(
+        int? ptr,
+        Func<IPointerSerializable> fallback
+    ) {
+        ptr ??= ReadInt32();
+
+        if (ptr == 0)
+            return default;
+
+        if (Pointers.TryGetValue(ptr.Value, out var serializable))
+            return serializable;
+
+        return Pointers[ptr.Value] = fallback();
+    }
+
+    public virtual IPointerSerializable<T>? ReadPointer<T>(
+        int? ptr,
+        Func<IPointerSerializable<T>> fallback
+    ) {
+        var serializable = ReadPointer(
+            ptr,
+            () => (IPointerSerializable)fallback()
+        );
+        return (IPointerSerializable<T>?) serializable;
+    }
+
+    public virtual IPointerSerializable? ReadPointerObject(
+        int ptr,
+        Func<IPointerSerializable> fallback
+    ) {
+        if (ptr <= 0)
+            return default;
+
+        if (!Pointers.TryGetValue(ptr, out var serializable))
+            serializable = Pointers[ptr] = fallback();
+
+        var pos = Position;
+        Position = ptr;
+        serializable.Deserialize(this);
+        Position = pos;
+
+        return serializable;
+    }
+
+    public virtual IPointerSerializable<T>? ReadPointerObject<T>(
+        int ptr,
+        Func<IPointerSerializable<T>> fallback
+    ) {
+        var serializable = ReadPointerObject(
+            ptr,
+            () => (IPointerSerializable)fallback()
+        );
+        return (IPointerSerializable<T>?) serializable;
     }
 #endregion
 

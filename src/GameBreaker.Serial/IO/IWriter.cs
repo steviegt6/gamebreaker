@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GameBreaker.Serial.IO;
 
 public interface IWriter : IPositionable,
                            IEncodable,
                            IDisposable {
+    Dictionary<IPointerSerializable, int> Pointers { get; }
+
+    Dictionary<IPointerSerializable, List<int>> PointerWrites { get; }
+
     void Write(byte value);
 
     void Write(byte[] buffer);
@@ -34,4 +39,8 @@ public interface IWriter : IPositionable,
     void Write(float value);
     
     void Write(double value);
+
+    void WritePointer(IPointerSerializable pointer);
+
+    void WriteObjectPointer(IPointerSerializable pointer);
 }

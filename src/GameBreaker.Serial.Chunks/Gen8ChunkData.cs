@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using GameBreaker.Serial.IO;
 using GameBreaker.Serial.IO.IFF;
 
@@ -15,11 +16,9 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<short> Unknown { get; }
         = new SerializableShort();
 
-    public ISerializable<string> FileName { get; }
-        = new SerializableGmString();
+    public IPointerSerializable<string>? FileName { get; set; }
 
-    public ISerializable<string> Config { get; }
-        = new SerializableGmString();
+    public IPointerSerializable<string>? Config { get; set; }
 
     public ISerializable<int> LastObjectId { get; }
         = new SerializableInt();
@@ -33,8 +32,7 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<Guid> LegacyGuid { get; }
         = new SerializableGuid();
 
-    public ISerializable<string> GameName { get; }
-        = new SerializableGmString();
+    public IPointerSerializable<string>? GameName { get; set; }
 
     public ISerializable<int> Major { get; }
         = new SerializableInt();
@@ -66,8 +64,7 @@ public class Gen8ChunkData : ChunkData {
     public ISerializable<long> Timestamp { get; }
         = new SerializableLong();
 
-    public ISerializable<string> DisplayName { get; } =
-        new SerializableGmString();
+    public IPointerSerializable<string>? DisplayName { get; set; }
 
     public ISerializable<long> ActiveTargets { get; }
         = new SerializableLong();
@@ -104,17 +101,22 @@ public class Gen8ChunkData : ChunkData {
     );
 
     public override void Serialize(IWriter writer, IffFile iffFile) {
+        Debug.Assert(FileName is not null);
+        Debug.Assert(Config is not null);
+        Debug.Assert(GameName is not null);
+        Debug.Assert(DisplayName is not null);
+        
         DisableDebug.Serialize(writer, this, iffFile);
         FormatId.Serialize(writer, this, iffFile);
         iffFile.Metadata.FormatId = FormatId.Value;
         Unknown.Serialize(writer, this, iffFile);
-        FileName.Serialize(writer, this, iffFile);
-        Config.Serialize(writer, this, iffFile);
+        writer.WritePointer(FileName);
+        writer.WritePointer(Config);
         LastObjectId.Serialize(writer, this, iffFile);
         LastTileId.Serialize(writer, this, iffFile);
         GameId.Serialize(writer, this, iffFile);
         LegacyGuid.Serialize(writer, this, iffFile);
-        GameName.Serialize(writer, this, iffFile);
+        writer.WritePointer(GameName);
         Major.Serialize(writer, this, iffFile);
         Minor.Serialize(writer, this, iffFile);
         Release.Serialize(writer, this, iffFile);
@@ -145,7 +147,7 @@ public class Gen8ChunkData : ChunkData {
         LicenseCrc32.Serialize(writer, this, iffFile);
         LicenseMd5.Serialize(writer, this, iffFile);
         Timestamp.Serialize(writer, this, iffFile);
-        DisplayName.Serialize(writer, this, iffFile);
+        writer.WritePointer(DisplayName);
         ActiveTargets.Serialize(writer, this, iffFile);
         FunctionClasses.Serialize(writer, this, iffFile);
         SteamAppId.Serialize(writer, this, iffFile);
@@ -173,13 +175,22 @@ public class Gen8ChunkData : ChunkData {
         FormatId.Deserialize(reader, this, iffFile);
         iffFile.Metadata.FormatId = FormatId.Value;
         Unknown.Deserialize(reader, this, iffFile);
-        FileName.Deserialize(reader, this, iffFile);
-        Config.Deserialize(reader, this, iffFile);
+        FileName = reader.ReadPointerObject(
+            reader.ReadInt32() - 4,
+            () => new SerializableGmString()
+        );
+        Config = reader.ReadPointerObject(
+            reader.ReadInt32() - 4,
+            () => new SerializableGmString()
+        );
         LastObjectId.Deserialize(reader, this, iffFile);
         LastTileId.Deserialize(reader, this, iffFile);
         GameId.Deserialize(reader, this, iffFile);
         LegacyGuid.Deserialize(reader, this, iffFile);
-        GameName.Deserialize(reader, this, iffFile);
+        GameName = reader.ReadPointerObject(
+            reader.ReadInt32() - 4,
+            () => new SerializableGmString()
+        );
         Major.Deserialize(reader, this, iffFile);
         Minor.Deserialize(reader, this, iffFile);
         Release.Deserialize(reader, this, iffFile);
@@ -191,7 +202,10 @@ public class Gen8ChunkData : ChunkData {
         LicenseCrc32.Deserialize(reader, this, iffFile);
         LicenseMd5.Deserialize(reader, this, iffFile);
         Timestamp.Deserialize(reader, this, iffFile);
-        DisplayName.Deserialize(reader, this, iffFile);
+        DisplayName = reader.ReadPointerObject(
+            reader.ReadInt32() - 4,
+            () => new SerializableGmString()
+        );
         ActiveTargets.Deserialize(reader, this, iffFile);
         FunctionClasses.Deserialize(reader, this, iffFile);
         SteamAppId.Deserialize(reader, this, iffFile);

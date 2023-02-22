@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace GameBreaker.Serial.IO;
@@ -13,6 +14,11 @@ public class BufferedWriter : IWriter {
 #region IEncodable Impl
     public Encoding Encoding { get; }
 #endregion
+
+    public Dictionary<IPointerSerializable, int> Pointers { get; } = new();
+
+    public Dictionary<IPointerSerializable, List<int>> PointerWrites { get; } =
+        new();
 
     protected byte[] Buffer { get; private set; }
 
@@ -148,6 +154,29 @@ public class BufferedWriter : IWriter {
         var bytes = BitConverter.GetBytes(value);
         Array.Copy(bytes, 0, Buffer, Position, bytes.Length);
         Position += bytes.Length;
+    }
+
+    public virtual void WritePointer(IPointerSerializable pointer) {
+        if (pointer.Value is null) {
+            Write(0);
+            return;
+        }
+
+        if (PointerWrites.TryGetValue(pointer, out var pending))
+            pending.Add(Position);
+        else
+            PointerWrites.Add(
+                pointer,
+                new List<int> {
+                    Position,
+                }
+            );
+
+        Write(DEADGAME);
+    }
+
+    public virtual void WriteObjectPointer(IPointerSerializable pointer) {
+        Pointers.Add(pointer, Position);
     }
 #endregion
 

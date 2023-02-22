@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GameBreaker.Serial.IO;
 
 public interface IReader : IPositionable,
                            IEncodable,
                            IDisposable {
+    Dictionary<int, IPointerSerializable> Pointers { get; }
+
     byte ReadByte();
 
     byte[] ReadBytes(int count);
@@ -34,4 +37,24 @@ public interface IReader : IPositionable,
     float ReadSingle();
 
     double ReadDouble();
+
+    IPointerSerializable? ReadPointer(
+        int? ptr,
+        Func<IPointerSerializable> fallback
+    );
+
+    IPointerSerializable<T>? ReadPointer<T>(
+        int? ptr,
+        Func<IPointerSerializable<T>> fallback
+    );
+
+    IPointerSerializable? ReadPointerObject(
+        int ptr,
+        Func<IPointerSerializable> fallback
+    );
+
+    IPointerSerializable<T>? ReadPointerObject<T>(
+        int ptr,
+        Func<IPointerSerializable<T>> fallback
+    );
 }

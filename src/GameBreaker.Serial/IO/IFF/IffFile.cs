@@ -1,4 +1,5 @@
-﻿using GameBreaker.Serial.Exceptions;
+﻿using System.Threading.Tasks;
+using GameBreaker.Serial.Exceptions;
 using GameBreaker.Serial.Extensions;
 
 namespace GameBreaker.Serial.IO.IFF;
@@ -23,6 +24,26 @@ public class IffFile {
         writer.WriteLength(() => {
             Root.Serialize(writer);
         });
+
+        Parallel.ForEach(
+            writer.PointerWrites,
+            x => {
+                if (writer.Pointers.TryGetValue(x.Key, out var pointer)) {
+                    pointer += x.Key.PointerOffset;
+                    
+                    foreach (var address in x.Value) {
+                        writer.Position = address;
+                        writer.Write(pointer);
+                    }
+                }
+                else {
+                    foreach (var address in x.Value) {
+                        writer.Position = address;
+                        writer.Write(0);
+                    }
+                }
+            }
+        );
     }
 
     public virtual void Deserialize(IReader reader) {

@@ -6,7 +6,7 @@ namespace GameBreaker.Serial.Extensions;
 public static class WriterExtensions {
     public static void WriteLength(this IWriter writer, Action action) {
         var start = writer.Position;
-        writer.Write(DEAD_GAME);
+        writer.Write(DEADGAME);
         action();
         var end = writer.Position;
         var length = end - start - 4; // 4 bytes for the length itself

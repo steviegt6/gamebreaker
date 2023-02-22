@@ -26,6 +26,18 @@ public abstract class Serializable<T> : ISerializable<T> {
     );
 }
 
+public abstract class PointerSerializable<T> : IPointerSerializable<T> {
+    public virtual int PointerOffset => 0;
+
+    public int Pointer { get; set; }
+
+    public T? Value { get; set; }
+
+    public abstract void Serialize(IWriter writer);
+
+    public abstract void Deserialize(IReader reader);
+}
+
 public class SerializableByte : Serializable<byte> {
     public SerializableByte() { }
 
@@ -386,27 +398,6 @@ public class SerializableDouble : Serializable<double> {
     }
 }
 
-public class SerializableGmString : Serializable<string> {
-    private int ugh;
-
-    public override void Serialize(
-        IWriter writer,
-        IChunkData chunk,
-        IffFile iffFile
-    ) {
-        writer.Write(ugh);
-    }
-
-    public override void Deserialize(
-        IReader reader,
-        IChunkData chunk,
-        IffFile iffFile
-    ) {
-        ugh = reader.ReadInt32();
-        Value = "TODO";
-    }
-}
-
 public class SerializableGuid : Serializable<Guid> {
     public override void Serialize(
         IWriter writer,
@@ -422,5 +413,34 @@ public class SerializableGuid : Serializable<Guid> {
         IffFile iffFile
     ) {
         Value = new Guid(reader.ReadBytes(16));
+    }
+}
+
+public class SerializableGmString : PointerSerializable<string> {
+    public override int PointerOffset => 4;
+
+    public override void Serialize(IWriter writer) {
+        Debug.Assert(Value is not null);
+        
+        var length = writer.Encoding.GetByteCount(Value);
+        writer.Write(length);
+        writer.Write(writer.Encoding.GetBytes(Value, 0, Value.Length));
+        writer.Write((byte)0); // Null terminator.
+    }
+
+    public override void Deserialize(IReader reader) {
+        var expectedLength = reader.ReadInt32();
+        var startPos = reader.Position;
+
+        while (reader.ReadByte() != 0) { }
+
+        reader.Position -= 1; // Go back to before the null terminator.
+        var realLength = reader.Position - startPos;
+        reader.Position = startPos;
+        Value = reader.Encoding.GetString(reader.ReadBytes(realLength));
+        reader.Position++; // Skip the null terminator.
+        
+        // TODO: warn if expectedLength != realLength
+        Debug.Assert(expectedLength == realLength);
     }
 }

@@ -1,0 +1,3 @@
+[submodule "src/DogScepter"]
+	path = src/DogScepter
+	url = https://github.com/steviegt6/DogScepter.git

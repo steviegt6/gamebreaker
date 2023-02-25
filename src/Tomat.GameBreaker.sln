@@ -5,7 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Editor", "GameBreaker.Editor\GameBreaker.Editor.csproj", "{A2C44034-AC39-40C5-BB39-61BAA62C8FAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterLib", "DogScepter\DogScepterLib\DogScepterLib.csproj", "{F9582000-F6F7-4B91-9193-65587E3702DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepter", "DogScepter\src\DogScepter\DogScepter.csproj", "{6B21ABB5-D0F5-43FB-B912-05DC3363E75B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterCLI", "DogScepter\src\DogScepterCLI\DogScepterCLI.csproj", "{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterLib", "DogScepter\src\DogScepterLib\DogScepterLib.csproj", "{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterSandbox", "DogScepter\src\DogScepterSandbox\DogScepterSandbox.csproj", "{75B9F147-6F4E-4B11-A346-08F704D0D316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterTest", "DogScepter\src\DogScepterTest\DogScepterTest.csproj", "{F5086008-9AA4-4615-851A-8155D0E2B33F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +28,25 @@ Global
 		{A2C44034-AC39-40C5-BB39-61BAA62C8FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2C44034-AC39-40C5-BB39-61BAA62C8FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2C44034-AC39-40C5-BB39-61BAA62C8FAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9582000-F6F7-4B91-9193-65587E3702DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9582000-F6F7-4B91-9193-65587E3702DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9582000-F6F7-4B91-9193-65587E3702DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9582000-F6F7-4B91-9193-65587E3702DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B21ABB5-D0F5-43FB-B912-05DC3363E75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B21ABB5-D0F5-43FB-B912-05DC3363E75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B21ABB5-D0F5-43FB-B912-05DC3363E75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B21ABB5-D0F5-43FB-B912-05DC3363E75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75B9F147-6F4E-4B11-A346-08F704D0D316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75B9F147-6F4E-4B11-A346-08F704D0D316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75B9F147-6F4E-4B11-A346-08F704D0D316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75B9F147-6F4E-4B11-A346-08F704D0D316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

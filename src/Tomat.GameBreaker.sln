@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepter", "DogScepter\sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterCLI", "DogScepter\src\DogScepterCLI\DogScepterCLI.csproj", "{317E8EC7-78ED-472C-9209-ABDFD5BE9E64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterLib", "DogScepter\src\DogScepterLib\DogScepterLib.csproj", "{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker", "DogScepter\src\GameBreaker\GameBreaker.csproj", "{AC976AE9-04AA-4DAA-95A4-43B52D83CB70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterSandbox", "DogScepter\src\DogScepterSandbox\DogScepterSandbox.csproj", "{75B9F147-6F4E-4B11-A346-08F704D0D316}"
 EndProject

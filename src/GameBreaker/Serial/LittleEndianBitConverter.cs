@@ -24,6 +24,8 @@ using System;
 using System.Runtime.CompilerServices;
 using GameBreaker.Serial.Numerics;
 
+[assembly: InternalsVisibleTo("GameBreaker.Tests")]
+
 namespace GameBreaker.Serial;
 
 /// <summary>
@@ -31,6 +33,8 @@ namespace GameBreaker.Serial;
 ///     exclusively as little endian regardless of the system's endianness.
 /// </summary>
 public static class LittleEndianBitConverter {
+    internal static bool IsLittleEndian = BitConverter.IsLittleEndian;
+
     /// <summary>
     ///     Reads a value of type <typeparamref name="T"/> from a byte array
     ///     starting at the specified index.

@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using GameBreaker.Models;
+using GameBreaker.Util;
 
 namespace GameBreaker.Chunks
 {
@@ -88,7 +89,8 @@ namespace GameBreaker.Chunks
                         reader.Data.Logger?.Invoke($"Reading audio group \"{fname}\"...");
                         using (FileStream fs = new FileStream(path, FileMode.Open))
                         {
-                            GmDataReader groupReader = new GmDataReader(fs, fs.Name);
+                            var bReader = new BufferBinaryReader(fs);
+                            GmDataReader groupReader = new GmDataReader(bReader, fs.Name);
                             groupReader.Data.Logger = reader.Data.Logger;
                             groupReader.Deserialize();
                             AudioData[i] = groupReader.Data;

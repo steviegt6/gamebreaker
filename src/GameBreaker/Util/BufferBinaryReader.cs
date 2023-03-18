@@ -22,7 +22,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -40,7 +39,7 @@ namespace GameBreaker.Util
         public Encoding Encoding { get; }
 
         // TODO: Provide ctor capable of using slices? Meh... not useful...?
-        protected BufferBinaryReader(Stream stream, Encoding? encoding = null) {
+        public BufferBinaryReader(Stream stream, Encoding? encoding = null) {
             // TODO: Figure out an acceptable way to handle large files.
             if (stream.Length > int.MaxValue)
                 throw new IOException("Stream is too large");

@@ -84,8 +84,8 @@ namespace GameBreaker.Models
 
             if (reader.VersionInfo.IsVersionAtLeast(2022, 6))
             {
-                Files = reader.ReadPointerObjectUnique<GMPointerList<ExtensionFile>>();
-                Options = reader.ReadPointerObjectUnique<GMPointerList<ExtensionOption>>();
+                Files = reader.ReadPointerObject<GMPointerList<ExtensionFile>>(unique: true);
+                Options = reader.ReadPointerObject<GMPointerList<ExtensionOption>>(unique: true);
             }
             else
             {

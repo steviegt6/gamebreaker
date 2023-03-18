@@ -143,11 +143,11 @@ namespace GameBreaker.Models
             else if (reader.VersionInfo.IsVersionAtLeast(2))
                 flags &= ~0x20000;
             Flags = (RoomFlags)flags;
-            Backgrounds = reader.ReadPointerObjectUnique<GMUniquePointerList<Background>>();
-            Views = reader.ReadPointerObjectUnique<GMUniquePointerList<View>>();
+            Backgrounds = reader.ReadPointerObject<GMUniquePointerList<Background>>(unique: true);
+            Views = reader.ReadPointerObject<GMUniquePointerList<View>>(unique: true);
             int gameObjectListPtr = reader.ReadInt32(); // read this later
             int tilePtr = reader.ReadInt32();
-            Tiles = reader.ReadPointerObjectUnique<GMUniquePointerList<Tile>>(tilePtr);
+            Tiles = reader.ReadPointerObject<GMUniquePointerList<Tile>>(tilePtr, unique: true);
             Physics = reader.ReadBoolean(wide: true);
             Top = reader.ReadInt32(); Left = reader.ReadInt32();
             Right = reader.ReadInt32(); Bottom = reader.ReadInt32();
@@ -155,7 +155,7 @@ namespace GameBreaker.Models
             PixelsToMeters = reader.ReadSingle();
             if (reader.VersionInfo.IsVersionAtLeast(2))
             {
-                Layers = reader.ReadPointerObjectUnique<GMUniquePointerList<Layer>>();
+                Layers = reader.ReadPointerObject<GMUniquePointerList<Layer>>(unique: true);
                 if (reader.VersionInfo.IsVersionAtLeast(2, 3))
                 {
                     // Read sequence ID list
@@ -592,14 +592,14 @@ namespace GameBreaker.Models
 
                 public void Deserialize(GmDataReader reader)
                 {
-                    LegacyTiles = reader.ReadPointerObjectUnique<GMUniquePointerList<Tile>>();
-                    Sprites = reader.ReadPointerObjectUnique<GMUniquePointerList<AssetInstance>>();
+                    LegacyTiles = reader.ReadPointerObject<GMUniquePointerList<Tile>>(unique: true);
+                    Sprites = reader.ReadPointerObject<GMUniquePointerList<AssetInstance>>(unique: true);
 
                     if (reader.VersionInfo.IsVersionAtLeast(2, 3))
                     {
-                        Sequences = reader.ReadPointerObjectUnique<GMUniquePointerList<AssetInstance>>();
+                        Sequences = reader.ReadPointerObject<GMUniquePointerList<AssetInstance>>(unique: true);
                         if (!reader.VersionInfo.IsVersionAtLeast(2, 3, 2))
-                            NineSlices = reader.ReadPointerObjectUnique<GMUniquePointerList<AssetInstance>>();
+                            NineSlices = reader.ReadPointerObject<GMUniquePointerList<AssetInstance>>(unique: true);
                     }
                 }
             }

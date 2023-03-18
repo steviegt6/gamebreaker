@@ -89,11 +89,11 @@ namespace GameBreaker.Models
                 Extension = reader.ReadStringPointerObject();
                 LoadType = (TextureGroupLoadType)reader.ReadInt32();
             }
-            TexturePageIDs = reader.ReadPointerObjectUnique<GMList<ResourceID>>();
-            SpriteIDs = reader.ReadPointerObjectUnique<GMList<ResourceID>>();
-            SpineSpriteIDs = reader.ReadPointerObjectUnique<GMList<ResourceID>>();
-            FontIDs = reader.ReadPointerObjectUnique<GMList<ResourceID>>();
-            TilesetIDs = reader.ReadPointerObjectUnique<GMList<ResourceID>>();
+            TexturePageIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
+            SpriteIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
+            SpineSpriteIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
+            FontIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
+            TilesetIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
         }
 
         public override string ToString()

@@ -78,7 +78,7 @@ namespace GameBreaker.Models
                 TextureHeight = reader.ReadInt32();
                 IndexInGroup = reader.ReadInt32();
             }
-            TextureData = reader.ReadPointerObjectUnique<GMTextureData>();
+            TextureData = reader.ReadPointerObject<GMTextureData>(unique: true);
         }
     }
 

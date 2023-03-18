@@ -187,7 +187,7 @@ public class GMPointerList<T> : GMList<T> where T : IGMSerializable, new()
 
     private static IGMSerializable DoReadPointerObjectUnique(GmDataReader reader, bool notLast)
     {
-        return reader.ReadPointerObjectUnique<T>(reader.ReadInt32(), notLast);
+        return reader.ReadPointerObject<T>(reader.ReadInt32(), notLast, unique: true);
     }
 
     public override void Deserialize(GmDataReader reader, ListDeserialize before = null,

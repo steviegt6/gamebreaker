@@ -194,11 +194,11 @@ namespace GameBreaker.Models
                     GMS2_PlaybackSpeedType = (AnimSpeedType)reader.ReadInt32();
                     if (version >= 2)
                     {
-                        GMS2_3_Sequence = reader.ReadPointerObjectUnique<SequenceReference>();
+                        GMS2_3_Sequence = reader.ReadPointerObject<SequenceReference>(unique: true);
                         if (version >= 3)
                         {
                             reader.VersionInfo.SetVersion(2, 3, 2);
-                            GMS2_3_2_NineSlice = reader.ReadPointerObjectUnique<NineSlice>();
+                            GMS2_3_2_NineSlice = reader.ReadPointerObject<NineSlice>(unique: true);
                         }
                     }
                 }

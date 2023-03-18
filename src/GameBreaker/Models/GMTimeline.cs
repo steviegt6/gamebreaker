@@ -59,7 +59,7 @@ namespace GameBreaker.Models
             for (int i = count; i > 0; i--)
             {
                 int time = reader.ReadInt32();
-                Moments.Add((time, reader.ReadPointerObjectUnique<GMPointerList<GMObject.Event.Action>>()));
+                Moments.Add((time, reader.ReadPointerObject<GMPointerList<GMObject.Event.Action>>(unique: true)));
             }
         }
 

@@ -34,15 +34,21 @@ using GameBreaker.Util;
 
 namespace GameBreaker
 {
-    public class GmDataReader : BufferBinaryReader
+    public class GmDataReader : BufferBinaryReader, IDataReader
     {
-        public GMData Data;
-        public GMData.GMVersionInfo VersionInfo => Data.VersionInfo;
-        public List<GMWarning> Warnings;
+        public GMData Data { get; }
 
-        public Dictionary<int, IGMSerializable> PointerOffsets;
-        public Dictionary<int, GMCode.Bytecode.Instruction> Instructions;
-        public List<(GMTextureData, int)> TexturesToDecompress;
+        public GMData.GMVersionInfo VersionInfo => Data.VersionInfo;
+
+        public List<GMWarning> Warnings { get; }
+
+        public Dictionary<int, IGMSerializable> PointerOffsets { get; }
+
+        public Dictionary<int, GMCode.Bytecode.Instruction> Instructions {
+            get;
+        }
+
+        public List<(GMTextureData, int)> TexturesToDecompress { get; }
 
         public GMChunk CurrentlyParsingChunk = null;
 
@@ -131,74 +137,24 @@ namespace GameBreaker
         }
 
         /// <summary>
-        /// Follows the specified pointer for an object type, deserializes it and returns it
-        /// </summary>
-        public T ReadPointerObject<T>(int ptr) where T : IGMSerializable, new()
-        {
-            if (ptr <= 0)
-                return default;
-
-            T res;
-            if (PointerOffsets.TryGetValue(ptr, out IGMSerializable s))
-                res = (T)s;
-            else
-            {
-                res = new T();
-                PointerOffsets[ptr] = res;
-            }
-
-            int returnTo = Offset;
-            Offset = ptr;
-
-            res.Deserialize(this);
-
-            Offset = returnTo;
-
-            return res;
-        }
-
-        /// <summary>
         /// Follows the specified pointer for an object type, deserializes it and returns it.
         /// Also has helper callbacks for list reading.
         /// </summary>
-        public T ReadPointerObject<T>(int ptr, bool returnAfter = true) where T : IGMSerializable, new()
+        public T ReadPointerObject<T>(int ptr, bool returnAfter = true, bool unique = false) where T : IGMSerializable, new()
         {
             if (ptr == 0)
                 return default;
 
             T res;
-            if (PointerOffsets.TryGetValue(ptr, out IGMSerializable s))
+            if (!unique && PointerOffsets.TryGetValue(ptr, out IGMSerializable s))
                 res = (T)s;
             else
             {
                 res = new T();
-                PointerOffsets[ptr] = res;
+                
+                if (unique) 
+                    PointerOffsets[ptr] = res;
             }
-
-            int returnTo = Offset;
-            Offset = ptr;
-
-            res.Deserialize(this);
-
-            if (returnAfter)
-                Offset = returnTo;
-
-            return res;
-        }
-
-        /// <summary>
-        /// Follows the specified pointer for an object type, deserializes it and returns it.
-        /// Also has helper callbacks for list reading.
-        ///
-        /// This version of the function should only be used when a specific pointer is used *once*, to waste less resources.
-        /// This does not add any information or use any information from the pointer map.
-        /// </summary>
-        public T ReadPointerObjectUnique<T>(int ptr, bool returnAfter = true) where T : IGMSerializable, new()
-        {
-            if (ptr == 0)
-                return default;
-
-            T res = new T();
 
             int returnTo = Offset;
             Offset = ptr;
@@ -214,18 +170,9 @@ namespace GameBreaker
         /// <summary>
         /// Follows a pointer (in the file) for an object type, deserializes it and returns it.
         /// </summary>
-        public T ReadPointerObject<T>() where T : IGMSerializable, new()
+        public T ReadPointerObject<T>(bool unique = false) where T : IGMSerializable, new()
         {
-            return ReadPointerObject<T>(ReadInt32());
-        }
-
-        /// <summary>
-        /// Follows a pointer (in the file) for an object type, deserializes it and returns it.
-        /// Uses the unique variant function internally, which does not get involved with the pointer map at all.
-        /// </summary>
-        public T ReadPointerObjectUnique<T>() where T : IGMSerializable, new()
-        {
-            return ReadPointerObjectUnique<T>(ReadInt32());
+            return ReadPointerObject<T>(ReadInt32(), unique: unique);
         }
 
         /// <summary>

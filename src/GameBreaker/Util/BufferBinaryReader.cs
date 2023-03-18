@@ -29,18 +29,24 @@ using System.Text;
 // TODO: Better exceptions.
 namespace GameBreaker.Util
 {
-    public class BufferBinaryReader : IPositionable, IEncodable
-    {
-        public Encoding Encoding { get; private set; }
-
+    public class BufferBinaryReader : IPositionable, IEncodable {
+        /// <summary>
+        ///     Default encoding for <see cref="BufferBinaryReader"/> and its
+        ///     inheritors. UTF-8 with no BOM.
+        /// </summary>
+        public static readonly Encoding DEFAULT_ENCODING =
+            new UTF8Encoding(false);
+        
         public int Offset { get; set; }
 
         public int Length => Buffer.Length;
 
         public byte[] Buffer { get; }
+        
+        public Encoding Encoding { get; }
 
         // TODO: Provide ctor capable of using slices? Meh... not useful...?
-        protected BufferBinaryReader(Stream stream) {
+        protected BufferBinaryReader(Stream stream, Encoding? encoding = null) {
             // TODO: Figure out an acceptable way to handle large files.
             if (stream.Length > int.MaxValue)
                 throw new IOException("Stream is too large");
@@ -54,7 +60,7 @@ namespace GameBreaker.Util
             if (bytes != Length)
                 throw new IOException("Stream read failed");
 
-            Encoding = new UTF8Encoding(false);
+            Encoding = encoding ?? DEFAULT_ENCODING;
         }
 
         public byte ReadByte()

@@ -151,7 +151,7 @@ namespace GameBreaker.Chunks
 
         private void ReadOption(GmDataReader reader, OptionsFlags flag)
         {
-            if (reader.ReadWideBoolean())
+            if (reader.ReadBoolean(wide: true))
                 Options |= flag;
         }
 

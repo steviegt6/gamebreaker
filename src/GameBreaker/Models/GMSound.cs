@@ -94,7 +94,7 @@ namespace GameBreaker.Models
                 // Legacy
                 GroupID = -1;
                 AudioID = reader.ReadInt32();
-                Preload = reader.ReadWideBoolean();
+                Preload = reader.ReadBoolean(wide: true);
             }
         }
 

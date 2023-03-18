@@ -81,8 +81,8 @@ namespace GameBreaker.Models
                 reader.Offset -= 4;
                 SizeFloat = -reader.ReadSingle();
             }
-            Bold = reader.ReadWideBoolean();
-            Italic = reader.ReadWideBoolean();
+            Bold = reader.ReadBoolean(wide: true);
+            Italic = reader.ReadBoolean(wide: true);
             RangeStart = reader.ReadUInt16();
             Charset = reader.ReadByte();
             AntiAlias = reader.ReadByte();

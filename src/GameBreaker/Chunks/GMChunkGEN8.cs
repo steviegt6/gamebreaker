@@ -229,7 +229,7 @@ namespace GameBreaker.Chunks
         {
             base.Deserialize(reader);
 
-            DisableDebug = reader.ReadBoolean();
+            DisableDebug = reader.ReadBoolean(wide: false);
             FormatID = reader.ReadByte();
             reader.VersionInfo.FormatID = FormatID;
             Unknown = reader.ReadInt16();
@@ -301,7 +301,7 @@ namespace GameBreaker.Chunks
 
                 // Other GMS2-specific data
                 GMS2_FPS = reader.ReadSingle();
-                GMS2_AllowStatistics = reader.ReadWideBoolean();
+                GMS2_AllowStatistics = reader.ReadBoolean(wide: true);
                 GMS2_GameGUID = new Guid(reader.ReadBytes(16).Memory.ToArray());
             }
         }

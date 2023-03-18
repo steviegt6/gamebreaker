@@ -139,8 +139,8 @@ namespace GameBreaker.Models
             {
                 Key = reader.ReadSingle();
                 Length = reader.ReadSingle();
-                Stretch = reader.ReadWideBoolean();
-                Disabled = reader.ReadWideBoolean();
+                Stretch = reader.ReadBoolean(wide: true);
+                Disabled = reader.ReadBoolean(wide: true);
 
                 int count = reader.ReadInt32();
                 Channels = new Dictionary<int, T>();
@@ -273,7 +273,7 @@ namespace GameBreaker.Models
                 Name = reader.ReadStringPointerObject();
                 BuiltinName = reader.ReadInt32();
                 Traits = (TraitsEnum)reader.ReadInt32();
-                IsCreationTrack = reader.ReadWideBoolean();
+                IsCreationTrack = reader.ReadBoolean(wide: true);
 
                 int tagCount = reader.ReadInt32();
                 int ownedResourceCount = reader.ReadInt32();
@@ -508,7 +508,7 @@ namespace GameBreaker.Models
                     public void Deserialize(GmDataReader reader)
                     {
                         Value = reader.ReadInt32();
-                        if (reader.ReadWideBoolean())
+                        if (reader.ReadBoolean(wide: true))
                         {
                             IsCurveEmbedded = true;
                             if (reader.ReadInt32() != -1)

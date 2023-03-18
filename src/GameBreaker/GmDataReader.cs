@@ -260,24 +260,6 @@ namespace GameBreaker
         }
 
         /// <summary>
-        /// Reads a 32-bit boolean
-        /// </summary>
-        public bool ReadWideBoolean()
-        {
-#if DEBUG
-            int val = ReadInt32();
-            if (val == 0)
-                return false;
-            if (val == 1)
-                return true;
-            Warnings.Add(new GMWarning("Wide boolean is not 0 or 1 before " + Offset.ToString(), GMWarning.WarningLevel.Bad));
-            return true;
-#else
-            return ReadInt32() != 0;
-#endif
-        }
-
-        /// <summary>
         /// Pads the offset to the next multiple of `alignment`
         /// </summary>
         public void Pad(int alignment)

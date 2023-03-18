@@ -30,7 +30,7 @@ using System.Text;
 // TODO: Better exceptions.
 namespace GameBreaker.Util
 {
-    public class BufferBinaryReader : IPositionable, IEncodable {
+    public class BufferBinaryReader : IBinaryReader {
         public int Offset { get; set; }
 
         public int Length => Buffer.Length;
@@ -63,9 +63,9 @@ namespace GameBreaker.Util
             return Buffer[Offset++];
         }
 
-        public virtual bool ReadBoolean()
+        public virtual bool ReadBoolean(bool wide)
         {
-            return ReadByte() != 0;
+            return (wide ? ReadInt32() : ReadByte()) != 0;
         }
 
         public virtual string ReadChars(int count)

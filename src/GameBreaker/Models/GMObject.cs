@@ -234,16 +234,16 @@ public class GMObject : IGMNamedSerializable
     {
         Name = reader.ReadStringPointerObject();
         SpriteID = reader.ReadInt32();
-        Visible = reader.ReadWideBoolean();
+        Visible = reader.ReadBoolean(wide: true);
         if (reader.VersionInfo.IsVersionAtLeast(2022, 5))
-            Managed = reader.ReadWideBoolean();
-        Solid = reader.ReadWideBoolean();
+            Managed = reader.ReadBoolean(wide: true);
+        Solid = reader.ReadBoolean(wide: true);
         Depth = reader.ReadInt32();
-        Persistent = reader.ReadWideBoolean();
+        Persistent = reader.ReadBoolean(wide: true);
         ParentObjectID = reader.ReadInt32();
         MaskSpriteID = reader.ReadInt32();
-        Physics.IsEnabled = reader.ReadWideBoolean();
-        Physics.Sensor = reader.ReadWideBoolean();
+        Physics.IsEnabled = reader.ReadBoolean(wide: true);
+        Physics.Sensor = reader.ReadBoolean(wide: true);
         Physics.Shape = (PhysicsProperties.CollisionShape)reader.ReadInt32();
         Physics.Density = reader.ReadSingle();
         Physics.Restitution = reader.ReadSingle();
@@ -252,8 +252,8 @@ public class GMObject : IGMNamedSerializable
         Physics.AngularDamping = reader.ReadSingle();
         int vertexCount = reader.ReadInt32();
         Physics.Friction = reader.ReadSingle();
-        Physics.IsAwake = reader.ReadWideBoolean();
-        Physics.IsKinematic = reader.ReadWideBoolean();
+        Physics.IsAwake = reader.ReadBoolean(wide: true);
+        Physics.IsKinematic = reader.ReadBoolean(wide: true);
         Physics.Vertices = new List<PhysicsVertex>(vertexCount);
         for (int i = vertexCount; i > 0; i--)
         {
@@ -379,16 +379,16 @@ public class GMObject : IGMNamedSerializable
                 LibID = reader.ReadInt32();
                 ID = reader.ReadInt32();
                 Kind = reader.ReadInt32();
-                UseRelative = reader.ReadWideBoolean();
-                IsQuestion = reader.ReadWideBoolean();
-                UseApplyTo = reader.ReadWideBoolean();
+                UseRelative = reader.ReadBoolean(wide: true);
+                IsQuestion = reader.ReadBoolean(wide: true);
+                UseApplyTo = reader.ReadBoolean(wide: true);
                 ExeType = reader.ReadInt32();
                 ActionName = reader.ReadStringPointerObject();
                 CodeID = reader.ReadInt32();
                 ArgumentCount = reader.ReadInt32();
                 Who = reader.ReadInt32();
-                Relative = reader.ReadWideBoolean();
-                IsNot = reader.ReadWideBoolean();
+                Relative = reader.ReadBoolean(wide: true);
+                IsNot = reader.ReadBoolean(wide: true);
                 if (reader.ReadInt32() != 0)
                     reader.Warnings.Add(new GMWarning("expected 0 in OBJT"));
             }

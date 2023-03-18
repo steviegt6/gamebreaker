@@ -804,7 +804,7 @@ public class GMCode : IGMSerializable
                                     Value = reader.ReadInt64();
                                     break;
                                 case DataType.Boolean:
-                                    Value = reader.ReadWideBoolean();
+                                    Value = reader.ReadBoolean(wide: true);
                                     break;
                                 case DataType.Variable:
                                     TypeInst = (InstanceType)val;

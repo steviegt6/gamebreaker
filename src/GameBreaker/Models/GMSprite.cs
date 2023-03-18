@@ -171,9 +171,9 @@ namespace GameBreaker.Models
             MarginRight = reader.ReadInt32();
             MarginBottom = reader.ReadInt32();
             MarginTop = reader.ReadInt32();
-            Transparent = reader.ReadWideBoolean();
-            Smooth = reader.ReadWideBoolean();
-            Preload = reader.ReadWideBoolean();
+            Transparent = reader.ReadBoolean(wide: true);
+            Smooth = reader.ReadBoolean(wide: true);
+            Preload = reader.ReadBoolean(wide: true);
             BBoxMode = reader.ReadUInt32();
             SepMasks = (SepMaskType)reader.ReadInt32();
             OriginX = reader.ReadInt32();
@@ -371,7 +371,7 @@ namespace GameBreaker.Models
                 Top = reader.ReadInt32();
                 Right = reader.ReadInt32();
                 Bottom = reader.ReadInt32();
-                Enabled = reader.ReadWideBoolean();
+                Enabled = reader.ReadBoolean(wide: true);
                 for (int i = 0; i < 5; i++)
                     TileModes[i] = (TileMode)reader.ReadInt32();
             }

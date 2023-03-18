@@ -141,9 +141,9 @@ public class GMBackground : IGMNamedSerializable
     public void Deserialize(GmDataReader reader)
     {
         Name = reader.ReadStringPointerObject();
-        Transparent = reader.ReadWideBoolean();
-        Smooth = reader.ReadWideBoolean();
-        Preload = reader.ReadWideBoolean();
+        Transparent = reader.ReadBoolean(wide: true);
+        Smooth = reader.ReadBoolean(wide: true);
+        Preload = reader.ReadBoolean(wide: true);
         TextureItem = reader.ReadPointerObject<GMTextureItem>();
 
         // If pre gms2, we deserialized everything and we can stop.

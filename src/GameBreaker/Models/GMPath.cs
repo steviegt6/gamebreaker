@@ -50,8 +50,8 @@ namespace GameBreaker.Models
         public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
-            Smooth = reader.ReadWideBoolean();
-            Closed = reader.ReadWideBoolean();
+            Smooth = reader.ReadBoolean(wide: true);
+            Closed = reader.ReadBoolean(wide: true);
             Precision = reader.ReadUInt32();
             Points = new GMList<Point>();
             Points.Deserialize(reader);

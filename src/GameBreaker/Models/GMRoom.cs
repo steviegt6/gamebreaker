@@ -133,9 +133,9 @@ namespace GameBreaker.Models
             Caption = reader.ReadStringPointerObject();
             Width = reader.ReadInt32(); Height = reader.ReadInt32();
             Speed = reader.ReadInt32();
-            Persistent = reader.ReadWideBoolean();
+            Persistent = reader.ReadBoolean(wide: true);
             BackgroundColor = reader.ReadInt32();
-            DrawBackgroundColor = reader.ReadWideBoolean();
+            DrawBackgroundColor = reader.ReadBoolean(wide: true);
             CreationCodeID = reader.ReadInt32();
             int flags = reader.ReadInt32();
             if (reader.VersionInfo.IsVersionAtLeast(2, 3))
@@ -148,7 +148,7 @@ namespace GameBreaker.Models
             int gameObjectListPtr = reader.ReadInt32(); // read this later
             int tilePtr = reader.ReadInt32();
             Tiles = reader.ReadPointerObjectUnique<GMUniquePointerList<Tile>>(tilePtr);
-            Physics = reader.ReadWideBoolean();
+            Physics = reader.ReadBoolean(wide: true);
             Top = reader.ReadInt32(); Left = reader.ReadInt32();
             Right = reader.ReadInt32(); Bottom = reader.ReadInt32();
             GravityX = reader.ReadSingle(); GravityY = reader.ReadSingle();
@@ -220,13 +220,13 @@ namespace GameBreaker.Models
 
             public void Deserialize(GmDataReader reader)
             {
-                Enabled = reader.ReadWideBoolean();
-                Foreground = reader.ReadWideBoolean();
+                Enabled = reader.ReadBoolean(wide: true);
+                Foreground = reader.ReadBoolean(wide: true);
                 BackgroundID = reader.ReadInt32();
                 X = reader.ReadInt32(); Y = reader.ReadInt32();
                 TileX = reader.ReadInt32(); TileY = reader.ReadInt32();
                 SpeedX = reader.ReadInt32(); SpeedY = reader.ReadInt32();
-                Stretch = reader.ReadWideBoolean();
+                Stretch = reader.ReadBoolean(wide: true);
             }
         }
 
@@ -256,7 +256,7 @@ namespace GameBreaker.Models
 
             public void Deserialize(GmDataReader reader)
             {
-                Enabled = reader.ReadWideBoolean();
+                Enabled = reader.ReadBoolean(wide: true);
                 ViewX = reader.ReadInt32(); ViewY = reader.ReadInt32();
                 ViewWidth = reader.ReadInt32(); ViewHeight = reader.ReadInt32();
                 PortX = reader.ReadInt32(); PortY = reader.ReadInt32();
@@ -444,11 +444,11 @@ namespace GameBreaker.Models
                 Depth = reader.ReadInt32();
                 OffsetX = reader.ReadSingle(); OffsetY = reader.ReadSingle();
                 HSpeed = reader.ReadSingle(); VSpeed = reader.ReadSingle();
-                Visible = reader.ReadWideBoolean();
+                Visible = reader.ReadBoolean(wide: true);
 
                 if (reader.VersionInfo.Major >= 2022)
                 {
-                    EffectEnabled = reader.ReadWideBoolean();
+                    EffectEnabled = reader.ReadBoolean(wide: true);
                     EffectType = reader.ReadStringPointerObject();
                     EffectProperties = new GMList<EffectProperty>();
                     EffectProperties.Deserialize(reader);
@@ -515,12 +515,12 @@ namespace GameBreaker.Models
 
                 public void Deserialize(GmDataReader reader)
                 {
-                    Visible = reader.ReadWideBoolean();
-                    Foreground = reader.ReadWideBoolean();
+                    Visible = reader.ReadBoolean(wide: true);
+                    Foreground = reader.ReadBoolean(wide: true);
                     SpriteID = reader.ReadInt32();
-                    TileHorz = reader.ReadWideBoolean();
-                    TileVert = reader.ReadWideBoolean();
-                    Stretch = reader.ReadWideBoolean();
+                    TileHorz = reader.ReadBoolean(wide: true);
+                    TileVert = reader.ReadBoolean(wide: true);
+                    Stretch = reader.ReadBoolean(wide: true);
                     Color = reader.ReadInt32();
                     FirstFrame = reader.ReadSingle();
                     AnimationSpeed = reader.ReadSingle();

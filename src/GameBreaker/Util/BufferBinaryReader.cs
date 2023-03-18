@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -58,10 +59,7 @@ namespace GameBreaker.Util
 
         public virtual byte ReadByte()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 1 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 1 <= Length);
             return Buffer[Offset++];
         }
 
@@ -72,10 +70,7 @@ namespace GameBreaker.Util
 
         public virtual string ReadChars(int count)
         {
-#if DEBUG
-            if (Offset < 0 || Offset + count > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + count <= Length);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++)
                 sb.Append(Convert.ToChar(Buffer[Offset++]));
@@ -84,10 +79,7 @@ namespace GameBreaker.Util
 
         public virtual BufferRegion ReadBytes(int count)
         {
-#if DEBUG
-            if (Offset < 0 || Offset + count > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + count <= Length);
             BufferRegion val = new BufferRegion(Buffer, Offset, count);
             Offset += count;
             return val;
@@ -95,66 +87,45 @@ namespace GameBreaker.Util
 
         public virtual short ReadInt16()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 2 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return (short)(Buffer[Offset++] | Buffer[Offset++] << 8);
         }
 
         public virtual ushort ReadUInt16()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 2 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return (ushort)(Buffer[Offset++] | Buffer[Offset++] << 8);
         }
 
         public virtual int ReadInt24()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 3 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | (sbyte)Buffer[Offset++] << 16);
         }
 
         public virtual uint ReadUInt24()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 3 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return (uint)(Buffer[Offset++] | Buffer[Offset++] << 8 | Buffer[Offset++] << 16);
         }
 
         public virtual int ReadInt32()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 4 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | 
                          Buffer[Offset++] << 16 | (sbyte)Buffer[Offset++] << 24);
         }
 
         public virtual uint ReadUInt32()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 4 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return (uint)(Buffer[Offset++] | Buffer[Offset++] << 8 | 
                           Buffer[Offset++] << 16 | Buffer[Offset++] << 24);
         }
 
         public virtual long ReadInt64()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 8 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             long val = BitConverter.ToInt64(Buffer, Offset);
             Offset += 8;
             return val;
@@ -162,10 +133,7 @@ namespace GameBreaker.Util
 
         public virtual ulong ReadUInt64()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 8 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             ulong val = BitConverter.ToUInt64(Buffer, Offset);
             Offset += 8;
             return val;
@@ -173,10 +141,7 @@ namespace GameBreaker.Util
 
         public virtual float ReadSingle()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 4 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             float val = BitConverter.ToSingle(Buffer, Offset);
             Offset += 4;
             return val;
@@ -184,10 +149,7 @@ namespace GameBreaker.Util
 
         public virtual double ReadDouble()
         {
-#if DEBUG
-            if (Offset < 0 || Offset + 8 > Length)
-                throw new IOException("Reading out of bounds");
-#endif
+            Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             double val = BitConverter.ToDouble(Buffer, Offset);
             Offset += 8;
             return val;

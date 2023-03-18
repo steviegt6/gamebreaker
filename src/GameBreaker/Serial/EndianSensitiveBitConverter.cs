@@ -22,6 +22,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Serial;
 
@@ -162,20 +163,12 @@ public static class LittleEndianBitConverter {
     }
 
     // TODO: Create Int24 and UInt24 types to benefit from optimizations.
-    public static int ToInt24(byte[] value, int startIndex) {
-        return (
-            (value[startIndex + 0] << 0)
-          | (value[startIndex + 1] << 8)
-          | (value[startIndex + 2] << 16)
-        );
+    public static Int24 ToInt24(byte[] value, int startIndex) {
+        return ReadUnaligned<Int24>(value, startIndex);
     }
 
-    public static uint ToUInt24(byte[] value, int startIndex) {
-        return (uint) (
-            (value[startIndex + 0] << 0)
-          | (value[startIndex + 1] << 8)
-          | (value[startIndex + 2] << 16)
-        );
+    public static UInt24 ToUInt24(byte[] value, int startIndex) {
+        return ReadUnaligned<UInt24>(value, startIndex);
     }
 
     public static int ToInt32(byte[] value, int startIndex) {

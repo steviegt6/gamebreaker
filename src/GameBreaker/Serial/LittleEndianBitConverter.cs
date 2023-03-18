@@ -32,6 +32,14 @@ namespace GameBreaker.Serial;
 ///     Essentially functions like <see cref="BitConverter"/>, but deals
 ///     exclusively as little endian regardless of the system's endianness.
 /// </summary>
+/// <remarks>
+///     Quite frankly, there is probably no reason to actually offer support for
+///     big endian systems, but I already essentially completed this by the time
+///     I realized that. Who knows -- maybe when the martian overlords come to
+///     Earth, we'll discover that they use big endian systems on Mars. And I'll
+///     be deemed spared as the court jester as a way to express their gratitude
+///     for my efforts in allowing them to modify GameMaker games.
+/// </remarks>
 public static class LittleEndianBitConverter {
     internal static bool IsLittleEndian = BitConverter.IsLittleEndian;
 

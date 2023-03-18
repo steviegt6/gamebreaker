@@ -30,13 +30,6 @@ using System.Text;
 namespace GameBreaker.Util
 {
     public class BufferBinaryReader : IPositionable, IEncodable {
-        /// <summary>
-        ///     Default encoding for <see cref="BufferBinaryReader"/> and its
-        ///     inheritors. UTF-8 with no BOM.
-        /// </summary>
-        public static readonly Encoding DEFAULT_ENCODING =
-            new UTF8Encoding(false);
-        
         public int Offset { get; set; }
 
         public int Length => Buffer.Length;
@@ -60,7 +53,7 @@ namespace GameBreaker.Util
             if (bytes != Length)
                 throw new IOException("Stream read failed");
 
-            Encoding = encoding ?? DEFAULT_ENCODING;
+            Encoding = encoding ?? IEncodable.DEFAULT_ENCODING;
         }
 
         public byte ReadByte()

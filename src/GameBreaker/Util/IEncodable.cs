@@ -29,6 +29,13 @@ namespace GameBreaker.Util;
 /// </summary>
 public interface IEncodable {
     /// <summary>
+    ///     The (likely) default encoding for <see cref="IEncodable"/>'s
+    ///     implementors. UTF-8 with no BOM.
+    /// </summary>
+    public static readonly Encoding DEFAULT_ENCODING =
+        new UTF8Encoding(false);
+    
+    /// <summary>
     ///     The encoding for which this object should use.
     /// </summary>
     Encoding Encoding { get; }

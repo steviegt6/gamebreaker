@@ -28,7 +28,7 @@ using System.Text;
 
 namespace GameBreaker.Util
 {
-    public class BufferBinaryReader
+    public class BufferBinaryReader : IPositionable
     {
         private readonly byte[] buffer;
         public Encoding Encoding { get; private set; }

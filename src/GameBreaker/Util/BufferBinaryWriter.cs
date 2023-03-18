@@ -28,7 +28,7 @@ using System.Text;
 
 namespace GameBreaker.Util
 {
-    public class BufferBinaryWriter : IDisposable
+    public class BufferBinaryWriter : IPositionable, IDisposable
     {
         private readonly Stream stream;
         private byte[] buffer;
@@ -45,7 +45,9 @@ namespace GameBreaker.Util
             }
         }
 
-        public byte[] RawBuffer { get => buffer; }
+        public int Length => currentSize;
+
+        public byte[] Buffer { get => buffer; }
         public Encoding Encoding { get => encoding; }
 
         public BufferBinaryWriter(Stream stream, int baseSize = 1024 * 1024 * 32)
@@ -94,7 +96,7 @@ namespace GameBreaker.Util
         public void Write(byte[] value)
         {
             ResizeToFit(offset + value.Length);
-            Buffer.BlockCopy(value, 0, buffer, offset, value.Length);
+            System.Buffer.BlockCopy(value, 0, buffer, offset, value.Length);
             offset += value.Length;
         }
 

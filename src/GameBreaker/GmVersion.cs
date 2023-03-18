@@ -1,5 +1,4 @@
-﻿/* MIT License
- * 
+﻿/*
  * Copyright (c) 2023 Tomat & GameBreaker Contributors
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy

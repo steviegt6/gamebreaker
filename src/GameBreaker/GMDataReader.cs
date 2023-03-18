@@ -1,5 +1,4 @@
-﻿/* MIT License
- * 
+﻿/*
  * Copyright (c) 2023 Tomat & GameBreaker Contributors
  * Copyright (c) 2020 colinator27
  * 
@@ -35,7 +34,7 @@ using GameBreaker.Util;
 
 namespace GameBreaker
 {
-    public class GMDataReader : BufferBinaryReader
+    public class GmDataReader : BufferBinaryReader
     {
         public GMData Data;
         public GMData.GMVersionInfo VersionInfo => Data.VersionInfo;
@@ -47,7 +46,7 @@ namespace GameBreaker
 
         public GMChunk CurrentlyParsingChunk = null;
 
-        public GMDataReader(Stream stream, string path) : base(stream)
+        public GmDataReader(Stream stream, string path) : base(stream)
         {
             Data = new GMData();
             Data.WorkingBuffer = Buffer;

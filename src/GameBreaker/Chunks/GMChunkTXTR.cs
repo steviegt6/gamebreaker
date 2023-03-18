@@ -1,5 +1,4 @@
-﻿/* MIT License
- * 
+﻿/*
  * Copyright (c) 2023 Tomat & GameBreaker Contributors
  * Copyright (c) 2020 colinator27
  * 

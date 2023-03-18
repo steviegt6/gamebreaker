@@ -28,7 +28,7 @@ using System.Text;
 
 namespace GameBreaker.Util
 {
-    public class BufferBinaryWriter : IPositionable, IDisposable
+    public class BufferBinaryWriter : IPositionable, IEncodable, IDisposable
     {
         private readonly Stream stream;
         private byte[] buffer;

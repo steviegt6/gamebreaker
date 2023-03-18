@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterSandbox", "DogSce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterTest", "DogScepter\src\DogScepterTest\DogScepterTest.csproj", "{F5086008-9AA4-4615-851A-8155D0E2B33F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterLib", "DogScepter\src\DogScepterLib\DogScepterLib.csproj", "{EB106CD5-4CC8-4C72-B70F-B8E18E5B4968}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5086008-9AA4-4615-851A-8155D0E2B33F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB106CD5-4CC8-4C72-B70F-B8E18E5B4968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB106CD5-4CC8-4C72-B70F-B8E18E5B4968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB106CD5-4CC8-4C72-B70F-B8E18E5B4968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB106CD5-4CC8-4C72-B70F-B8E18E5B4968}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

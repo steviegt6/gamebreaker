@@ -47,7 +47,7 @@ public static class LittleEndianBitConverter {
         where T : struct {
         // If we're on a little endian system, we can just read the value
         // directly the same way that BitConverter does.
-        if (BitConverter.IsLittleEndian)
+        if (IsLittleEndian)
             return Unsafe.ReadUnaligned<T>(ref value[startIndex]);
 
         // If we aren't so lucky...

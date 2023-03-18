@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public GMUniquePointerList<GMCode> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -42,7 +42,7 @@ namespace GameBreaker.Chunks
                     List.Serialize(writer);
                 else
                 {
-                    List.Serialize(writer, (GMDataWriter writer, int index, int count) =>
+                    List.Serialize(writer, (GmDataWriter writer, int index, int count) =>
                     {
                         if (index == 0)
                         {
@@ -61,7 +61,7 @@ namespace GameBreaker.Chunks
             }
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

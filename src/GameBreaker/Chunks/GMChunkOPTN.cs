@@ -83,12 +83,12 @@ namespace GameBreaker.Chunks
 
         public GMList<Constant> Constants;
 
-        private void WriteOption(GMDataWriter writer, OptionsFlags flag)
+        private void WriteOption(GmDataWriter writer, OptionsFlags flag)
         {
             writer.WriteWideBoolean((Options & flag) == flag);
         }
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -149,13 +149,13 @@ namespace GameBreaker.Chunks
             Constants.Serialize(writer);
         }
 
-        private void ReadOption(GMDataReader reader, OptionsFlags flag)
+        private void ReadOption(GmDataReader reader, OptionsFlags flag)
         {
             if (reader.ReadWideBoolean())
                 Options |= flag;
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -226,13 +226,13 @@ namespace GameBreaker.Chunks
             public GMString Name;
             public GMString Value;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.WritePointerString(Value);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 Value = reader.ReadStringPointerObject();

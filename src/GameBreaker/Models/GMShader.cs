@@ -65,7 +65,7 @@ namespace GameBreaker.Models
             Cg_PS3 = 7
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.Write((uint)Type | 0x80000000u);
@@ -160,12 +160,12 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             throw new NotImplementedException();
         }
 
-        public void Deserialize(GMDataReader reader, int endPos)
+        public void Deserialize(GmDataReader reader, int endPos)
         {
             Name = reader.ReadStringPointerObject();
             Type = (ShaderType)(reader.ReadUInt32() & 0x7FFFFFFF);
@@ -220,7 +220,7 @@ namespace GameBreaker.Models
             ReadShaderData(reader, HLSL11_PixelBuffer, ptr2, -1, ptr3 == 0 ? endPos : ptr3);
         }
 
-        private void ReadShaderData(GMDataReader reader, ShaderBuffer buf, int ptr, int length = -1, int end = -1)
+        private void ReadShaderData(GmDataReader reader, ShaderBuffer buf, int ptr, int length = -1, int end = -1)
         {
             if (buf == null)
                 return;
@@ -248,17 +248,17 @@ namespace GameBreaker.Models
         {
             public BufferRegion Buffer;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(Buffer);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 throw new NotImplementedException();
             }
 
-            public void Deserialize(GMDataReader reader, int length)
+            public void Deserialize(GmDataReader reader, int length)
             {
                 Buffer = reader.ReadBytes(length);
             }

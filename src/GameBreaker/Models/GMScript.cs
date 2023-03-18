@@ -36,7 +36,7 @@ namespace GameBreaker.Models
         public int CodeID;
         public bool Constructor;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             if (Constructor)
@@ -45,7 +45,7 @@ namespace GameBreaker.Models
                 writer.Write(CodeID);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             CodeID = reader.ReadInt32();

@@ -154,7 +154,7 @@ namespace GameBreaker.Chunks
         public bool GMS2_AllowStatistics;
         public Guid GMS2_GameGUID;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -225,7 +225,7 @@ namespace GameBreaker.Chunks
             }
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

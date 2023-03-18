@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public GMPointerList<GMString> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -46,12 +46,12 @@ namespace GameBreaker.Chunks
             writer.Pad(128);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
             List = new GMPointerList<GMString>();
-            List.Deserialize(reader, null, null, (GMDataReader reader, bool notLast) =>
+            List.Deserialize(reader, null, null, (GmDataReader reader, bool notLast) =>
             {
                 int ptr = reader.ReadInt32();
 

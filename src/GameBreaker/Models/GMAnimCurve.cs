@@ -42,12 +42,12 @@ namespace GameBreaker.Models
         public GraphTypeEnum GraphType;
         public GMList<Channel> Channels;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             Serialize(writer, true);
         }
 
-        public void Serialize(GMDataWriter writer, bool includeName)
+        public void Serialize(GmDataWriter writer, bool includeName)
         {
             if (includeName)
                 writer.WritePointerString(Name);
@@ -56,12 +56,12 @@ namespace GameBreaker.Models
             Channels.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Deserialize(reader, true);
         }
 
-        public void Deserialize(GMDataReader reader, bool includeName)
+        public void Deserialize(GmDataReader reader, bool includeName)
         {
             if (includeName)
                 Name = reader.ReadStringPointerObject();
@@ -90,7 +90,7 @@ namespace GameBreaker.Models
             public ushort Iterations;
             public GMList<Point> Points;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.Write((uint)FunctionType);
@@ -99,7 +99,7 @@ namespace GameBreaker.Models
                 Points.Serialize(writer);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 FunctionType = (FunctionTypeEnum)reader.ReadUInt32();
@@ -124,7 +124,7 @@ namespace GameBreaker.Models
                 public float BezierX1;
                 public float BezierY1;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.Write(X);
                     writer.Write(Value);
@@ -140,7 +140,7 @@ namespace GameBreaker.Models
                         writer.Write(0);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     X = reader.ReadSingle();
                     Value = reader.ReadSingle();

@@ -26,12 +26,12 @@ using System.Collections.Generic;
 namespace GameBreaker;
 
 // Callbacks for before/after serializing each element, for padding/etc.
-public delegate void ListSerialize(GMDataWriter writer, int index, int count);
-public delegate void ListDeserialize(GMDataReader reader, int index, int count);
+public delegate void ListSerialize(GmDataWriter writer, int index, int count);
+public delegate void ListDeserialize(GmDataReader reader, int index, int count);
 
 // Callbacks for reading/writing each element, in special scenarios
-public delegate void ListSerializeElement(GMDataWriter writer, IGMSerializable elem);
-public delegate IGMSerializable ListDeserializeElement(GMDataReader reader, bool notLast);
+public delegate void ListSerializeElement(GmDataWriter writer, IGMSerializable elem);
+public delegate IGMSerializable ListDeserializeElement(GmDataReader reader, bool notLast);
 
 /// <summary>
 /// Basic array-like list type in a GameMaker data file.
@@ -53,7 +53,7 @@ public class GMList<T> : List<T>, IGMSerializable where T : IGMSerializable, new
     {
     }
 
-    public virtual void Serialize(GMDataWriter writer, ListSerialize before = null,
+    public virtual void Serialize(GmDataWriter writer, ListSerialize before = null,
         ListSerialize after = null,
         ListSerializeElement elemWriter = null)
     {
@@ -72,12 +72,12 @@ public class GMList<T> : List<T>, IGMSerializable where T : IGMSerializable, new
         }
     }
 
-    public virtual void Serialize(GMDataWriter writer)
+    public virtual void Serialize(GmDataWriter writer)
     {
         Serialize(writer, null, null, null);
     }
 
-    public virtual void Deserialize(GMDataReader reader, ListDeserialize before = null,
+    public virtual void Deserialize(GmDataReader reader, ListDeserialize before = null,
         ListDeserialize after = null,
         ListDeserializeElement elemReader = null)
     {
@@ -103,7 +103,7 @@ public class GMList<T> : List<T>, IGMSerializable where T : IGMSerializable, new
         }
     }
 
-    public virtual void Deserialize(GMDataReader reader)
+    public virtual void Deserialize(GmDataReader reader)
     {
         Deserialize(reader, null, null, null);
     }
@@ -134,7 +134,7 @@ public class GMPointerList<T> : GMList<T> where T : IGMSerializable, new()
     {
     }
 
-    public void Serialize(GMDataWriter writer, ListSerialize before = null,
+    public void Serialize(GmDataWriter writer, ListSerialize before = null,
         ListSerialize after = null,
         ListSerializeElement elemWriter = null,
         ListSerializeElement elemPointerWriter = null)
@@ -168,29 +168,29 @@ public class GMPointerList<T> : GMList<T> where T : IGMSerializable, new()
         }
     }
 
-    public override void Serialize(GMDataWriter writer, ListSerialize before = null,
+    public override void Serialize(GmDataWriter writer, ListSerialize before = null,
         ListSerialize after = null,
         ListSerializeElement elemWriter = null)
     {
         Serialize(writer, before, after, elemWriter, null);
     }
 
-    public override void Serialize(GMDataWriter writer)
+    public override void Serialize(GmDataWriter writer)
     {
         Serialize(writer, null, null, null);
     }
 
-    private static IGMSerializable DoReadPointerObject(GMDataReader reader, bool notLast)
+    private static IGMSerializable DoReadPointerObject(GmDataReader reader, bool notLast)
     {
         return reader.ReadPointerObject<T>(reader.ReadInt32(), notLast);
     }
 
-    private static IGMSerializable DoReadPointerObjectUnique(GMDataReader reader, bool notLast)
+    private static IGMSerializable DoReadPointerObjectUnique(GmDataReader reader, bool notLast)
     {
         return reader.ReadPointerObjectUnique<T>(reader.ReadInt32(), notLast);
     }
 
-    public override void Deserialize(GMDataReader reader, ListDeserialize before = null,
+    public override void Deserialize(GmDataReader reader, ListDeserialize before = null,
         ListDeserialize after = null,
         ListDeserializeElement elemReader = null)
     {
@@ -217,7 +217,7 @@ public class GMPointerList<T> : GMList<T> where T : IGMSerializable, new()
         }
     }
 
-    public override void Deserialize(GMDataReader reader)
+    public override void Deserialize(GmDataReader reader)
     {
         Deserialize(reader, null, null, null);
     }
@@ -232,7 +232,7 @@ public class GMPointerList<T> : GMList<T> where T : IGMSerializable, new()
 public class GMRemotePointerList<T> : GMList<T> where T : IGMSerializable, new()
 {
 
-    public void Serialize(GMDataWriter writer, ListSerialize before = null,
+    public void Serialize(GmDataWriter writer, ListSerialize before = null,
         ListSerialize after = null,
         ListSerializeElement elemWriter = null,
         ListSerializeElement elemPointerWriter = null)
@@ -249,19 +249,19 @@ public class GMRemotePointerList<T> : GMList<T> where T : IGMSerializable, new()
         }
     }
 
-    public override void Serialize(GMDataWriter writer, ListSerialize before = null,
+    public override void Serialize(GmDataWriter writer, ListSerialize before = null,
         ListSerialize after = null,
         ListSerializeElement elemWriter = null)
     {
         Serialize(writer, before, after, elemWriter, null);
     }
 
-    public override void Serialize(GMDataWriter writer)
+    public override void Serialize(GmDataWriter writer)
     {
         Serialize(writer, null, null, null);
     }
 
-    public override void Deserialize(GMDataReader reader, ListDeserialize before = null,
+    public override void Deserialize(GmDataReader reader, ListDeserialize before = null,
         ListDeserialize after = null,
         ListDeserializeElement elemReader = null)
     {
@@ -287,7 +287,7 @@ public class GMRemotePointerList<T> : GMList<T> where T : IGMSerializable, new()
         }
     }
 
-    public override void Deserialize(GMDataReader reader)
+    public override void Deserialize(GmDataReader reader)
     {
         Deserialize(reader, null, null, null);
     }

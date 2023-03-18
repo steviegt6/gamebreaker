@@ -30,7 +30,7 @@ namespace GameBreaker.Chunks
     {
         public List<GMString> FeatureFlags;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -41,7 +41,7 @@ namespace GameBreaker.Chunks
                 writer.WritePointerString(s);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

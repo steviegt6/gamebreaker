@@ -33,12 +33,12 @@ public class GMAudioGroup : IGMSerializable
     /// </summary>
     public GMString Name;
 
-    public void Serialize(GMDataWriter writer)
+    public void Serialize(GmDataWriter writer)
     {
         writer.WritePointerString(Name);
     }
 
-    public void Deserialize(GMDataReader reader)
+    public void Deserialize(GmDataReader reader)
     {
         Name = reader.ReadStringPointerObject();
     }

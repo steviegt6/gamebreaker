@@ -35,7 +35,7 @@ namespace GameBreaker.Models
         public GMString Name;
         public List<(int, GMPointerList<GMObject.Event.Action>)> Moments;
         
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.Write(Moments.Count);
@@ -51,7 +51,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             int count = reader.ReadInt32();

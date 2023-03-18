@@ -48,7 +48,7 @@ namespace GameBreaker.Models
             Entries = new();
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Entries.Count);
             writer.WritePointerString(Name);
@@ -58,7 +58,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Entries = new List<GMLocal>();
 
@@ -138,13 +138,13 @@ namespace GameBreaker.Models
             }
         }    
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Index);
             writer.WritePointerString(Name);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Index = reader.ReadInt32();
             Name = reader.ReadStringPointerObject();

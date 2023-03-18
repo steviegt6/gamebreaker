@@ -80,7 +80,7 @@ namespace GameBreaker.Models
             FramesPerGameFrame = 1
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.Write(Width);
@@ -162,7 +162,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             Width = reader.ReadInt32();
@@ -266,7 +266,7 @@ namespace GameBreaker.Models
             }
         }
 
-        private void ParseMaskData(GMDataReader reader)
+        private void ParseMaskData(GmDataReader reader)
         {
             int MaskCount = reader.ReadInt32();
             int len = ((Width + 7) / 8) * Height;
@@ -289,7 +289,7 @@ namespace GameBreaker.Models
                 reader.Warnings.Add(new GMWarning("Unexpected sprite mask length!"));
         }
 
-        private void WriteMaskData(GMDataWriter writer)
+        private void WriteMaskData(GmDataWriter writer)
         {
             writer.Write(CollisionMasks.Count);
             int total = 0;
@@ -319,13 +319,13 @@ namespace GameBreaker.Models
         {
             public GMSequence Sequence;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(1);
                 Sequence.Serialize(writer);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 if (reader.ReadInt32() != 1)
                     reader.Warnings.Add(new GMWarning("Unexpected version for sequence reference in sprite"));
@@ -354,7 +354,7 @@ namespace GameBreaker.Models
                 Hide = 4
             }
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(Left);
                 writer.Write(Top);
@@ -365,7 +365,7 @@ namespace GameBreaker.Models
                     writer.Write((int)TileModes[i]);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Left = reader.ReadInt32();
                 Top = reader.ReadInt32();

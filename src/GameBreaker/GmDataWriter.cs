@@ -32,7 +32,7 @@ using GameBreaker.Util;
 
 namespace GameBreaker
 {
-    public class GMDataWriter : BufferBinaryWriter
+    public class GmDataWriter : BufferBinaryWriter
     {
         public GMData Data;
         public GMData.GMVersionInfo VersionInfo => Data.VersionInfo;
@@ -46,7 +46,7 @@ namespace GameBreaker
         public Dictionary<GMVariable, List<(int, GMCode.Bytecode.Instruction.VariableType)>> VariableReferences = new();
         public Dictionary<GMFunctionEntry, List<(int, GMCode.Bytecode.Instruction.VariableType)>> FunctionReferences = new();
 
-        public GMDataWriter(GMData data, Stream stream, string path, int baseSize = 1024 * 1024 * 32) : base(stream, baseSize)
+        public GmDataWriter(GMData data, Stream stream, string path, int baseSize = 1024 * 1024 * 32) : base(stream, baseSize)
         {
             Data = data;
             Warnings = new List<GMWarning>();

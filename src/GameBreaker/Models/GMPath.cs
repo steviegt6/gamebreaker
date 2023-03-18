@@ -38,7 +38,7 @@ namespace GameBreaker.Models
         public uint Precision;
         public GMList<Point> Points;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.WriteWideBoolean(Smooth);
@@ -47,7 +47,7 @@ namespace GameBreaker.Models
             Points.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             Smooth = reader.ReadWideBoolean();
@@ -68,14 +68,14 @@ namespace GameBreaker.Models
             public float Y;
             public float Speed;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(X);
                 writer.Write(Y);
                 writer.Write(Speed);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 X = reader.ReadSingle();
                 Y = reader.ReadSingle();

@@ -151,7 +151,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(SourceX);
             writer.Write(SourceY);
@@ -166,7 +166,7 @@ namespace GameBreaker.Models
             writer.Write(TexturePageID);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             SourceX = reader.ReadUInt16();
             SourceY = reader.ReadUInt16();

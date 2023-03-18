@@ -53,7 +53,7 @@ namespace GameBreaker.Models
 
         public bool Preload; // legacy (format ID < 14)
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.Write((uint)Flags);
@@ -75,7 +75,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             Flags = (AudioEntryFlags)reader.ReadUInt32();

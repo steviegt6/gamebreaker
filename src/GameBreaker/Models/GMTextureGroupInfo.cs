@@ -51,7 +51,7 @@ namespace GameBreaker.Models
             SeparateTextures = 2
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
 
@@ -80,7 +80,7 @@ namespace GameBreaker.Models
             TilesetIDs.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             if (reader.VersionInfo.IsVersionAtLeast(2022, 9))
@@ -105,12 +105,12 @@ namespace GameBreaker.Models
         {
             public int ID;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(ID);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 ID = reader.ReadInt32();
             }

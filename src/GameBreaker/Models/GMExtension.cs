@@ -55,7 +55,7 @@ namespace GameBreaker.Models
             Double = 2
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(EmptyString);
             writer.WritePointerString(Name);
@@ -76,7 +76,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             EmptyString = reader.ReadStringPointerObject();
             Name = reader.ReadStringPointerObject();
@@ -107,7 +107,7 @@ namespace GameBreaker.Models
             public ExtensionKind Kind;
             public GMPointerList<ExtensionFunction> Functions;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Filename);
                 writer.WritePointerString(FinalFunction);
@@ -116,7 +116,7 @@ namespace GameBreaker.Models
                 Functions.Serialize(writer);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Filename = reader.ReadStringPointerObject();
                 FinalFunction = reader.ReadStringPointerObject();
@@ -141,7 +141,7 @@ namespace GameBreaker.Models
             public GMString ExternalName;
             public List<ExtensionValueType> ArgumentTypes;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.Write(ID);
@@ -154,7 +154,7 @@ namespace GameBreaker.Models
                     writer.Write((uint)ArgumentTypes[i]);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 ID = reader.ReadInt32();
@@ -187,14 +187,14 @@ namespace GameBreaker.Models
             public GMString Value;
             public OptionKind Kind;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.WritePointerString(Value);
                 writer.Write((int)Kind);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 Value = reader.ReadStringPointerObject();

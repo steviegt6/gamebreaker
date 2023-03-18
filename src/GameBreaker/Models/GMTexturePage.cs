@@ -45,7 +45,7 @@ namespace GameBreaker.Models
         public int TextureHeight;
         public int IndexInGroup;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Scaled);
             if (writer.VersionInfo.Major >= 2) 
@@ -64,7 +64,7 @@ namespace GameBreaker.Models
             writer.WritePointer(TextureData);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Scaled = reader.ReadUInt32();
             if (reader.VersionInfo.Major >= 2) 
@@ -100,7 +100,7 @@ namespace GameBreaker.Models
         // Offset to write the data length to when serializing
         public int WriteLengthOffset = -1;
 
-        private void WriteLength(GMDataWriter writer, int length)
+        private void WriteLength(GmDataWriter writer, int length)
         {
             if (writer.VersionInfo.IsVersionAtLeast(2022, 3))
             {
@@ -113,7 +113,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Pad(128);
             writer.WriteObjectPointer(this);
@@ -139,7 +139,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             int startOffset = reader.Offset;
 

@@ -32,14 +32,14 @@ namespace GameBreaker.Chunks
     {
         public GMPointerList<GMTextureItem> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
             List.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

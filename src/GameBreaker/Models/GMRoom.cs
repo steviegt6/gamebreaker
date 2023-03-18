@@ -64,7 +64,7 @@ namespace GameBreaker.Models
         // GMS2.3+ only
         public List<int> SequenceIDs;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.WritePointerString(Caption);
@@ -127,7 +127,7 @@ namespace GameBreaker.Models
             }
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             Caption = reader.ReadStringPointerObject();
@@ -207,7 +207,7 @@ namespace GameBreaker.Models
             public int SpeedX, SpeedY;
             public bool Stretch;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WriteWideBoolean(Enabled);
                 writer.WriteWideBoolean(Foreground);
@@ -218,7 +218,7 @@ namespace GameBreaker.Models
                 writer.WriteWideBoolean(Stretch);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Enabled = reader.ReadWideBoolean();
                 Foreground = reader.ReadWideBoolean();
@@ -242,7 +242,7 @@ namespace GameBreaker.Models
             public int SpeedX, SpeedY;
             public int FollowObjectID;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WriteWideBoolean(Enabled);
                 writer.Write(ViewX); writer.Write(ViewY);
@@ -254,7 +254,7 @@ namespace GameBreaker.Models
                 writer.Write(FollowObjectID);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Enabled = reader.ReadWideBoolean();
                 ViewX = reader.ReadInt32(); ViewY = reader.ReadInt32();
@@ -287,7 +287,7 @@ namespace GameBreaker.Models
             public float ImageSpeed;
             public int ImageIndex;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(X); writer.Write(Y);
                 writer.Write(ObjectID);
@@ -305,7 +305,7 @@ namespace GameBreaker.Models
                     writer.Write(PreCreateCodeID);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 X = reader.ReadInt32(); Y = reader.ReadInt32();
                 ObjectID = reader.ReadInt32();
@@ -338,7 +338,7 @@ namespace GameBreaker.Models
             public float ScaleX, ScaleY;
             public int Color;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(X); writer.Write(Y);
                 writer.Write(AssetID);
@@ -350,7 +350,7 @@ namespace GameBreaker.Models
                 writer.Write(Color);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 X = reader.ReadInt32(); Y = reader.ReadInt32();
                 AssetID = reader.ReadInt32();
@@ -396,7 +396,7 @@ namespace GameBreaker.Models
             public LayerTiles Tiles;
             public LayerEffect Effect;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.Write(ID);
@@ -436,7 +436,7 @@ namespace GameBreaker.Models
                 }
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 ID = reader.ReadInt32();
@@ -499,7 +499,7 @@ namespace GameBreaker.Models
                 public float AnimationSpeed;
                 public GMSprite.AnimSpeedType AnimationSpeedType;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.WriteWideBoolean(Visible);
                     writer.WriteWideBoolean(Foreground);
@@ -513,7 +513,7 @@ namespace GameBreaker.Models
                     writer.Write((int)AnimationSpeedType);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     Visible = reader.ReadWideBoolean();
                     Foreground = reader.ReadWideBoolean();
@@ -533,14 +533,14 @@ namespace GameBreaker.Models
                 // IDs corresponding to the IDs given in the GameObjects list in the room
                 public List<int> Instances { get; set; }
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.Write(Instances.Count);
                     foreach (int i in Instances)
                         writer.Write(i);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     int count = reader.ReadInt32();
                     Instances = new List<int>(count);
@@ -558,7 +558,7 @@ namespace GameBreaker.Models
                 public GMUniquePointerList<AssetInstance> Sequences;
                 public GMUniquePointerList<AssetInstance> NineSlices; // apparently removed in 2.3.2
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.WritePointer(LegacyTiles);
                     writer.WritePointer(Sprites);
@@ -590,7 +590,7 @@ namespace GameBreaker.Models
                     }
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     LegacyTiles = reader.ReadPointerObjectUnique<GMUniquePointerList<Tile>>();
                     Sprites = reader.ReadPointerObjectUnique<GMUniquePointerList<AssetInstance>>();
@@ -616,7 +616,7 @@ namespace GameBreaker.Models
                 public float FrameIndex;
                 public float Rotation;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.WritePointerString(Name);
                     writer.Write(AssetID);
@@ -629,7 +629,7 @@ namespace GameBreaker.Models
                     writer.Write(Rotation);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     Name = reader.ReadStringPointerObject();
                     AssetID = reader.ReadInt32();
@@ -654,7 +654,7 @@ namespace GameBreaker.Models
                 public int TilesX, TilesY;
                 public int[][] TileData;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.Write(BackgroundID);
                     writer.Write(TilesX);
@@ -666,7 +666,7 @@ namespace GameBreaker.Models
                     }
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     BackgroundID = reader.ReadInt32();
                     TilesX = reader.ReadInt32();
@@ -686,13 +686,13 @@ namespace GameBreaker.Models
                 public GMString EffectType;
                 public GMList<EffectProperty> Properties;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.WritePointerString(EffectType);
                     Properties.Serialize(writer);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     EffectType = reader.ReadStringPointerObject();
                     Properties = new GMList<EffectProperty>();
@@ -713,14 +713,14 @@ namespace GameBreaker.Models
                 public GMString Name;
                 public GMString Value;
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.Write((int)Kind);
                     writer.WritePointerString(Name);
                     writer.WritePointerString(Value);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     Kind = (PropertyType)reader.ReadInt32();
                     Name = reader.ReadStringPointerObject();

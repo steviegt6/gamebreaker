@@ -33,7 +33,7 @@ namespace GameBreaker.Chunks
         public GMList<GMFunctionEntry> FunctionEntries;
         public GMList<GMLocalsEntry> Locals;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -51,7 +51,7 @@ namespace GameBreaker.Chunks
             }
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

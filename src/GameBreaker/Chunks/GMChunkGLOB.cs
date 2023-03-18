@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public List<int> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -41,7 +41,7 @@ namespace GameBreaker.Chunks
                 writer.Write(item);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

@@ -36,7 +36,7 @@ namespace GameBreaker.Chunks
         public int VarCount2;
         public int MaxLocalVarCount;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -86,7 +86,7 @@ namespace GameBreaker.Chunks
             }
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

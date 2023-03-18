@@ -105,7 +105,7 @@ public class GMBackground : IGMNamedSerializable
     /// </summary>
     public List<List<uint>> Tiles;
 
-    public void Serialize(GMDataWriter writer)
+    public void Serialize(GmDataWriter writer)
     {
         writer.WritePointerString(Name);
         writer.WriteWideBoolean(Transparent);
@@ -138,7 +138,7 @@ public class GMBackground : IGMNamedSerializable
         }
     }
 
-    public void Deserialize(GMDataReader reader)
+    public void Deserialize(GmDataReader reader)
     {
         Name = reader.ReadStringPointerObject();
         Transparent = reader.ReadWideBoolean();

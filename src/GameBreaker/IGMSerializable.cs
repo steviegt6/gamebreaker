@@ -31,16 +31,16 @@ namespace GameBreaker;
 public interface IGMSerializable
 {
     /// <summary>
-    /// Serializes this GameMaker resource into a specified <see cref="GMDataWriter"/>.
+    /// Serializes this GameMaker resource into a specified <see cref="GmDataWriter"/>.
     /// </summary>
-    /// <param name="writer">The <see cref="GMDataWriter"/> from where to serialize to.</param>
-    void Serialize(GMDataWriter writer);
+    /// <param name="writer">The <see cref="GmDataWriter"/> from where to serialize to.</param>
+    void Serialize(GmDataWriter writer);
 
     /// <summary>
-    /// Deserializes a GameMaker resource from a specified <see cref="GMDataReader"/>.
+    /// Deserializes a GameMaker resource from a specified <see cref="GmDataReader"/>.
     /// </summary>
-    /// <param name="reader">The <see cref="GMDataReader"/> from where to deserialize from.</param>
-    void Deserialize(GMDataReader reader);
+    /// <param name="reader">The <see cref="GmDataReader"/> from where to deserialize from.</param>
+    void Deserialize(GmDataReader reader);
 }
 
 /// <summary>

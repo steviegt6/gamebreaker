@@ -37,12 +37,12 @@ namespace GameBreaker.Models
     {
         public string Content;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WriteGMString(Content);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Content = reader.ReadGMString();
         }

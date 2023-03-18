@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public GMList<EmbeddedImage> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -41,7 +41,7 @@ namespace GameBreaker.Chunks
             List.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -58,13 +58,13 @@ namespace GameBreaker.Chunks
             public GMString Name;
             public GMTextureItem TextureItem;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.WritePointer(TextureItem);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Name = reader.ReadStringPointerObject();
                 TextureItem = reader.ReadPointer<GMTextureItem>();

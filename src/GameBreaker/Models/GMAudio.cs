@@ -33,13 +33,13 @@ public class GMAudio : IGMSerializable
     /// </summary>
     public BufferRegion Data;
 
-    public void Serialize(GMDataWriter writer)
+    public void Serialize(GmDataWriter writer)
     {
         writer.Write(Data.Length);
         writer.Write(Data);
     }
 
-    public void Deserialize(GMDataReader reader)
+    public void Deserialize(GmDataReader reader)
     {
         int length = reader.ReadInt32();
         Data = reader.ReadBytes(length);

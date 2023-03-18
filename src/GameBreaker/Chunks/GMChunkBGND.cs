@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public GMUniquePointerList<GMBackground> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -44,13 +44,13 @@ namespace GameBreaker.Chunks
             });
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
             List = new GMUniquePointerList<GMBackground>();
             reader.VersionInfo.AlignBackgroundsTo8 = reader.VersionInfo.IsVersionAtLeast(2, 3); // only occurs on newer 2.3.1 versions
-            List.Deserialize(reader, null, null, (GMDataReader reader, bool notLast) =>
+            List.Deserialize(reader, null, null, (GmDataReader reader, bool notLast) =>
             {
                 int ptr = reader.ReadInt32();
 

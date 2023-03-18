@@ -49,18 +49,18 @@ public class GMChunk : IGMSerializable
     public int EndOffset;
 
     /// <summary>
-    /// Serializes a GameMaker chunk into a specified <see cref="GMDataWriter"/>.
+    /// Serializes a GameMaker chunk into a specified <see cref="GmDataWriter"/>.
     /// </summary>
-    /// <param name="writer">The <see cref="GMDataWriter"/> from where to serialize to.</param>
-    public virtual void Serialize(GMDataWriter writer)
+    /// <param name="writer">The <see cref="GmDataWriter"/> from where to serialize to.</param>
+    public virtual void Serialize(GmDataWriter writer)
     {
     }
 
     /// <summary>
-    /// Deserializes a GameMaker chunk from a specified <see cref="GMDataReader"/>.
+    /// Deserializes a GameMaker chunk from a specified <see cref="GmDataReader"/>.
     /// </summary>
-    /// <param name="reader">The <see cref="GMDataReader"/> from where to deserialize from.</param>
-    public virtual void Deserialize(GMDataReader reader)
+    /// <param name="reader">The <see cref="GmDataReader"/> from where to deserialize from.</param>
+    public virtual void Deserialize(GmDataReader reader)
     {
         // Read chunk length, measure start/end
         Length = reader.ReadInt32();
@@ -114,7 +114,7 @@ public class GMChunkFORM : GMChunk
     };
     public static readonly Dictionary<Type, string> ChunkMapReverse = ChunkMap.ToDictionary(x => x.Value, x => x.Key);
 
-    public override void Serialize(GMDataWriter writer)
+    public override void Serialize(GmDataWriter writer)
     {
         base.Serialize(writer);
 
@@ -143,7 +143,7 @@ public class GMChunkFORM : GMChunk
         writer.EndLength(beg);
     }
 
-    public override void Deserialize(GMDataReader reader)
+    public override void Deserialize(GmDataReader reader)
     {
         base.Deserialize(reader);
 

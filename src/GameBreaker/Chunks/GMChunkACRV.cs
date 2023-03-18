@@ -31,7 +31,7 @@ namespace GameBreaker.Chunks
     public class GMChunkACRV : GMChunk
     {
         public GMUniquePointerList<GMAnimCurve> List;
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -39,7 +39,7 @@ namespace GameBreaker.Chunks
             List.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

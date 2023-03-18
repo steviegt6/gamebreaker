@@ -32,7 +32,7 @@ namespace GameBreaker.Chunks
     {
         public GMUniquePointerList<GMAudio> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -43,7 +43,7 @@ namespace GameBreaker.Chunks
             });
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 

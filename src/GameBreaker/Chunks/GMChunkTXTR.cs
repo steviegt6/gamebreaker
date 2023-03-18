@@ -33,7 +33,7 @@ namespace GameBreaker.Chunks
     {
         public GMUniquePointerList<GMTexturePage> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -44,7 +44,7 @@ namespace GameBreaker.Chunks
             writer.Pad(4);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -54,7 +54,7 @@ namespace GameBreaker.Chunks
             List.Deserialize(reader);
         }
 
-        private static void DoFormatCheck(GMDataReader reader)
+        private static void DoFormatCheck(GmDataReader reader)
         {
             // Perform several version checks
             if (reader.VersionInfo.IsVersionAtLeast(2, 3))

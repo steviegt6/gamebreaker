@@ -34,7 +34,7 @@ namespace GameBreaker.Chunks
         public GMUniquePointerList<GMAudioGroup> List;
         public Dictionary<int, GMData> AudioData;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -52,7 +52,7 @@ namespace GameBreaker.Chunks
                     {
                         GMData data = AudioData[pair.Key];
                         writer.Data.Logger?.Invoke($"Writing audio group \"{fname}\"...");
-                        using (GMDataWriter groupWriter = new GMDataWriter(data, fs, fs.Name, data.Length))
+                        using (GmDataWriter groupWriter = new GmDataWriter(data, fs, fs.Name, data.Length))
                         {
                             groupWriter.Write();
                             groupWriter.Flush();
@@ -67,7 +67,7 @@ namespace GameBreaker.Chunks
             }
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -88,7 +88,7 @@ namespace GameBreaker.Chunks
                         reader.Data.Logger?.Invoke($"Reading audio group \"{fname}\"...");
                         using (FileStream fs = new FileStream(path, FileMode.Open))
                         {
-                            GMDataReader groupReader = new GMDataReader(fs, fs.Name);
+                            GmDataReader groupReader = new GmDataReader(fs, fs.Name);
                             groupReader.Data.Logger = reader.Data.Logger;
                             groupReader.Deserialize();
                             AudioData[i] = groupReader.Data;

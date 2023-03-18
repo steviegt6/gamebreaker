@@ -38,7 +38,7 @@ namespace GameBreaker.Models
         public int VariableID;
         public int Occurrences;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
 
@@ -79,7 +79,7 @@ namespace GameBreaker.Models
                 writer.Write((int)-1);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
 

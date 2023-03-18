@@ -201,7 +201,7 @@ public class GMObject : IGMNamedSerializable
     /// </summary>
     public GMUniquePointerList<GMUniquePointerList<Event>> Events;
 
-    public void Serialize(GMDataWriter writer)
+    public void Serialize(GmDataWriter writer)
     {
         writer.WritePointerString(Name);
         writer.Write(SpriteID);
@@ -230,7 +230,7 @@ public class GMObject : IGMNamedSerializable
         Events.Serialize(writer);
     }
 
-    public void Deserialize(GMDataReader reader)
+    public void Deserialize(GmDataReader reader)
     {
         Name = reader.ReadStringPointerObject();
         SpriteID = reader.ReadInt32();
@@ -285,13 +285,13 @@ public class GMObject : IGMNamedSerializable
         /// </summary>
         public float Y;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(X);
             writer.Write(Y);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             X = reader.ReadSingle();
             Y = reader.ReadSingle();
@@ -317,13 +317,13 @@ public class GMObject : IGMNamedSerializable
         /// convert it directly to GML when compiling. Should usually only ever have one entry.</remarks>
         public GMUniquePointerList<Action> Actions;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Subtype);
             Actions.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Subtype = reader.ReadInt32();
             Actions = new GMUniquePointerList<Action>();
@@ -356,7 +356,7 @@ public class GMObject : IGMNamedSerializable
             public bool Relative;
             public bool IsNot;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(LibID);
                 writer.Write(ID);
@@ -374,7 +374,7 @@ public class GMObject : IGMNamedSerializable
                 writer.Write(0);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 LibID = reader.ReadInt32();
                 ID = reader.ReadInt32();

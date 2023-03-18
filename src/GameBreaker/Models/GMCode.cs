@@ -77,7 +77,7 @@ public class GMCode : IGMSerializable
     /// </summary>
     public readonly List<GMCode> ChildEntries = new List<GMCode>();
 
-    public void Serialize(GMDataWriter writer)
+    public void Serialize(GmDataWriter writer)
     {
         writer.WritePointerString(Name);
         if (BytecodeEntry != null)
@@ -97,7 +97,7 @@ public class GMCode : IGMSerializable
         }
     }
 
-    public void Deserialize(GMDataReader reader)
+    public void Deserialize(GmDataReader reader)
     {
         Name = reader.ReadStringPointerObject();
         Length = reader.ReadInt32();
@@ -186,18 +186,18 @@ public class GMCode : IGMSerializable
             return Instructions.Sum(instruction => instruction.GetLength());
         }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             foreach (Instruction i in Instructions)
                 i.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             throw new NotImplementedException();
         }
 
-        public void Deserialize(GMDataReader reader, int length)
+        public void Deserialize(GmDataReader reader, int length)
         {
             int begin = reader.Offset;
             int end = begin + length;
@@ -253,13 +253,13 @@ public class GMCode : IGMSerializable
                     Type = (VariableType)((int32Value >> 24) & 0xF8);
                 }
 
-                public void Serialize(GMDataWriter writer)
+                public void Serialize(GmDataWriter writer)
                 {
                     writer.WriteInt24(0);
                     writer.Write((byte)Type);
                 }
 
-                public void Deserialize(GMDataReader reader)
+                public void Deserialize(GmDataReader reader)
                 {
                     int int32Value = reader.ReadInt32();
                     NextOccurrence = int32Value & 0x07FFFFFF;
@@ -514,7 +514,7 @@ public class GMCode : IGMSerializable
                 Address = address;
             }
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 if (Variable != null)
                 {
@@ -673,7 +673,7 @@ public class GMCode : IGMSerializable
                 }
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 int start = reader.Offset;
                 reader.Instructions[start] = this;

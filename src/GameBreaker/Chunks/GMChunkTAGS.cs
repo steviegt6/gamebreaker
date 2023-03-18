@@ -33,7 +33,7 @@ namespace GameBreaker.Chunks
         public List<GMString> AllTags;
         public GMUniquePointerList<AssetTags> AssetTagsList;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -47,7 +47,7 @@ namespace GameBreaker.Chunks
             AssetTagsList.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -71,7 +71,7 @@ namespace GameBreaker.Chunks
             public int ID;
             public List<GMString> Tags;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(ID);
                 writer.Write(Tags.Count);
@@ -79,7 +79,7 @@ namespace GameBreaker.Chunks
                     writer.WritePointerString(s);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 ID = reader.ReadInt32();
                 int count = reader.ReadInt32();

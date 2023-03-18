@@ -33,14 +33,14 @@ namespace GameBreaker.Chunks
     {
         public GMUniquePointerList<GMRoom> List;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
             List.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -50,7 +50,7 @@ namespace GameBreaker.Chunks
             List.Deserialize(reader);
         }
 
-        private static void DoFormatCheck(GMDataReader reader)
+        private static void DoFormatCheck(GmDataReader reader)
         {
             // Do a length check on one of the layers to see if this is 2022.1 or higher
             if (reader.VersionInfo.IsVersionAtLeast(2, 3) && !reader.VersionInfo.IsVersionAtLeast(2022))

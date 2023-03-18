@@ -34,7 +34,7 @@ namespace GameBreaker.Chunks
 
         public BufferRegion Padding;
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -51,7 +51,7 @@ namespace GameBreaker.Chunks
                 writer.Write(Padding);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -63,7 +63,7 @@ namespace GameBreaker.Chunks
             Padding = reader.ReadBytes(512);
         }
 
-        private void DoFormatCheck(GMDataReader reader)
+        private void DoFormatCheck(GmDataReader reader)
         {
             // Check for new "Ascender" field introduced in 2022.2, by attempting to parse old font data format
             if (reader.VersionInfo.IsVersionAtLeast(2, 3) && !reader.VersionInfo.IsVersionAtLeast(2022, 2))

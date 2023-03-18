@@ -48,7 +48,7 @@ namespace GameBreaker.Models
         public int Ascender;
         public GMUniquePointerList<GMGlyph> Glyphs;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.WritePointerString(DisplayName);
@@ -71,7 +71,7 @@ namespace GameBreaker.Models
             Glyphs.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             DisplayName = reader.ReadStringPointerObject();
@@ -115,7 +115,7 @@ namespace GameBreaker.Models
         public short Offset { get; set; }
         public List<GMKerning> Kerning { get; set; }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Character);
             writer.Write(X);
@@ -129,7 +129,7 @@ namespace GameBreaker.Models
                 Kerning[i].Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Character = reader.ReadUInt16();
             X = reader.ReadUInt16();
@@ -153,13 +153,13 @@ namespace GameBreaker.Models
         public short Other { get; set; }
         public short Amount { get; set; }
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.Write(Other);
             writer.Write(Amount);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Other = reader.ReadInt16();
             Amount = reader.ReadInt16();

@@ -40,7 +40,7 @@ namespace GameBreaker.Chunks
         public List<GMString> EntryIDs = new List<GMString>();
         public List<Language> Languages = new List<Language>();
 
-        public override void Serialize(GMDataWriter writer)
+        public override void Serialize(GmDataWriter writer)
         {
             base.Serialize(writer);
 
@@ -57,7 +57,7 @@ namespace GameBreaker.Chunks
                 l.Serialize(writer);
         }
 
-        public override void Deserialize(GMDataReader reader)
+        public override void Deserialize(GmDataReader reader)
         {
             base.Deserialize(reader);
 
@@ -85,7 +85,7 @@ namespace GameBreaker.Chunks
             public List<GMString> Entries = new List<GMString>();
             // values that correspond to EntryIDs/EntryCount in main chunk
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(Name);
                 writer.WritePointerString(Region);
@@ -93,7 +93,7 @@ namespace GameBreaker.Chunks
                     writer.WritePointerString(s);
             }
 
-            public void Deserialize(GMDataReader reader, int entryCount)
+            public void Deserialize(GmDataReader reader, int entryCount)
             {
                 Name = reader.ReadStringPointerObject();
                 Region = reader.ReadStringPointerObject();
@@ -101,7 +101,7 @@ namespace GameBreaker.Chunks
                     Entries.Add(reader.ReadStringPointerObject());
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Deserialize(reader, 0);
             }

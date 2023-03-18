@@ -53,7 +53,7 @@ namespace GameBreaker.Models
         public Dictionary<int, GMString> FunctionIDs;
         public GMList<Keyframe<Moment>> Moments;
 
-        public void Serialize(GMDataWriter writer)
+        public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
             writer.Write((uint)PlaybackType);
@@ -78,7 +78,7 @@ namespace GameBreaker.Models
             Moments.Serialize(writer);
         }
 
-        public void Deserialize(GMDataReader reader)
+        public void Deserialize(GmDataReader reader)
         {
             Name = reader.ReadStringPointerObject();
             PlaybackType = (PlaybackTypeEnum)reader.ReadUInt32();
@@ -121,7 +121,7 @@ namespace GameBreaker.Models
             public bool Disabled;
             public Dictionary<int, T> Channels;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(Key);
                 writer.Write(Length);
@@ -135,7 +135,7 @@ namespace GameBreaker.Models
                 }
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 Key = reader.ReadSingle();
                 Length = reader.ReadSingle();
@@ -163,7 +163,7 @@ namespace GameBreaker.Models
         {
             public List<GMString> List;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(List.Count);
                 foreach (GMString str in List)
@@ -172,7 +172,7 @@ namespace GameBreaker.Models
                 }
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 List = new List<GMString>();
                 int count = reader.ReadInt32();
@@ -203,7 +203,7 @@ namespace GameBreaker.Models
             public List<IGMSerializable> OwnedResources;
             public List<GMString> OwnedResourceTypes;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.WritePointerString(ModelName);
                 writer.WritePointerString(Name);
@@ -267,7 +267,7 @@ namespace GameBreaker.Models
                 }
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 ModelName = reader.ReadStringPointerObject();
                 Name = reader.ReadStringPointerObject();
@@ -363,8 +363,8 @@ namespace GameBreaker.Models
 
             public class TrackKeyframes : IGMSerializable
             {
-                public virtual void Serialize(GMDataWriter writer) {}
-                public virtual void Deserialize(GMDataReader reader) {}
+                public virtual void Serialize(GmDataWriter writer) {}
+                public virtual void Deserialize(GmDataReader reader) {}
             }
 
             public class AudioKeyframes : TrackKeyframes
@@ -374,14 +374,14 @@ namespace GameBreaker.Models
                     public int ID;
                     public int Mode;
 
-                    public void Serialize(GMDataWriter writer)
+                    public void Serialize(GmDataWriter writer)
                     {
                         writer.Write(ID);
                         writer.Write((int)0);
                         writer.Write(Mode);
                     }
 
-                    public void Deserialize(GMDataReader reader)
+                    public void Deserialize(GmDataReader reader)
                     {
                         ID = reader.ReadInt32();
                         reader.Offset += 4;
@@ -391,12 +391,12 @@ namespace GameBreaker.Models
 
                 public GMList<Keyframe<Data>> List;
 
-                public override void Serialize(GMDataWriter writer)
+                public override void Serialize(GmDataWriter writer)
                 {
                     List.Serialize(writer);
                 }
 
-                public override void Deserialize(GMDataReader reader)
+                public override void Deserialize(GmDataReader reader)
                 {
                     List = new GMList<Keyframe<Data>>();
                     List.Deserialize(reader);
@@ -409,12 +409,12 @@ namespace GameBreaker.Models
                 {
                     public int ID;
 
-                    public void Serialize(GMDataWriter writer)
+                    public void Serialize(GmDataWriter writer)
                     {
                         writer.Write(ID);
                     }
 
-                    public void Deserialize(GMDataReader reader)
+                    public void Deserialize(GmDataReader reader)
                     {
                         ID = reader.ReadInt32();
                     }
@@ -422,12 +422,12 @@ namespace GameBreaker.Models
 
                 public GMList<Keyframe<Data>> List;
 
-                public override void Serialize(GMDataWriter writer)
+                public override void Serialize(GmDataWriter writer)
                 {
                     List.Serialize(writer);
                 }
 
-                public override void Deserialize(GMDataReader reader)
+                public override void Deserialize(GmDataReader reader)
                 {
                     List = new GMList<Keyframe<Data>>();
                     List.Deserialize(reader);
@@ -440,12 +440,12 @@ namespace GameBreaker.Models
                 {
                     public int Value;
 
-                    public void Serialize(GMDataWriter writer)
+                    public void Serialize(GmDataWriter writer)
                     {
                         writer.Write(Value);
                     }
 
-                    public void Deserialize(GMDataReader reader)
+                    public void Deserialize(GmDataReader reader)
                     {
                         Value = reader.ReadInt32();
                     }
@@ -453,12 +453,12 @@ namespace GameBreaker.Models
 
                 public GMList<Keyframe<Data>> List;
 
-                public override void Serialize(GMDataWriter writer)
+                public override void Serialize(GmDataWriter writer)
                 {
                     List.Serialize(writer);
                 }
 
-                public override void Deserialize(GMDataReader reader)
+                public override void Deserialize(GmDataReader reader)
                 {
                     List = new GMList<Keyframe<Data>>();
                     List.Deserialize(reader);
@@ -469,12 +469,12 @@ namespace GameBreaker.Models
             {
                 public GMList<Keyframe<GMString>> List;
 
-                public override void Serialize(GMDataWriter writer)
+                public override void Serialize(GmDataWriter writer)
                 {
                     List.Serialize(writer);
                 }
 
-                public override void Deserialize(GMDataReader reader)
+                public override void Deserialize(GmDataReader reader)
                 {
                     List = new GMList<Keyframe<GMString>>();
                     List.Deserialize(reader);
@@ -490,7 +490,7 @@ namespace GameBreaker.Models
                     public GMAnimCurve AnimCurve;
                     public int AnimCurveID;
 
-                    public void Serialize(GMDataWriter writer)
+                    public void Serialize(GmDataWriter writer)
                     {
                         writer.Write(Value);
                         writer.WriteWideBoolean(IsCurveEmbedded);
@@ -505,7 +505,7 @@ namespace GameBreaker.Models
                         }
                     }
 
-                    public void Deserialize(GMDataReader reader)
+                    public void Deserialize(GmDataReader reader)
                     {
                         Value = reader.ReadInt32();
                         if (reader.ReadWideBoolean())
@@ -535,14 +535,14 @@ namespace GameBreaker.Models
                 public GMList<Keyframe<Data>> List;
                 public InterpolationEnum Interpolation;
 
-                public override void Serialize(GMDataWriter writer)
+                public override void Serialize(GmDataWriter writer)
                 {
                     writer.Write((int)Interpolation);
 
                     List.Serialize(writer);
                 }
 
-                public override void Deserialize(GMDataReader reader)
+                public override void Deserialize(GmDataReader reader)
                 {
                     Interpolation = (InterpolationEnum)reader.ReadInt32();
 
@@ -558,14 +558,14 @@ namespace GameBreaker.Models
             public int InternalCount; // Should be 0 if none, 1 if there's a message?
             public GMString Event;
 
-            public void Serialize(GMDataWriter writer)
+            public void Serialize(GmDataWriter writer)
             {
                 writer.Write(InternalCount);
                 if (InternalCount > 0)
                     writer.WritePointerString(Event);
             }
 
-            public void Deserialize(GMDataReader reader)
+            public void Deserialize(GmDataReader reader)
             {
                 InternalCount = reader.ReadInt32();
                 if (InternalCount > 0)

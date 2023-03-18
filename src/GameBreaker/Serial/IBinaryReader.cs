@@ -23,7 +23,7 @@
 using System;
 using System.Text;
 
-namespace GameBreaker.Util; 
+namespace GameBreaker.Serial; 
 
 /// <summary>
 ///     Represents a positionable object dealing with a buffer that performs

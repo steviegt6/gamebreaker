@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameBreaker.Models;
-using GameBreaker.Util;
+using GameBreaker.Serial;
 
 namespace GameBreaker.Chunks
 {

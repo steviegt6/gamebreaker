@@ -22,7 +22,7 @@
 
 using System.Text;
 
-namespace GameBreaker.Util; 
+namespace GameBreaker.Serial; 
 
 /// <summary>
 ///     Interface for an object which contains a specific encoding.

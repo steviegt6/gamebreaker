@@ -24,7 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using GameBreaker.Util;
+using GameBreaker.Serial;
 
 namespace GameBreaker.Models
 {

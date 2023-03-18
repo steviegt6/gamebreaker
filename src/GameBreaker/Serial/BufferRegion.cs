@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameBreaker.Util;
+namespace GameBreaker.Serial;
 
 /// <summary>
 /// Represents a part of a buffer. Keeps a reference to the source array for its lifetime.

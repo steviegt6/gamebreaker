@@ -23,7 +23,7 @@
 
 using System.Collections.Generic;
 using GameBreaker.Models;
-using GameBreaker.Util;
+using GameBreaker.Serial;
 
 namespace GameBreaker.Chunks
 {

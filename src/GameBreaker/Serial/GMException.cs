@@ -22,10 +22,8 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GameBreaker.Util
+namespace GameBreaker.Serial
 {
     [Serializable]
     internal class GMException : Exception

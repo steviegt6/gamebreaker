@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-using GameBreaker.Util;
+using GameBreaker.Serial;
 
 namespace GameBreaker.Models;
 

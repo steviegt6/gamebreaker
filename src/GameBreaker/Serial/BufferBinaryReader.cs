@@ -27,7 +27,7 @@ using System.IO;
 using System.Text;
 
 // TODO: Better exceptions.
-namespace GameBreaker.Util
+namespace GameBreaker.Serial
 {
     public class BufferBinaryReader : IBinaryReader {
         public int Offset { get; set; }

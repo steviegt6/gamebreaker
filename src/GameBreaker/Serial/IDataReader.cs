@@ -23,7 +23,7 @@
 using System.Collections.Generic;
 using GameBreaker.Models;
 
-namespace GameBreaker.Util;
+namespace GameBreaker.Serial;
 
 // TODO: Reconsider mandatory properties, summaries, etc.
 /// <summary>

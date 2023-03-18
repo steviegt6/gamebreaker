@@ -68,100 +68,71 @@ public static class LittleEndianBitConverter {
         return res;
     }
 
+    /// <summary>
+    ///     Writes a value of type <typeparamref name="T"/> to a byte array
+    ///     starting at the specified index.
+    /// </summary>
+    /// <param name="value">The value to convert to bytes.</param>
+    /// <typeparam name="T">The type.</typeparam>
+    /// <returns>An array of bytes with a length the size of the type.</returns>
+    /// <remarks>
+    ///     This is a generalized copy of the <c>GetBytes</c> methods in
+    ///     <see cref="BitConverter"/>.
+    /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte[] GetBytes<T>(T value) {
+        var bytes = new byte[Unsafe.SizeOf<T>()];
+        Unsafe.As<byte, T>(ref bytes[0]) = value;
+        return bytes;
+    }
+
 #region GetXBytes
     public static byte[] GetBooleanBytes(bool value, bool wide) {
         if (wide)
             return GetInt32Bytes(value ? 1 : 0);
 
-        return new[] {
-            (byte) (value ? 1 : 0),
-        };
+        // Wonder if this is actually faster than just `(byte) (b ? 1 : 0)`.
+        return GetBytes(value);
     }
 
     public static byte[] GetInt16Bytes(short value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetUInt16Bytes(ushort value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetInt24Bytes(int value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetUInt24Bytes(uint value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetInt32Bytes(int value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-            (byte) ((value >> 24) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetUInt32Bytes(uint value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-            (byte) ((value >> 24) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetInt64Bytes(long value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-            (byte) ((value >> 24) & 0xFF),
-            (byte) ((value >> 32) & 0xFF),
-            (byte) ((value >> 40) & 0xFF),
-            (byte) ((value >> 48) & 0xFF),
-            (byte) ((value >> 56) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetUInt64Bytes(ulong value) {
-        return new[] {
-            (byte) (value & 0xFF),
-            (byte) ((value >> 8) & 0xFF),
-            (byte) ((value >> 16) & 0xFF),
-            (byte) ((value >> 24) & 0xFF),
-            (byte) ((value >> 32) & 0xFF),
-            (byte) ((value >> 40) & 0xFF),
-            (byte) ((value >> 48) & 0xFF),
-            (byte) ((value >> 56) & 0xFF),
-        };
+        return GetBytes(value);
     }
 
     public static byte[] GetSingleBytes(float value) {
-        return GetInt32Bytes(
-            BitConverter.ToInt32(BitConverter.GetBytes(value), 0)
-        );
+        return GetBytes(value);
     }
 
     public static byte[] GetDoubleBytes(double value) {
-        return GetInt64Bytes(
-            BitConverter.ToInt64(BitConverter.GetBytes(value), 0)
-        );
+        return GetBytes(value);
     }
 #endregion
 

@@ -137,15 +137,6 @@ namespace GameBreaker
         }
 
         /// <summary>
-        /// Pads the offset to the next multiple of `alignment`
-        /// </summary>
-        public void Pad(int alignment)
-        {
-            if (Offset % alignment != 0)
-                Offset += alignment - (Offset % alignment);
-        }
-
-        /// <summary>
         /// Write a 32-bit pointer value in this position, for an object
         /// </summary>
         public void WritePointer(IGMSerializable obj)

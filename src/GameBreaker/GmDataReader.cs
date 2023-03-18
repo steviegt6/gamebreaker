@@ -258,15 +258,6 @@ namespace GameBreaker
             Offset++; // go past null terminator
             return res;
         }
-
-        /// <summary>
-        /// Pads the offset to the next multiple of `alignment`
-        /// </summary>
-        public void Pad(int alignment)
-        {
-            if (Offset % alignment != 0)
-                Offset += alignment - (Offset % alignment);
-        }
     }
 
     /// <summary>

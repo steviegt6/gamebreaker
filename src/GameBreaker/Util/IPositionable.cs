@@ -46,3 +46,20 @@ public interface IPositionable {
     /// </summary>
     byte[] Buffer { get; }
 }
+
+/// <summary>
+///     Extension methods for <see cref="IPositionable"/>.
+/// </summary>
+public static class PositionableExtensions {
+    /// <summary>
+    ///     Pads the <see cref="IPositionable.Offset"/> to the next multiple of
+    ///     <paramref name="alignment"/>.
+    /// </summary>
+    /// <param name="pos">The positionable to pad.</param>
+    /// <param name="alignment">The alignment to pad to.</param>
+    public static void Pad(this IPositionable pos, int alignment)
+    {
+        if (pos.Offset % alignment != 0)
+            pos.Offset += alignment - (pos.Offset % alignment);
+    }
+}

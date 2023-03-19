@@ -89,7 +89,7 @@ namespace GameBreaker.Chunks
                         reader.Data.Logger?.Invoke($"Reading audio group \"{fname}\"...");
                         using (FileStream fs = new FileStream(path, FileMode.Open))
                         {
-                            var bReader = new BufferBinaryReader(fs);
+                            var bReader = BufferBinaryReader.FromStream(fs);
                             GmDataReader groupReader = new GmDataReader(bReader, fs.Name);
                             groupReader.Data.Logger = reader.Data.Logger;
                             groupReader.Deserialize();

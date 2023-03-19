@@ -28,9 +28,9 @@ using System.Text;
 using GameBreaker.Serial.Numerics;
 
 // TODO: Better exceptions.
-namespace GameBreaker.Serial
-{
+namespace GameBreaker.Serial {
     public class BufferBinaryReader : IBinaryReader {
+#region IBinaryReader Impl (Properties)
         private int offset;
 
         public int Offset {
@@ -41,113 +41,113 @@ namespace GameBreaker.Serial
         public int Length => Buffer.Length;
 
         public byte[] Buffer { get; }
-        
+
         public Encoding Encoding { get; }
+#endregion
 
-        // TODO: Provide ctor capable of using slices? Meh... not useful...?
-        public BufferBinaryReader(Stream stream, Encoding? encoding = null) {
-            // TODO: Figure out an acceptable way to handle large files.
-            if (stream.Length > int.MaxValue)
-                throw new IOException("Stream is too large");
-
-            Buffer = new byte[stream.Length];
-            
-            stream.Seek(0, SeekOrigin.Begin);
-            var bytes = stream.Read(Buffer, 0, Length);
-            stream.Close();
-            
-            if (bytes != Length)
-                throw new IOException("Stream read failed");
-
+        /// <summary>
+        ///     Initializes a new instance of <see cref="BufferBinaryReader"/>.
+        /// </summary>
+        /// <param name="buffer">The backing buffer to use.</param>
+        /// <param name="encoding">The <see cref="Encoding"/> to use.</param>
+        public BufferBinaryReader(byte[] buffer, Encoding? encoding = null) {
+            Buffer = buffer;
             Encoding = encoding ?? IEncodable.DEFAULT_ENCODING;
         }
 
-        public virtual byte ReadByte()
-        {
+#region IBinaryReader Impl (Methods)
+        public virtual byte ReadByte() {
             Debug.Assert(Offset >= 0 && Offset + 1 <= Length);
             return Buffer[Offset++];
         }
 
-        public virtual bool ReadBoolean(bool wide)
-        {
+        public virtual bool ReadBoolean(bool wide) {
             return (wide ? ReadInt32() : ReadByte()) != 0;
         }
 
-        public virtual string ReadChars(int count)
-        {
+        public virtual string ReadChars(int count) {
             Debug.Assert(Offset >= 0 && Offset + count <= Length);
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             for (int i = 0; i < count; i++)
                 sb.Append(Convert.ToChar(Buffer[Offset++]));
             return sb.ToString();
         }
 
-        public virtual BufferRegion ReadBytes(int count)
-        {
+        public virtual BufferRegion ReadBytes(int count) {
             Debug.Assert(Offset >= 0 && Offset + count <= Length);
-            BufferRegion val = new BufferRegion(Buffer, Offset, count);
+            var val = new BufferRegion(Buffer, Offset, count);
             Offset += count;
             return val;
         }
 
-        public virtual short ReadInt16()
-        {
+        public virtual short ReadInt16() {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return GmBitConverter.ToInt16(Buffer, ref offset);
         }
 
-        public virtual ushort ReadUInt16()
-        {
+        public virtual ushort ReadUInt16() {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return GmBitConverter.ToUInt16(Buffer, ref offset);
         }
 
-        public virtual Int24 ReadInt24()
-        {
+        public virtual Int24 ReadInt24() {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return GmBitConverter.ToInt24(Buffer, ref offset);
         }
 
-        public virtual UInt24 ReadUInt24()
-        {
+        public virtual UInt24 ReadUInt24() {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return GmBitConverter.ToUInt24(Buffer, ref offset);
         }
 
-        public virtual int ReadInt32()
-        {
+        public virtual int ReadInt32() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToInt32(Buffer, ref offset);
         }
 
-        public virtual uint ReadUInt32()
-        {
+        public virtual uint ReadUInt32() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToUInt32(Buffer, ref offset);
         }
 
-        public virtual long ReadInt64()
-        {
+        public virtual long ReadInt64() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToInt64(Buffer, ref offset);
         }
 
-        public virtual ulong ReadUInt64()
-        {
+        public virtual ulong ReadUInt64() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToUInt64(Buffer, ref offset);
         }
 
-        public virtual float ReadSingle()
-        {
+        public virtual float ReadSingle() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToSingle(Buffer, ref offset);
         }
 
-        public virtual double ReadDouble()
-        {
+        public virtual double ReadDouble() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToDouble(Buffer, ref offset);
+        }
+#endregion
+
+        public static BufferBinaryReader FromStream(
+            Stream stream,
+            Encoding? encoding = null
+        ) {
+            if (stream.Length > int.MaxValue)
+                throw new IOException("Stream is too large");
+
+            var buf = new byte[stream.Length];
+
+            stream.Seek(0, SeekOrigin.Begin);
+            var bytes = stream.Read(buf, 0, buf.Length);
+            stream.Close();
+
+            if (bytes != buf.Length)
+                throw new IOException("Stream read failed");
+
+            return new BufferBinaryReader(buf, encoding);
         }
     }
 }

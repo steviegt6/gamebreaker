@@ -72,7 +72,7 @@ namespace GameBreaker.Serial {
 
         /// <inheritdoc cref="IBinaryReader.ReadBoolean"/>
         public virtual bool ReadBoolean(bool wide) {
-            return (wide ? ReadInt32() : ReadByte()) != 0;
+            return GmBitConverter.ToBoolean(Buffer, ref offset, wide: wide);
         }
 
         /// <inheritdoc cref="IBinaryReader.ReadChars"/>

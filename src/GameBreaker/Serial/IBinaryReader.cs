@@ -22,6 +22,7 @@
 
 using System;
 using System.Text;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Serial; 
 
@@ -80,14 +81,14 @@ public interface IBinaryReader : IPositionable, IEncodable {
     ///     32-bit integer.
     /// </summary>
     /// <returns>The read integer.</returns>
-    int ReadInt24();
+    Int24 ReadInt24();
     
     /// <summary>
     ///     Reads a 24-bit unsigned integer from the buffer, represented as a
     ///     32-bit integer.
     /// </summary>
     /// <returns>The read integer.</returns>
-    uint ReadUInt24();
+    UInt24 ReadUInt24();
     
     /// <summary>
     ///     Reads a 32-bit signed integer from the buffer.

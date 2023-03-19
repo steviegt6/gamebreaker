@@ -30,6 +30,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameBreaker.Models;
 using GameBreaker.Serial;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker;
 
@@ -112,11 +113,11 @@ public class GmDataReader : IDataReader {
         return Reader.ReadUInt16();
     }
 
-    public virtual int ReadInt24() {
+    public virtual Int24 ReadInt24() {
         return Reader.ReadInt24();
     }
 
-    public virtual uint ReadUInt24() {
+    public virtual UInt24 ReadUInt24() {
         return Reader.ReadUInt24();
     }
 

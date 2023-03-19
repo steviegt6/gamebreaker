@@ -25,12 +25,18 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using GameBreaker.Serial.Numerics;
 
 // TODO: Better exceptions.
 namespace GameBreaker.Serial
 {
     public class BufferBinaryReader : IBinaryReader {
-        public int Offset { get; set; }
+        private int offset;
+
+        public int Offset {
+            get => offset;
+            set => offset = value;
+        }
 
         public int Length => Buffer.Length;
 
@@ -87,71 +93,61 @@ namespace GameBreaker.Serial
         public virtual short ReadInt16()
         {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
-            return (short)(Buffer[Offset++] | Buffer[Offset++] << 8);
+            return GmBitConverter.ToInt16(Buffer, ref offset);
         }
 
         public virtual ushort ReadUInt16()
         {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
-            return (ushort)(Buffer[Offset++] | Buffer[Offset++] << 8);
+            return GmBitConverter.ToUInt16(Buffer, ref offset);
         }
 
-        public virtual int ReadInt24()
+        public virtual Int24 ReadInt24()
         {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
-            return (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | (sbyte)Buffer[Offset++] << 16);
+            return GmBitConverter.ToInt24(Buffer, ref offset);
         }
 
-        public virtual uint ReadUInt24()
+        public virtual UInt24 ReadUInt24()
         {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
-            return (uint)(Buffer[Offset++] | Buffer[Offset++] << 8 | Buffer[Offset++] << 16);
+            return GmBitConverter.ToUInt24(Buffer, ref offset);
         }
 
         public virtual int ReadInt32()
         {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-            return (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | 
-                         Buffer[Offset++] << 16 | (sbyte)Buffer[Offset++] << 24);
+            return GmBitConverter.ToInt32(Buffer, ref offset);
         }
 
         public virtual uint ReadUInt32()
         {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-            return (uint)(Buffer[Offset++] | Buffer[Offset++] << 8 | 
-                          Buffer[Offset++] << 16 | Buffer[Offset++] << 24);
+            return GmBitConverter.ToUInt32(Buffer, ref offset);
         }
 
         public virtual long ReadInt64()
         {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-            long val = BitConverter.ToInt64(Buffer, Offset);
-            Offset += 8;
-            return val;
+            return GmBitConverter.ToInt64(Buffer, ref offset);
         }
 
         public virtual ulong ReadUInt64()
         {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-            ulong val = BitConverter.ToUInt64(Buffer, Offset);
-            Offset += 8;
-            return val;
+            return GmBitConverter.ToUInt64(Buffer, ref offset);
         }
 
         public virtual float ReadSingle()
         {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-            float val = BitConverter.ToSingle(Buffer, Offset);
-            Offset += 4;
-            return val;
+            return GmBitConverter.ToSingle(Buffer, ref offset);
         }
 
         public virtual double ReadDouble()
         {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-            var val = BitConverter.ToDouble(Buffer, Offset);
-            Offset += 8;
-            return val;
+            return GmBitConverter.ToDouble(Buffer, ref offset);
         }
     }
 }

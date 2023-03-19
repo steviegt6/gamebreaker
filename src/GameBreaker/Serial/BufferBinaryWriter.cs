@@ -44,11 +44,7 @@ namespace GameBreaker.Serial {
         /// <inheritdoc cref="IBinaryWriter.Offset"/>
         public int Offset {
             get => offset;
-
-            set {
-                ResizeToFit(value);
-                offset = value;
-            }
+            set => ResizeToFit(offset = value);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Length"/>

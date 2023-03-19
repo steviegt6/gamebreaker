@@ -28,6 +28,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using GameBreaker.Exceptions;
 using GameBreaker.Models;
 using GameBreaker.Serial;
 using GameBreaker.Serial.Numerics;
@@ -155,7 +156,7 @@ public class GmDataReader : IDataReader {
 
         // Parse the root chunk of the file, FORM
         if (ReadChars(4) != "FORM")
-            throw new GMException("Root chunk is not \"FORM\"; invalid file.");
+            throw new InvalidFormHeaderException("Root chunk is not \"FORM\"; invalid file.");
 
         Data.FORM = new GMChunkFORM();
         Data.FORM.Deserialize(this);

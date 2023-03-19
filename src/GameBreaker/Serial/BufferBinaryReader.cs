@@ -33,15 +33,19 @@ namespace GameBreaker.Serial {
 #region IBinaryReader Impl (Properties)
         private int offset;
 
+        /// <inheritdoc cref="IBinaryReader.Offset"/>
         public int Offset {
             get => offset;
             set => offset = value;
         }
 
+        /// <inheritdoc cref="IBinaryReader.Length"/>
         public int Length => Buffer.Length;
 
+        /// <inheritdoc cref="IBinaryReader.Buffer"/>
         public byte[] Buffer { get; }
 
+        /// <inheritdoc cref="IBinaryReader.Encoding"/>
         public Encoding Encoding { get; }
 #endregion
 
@@ -56,15 +60,18 @@ namespace GameBreaker.Serial {
         }
 
 #region IBinaryReader Impl (Methods)
+        /// <inheritdoc cref="IBinaryReader.ReadByte"/>
         public virtual byte ReadByte() {
             Debug.Assert(Offset >= 0 && Offset + 1 <= Length);
             return Buffer[Offset++];
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadBoolean"/>
         public virtual bool ReadBoolean(bool wide) {
             return (wide ? ReadInt32() : ReadByte()) != 0;
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadChars"/>
         public virtual string ReadChars(int count) {
             Debug.Assert(Offset >= 0 && Offset + count <= Length);
             var sb = new StringBuilder();
@@ -73,6 +80,7 @@ namespace GameBreaker.Serial {
             return sb.ToString();
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadBytes"/>
         public virtual BufferRegion ReadBytes(int count) {
             Debug.Assert(Offset >= 0 && Offset + count <= Length);
             var val = new BufferRegion(Buffer, Offset, count);
@@ -80,51 +88,61 @@ namespace GameBreaker.Serial {
             return val;
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadInt16"/>
         public virtual short ReadInt16() {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return GmBitConverter.ToInt16(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadUInt16"/>
         public virtual ushort ReadUInt16() {
             Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
             return GmBitConverter.ToUInt16(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadInt24"/>
         public virtual Int24 ReadInt24() {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return GmBitConverter.ToInt24(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadUInt24"/>
         public virtual UInt24 ReadUInt24() {
             Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
             return GmBitConverter.ToUInt24(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadInt32"/>
         public virtual int ReadInt32() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToInt32(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadUInt32"/>
         public virtual uint ReadUInt32() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToUInt32(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadInt64"/>
         public virtual long ReadInt64() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToInt64(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadUInt64"/>
         public virtual ulong ReadUInt64() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToUInt64(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadSingle"/>
         public virtual float ReadSingle() {
             Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
             return GmBitConverter.ToSingle(Buffer, ref offset);
         }
 
+        /// <inheritdoc cref="IBinaryReader.ReadDouble"/>
         public virtual double ReadDouble() {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
             return GmBitConverter.ToDouble(Buffer, ref offset);
@@ -142,6 +160,14 @@ namespace GameBreaker.Serial {
         }
 #endregion
 
+        /// <summary>
+        ///     Initializes a <see cref="BufferBinaryReader"/> instance from the
+        ///     given <paramref name="stream"/>. The stream will be closed after
+        ///     reading.
+        /// </summary>
+        /// <param name="stream">The stream to read from.</param>
+        /// <param name="encoding">The encoding to use.</param>
+        /// <returns>The initialized <see cref="BufferBinaryReader"/>.</returns>
         public static BufferBinaryReader FromStream(
             Stream stream,
             Encoding? encoding = null

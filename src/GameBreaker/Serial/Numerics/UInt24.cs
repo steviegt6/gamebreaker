@@ -30,8 +30,14 @@ namespace GameBreaker.Serial.Numerics;
 /// </summary>
 [StructLayout(LayoutKind.Explicit, Size = SIZE)]
 public struct UInt24 {
+    /// <summary>
+    ///     The size of a UInt24 in bytes.
+    /// </summary>
     public const int SIZE = 3;
     
+    /// <summary>
+    ///     Represents the number zero.
+    /// </summary>
     public static readonly UInt24 Zero = new(0);
     
     [FieldOffset(0)]

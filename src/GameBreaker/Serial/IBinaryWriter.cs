@@ -1,4 +1,5 @@
-﻿using GameBreaker.Serial.Numerics;
+﻿using System;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Serial;
 
@@ -7,7 +8,8 @@ namespace GameBreaker.Serial;
 ///     binary reading operations.
 /// </summary>
 public interface IBinaryWriter : IPositionable,
-                                 IEncodable {
+                                 IEncodable,
+                                 IDisposable {
     /// <summary>
     ///     Writes a byte to the buffer.
     /// </summary>

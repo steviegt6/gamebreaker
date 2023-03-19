@@ -24,13 +24,15 @@ using System;
 using System.Text;
 using GameBreaker.Serial.Numerics;
 
-namespace GameBreaker.Serial; 
+namespace GameBreaker.Serial;
 
 /// <summary>
 ///     Represents a positionable object dealing with a buffer that performs
 ///     binary reading operations.
 /// </summary>
-public interface IBinaryReader : IPositionable, IEncodable {
+public interface IBinaryReader : IPositionable,
+                                 IEncodable,
+                                 IDisposable {
     /// <summary>
     ///     Reads a byte from the buffer.
     /// </summary>
@@ -54,7 +56,7 @@ public interface IBinaryReader : IPositionable, IEncodable {
     /// <param name="count">The amount of bytes to read into characters.</param>
     /// <returns>A string made up of the decoded character array.</returns>
     string ReadChars(int count);
-    
+
     /// <summary>
     ///     Reads bytes into a <see cref="BufferRegion"/>, which is a wrapper
     ///     around <see cref="Memory{T}"/> that holds a slice of the buffer in
@@ -69,57 +71,57 @@ public interface IBinaryReader : IPositionable, IEncodable {
     /// </summary>
     /// <returns>The read integer.</returns>
     short ReadInt16();
-    
+
     /// <summary>
     ///     Reads a 16-bit unsigned integer from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     ushort ReadUInt16();
-    
+
     /// <summary>
     ///     Reads a 24-bit signed integer from the buffer, represented as a
     ///     32-bit integer.
     /// </summary>
     /// <returns>The read integer.</returns>
     Int24 ReadInt24();
-    
+
     /// <summary>
     ///     Reads a 24-bit unsigned integer from the buffer, represented as a
     ///     32-bit integer.
     /// </summary>
     /// <returns>The read integer.</returns>
     UInt24 ReadUInt24();
-    
+
     /// <summary>
     ///     Reads a 32-bit signed integer from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     int ReadInt32();
-    
+
     /// <summary>
     ///     Reads a 32-bit unsigned integer from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     uint ReadUInt32();
-    
+
     /// <summary>
     ///     Reads a 64-bit signed integer from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     long ReadInt64();
-    
+
     /// <summary>
     ///     Reads a 64-bit unsigned integer from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     ulong ReadUInt64();
-    
+
     /// <summary>
     ///     Reads a 32-bit floating point number from the buffer.
     /// </summary>
     /// <returns>The read integer.</returns>
     float ReadSingle();
-    
+
     /// <summary>
     ///     Reads a 64-bit floating point number from the buffer.
     /// </summary>

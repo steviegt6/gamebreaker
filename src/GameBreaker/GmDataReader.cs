@@ -21,6 +21,7 @@
  * SOFTWARE.
  */
 
+using System;
 using ICSharpCode.SharpZipLib.BZip2;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -279,6 +280,18 @@ public class GmDataReader : IDataReader {
         string res = Encoding.GetString(Buffer, baseOffset, length);
         Offset++; // go past null terminator
         return res;
+    }
+#endregion
+
+#region IDisposable Impl
+    protected virtual void Dispose(bool disposing) {
+        if (disposing)
+            Reader.Dispose();
+    }
+
+    public void Dispose() {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 #endregion
 }

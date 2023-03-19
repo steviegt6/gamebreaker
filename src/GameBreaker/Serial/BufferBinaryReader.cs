@@ -131,6 +131,17 @@ namespace GameBreaker.Serial {
         }
 #endregion
 
+#region IDisposable Impl
+        protected virtual void Dispose(bool disposing) {
+            if (disposing) { }
+        }
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+#endregion
+
         public static BufferBinaryReader FromStream(
             Stream stream,
             Encoding? encoding = null

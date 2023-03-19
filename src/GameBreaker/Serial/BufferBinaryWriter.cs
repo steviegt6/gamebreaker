@@ -24,209 +24,208 @@
 using System;
 using System.IO;
 using System.Text;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Serial
 {
-    public class BufferBinaryWriter : IPositionable, IEncodable, IDisposable
-    {
+    public class BufferBinaryWriter : IBinaryWriter, IDisposable {
+        public const int DEFAULT_SIZE = 1024 * 1024 * 32;
+        
         private readonly Stream stream;
         private byte[] buffer;
         private int offset;
-        private int currentSize;
-        private Encoding encoding;
 
         public int Offset
         {
-            get => offset; set
-            {
+            get => offset;
+            set {
                 ResizeToFit(value);
                 offset = value;
             }
         }
 
-        public int Length => currentSize;
+        public int Length { get; set; }
 
-        public byte[] Buffer { get => buffer; }
-        public Encoding Encoding { get => encoding; }
+        public byte[] Buffer => buffer;
 
-        public BufferBinaryWriter(Stream stream, int baseSize = 1024 * 1024 * 32)
+        public Encoding Encoding { get; }
+
+        public BufferBinaryWriter(Stream stream, int baseSize = DEFAULT_SIZE)
         {
             this.stream = stream;
             buffer = new byte[baseSize];
-            currentSize = 0;
             offset = 0;
 
-            encoding = new UTF8Encoding(false);
+            Encoding = new UTF8Encoding(false);
         }
 
         private void ResizeToFit(int size)
         {
-            while (size > buffer.Length)
-                Array.Resize(ref buffer, buffer.Length * 2);
-            if (currentSize < size)
-                currentSize = size;
+            while (size > Buffer.Length)
+                Array.Resize(ref buffer, Buffer.Length * 2);
+            if (Length < size)
+                Length = size;
         }
 
-        public void Write(byte value)
+        public virtual void Write(byte value)
         {
             ResizeToFit(offset + 1);
-            buffer[offset++] = value;
+            Buffer[offset++] = value;
         }
 
-        public void Write(sbyte value)
+        public virtual void Write(bool value, bool wide)
         {
-            ResizeToFit(offset + 1);
-            buffer[offset++] = (byte)value;
+            if (wide) {
+                Write(value ? 1 : 0);
+            }
+            else {
+                ResizeToFit(offset + 1);
+                Buffer[offset++] = (byte)(value ? 1 : 0);
+            }
         }
 
-        public virtual void Write(bool value)
-        {
-            ResizeToFit(offset + 1);
-            buffer[offset++] = (byte)(value ? 1 : 0);
-        }
-
-        public void Write(BufferRegion value)
+        public virtual void Write(BufferRegion value)
         {
             ResizeToFit(offset + value.Length);
-            value.CopyTo(buffer.AsMemory().Slice(Offset, value.Length));
+            value.CopyTo(Buffer.AsMemory().Slice(Offset, value.Length));
             offset += value.Length;
         }
 
-        public void Write(byte[] value)
+        public virtual void Write(byte[] value)
         {
             ResizeToFit(offset + value.Length);
-            System.Buffer.BlockCopy(value, 0, buffer, offset, value.Length);
+            System.Buffer.BlockCopy(value, 0, Buffer, offset, value.Length);
             offset += value.Length;
         }
 
-        public void Write(char[] value)
+        public virtual void Write(char[] value)
         {
             ResizeToFit(offset + value.Length);
             foreach (char c in value)
-                buffer[offset++] = Convert.ToByte(c);
+                Buffer[offset++] = Convert.ToByte(c);
         }
 
-        public void Write(ushort value)
+        public virtual void Write(ushort value)
         {
             ResizeToFit(offset + 2);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
         }
 
-        public void Write(short value)
+        public virtual void Write(short value)
         {
             ResizeToFit(offset + 2);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
         }
 
-        public void Write(float value)
+        public virtual void Write(float value)
         {
             ResizeToFit(offset + 4);
             byte[] bytes = BitConverter.GetBytes(value);
-            buffer[offset++] = bytes[0];
-            buffer[offset++] = bytes[1];
-            buffer[offset++] = bytes[2];
-            buffer[offset++] = bytes[3];
+            Buffer[offset++] = bytes[0];
+            Buffer[offset++] = bytes[1];
+            Buffer[offset++] = bytes[2];
+            Buffer[offset++] = bytes[3];
         }
-        public void WriteInt24(int value)
+        public virtual void Write(Int24 value)
         {
             ResizeToFit(offset + 3);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
         }
 
-        public void WriteUInt24(uint value)
+        public virtual void Write(UInt24 value)
         {
             ResizeToFit(offset + 3);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
         }
 
-        public void Write(int value)
+        public virtual void Write(int value)
         {
             ResizeToFit(offset + 4);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
-            buffer[offset++] = (byte)((value >> 24) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 24) & 0xFF);
         }
 
-        public void WriteAt(int pos, int value)
+        public virtual void WriteAt(int pos, int value)
         {
-            buffer[pos] = (byte)(value & 0xFF);
-            buffer[pos + 1] = (byte)((value >> 8) & 0xFF);
-            buffer[pos + 2] = (byte)((value >> 16) & 0xFF);
-            buffer[pos + 3] = (byte)((value >> 24) & 0xFF);
+            Buffer[pos] = (byte)(value & 0xFF);
+            Buffer[pos + 1] = (byte)((value >> 8) & 0xFF);
+            Buffer[pos + 2] = (byte)((value >> 16) & 0xFF);
+            Buffer[pos + 3] = (byte)((value >> 24) & 0xFF);
         }
 
-        public void Write(uint value)
+        public virtual void Write(uint value)
         {
             ResizeToFit(offset + 4);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
-            buffer[offset++] = (byte)((value >> 24) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 24) & 0xFF);
         }
 
-        public void Write(double value)
+        public virtual void Write(double value)
         {
             ResizeToFit(offset + 8);
             byte[] bytes = BitConverter.GetBytes(value);
-            buffer[offset++] = bytes[0];
-            buffer[offset++] = bytes[1];
-            buffer[offset++] = bytes[2];
-            buffer[offset++] = bytes[3];
-            buffer[offset++] = bytes[4];
-            buffer[offset++] = bytes[5];
-            buffer[offset++] = bytes[6];
-            buffer[offset++] = bytes[7];
+            Buffer[offset++] = bytes[0];
+            Buffer[offset++] = bytes[1];
+            Buffer[offset++] = bytes[2];
+            Buffer[offset++] = bytes[3];
+            Buffer[offset++] = bytes[4];
+            Buffer[offset++] = bytes[5];
+            Buffer[offset++] = bytes[6];
+            Buffer[offset++] = bytes[7];
         }
 
-        public void Write(ulong value)
+        public virtual void Write(ulong value)
         {
             ResizeToFit(offset + 8);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
-            buffer[offset++] = (byte)((value >> 24) & 0xFF);
-            buffer[offset++] = (byte)((value >> 32) & 0xFF);
-            buffer[offset++] = (byte)((value >> 40) & 0xFF);
-            buffer[offset++] = (byte)((value >> 48) & 0xFF);
-            buffer[offset++] = (byte)((value >> 56) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 24) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 32) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 40) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 48) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 56) & 0xFF);
         }
 
-        public void Write(long value)
+        public virtual void Write(long value)
         {
             ResizeToFit(offset + 8);
-            buffer[offset++] = (byte)(value & 0xFF);
-            buffer[offset++] = (byte)((value >> 8) & 0xFF);
-            buffer[offset++] = (byte)((value >> 16) & 0xFF);
-            buffer[offset++] = (byte)((value >> 24) & 0xFF);
-            buffer[offset++] = (byte)((value >> 32) & 0xFF);
-            buffer[offset++] = (byte)((value >> 40) & 0xFF);
-            buffer[offset++] = (byte)((value >> 48) & 0xFF);
-            buffer[offset++] = (byte)((value >> 56) & 0xFF);
+            Buffer[offset++] = (byte)(value & 0xFF);
+            Buffer[offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 24) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 32) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 40) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 48) & 0xFF);
+            Buffer[offset++] = (byte)((value >> 56) & 0xFF);
         }
 
-        public void WriteGMString(string value)
+        public virtual void WriteGMString(string value)
         {
-            int len = encoding.GetByteCount(value);
+            int len = Encoding.GetByteCount(value);
             ResizeToFit(offset + len + 5);
-            buffer[offset++] = (byte)(len & 0xFF);
-            buffer[offset++] = (byte)((len >> 8) & 0xFF);
-            buffer[offset++] = (byte)((len >> 16) & 0xFF);
-            buffer[offset++] = (byte)((len >> 24) & 0xFF);
-            encoding.GetBytes(value, 0, value.Length, buffer, offset);
+            Buffer[offset++] = (byte)(len & 0xFF);
+            Buffer[offset++] = (byte)((len >> 8) & 0xFF);
+            Buffer[offset++] = (byte)((len >> 16) & 0xFF);
+            Buffer[offset++] = (byte)((len >> 24) & 0xFF);
+            Encoding.GetBytes(value, 0, value.Length, Buffer, offset);
             offset += len;
-            buffer[offset++] = 0;
+            Buffer[offset++] = 0;
         }
 
         public virtual void Flush()
         {
-            stream.Write(buffer, 0, currentSize);
+            stream.Write(Buffer, 0, Length);
         }
 
         public void Dispose()

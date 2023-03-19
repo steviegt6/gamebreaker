@@ -159,7 +159,7 @@ namespace GameBreaker.Chunks
         {
             base.Serialize(writer);
 
-            writer.Write(DisableDebug);
+            writer.Write(DisableDebug, wide: false);
             writer.Write(FormatID);
             writer.VersionInfo.FormatID = FormatID;
             writer.Write(Unknown);

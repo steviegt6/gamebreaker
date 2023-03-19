@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Models;
 
@@ -255,7 +256,7 @@ public class GMCode : IGMSerializable
 
                 public void Serialize(GmDataWriter writer)
                 {
-                    writer.WriteInt24(0);
+                    writer.Write(Int24.Zero);
                     writer.Write((byte)Type);
                 }
 
@@ -505,7 +506,7 @@ public class GMCode : IGMSerializable
             public Reference<GMVariable> Variable;
             public Reference<GMFunctionEntry> Function;
             public object Value { get; set; }
-            public int JumpOffset;
+            public Int24 JumpOffset;
             public bool PopenvExitMagic;
             public byte Extra;
 
@@ -564,11 +565,11 @@ public class GMCode : IGMSerializable
                     case InstructionType.Branch:
                         {
                             if (writer.VersionInfo.FormatID <= 14)
-                                writer.WriteInt24(JumpOffset);
+                                writer.Write(JumpOffset);
                             else if (PopenvExitMagic)
-                                writer.WriteInt24(0xF00000);
+                                writer.Write(new Int24(0xF00000));
                             else
-                                writer.WriteInt24((int)((uint)JumpOffset & ~0xFF800000));
+                                writer.Write(new Int24((int)((uint)(int)JumpOffset & ~0xFF800000)));
 
                             if (writer.VersionInfo.FormatID <= 14)
                                 writer.Write(NewOpcodeToOld((byte)Kind, 0));

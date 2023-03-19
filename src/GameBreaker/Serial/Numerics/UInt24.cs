@@ -32,6 +32,8 @@ namespace GameBreaker.Serial.Numerics;
 public struct UInt24 {
     public const int SIZE = 3;
     
+    public static readonly UInt24 Zero = new(0);
+    
     [FieldOffset(0)]
     private readonly byte b1;
 

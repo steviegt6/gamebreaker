@@ -29,6 +29,10 @@ using GameBreaker.Serial.Numerics;
 
 // TODO: Better exceptions.
 namespace GameBreaker.Serial {
+    /// <summary>
+    ///     An implementation of <see cref="IBinaryReader"/> that takes a raw
+    ///     byte array as its backing buffer.
+    /// </summary>
     public class BufferBinaryReader : IBinaryReader {
 #region IBinaryReader Impl (Properties)
         private int offset;

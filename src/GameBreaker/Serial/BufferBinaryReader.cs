@@ -149,7 +149,7 @@ namespace GameBreaker.Serial
         public virtual double ReadDouble()
         {
             Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-            double val = BitConverter.ToDouble(Buffer, Offset);
+            var val = BitConverter.ToDouble(Buffer, Offset);
             Offset += 8;
             return val;
         }

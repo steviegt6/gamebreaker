@@ -28,8 +28,10 @@ namespace GameBreaker.Serial.Numerics;
 /// <summary>
 ///     Represents a 24-bit signed integer.
 /// </summary>
-[StructLayout(LayoutKind.Explicit, Size = 3)]
+[StructLayout(LayoutKind.Explicit, Size = SIZE)]
 public struct Int24 {
+    public const int SIZE = 3;
+    
     [FieldOffset(0)]
     private readonly byte b1;
 

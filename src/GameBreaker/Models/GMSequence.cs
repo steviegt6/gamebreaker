@@ -125,8 +125,8 @@ namespace GameBreaker.Models
             {
                 writer.Write(Key);
                 writer.Write(Length);
-                writer.WriteWideBoolean(Stretch);
-                writer.WriteWideBoolean(Disabled);
+                writer.Write(Stretch, wide: true);
+                writer.Write(Disabled, wide: true);
                 writer.Write(Channels.Count);
                 foreach (KeyValuePair<int, T> kvp in Channels)
                 {
@@ -209,7 +209,7 @@ namespace GameBreaker.Models
                 writer.WritePointerString(Name);
                 writer.Write(BuiltinName);
                 writer.Write((int)Traits);
-                writer.WriteWideBoolean(IsCreationTrack);
+                writer.Write(IsCreationTrack, wide: true);
 
                 writer.Write(Tags.Count);
                 writer.Write(OwnedResources.Count);
@@ -493,7 +493,7 @@ namespace GameBreaker.Models
                     public void Serialize(GmDataWriter writer)
                     {
                         writer.Write(Value);
-                        writer.WriteWideBoolean(IsCurveEmbedded);
+                        writer.Write(IsCurveEmbedded, wide: true);
                         if (IsCurveEmbedded)
                         {
                             writer.Write((int)-1);

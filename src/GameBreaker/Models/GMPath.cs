@@ -41,8 +41,8 @@ namespace GameBreaker.Models
         public void Serialize(GmDataWriter writer)
         {
             writer.WritePointerString(Name);
-            writer.WriteWideBoolean(Smooth);
-            writer.WriteWideBoolean(Closed);
+            writer.Write(Smooth, wide: true);
+            writer.Write(Closed, wide: true);
             writer.Write(Precision);
             Points.Serialize(writer);
         }

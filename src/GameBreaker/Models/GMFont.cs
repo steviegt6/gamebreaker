@@ -55,8 +55,8 @@ namespace GameBreaker.Models
             if (Size < 0)
                 Size = BitConverter.ToInt32(BitConverter.GetBytes(-SizeFloat));
             writer.Write(Size);
-            writer.WriteWideBoolean(Bold);
-            writer.WriteWideBoolean(Italic);
+            writer.Write(Bold, wide: true);
+            writer.Write(Italic, wide: true);
             writer.Write(RangeStart);
             writer.Write(Charset);
             writer.Write(AntiAlias);

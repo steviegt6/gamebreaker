@@ -85,7 +85,7 @@ namespace GameBreaker.Chunks
 
         private void WriteOption(GmDataWriter writer, OptionsFlags flag)
         {
-            writer.WriteWideBoolean((Options & flag) == flag);
+            writer.Write((Options & flag) == flag, wide: true);
         }
 
         public override void Serialize(GmDataWriter writer)

@@ -221,7 +221,7 @@ namespace GameBreaker.Chunks
 
                 // Other GMS2-specific data
                 writer.Write(GMS2_FPS);
-                writer.WriteWideBoolean(GMS2_AllowStatistics);
+                writer.Write(GMS2_AllowStatistics, wide: true);
                 writer.Write(GMS2_GameGUID.ToByteArray());
             }
         }

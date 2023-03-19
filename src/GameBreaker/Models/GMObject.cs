@@ -205,16 +205,16 @@ public class GMObject : IGMNamedSerializable
     {
         writer.WritePointerString(Name);
         writer.Write(SpriteID);
-        writer.WriteWideBoolean(Visible);
+        writer.Write(Visible, wide: true);
         if (writer.VersionInfo.IsVersionAtLeast(2022, 5))
-            writer.WriteWideBoolean(Managed);
-        writer.WriteWideBoolean(Solid);
+            writer.Write(Managed, wide: true);
+        writer.Write(Solid, wide: true);
         writer.Write(Depth);
-        writer.WriteWideBoolean(Persistent);
+        writer.Write(Persistent, wide: true);
         writer.Write(ParentObjectID);
         writer.Write(MaskSpriteID);
-        writer.WriteWideBoolean(Physics.IsEnabled);
-        writer.WriteWideBoolean(Physics.Sensor);
+        writer.Write(Physics.IsEnabled, wide: true);
+        writer.Write(Physics.Sensor, wide: true);
         writer.Write((int)Physics.Shape);
         writer.Write(Physics.Density);
         writer.Write(Physics.Restitution);
@@ -223,8 +223,8 @@ public class GMObject : IGMNamedSerializable
         writer.Write(Physics.AngularDamping);
         writer.Write(Physics.Vertices.Count);
         writer.Write(Physics.Friction);
-        writer.WriteWideBoolean(Physics.IsAwake);
-        writer.WriteWideBoolean(Physics.IsKinematic);
+        writer.Write(Physics.IsAwake, wide: true);
+        writer.Write(Physics.IsKinematic, wide: true);
         foreach (PhysicsVertex v in Physics.Vertices)
             v.Serialize(writer);
         Events.Serialize(writer);
@@ -361,16 +361,16 @@ public class GMObject : IGMNamedSerializable
                 writer.Write(LibID);
                 writer.Write(ID);
                 writer.Write(Kind);
-                writer.WriteWideBoolean(UseRelative);
-                writer.WriteWideBoolean(IsQuestion);
-                writer.WriteWideBoolean(UseApplyTo);
+                writer.Write(UseRelative, wide: true);
+                writer.Write(IsQuestion, wide: true);
+                writer.Write(UseApplyTo, wide: true);
                 writer.Write(ExeType);
                 writer.WritePointerString(ActionName);
                 writer.Write(CodeID);
                 writer.Write(ArgumentCount);
                 writer.Write(Who);
-                writer.WriteWideBoolean(Relative);
-                writer.WriteWideBoolean(IsNot);
+                writer.Write(Relative, wide: true);
+                writer.Write(IsNot, wide: true);
                 writer.Write(0);
             }
 

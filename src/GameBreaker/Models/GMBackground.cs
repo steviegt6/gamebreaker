@@ -108,9 +108,9 @@ public class GMBackground : IGMNamedSerializable
     public void Serialize(GmDataWriter writer)
     {
         writer.WritePointerString(Name);
-        writer.WriteWideBoolean(Transparent);
-        writer.WriteWideBoolean(Smooth);
-        writer.WriteWideBoolean(Preload);
+        writer.Write(Transparent, wide: true);
+        writer.Write(Smooth, wide: true);
+        writer.Write(Preload, wide: true);
         writer.WritePointer(TextureItem);
 
         // If pre gms2, we serialized everything and we can stop.

@@ -635,7 +635,7 @@ public class GMCode : IGMSerializable
                                     writer.Write((long)Value);
                                     break;
                                 case DataType.Boolean:
-                                    writer.WriteWideBoolean((bool)Value);
+                                    writer.Write((bool)Value, wide: true);
                                     break;
                                 case DataType.Variable:
                                     Variable.Serialize(writer);

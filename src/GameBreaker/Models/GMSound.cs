@@ -71,7 +71,7 @@ namespace GameBreaker.Models
             {
                 // Legacy
                 writer.Write(AudioID);
-                writer.WriteWideBoolean(Preload);
+                writer.Write(Preload, wide: true);
             }
         }
 

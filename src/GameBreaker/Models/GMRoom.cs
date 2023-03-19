@@ -70,9 +70,9 @@ namespace GameBreaker.Models
             writer.WritePointerString(Caption);
             writer.Write(Width); writer.Write(Height);
             writer.Write(Speed);
-            writer.WriteWideBoolean(Persistent);
+            writer.Write(Persistent, wide: true);
             writer.Write(BackgroundColor);
-            writer.WriteWideBoolean(DrawBackgroundColor);
+            writer.Write(DrawBackgroundColor, wide: true);
             writer.Write(CreationCodeID);
             int flags = (int)Flags;
             if (writer.VersionInfo.IsVersionAtLeast(2, 3))
@@ -84,7 +84,7 @@ namespace GameBreaker.Models
             writer.WritePointer(Views);
             writer.WritePointer(GameObjects);
             writer.WritePointer(Tiles);
-            writer.WriteWideBoolean(Physics);
+            writer.Write(Physics, wide: true);
             writer.Write(Top); writer.Write(Left);
             writer.Write(Right); writer.Write(Bottom);
             writer.Write(GravityX); writer.Write(GravityY);
@@ -209,13 +209,13 @@ namespace GameBreaker.Models
 
             public void Serialize(GmDataWriter writer)
             {
-                writer.WriteWideBoolean(Enabled);
-                writer.WriteWideBoolean(Foreground);
+                writer.Write(Enabled, wide: true);
+                writer.Write(Foreground, wide: true);
                 writer.Write(BackgroundID);
                 writer.Write(X); writer.Write(Y);
                 writer.Write(TileX); writer.Write(TileY);
                 writer.Write(SpeedX); writer.Write(SpeedY);
-                writer.WriteWideBoolean(Stretch);
+                writer.Write(Stretch, wide: true);
             }
 
             public void Deserialize(GmDataReader reader)
@@ -244,7 +244,7 @@ namespace GameBreaker.Models
 
             public void Serialize(GmDataWriter writer)
             {
-                writer.WriteWideBoolean(Enabled);
+                writer.Write(Enabled, wide: true);
                 writer.Write(ViewX); writer.Write(ViewY);
                 writer.Write(ViewWidth); writer.Write(ViewHeight);
                 writer.Write(PortX); writer.Write(PortY);
@@ -404,11 +404,11 @@ namespace GameBreaker.Models
                 writer.Write(Depth);
                 writer.Write(OffsetX); writer.Write(OffsetY);
                 writer.Write(HSpeed); writer.Write(VSpeed);
-                writer.WriteWideBoolean(Visible);
+                writer.Write(Visible, wide: true);
 
                 if (writer.VersionInfo.Major >= 2022)
                 {
-                    writer.WriteWideBoolean(EffectEnabled);
+                    writer.Write(EffectEnabled, wide: true);
                     writer.WritePointerString(EffectType);
                     EffectProperties.Serialize(writer);
                 }
@@ -501,12 +501,12 @@ namespace GameBreaker.Models
 
                 public void Serialize(GmDataWriter writer)
                 {
-                    writer.WriteWideBoolean(Visible);
-                    writer.WriteWideBoolean(Foreground);
+                    writer.Write(Visible, wide: true);
+                    writer.Write(Foreground, wide: true);
                     writer.Write(SpriteID);
-                    writer.WriteWideBoolean(TileHorz);
-                    writer.WriteWideBoolean(TileVert);
-                    writer.WriteWideBoolean(Stretch);
+                    writer.Write(TileHorz, wide: true);
+                    writer.Write(TileVert, wide: true);
+                    writer.Write(Stretch, wide: true);
                     writer.Write(Color);
                     writer.Write(FirstFrame);
                     writer.Write(AnimationSpeed);

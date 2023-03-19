@@ -189,13 +189,5 @@ namespace GameBreaker
         {
             PointerOffsets.Add(obj, Offset);
         }
-
-        /// <summary>
-        /// Writes a 32-bit boolean
-        /// </summary>
-        public void WriteWideBoolean(bool val)
-        {
-            Write(val ? 1 : 0);
-        }
     }
 }

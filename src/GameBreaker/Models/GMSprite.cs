@@ -90,9 +90,9 @@ namespace GameBreaker.Models
             writer.Write(MarginRight);
             writer.Write(MarginBottom);
             writer.Write(MarginTop);
-            writer.WriteWideBoolean(Transparent);
-            writer.WriteWideBoolean(Smooth);
-            writer.WriteWideBoolean(Preload);
+            writer.Write(Transparent, wide: true);
+            writer.Write(Smooth, wide: true);
+            writer.Write(Preload, wide: true);
             writer.Write(BBoxMode);
             writer.Write((int)SepMasks);
             writer.Write(OriginX);
@@ -361,7 +361,7 @@ namespace GameBreaker.Models
                 writer.Write(Top);
                 writer.Write(Right);
                 writer.Write(Bottom);
-                writer.WriteWideBoolean(Enabled);
+                writer.Write(Enabled, wide: true);
                 for (int i = 0; i < 5; i++)
                     writer.Write((int)TileModes[i]);
             }

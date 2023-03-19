@@ -26,28 +26,52 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using GameBreaker.Chunks;
 using GameBreaker.Models;
 using GameBreaker.Serial;
+using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker
 {
-    public class GmDataWriter : BufferBinaryWriter
+    public class GmDataWriter : IDataWriter
     {
-        public GMData Data;
+        protected IBinaryWriter Writer { get; }
+        
+#region IBinaryWriter Impl (Properties)
+        public virtual int Offset {
+            get => Writer.Offset;
+
+            set => Writer.Offset = value;
+        }
+
+        public virtual int Length => Writer.Length;
+
+        public virtual byte[] Buffer => Writer.Buffer;
+
+        public virtual Encoding Encoding => Writer.Encoding;
+
+#endregion
+        
+#region IDataWriter Impl (Properties)
+        public GMData Data { get; }
+
         public GMData.GMVersionInfo VersionInfo => Data.VersionInfo;
-        public List<GMWarning> Warnings;
+
+        public List<GMWarning> Warnings { get; }
 
         /// Maps used for tracking locations of pointer-referenced objects and the locations to patch
-        public Dictionary<IGMSerializable, int> PointerOffsets = new Dictionary<IGMSerializable, int>();
-        public Dictionary<IGMSerializable, List<int>> PendingPointerWrites = new Dictionary<IGMSerializable, List<int>>();
-        public Dictionary<GMString, List<int>> PendingStringPointerWrites = new Dictionary<GMString, List<int>>();
+        public Dictionary<IGMSerializable, int> PointerOffsets { get; } = new();
 
-        public Dictionary<GMVariable, List<(int, GMCode.Bytecode.Instruction.VariableType)>> VariableReferences = new();
-        public Dictionary<GMFunctionEntry, List<(int, GMCode.Bytecode.Instruction.VariableType)>> FunctionReferences = new();
+        public virtual Dictionary<GMVariable, List<(int, GMCode.Bytecode.Instruction.VariableType)>> VariableReferences { get; } = new();
 
-        public GmDataWriter(GMData data, Stream stream, string path, int baseSize = 1024 * 1024 * 32) : base(stream, baseSize)
+        public virtual Dictionary<GMFunctionEntry, List<(int, GMCode.Bytecode.Instruction.VariableType)>> FunctionReferences { get; } = new();
+#endregion
+
+        public Dictionary<IGMSerializable, List<int>> PendingPointerWrites = new ();
+        public Dictionary<GMString, List<int>> PendingStringPointerWrites = new ();
+
+        public GmDataWriter(IBinaryWriter writer, GMData data, string path)
         {
+            Writer = writer;
             Data = data;
             Warnings = new List<GMWarning>();
 
@@ -56,9 +80,77 @@ namespace GameBreaker
                 Data.Directory = Path.GetDirectoryName(path);
         }
 
-        /// <summary>
-        /// Do the actual work
-        /// </summary>
+        public virtual void Flush(Stream stream) {
+            Writer.Flush(stream);
+
+            // Finalize all other file write operations if any exist
+            Data.FileWrites.Complete();
+            Data.FileWrites.Completion.GetAwaiter().GetResult();
+        }
+
+#region IBinaryWriter Impl (Methods)
+        public virtual void Write(byte value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(bool value, bool wide) {
+            Writer.Write(value, wide);
+        }
+
+        public virtual void Write(BufferRegion value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(byte[] value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(char[] value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(short value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(ushort value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(Int24 value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(UInt24 value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(int value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(uint value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(long value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(ulong value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(float value) {
+            Writer.Write(value);
+        }
+
+        public virtual void Write(double value) {
+            Writer.Write(value);
+        }
+#endregion
+
+#region IDataWriter Impl (Methods)
         public void Write()
         {
             // Write the root chunk, FORM
@@ -72,13 +164,13 @@ namespace GameBreaker
                 {
                     // Iterate through each reference and write the pointer
                     foreach (int addr in kvp.Value)
-                        WriteAt(addr, ptr);
+                        this.WriteAt(addr, ptr);
                 }
                 else
                 {
                     // Iterate through each reference and write null
                     foreach (int addr in kvp.Value)
-                        WriteAt(addr, 0);
+                        this.WriteAt(addr, 0);
                 }
             });
             Parallel.ForEach(PendingStringPointerWrites, kvp =>
@@ -90,56 +182,29 @@ namespace GameBreaker
 
                     // Iterate through each reference and write the pointer
                     foreach (int addr in kvp.Value)
-                        WriteAt(addr, ptr);
+                        this.WriteAt(addr, ptr);
                 }
                 else
                 {
                     // Iterate through each reference and write null
                     foreach (int addr in kvp.Value)
-                        WriteAt(addr, 0);
+                        this.WriteAt(addr, 0);
                 }
             });
         }
 
-        public override void Flush()
-        {
-            base.Flush();
-
-            // Finalize all other file write operations if any exist
-            Data.FileWrites.Complete();
-            Data.FileWrites.Completion.GetAwaiter().GetResult();
-        }
-
-        /// <summary>
-        /// Writes a dummy 32-bit integer to the current location and returns the offset right after it
-        /// Return value is meant to be used in conjunction with EndLength(int) to patch lengths
-        /// </summary>
-        public int BeginLength()
-        {
-            // Placeholder length value, will be overwritten in the future
-            Write(0xBADD0660);
-            return Offset;
-        }
-
-        /// <summary>
-        /// Taking the starting offset of a block, and the current offset, calculates the length,
-        /// and writes it as a 32-bit integer right before the block.
-        /// </summary>
-        public void EndLength(int begin)
-        {
-            int offset = Offset;
-            Offset = begin - 4;
-
-            // Overwrite the aforementioned placeholder value (see above)
-            Write(offset - begin);
-
-            Offset = offset;
+        public virtual void WriteGMString(string value) {
+            var len = Encoding.GetByteCount(value);
+            Write(len);
+            Encoding.GetBytes(value, 0, value.Length, Buffer, Offset);
+            Offset += len;
+            Buffer[Offset++] = 0;
         }
 
         /// <summary>
         /// Write a 32-bit pointer value in this position, for an object
         /// </summary>
-        public void WritePointer(IGMSerializable obj)
+        public virtual void WritePointer(IGMSerializable obj)
         {
             if (obj == null)
             {
@@ -162,7 +227,7 @@ namespace GameBreaker
         /// <summary>
         /// Write a 32-bit *string-only* pointer value in this position, for an object
         /// </summary>
-        public void WritePointerString(GMString obj)
+        public virtual void WritePointerString(GMString obj)
         {
             if (obj == null)
             {
@@ -185,9 +250,22 @@ namespace GameBreaker
         /// <summary>
         /// Sets the current offset to be the pointer location for the specified object
         /// </summary>
-        public void WriteObjectPointer(IGMSerializable obj)
+        public virtual void WriteObjectPointer(IGMSerializable obj)
         {
             PointerOffsets.Add(obj, Offset);
         }
+#endregion
+
+#region IDispoable Impl
+        protected virtual void Dispose(bool disposing) {
+            if (disposing)
+                Writer.Dispose();
+        }
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+#endregion
     }
 }

@@ -53,10 +53,11 @@ namespace GameBreaker.Chunks
                     {
                         GMData data = AudioData[pair.Key];
                         writer.Data.Logger?.Invoke($"Writing audio group \"{fname}\"...");
-                        using (GmDataWriter groupWriter = new GmDataWriter(data, fs, fs.Name, data.Length))
+                        var bWriter = new BufferBinaryWriter(data.Length);
+                        using (GmDataWriter groupWriter = new GmDataWriter(bWriter, data, fs.Name))
                         {
                             groupWriter.Write();
-                            groupWriter.Flush();
+                            groupWriter.Flush(fs);
                             foreach (GMWarning w in groupWriter.Warnings)
                             {
                                 w.File = fname;

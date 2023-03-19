@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Serial;
@@ -100,4 +101,38 @@ public interface IBinaryWriter : IPositionable,
     /// </summary>
     /// <param name="value">The 64-bit floating point number to write.</param>
     void Write(double value);
+
+    /// <summary>
+    ///     Flushes the buffer to the given <paramref name="stream"/>.
+    /// </summary>
+    /// <param name="stream">The stream to flush to.</param>
+    void Flush(Stream stream);
+}
+
+/// <summary>
+///     Extension methods for <see cref="IBinaryWriter"/>.
+/// </summary>
+public static class BinaryWriterExtensions {
+    public static int BeginLength(this IBinaryWriter writer) {
+        writer.Write(0xBADD0660);
+        return writer.Offset;
+    }
+
+    public static void EndLength(this IBinaryWriter writer, int start) {
+        var offset = writer.Offset;
+        writer.Offset = start - sizeof(int);
+        writer.Write(writer.Offset - start);
+        writer.Offset = offset;
+    }
+
+    public static void WriteAt(
+        this IBinaryWriter writer,
+        int value,
+        int offset
+    ) {
+        var oldOffset = writer.Offset;
+        writer.Offset = offset;
+        writer.Write(value);
+        writer.Offset = oldOffset;
+    }
 }

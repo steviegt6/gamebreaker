@@ -234,7 +234,7 @@ public class GMData
     public ActionBlock<KeyValuePair<string, BufferRegion>> FileWrites = new ActionBlock<KeyValuePair<string, BufferRegion>>(f =>
         {
             using FileStream fs = new FileStream(f.Key, FileMode.Create);
-            using Stream s = f.Value.Memory.AsStream();
+            using Stream s = f.Value.AsStream();
             s.CopyTo(fs);
         }, new ExecutionDataflowBlockOptions()
         {

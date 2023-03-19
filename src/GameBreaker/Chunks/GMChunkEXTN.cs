@@ -59,7 +59,7 @@ namespace GameBreaker.Chunks
             if (reader.VersionInfo.IsVersionAtLeast(1, 0, 0, 9999))
             {
                 for (int i = 0; i < List.Count; i++)
-                    List[i].ProductID = new Guid(reader.ReadBytes(16).Memory.ToArray());
+                    List[i].ProductID = new Guid(reader.ReadBytes(16).ToArray());
             }
         }
 

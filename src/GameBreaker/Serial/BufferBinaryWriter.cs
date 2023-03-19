@@ -88,7 +88,7 @@ namespace GameBreaker.Serial
         public void Write(BufferRegion value)
         {
             ResizeToFit(offset + value.Length);
-            value.Memory.CopyTo(buffer.AsMemory().Slice(Offset, value.Length));
+            value.CopyTo(buffer.AsMemory().Slice(Offset, value.Length));
             offset += value.Length;
         }
 

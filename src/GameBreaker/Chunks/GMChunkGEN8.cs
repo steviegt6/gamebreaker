@@ -239,7 +239,7 @@ namespace GameBreaker.Chunks
             LastObjectID = reader.ReadInt32();
             LastTileID = reader.ReadInt32();
             GameID = reader.ReadInt32();
-            LegacyGUID = new Guid(reader.ReadBytes(16).Memory.ToArray());
+            LegacyGUID = new Guid(reader.ReadBytes(16).ToArray());
             GameName = reader.ReadStringPointerObject();
             Major = reader.ReadInt32();
             Minor = reader.ReadInt32();
@@ -303,7 +303,7 @@ namespace GameBreaker.Chunks
                 // Other GMS2-specific data
                 GMS2_FPS = reader.ReadSingle();
                 GMS2_AllowStatistics = reader.ReadBoolean(wide: true);
-                GMS2_GameGUID = new Guid(reader.ReadBytes(16).Memory.ToArray());
+                GMS2_GameGUID = new Guid(reader.ReadBytes(16).ToArray());
             }
         }
 

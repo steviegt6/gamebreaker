@@ -41,7 +41,8 @@ namespace GameBreaker.Chunks
 
             List.Serialize(writer);
 
-            if (Padding == null)
+            // TODO: Is `IsEmpty` a suitable replacement for a null check?
+            if (Padding.IsEmpty)
             {
                 for (ushort i = 0; i < 0x80; i++)
                     writer.Write(i);

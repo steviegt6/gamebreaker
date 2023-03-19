@@ -126,7 +126,7 @@ namespace GameBreaker.Models
                 writer.Write(QoiHeight);
                 if (writer.VersionInfo.IsVersionAtLeast(2022, 5))
                     writer.Write(QoiLength);
-                using MemoryStream input = new MemoryStream(Data.Memory.ToArray());
+                using MemoryStream input = new MemoryStream(Data.ToArray());
                 using MemoryStream output = new MemoryStream(1024);
                 BZip2.Compress(input, output, false, 9);
                 byte[] final = output.ToArray();
@@ -144,7 +144,7 @@ namespace GameBreaker.Models
         {
             int startOffset = reader.Offset;
 
-            byte[] header = reader.ReadBytes(8).Memory.ToArray();
+            byte[] header = reader.ReadBytes(8).ToArray();
             if (!header.SequenceEqual(PNGHeader))
             {
                 reader.Offset = startOffset;

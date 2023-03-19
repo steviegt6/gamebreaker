@@ -96,7 +96,7 @@ namespace GameBreaker.Chunks
                         reader.Offset = returnPos + 4 + (i * 4);
                         reader.Offset = reader.ReadInt32() + 12; // go to texture, at an offset
                         reader.Offset = reader.ReadInt32(); // go to texture data
-                        byte[] header = reader.ReadBytes(4).Memory.ToArray();
+                        byte[] header = reader.ReadBytes(4).ToArray();
                         if (header.SequenceEqual(GMTextureData.QOIandBZip2Header))
                         {
                             reader.Offset += 4; // skip width/height

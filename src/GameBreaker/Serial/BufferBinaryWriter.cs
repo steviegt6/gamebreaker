@@ -26,8 +26,7 @@ using System.IO;
 using System.Text;
 using GameBreaker.Serial.Numerics;
 
-namespace GameBreaker.Serial
-{
+namespace GameBreaker.Serial {
     /// <summary>
     ///     An implementation of <see cref="IBinaryWriter"/> that uses a raw
     ///     byte array as its backing buffer, flushable to a
@@ -38,14 +37,14 @@ namespace GameBreaker.Serial
         ///     The default size to initialize the buffer.
         /// </summary>
         public const int DEFAULT_SIZE = 1024 * 1024 * 32;
-        
+
         private byte[] buffer;
         private int offset;
 
         /// <inheritdoc cref="IBinaryWriter.Offset"/>
-        public int Offset
-        {
+        public int Offset {
             get => offset;
+
             set {
                 ResizeToFit(value);
                 offset = value;
@@ -67,16 +66,14 @@ namespace GameBreaker.Serial
         /// <param name="baseSize">
         ///     The base size to initialize the buffer.
         /// </param>
-        public BufferBinaryWriter(int baseSize = DEFAULT_SIZE)
-        {
+        public BufferBinaryWriter(int baseSize = DEFAULT_SIZE) {
             buffer = new byte[baseSize];
             Offset = 0;
 
             Encoding = new UTF8Encoding(false);
         }
 
-        private void ResizeToFit(int size)
-        {
+        private void ResizeToFit(int size) {
             while (size > Buffer.Length)
                 Array.Resize(ref buffer, Buffer.Length * 2);
             if (Length < size)
@@ -84,15 +81,13 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(byte)"/>
-        public virtual void Write(byte value)
-        {
+        public virtual void Write(byte value) {
             ResizeToFit(Offset + 1);
             Buffer[Offset++] = value;
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(bool,bool)"/>
-        public virtual void Write(bool value, bool wide)
-        {
+        public virtual void Write(bool value, bool wide) {
             if (wide) {
                 Write(value ? 1 : 0);
             }
@@ -103,48 +98,42 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(BufferRegion)"/>
-        public virtual void Write(BufferRegion value)
-        {
+        public virtual void Write(BufferRegion value) {
             ResizeToFit(Offset + value.Length);
             value.CopyTo(Buffer.AsMemory().Slice(Offset, value.Length));
             Offset += value.Length;
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(byte[])"/>
-        public virtual void Write(byte[] value)
-        {
+        public virtual void Write(byte[] value) {
             ResizeToFit(Offset + value.Length);
             System.Buffer.BlockCopy(value, 0, Buffer, Offset, value.Length);
             Offset += value.Length;
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(char[])"/>
-        public virtual void Write(char[] value)
-        {
+        public virtual void Write(char[] value) {
             ResizeToFit(Offset + value.Length);
             foreach (char c in value)
                 Buffer[Offset++] = Convert.ToByte(c);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(ushort)"/>
-        public virtual void Write(ushort value)
-        {
+        public virtual void Write(ushort value) {
             ResizeToFit(Offset + 2);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(short)"/>
-        public virtual void Write(short value)
-        {
+        public virtual void Write(short value) {
             ResizeToFit(Offset + 2);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(float)"/>
-        public virtual void Write(float value)
-        {
+        public virtual void Write(float value) {
             ResizeToFit(Offset + 4);
             byte[] bytes = BitConverter.GetBytes(value);
             Buffer[Offset++] = bytes[0];
@@ -152,10 +141,9 @@ namespace GameBreaker.Serial
             Buffer[Offset++] = bytes[2];
             Buffer[Offset++] = bytes[3];
         }
-        
+
         /// <inheritdoc cref="IBinaryWriter.Write(Int24)"/>
-        public virtual void Write(Int24 value)
-        {
+        public virtual void Write(Int24 value) {
             ResizeToFit(Offset + 3);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
@@ -163,8 +151,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(UInt24)"/>
-        public virtual void Write(UInt24 value)
-        {
+        public virtual void Write(UInt24 value) {
             ResizeToFit(Offset + 3);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
@@ -172,8 +159,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(int)"/>
-        public virtual void Write(int value)
-        {
+        public virtual void Write(int value) {
             ResizeToFit(Offset + 4);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
@@ -182,8 +168,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(uint)"/>
-        public virtual void Write(uint value)
-        {
+        public virtual void Write(uint value) {
             ResizeToFit(Offset + 4);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
@@ -192,8 +177,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(double)"/>
-        public virtual void Write(double value)
-        {
+        public virtual void Write(double value) {
             ResizeToFit(Offset + 8);
             byte[] bytes = BitConverter.GetBytes(value);
             Buffer[Offset++] = bytes[0];
@@ -207,8 +191,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(ulong)"/>
-        public virtual void Write(ulong value)
-        {
+        public virtual void Write(ulong value) {
             ResizeToFit(Offset + 8);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
@@ -221,8 +204,7 @@ namespace GameBreaker.Serial
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
-        public virtual void Write(long value)
-        {
+        public virtual void Write(long value) {
             ResizeToFit(Offset + 8);
             Buffer[Offset++] = (byte)(value & 0xFF);
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);

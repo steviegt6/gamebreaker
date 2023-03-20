@@ -75,6 +75,58 @@ public static class GmBitConverter {
     }
 #endregion
 
+#region TryWriteBytes
+    /// <summary>
+    /// Converts a 24-bit signed integer into a span of bytes.
+    /// </summary>
+    /// <param name="destination">
+    ///     When this method returns, the bytes representing the converted
+    ///     24-bit signed integer.
+    /// </param>
+    /// <param name="value">
+    ///     The 24-bit signed integer to convert.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the conversion was successful;
+    ///     <see langword="false"/> otherwise.
+    /// </returns>
+    public static bool TryWriteBytes(Span<byte> destination, Int24 value) {
+        if (destination.Length < Int24.SIZE)
+            return false;
+
+        Unsafe.WriteUnaligned(
+            ref MemoryMarshal.GetReference(destination),
+            value
+        );
+        return true;
+    }
+    
+    /// <summary>
+    /// Converts a 24-bit unsigned integer into a span of bytes.
+    /// </summary>
+    /// <param name="destination">
+    ///     When this method returns, the bytes representing the converted
+    ///     24-bit unsigned integer.
+    /// </param>
+    /// <param name="value">
+    ///     The 24-bit unsigned integer to convert.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the conversion was successful;
+    ///     <see langword="false"/> otherwise.
+    /// </returns>
+    public static bool TryWriteBytes(Span<byte> destination, UInt24 value) {
+        if (destination.Length < Int24.SIZE)
+            return false;
+
+        Unsafe.WriteUnaligned(
+            ref MemoryMarshal.GetReference(destination),
+            value
+        );
+        return true;
+    }
+#endregion
+
 #region ToX (byte[])
     /// <summary>
     ///     Returns a 24-bit signed integer converted from three bytes at a

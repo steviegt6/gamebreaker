@@ -115,14 +115,7 @@ namespace GameBreaker.Serial {
             foreach (char c in value)
                 Buffer[Offset++] = Convert.ToByte(c);
         }
-
-        /// <inheritdoc cref="IBinaryWriter.Write(ushort)"/>
-        public virtual void Write(ushort value) {
-            EnsureCapacity(Offset + 2);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-        }
-
+        
         /// <inheritdoc cref="IBinaryWriter.Write(short)"/>
         public virtual void Write(short value) {
             EnsureCapacity(Offset + 2);
@@ -130,14 +123,11 @@ namespace GameBreaker.Serial {
             Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
         }
 
-        /// <inheritdoc cref="IBinaryWriter.Write(float)"/>
-        public virtual void Write(float value) {
-            EnsureCapacity(Offset + 4);
-            byte[] bytes = BitConverter.GetBytes(value);
-            Buffer[Offset++] = bytes[0];
-            Buffer[Offset++] = bytes[1];
-            Buffer[Offset++] = bytes[2];
-            Buffer[Offset++] = bytes[3];
+        /// <inheritdoc cref="IBinaryWriter.Write(ushort)"/>
+        public virtual void Write(ushort value) {
+            EnsureCapacity(Offset + 2);
+            Buffer[Offset++] = (byte)(value & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(Int24)"/>
@@ -173,19 +163,18 @@ namespace GameBreaker.Serial {
             Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
             Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
         }
-
-        /// <inheritdoc cref="IBinaryWriter.Write(double)"/>
-        public virtual void Write(double value) {
+        
+        /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
+        public virtual void Write(long value) {
             EnsureCapacity(Offset + 8);
-            byte[] bytes = BitConverter.GetBytes(value);
-            Buffer[Offset++] = bytes[0];
-            Buffer[Offset++] = bytes[1];
-            Buffer[Offset++] = bytes[2];
-            Buffer[Offset++] = bytes[3];
-            Buffer[Offset++] = bytes[4];
-            Buffer[Offset++] = bytes[5];
-            Buffer[Offset++] = bytes[6];
-            Buffer[Offset++] = bytes[7];
+            Buffer[Offset++] = (byte)(value & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 32) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 40) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 48) & 0xFF);
+            Buffer[Offset++] = (byte)((value >> 56) & 0xFF);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(ulong)"/>
@@ -201,17 +190,28 @@ namespace GameBreaker.Serial {
             Buffer[Offset++] = (byte)((value >> 56) & 0xFF);
         }
 
-        /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
-        public virtual void Write(long value) {
+        /// <inheritdoc cref="IBinaryWriter.Write(float)"/>
+        public virtual void Write(float value) {
+            EnsureCapacity(Offset + 4);
+            byte[] bytes = BitConverter.GetBytes(value);
+            Buffer[Offset++] = bytes[0];
+            Buffer[Offset++] = bytes[1];
+            Buffer[Offset++] = bytes[2];
+            Buffer[Offset++] = bytes[3];
+        }
+
+        /// <inheritdoc cref="IBinaryWriter.Write(double)"/>
+        public virtual void Write(double value) {
             EnsureCapacity(Offset + 8);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 32) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 40) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 48) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 56) & 0xFF);
+            byte[] bytes = BitConverter.GetBytes(value);
+            Buffer[Offset++] = bytes[0];
+            Buffer[Offset++] = bytes[1];
+            Buffer[Offset++] = bytes[2];
+            Buffer[Offset++] = bytes[3];
+            Buffer[Offset++] = bytes[4];
+            Buffer[Offset++] = bytes[5];
+            Buffer[Offset++] = bytes[6];
+            Buffer[Offset++] = bytes[7];
         }
 
         /// <inheritdoc cref="IBinaryWriter.Flush"/>

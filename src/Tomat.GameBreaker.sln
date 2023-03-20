@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker", "GameBreaker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Tests", "GameBreaker.Tests\GameBreaker.Tests.csproj", "{69792439-D775-4D6F-9406-7FF6ED00CC8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Benchmarks", "GameBreaker.Benchmarks\GameBreaker.Benchmarks.csproj", "{BDCB1FA1-D252-48C1-95F2-F596C4DB9EAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{69792439-D775-4D6F-9406-7FF6ED00CC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69792439-D775-4D6F-9406-7FF6ED00CC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69792439-D775-4D6F-9406-7FF6ED00CC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCB1FA1-D252-48C1-95F2-F596C4DB9EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCB1FA1-D252-48C1-95F2-F596C4DB9EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCB1FA1-D252-48C1-95F2-F596C4DB9EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCB1FA1-D252-48C1-95F2-F596C4DB9EAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

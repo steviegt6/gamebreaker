@@ -1,0 +1,69 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 10 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\92c3a7b3-2ed0-42d4-8359-0be0e87cfb09
+// command took 47.73s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\92c3a7b3-2ed0-42d4-8359-0be0e87cfb09
+// command took 71.65s and exited with 0
+// ***** Done, took 00:02:02 (122.86 sec)   *****
+// Found 10 benchmarks:
+//   Write.DirectBufferWrite: DefaultJob [Length=16]
+//   Write.BitConverterWrite: DefaultJob [Length=16]
+//   Write.DirectBufferWrite: DefaultJob [Length=64]
+//   Write.BitConverterWrite: DefaultJob [Length=64]
+//   Write.DirectBufferWrite: DefaultJob [Length=256]
+//   Write.BitConverterWrite: DefaultJob [Length=256]
+//   Write.DirectBufferWrite: DefaultJob [Length=1024]
+//   Write.BitConverterWrite: DefaultJob [Length=1024]
+//   Write.DirectBufferWrite: DefaultJob [Length=4096]
+//   Write.BitConverterWrite: DefaultJob [Length=4096]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.DirectBufferWrite: DefaultJob [Length=16]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 92c3a7b3-2ed0-42d4-8359-0be0e87cfb09.dll --anonymousPipes 1432 1688 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.DirectBufferWrite(Length: 16)" --job Default --benchmarkId 0 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\92c3a7b3-2ed0-42d4-8359-0be0e87cfb09\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Server
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 200500.00 ns, 200.5000 us/op
+WorkloadJitting  1: 1 op, 237900.00 ns, 237.9000 us/op
+
+OverheadJitting  2: 16 op, 447900.00 ns, 27.9937 us/op
+WorkloadJitting  2: 16 op, 305800.00 ns, 19.1125 us/op
+
+WorkloadPilot    1: 16 op, 9400.00 ns, 587.5000 ns/op
+WorkloadPilot    2: 32 op, 2800.00 ns, 87.5000 ns/op
+WorkloadPilot    3: 64 op, 2500.00 ns, 39.0625 ns/op
+WorkloadPilot    4: 128 op, 3600.00 ns, 28.1250 ns/op
+WorkloadPilot    5: 256 op, 11700.00 ns, 45.7031 ns/op
+WorkloadPilot    6: 512 op, 11700.00 ns, 22.8516 ns/op
+WorkloadPilot    7: 1024 op, 28500.00 ns, 27.8320 ns/op
+WorkloadPilot    8: 2048 op, 37600.00 ns, 18.3594 ns/op
+WorkloadPilot    9: 4096 op, 70600.00 ns, 17.2363 ns/op
+WorkloadPilot   10: 8192 op, 139200.00 ns, 16.9922 ns/op
+WorkloadPilot   11: 16384 op, 303000.00 ns, 18.4937 ns/op
+WorkloadPilot   12: 32768 op, 630500.00 ns, 19.2413 ns/op
+WorkloadPilot   13: 65536 op, 1175900.00 ns, 17.9428 ns/op
+WorkloadPilot   14: 131072 op, 2543800.00 ns, 19.4077 ns/op
+WorkloadPilot   15: 262144 op, 4975600.00 ns, 18.9804 ns/op
+WorkloadPilot   16: 524288 op, 10576500.00 ns, 20.1731 ns/op
+WorkloadPilot   17: 1048576 op, 20506600.00 ns, 19.5566 ns/op
+WorkloadPilot   18: 2097152 op, 59456700.00 ns, 28.3512 ns/op
+WorkloadPilot   19: 4194304 op, 73008700.00 ns, 17.4066 ns/op
+WorkloadPilot   20: 8388608 op, 75024600.00 ns, 8.9436 ns/op
+WorkloadPilot   21: 16777216 op, 133601200.00 ns, 7.9633 ns/op
+WorkloadPilot   22: 33554432 op, 267624500.00 ns, 7.9758 ns/op
+WorkloadPilot   23: 67108864 op, 530821200.00 ns, 7.9099 ns/op
+
+OverheadWarmup   1: 67108864 op, 124530600.00 ns, 1.8557 ns/op
+OverheadWarmup   2: 67108864 op, 85403000.00 ns, 1.2726 ns/op
+OverheadWarmup   3: 67108864 op, 84534000.00 ns, 1.2597 ns/op
+Over

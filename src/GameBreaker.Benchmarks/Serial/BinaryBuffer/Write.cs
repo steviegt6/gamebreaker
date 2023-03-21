@@ -5,6 +5,7 @@ using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker.Benchmarks.Serial.BinaryBuffer;
 
+[MemoryDiagnoser]
 public class Write {
     // ReSharper disable once UnassignedField.Global
     [Params(1_000, 100_000, 1_000_000)]
@@ -31,18 +32,18 @@ public class Write {
 
     [IterationSetup]
     public void Setup() {
-        const int size = sizeof(bool)
-                       + sizeof(byte)
-                       + sizeof(short)
-                       + sizeof(ushort)
-                       + Int24.SIZE
-                       + UInt24.SIZE
-                       + sizeof(int)
-                       + sizeof(uint)
-                       + sizeof(long)
-                       + sizeof(ulong)
-                       + sizeof(float)
-                       + sizeof(double) * 100;
+        var size = sizeof(bool)
+                 + sizeof(byte)
+                 + sizeof(short)
+                 + sizeof(ushort)
+                 + Int24.SIZE
+                 + UInt24.SIZE
+                 + sizeof(int)
+                 + sizeof(uint)
+                 + sizeof(long)
+                 + sizeof(ulong)
+                 + sizeof(float)
+                 + sizeof(double) * N;
         directBufferWriter = new BufferBinaryWriter(size);
         getBytesArrayCopyWriter = new BufferBinaryWriter(size);
         getBytesBufferBlockCopyWriter = new BufferBinaryWriter(size);

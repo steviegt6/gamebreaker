@@ -1,0 +1,2084 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 18 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4
+// command took 1.57s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4
+// command took 3.42s and exited with 0
+// ***** Done, took 00:00:05 (5.1 sec)   *****
+// Found 18 benchmarks:
+//   Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+//   Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+//   Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+//   Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+//   Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+//   Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+//   Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+//   Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1656 1740 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.DirectBufferWrite(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 0 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-BWHXSX(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 223500.00 ns, 223.5000 us/op
+WorkloadJitting  1: 1 op, 1841600.00 ns, 1.8416 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   4: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  14: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  20: 1 op, 100.00 ns, 100.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 524400.00 ns, 524.4000 us/op
+WorkloadWarmup   2: 1 op, 495700.00 ns, 495.7000 us/op
+WorkloadWarmup   3: 1 op, 523400.00 ns, 523.4000 us/op
+WorkloadWarmup   4: 1 op, 492900.00 ns, 492.9000 us/op
+WorkloadWarmup   5: 1 op, 491400.00 ns, 491.4000 us/op
+WorkloadWarmup   6: 1 op, 505200.00 ns, 505.2000 us/op
+WorkloadWarmup   7: 1 op, 493400.00 ns, 493.4000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 556300.00 ns, 556.3000 us/op
+WorkloadActual   2: 1 op, 737900.00 ns, 737.9000 us/op
+WorkloadActual   3: 1 op, 492800.00 ns, 492.8000 us/op
+WorkloadActual   4: 1 op, 492800.00 ns, 492.8000 us/op
+WorkloadActual   5: 1 op, 499500.00 ns, 499.5000 us/op
+WorkloadActual   6: 1 op, 770700.00 ns, 770.7000 us/op
+WorkloadActual   7: 1 op, 613900.00 ns, 613.9000 us/op
+WorkloadActual   8: 1 op, 612400.00 ns, 612.4000 us/op
+WorkloadActual   9: 1 op, 512500.00 ns, 512.5000 us/op
+WorkloadActual  10: 1 op, 496300.00 ns, 496.3000 us/op
+WorkloadActual  11: 1 op, 495500.00 ns, 495.5000 us/op
+WorkloadActual  12: 1 op, 493900.00 ns, 493.9000 us/op
+WorkloadActual  13: 1 op, 494200.00 ns, 494.2000 us/op
+WorkloadActual  14: 1 op, 492900.00 ns, 492.9000 us/op
+WorkloadActual  15: 1 op, 490100.00 ns, 490.1000 us/op
+WorkloadActual  16: 1 op, 531100.00 ns, 531.1000 us/op
+WorkloadActual  17: 1 op, 494200.00 ns, 494.2000 us/op
+WorkloadActual  18: 1 op, 491200.00 ns, 491.2000 us/op
+WorkloadActual  19: 1 op, 493800.00 ns, 493.8000 us/op
+WorkloadActual  20: 1 op, 491500.00 ns, 491.5000 us/op
+WorkloadActual  21: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadActual  22: 1 op, 494600.00 ns, 494.6000 us/op
+WorkloadActual  23: 1 op, 494100.00 ns, 494.1000 us/op
+WorkloadActual  24: 1 op, 503900.00 ns, 503.9000 us/op
+WorkloadActual  25: 1 op, 493200.00 ns, 493.2000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 492600.00 ns, 492.6000 us/op
+WorkloadResult   2: 1 op, 492600.00 ns, 492.6000 us/op
+WorkloadResult   3: 1 op, 499300.00 ns, 499.3000 us/op
+WorkloadResult   4: 1 op, 512300.00 ns, 512.3000 us/op
+WorkloadResult   5: 1 op, 496100.00 ns, 496.1000 us/op
+WorkloadResult   6: 1 op, 495300.00 ns, 495.3000 us/op
+WorkloadResult   7: 1 op, 493700.00 ns, 493.7000 us/op
+WorkloadResult   8: 1 op, 494000.00 ns, 494.0000 us/op
+WorkloadResult   9: 1 op, 492700.00 ns, 492.7000 us/op
+WorkloadResult  10: 1 op, 489900.00 ns, 489.9000 us/op
+WorkloadResult  11: 1 op, 530900.00 ns, 530.9000 us/op
+WorkloadResult  12: 1 op, 494000.00 ns, 494.0000 us/op
+WorkloadResult  13: 1 op, 491000.00 ns, 491.0000 us/op
+WorkloadResult  14: 1 op, 493600.00 ns, 493.6000 us/op
+WorkloadResult  15: 1 op, 491300.00 ns, 491.3000 us/op
+WorkloadResult  16: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadResult  17: 1 op, 494400.00 ns, 494.4000 us/op
+WorkloadResult  18: 1 op, 493900.00 ns, 493.9000 us/op
+WorkloadResult  19: 1 op, 503700.00 ns, 503.7000 us/op
+WorkloadResult  20: 1 op, 493000.00 ns, 493.0000 us/op
+
+// AfterAll
+// Benchmark Process 14568 has exited with code 0.
+
+Mean = 496.875 μs, StdErr = 2.115 μs (0.43%), N = 20, StdDev = 9.460 μs
+Min = 489.900 μs, Q1 = 492.675 μs, Median = 493.800 μs, Q3 = 495.500 μs, Max = 530.900 μs
+IQR = 2.825 μs, LowerFence = 488.438 μs, UpperFence = 499.738 μs
+ConfidenceInterval = [488.661 μs; 505.089 μs] (CI 99.9%), Margin = 8.214 μs (1.65% of Mean)
+Skewness = 2.49, Kurtosis = 8.78, MValue = 2
+
+// ** Remained 17 (94.4%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1688 1356 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesArrayCopy(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 1 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-GHEHJC(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 178800.00 ns, 178.8000 us/op
+WorkloadJitting  1: 1 op, 1821400.00 ns, 1.8214 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadWarmup   5: 1 op, 100.00 ns, 100.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  10: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  11: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 580200.00 ns, 580.2000 us/op
+WorkloadWarmup   2: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadWarmup   3: 1 op, 529600.00 ns, 529.6000 us/op
+WorkloadWarmup   4: 1 op, 491500.00 ns, 491.5000 us/op
+WorkloadWarmup   5: 1 op, 496700.00 ns, 496.7000 us/op
+WorkloadWarmup   6: 1 op, 493500.00 ns, 493.5000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 501400.00 ns, 501.4000 us/op
+WorkloadActual   2: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadActual   3: 1 op, 737900.00 ns, 737.9000 us/op
+WorkloadActual   4: 1 op, 498600.00 ns, 498.6000 us/op
+WorkloadActual   5: 1 op, 496900.00 ns, 496.9000 us/op
+WorkloadActual   6: 1 op, 493800.00 ns, 493.8000 us/op
+WorkloadActual   7: 1 op, 495700.00 ns, 495.7000 us/op
+WorkloadActual   8: 1 op, 495100.00 ns, 495.1000 us/op
+WorkloadActual   9: 1 op, 497300.00 ns, 497.3000 us/op
+WorkloadActual  10: 1 op, 493900.00 ns, 493.9000 us/op
+WorkloadActual  11: 1 op, 495800.00 ns, 495.8000 us/op
+WorkloadActual  12: 1 op, 494500.00 ns, 494.5000 us/op
+WorkloadActual  13: 1 op, 494500.00 ns, 494.5000 us/op
+WorkloadActual  14: 1 op, 491900.00 ns, 491.9000 us/op
+WorkloadActual  15: 1 op, 498700.00 ns, 498.7000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 501200.00 ns, 501.2000 us/op
+WorkloadResult   2: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadResult   3: 1 op, 498400.00 ns, 498.4000 us/op
+WorkloadResult   4: 1 op, 496700.00 ns, 496.7000 us/op
+WorkloadResult   5: 1 op, 493600.00 ns, 493.6000 us/op
+WorkloadResult   6: 1 op, 495500.00 ns, 495.5000 us/op
+WorkloadResult   7: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadResult   8: 1 op, 497100.00 ns, 497.1000 us/op
+WorkloadResult   9: 1 op, 493700.00 ns, 493.7000 us/op
+WorkloadResult  10: 1 op, 495600.00 ns, 495.6000 us/op
+WorkloadResult  11: 1 op, 494300.00 ns, 494.3000 us/op
+WorkloadResult  12: 1 op, 494300.00 ns, 494.3000 us/op
+WorkloadResult  13: 1 op, 491700.00 ns, 491.7000 us/op
+WorkloadResult  14: 1 op, 498500.00 ns, 498.5000 us/op
+
+// AfterAll
+// Benchmark Process 16120 has exited with code 0.
+
+Mean = 495.621 μs, StdErr = 0.677 μs (0.14%), N = 14, StdDev = 2.535 μs
+Min = 491.700 μs, Q1 = 493.850 μs, Median = 495.200 μs, Q3 = 497.000 μs, Max = 501.200 μs
+IQR = 3.150 μs, LowerFence = 489.125 μs, UpperFence = 501.725 μs
+ConfidenceInterval = [492.762 μs; 498.481 μs] (CI 99.9%), Margin = 2.859 μs (0.58% of Mean)
+Skewness = 0.56, Kurtosis = 2.44, MValue = 2
+
+// ** Remained 16 (88.9%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1424 1360 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesBufferBlockCopy(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 2 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-KQKCTV(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 165900.00 ns, 165.9000 us/op
+WorkloadJitting  1: 1 op, 2016100.00 ns, 2.0161 ms/op
+
+OverheadWarmup   1: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  12: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  13: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 522000.00 ns, 522.0000 us/op
+WorkloadWarmup   2: 1 op, 504900.00 ns, 504.9000 us/op
+WorkloadWarmup   3: 1 op, 517700.00 ns, 517.7000 us/op
+WorkloadWarmup   4: 1 op, 482400.00 ns, 482.4000 us/op
+WorkloadWarmup   5: 1 op, 489700.00 ns, 489.7000 us/op
+WorkloadWarmup   6: 1 op, 486400.00 ns, 486.4000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 743800.00 ns, 743.8000 us/op
+WorkloadActual   2: 1 op, 484600.00 ns, 484.6000 us/op
+WorkloadActual   3: 1 op, 967600.00 ns, 967.6000 us/op
+WorkloadActual   4: 1 op, 487800.00 ns, 487.8000 us/op
+WorkloadActual   5: 1 op, 483700.00 ns, 483.7000 us/op
+WorkloadActual   6: 1 op, 484000.00 ns, 484.0000 us/op
+WorkloadActual   7: 1 op, 687100.00 ns, 687.1000 us/op
+WorkloadActual   8: 1 op, 553900.00 ns, 553.9000 us/op
+WorkloadActual   9: 1 op, 487500.00 ns, 487.5000 us/op
+WorkloadActual  10: 1 op, 484300.00 ns, 484.3000 us/op
+WorkloadActual  11: 1 op, 483400.00 ns, 483.4000 us/op
+WorkloadActual  12: 1 op, 484500.00 ns, 484.5000 us/op
+WorkloadActual  13: 1 op, 485100.00 ns, 485.1000 us/op
+WorkloadActual  14: 1 op, 483600.00 ns, 483.6000 us/op
+WorkloadActual  15: 1 op, 488900.00 ns, 488.9000 us/op
+WorkloadActual  16: 1 op, 486400.00 ns, 486.4000 us/op
+WorkloadActual  17: 1 op, 488200.00 ns, 488.2000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 484400.00 ns, 484.4000 us/op
+WorkloadResult   2: 1 op, 487600.00 ns, 487.6000 us/op
+WorkloadResult   3: 1 op, 483500.00 ns, 483.5000 us/op
+WorkloadResult   4: 1 op, 483800.00 ns, 483.8000 us/op
+WorkloadResult   5: 1 op, 487300.00 ns, 487.3000 us/op
+WorkloadResult   6: 1 op, 484100.00 ns, 484.1000 us/op
+WorkloadResult   7: 1 op, 483200.00 ns, 483.2000 us/op
+WorkloadResult   8: 1 op, 484300.00 ns, 484.3000 us/op
+WorkloadResult   9: 1 op, 484900.00 ns, 484.9000 us/op
+WorkloadResult  10: 1 op, 483400.00 ns, 483.4000 us/op
+WorkloadResult  11: 1 op, 488700.00 ns, 488.7000 us/op
+WorkloadResult  12: 1 op, 486200.00 ns, 486.2000 us/op
+WorkloadResult  13: 1 op, 488000.00 ns, 488.0000 us/op
+
+// AfterAll
+// Benchmark Process 15088 has exited with code 0.
+
+Mean = 485.338 μs, StdErr = 0.542 μs (0.11%), N = 13, StdDev = 1.955 μs
+Min = 483.200 μs, Q1 = 483.800 μs, Median = 484.400 μs, Q3 = 487.300 μs, Max = 488.700 μs
+IQR = 3.500 μs, LowerFence = 478.550 μs, UpperFence = 492.550 μs
+ConfidenceInterval = [482.998 μs; 487.679 μs] (CI 99.9%), Margin = 2.341 μs (0.48% of Mean)
+Skewness = 0.47, Kurtosis = 1.45, MValue = 2
+
+// ** Remained 15 (83.3%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1520 1504 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayArrayCopy(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 3 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-BFXAZG(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 163000.00 ns, 163.0000 us/op
+WorkloadJitting  1: 1 op, 1853900.00 ns, 1.8539 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   6: 1 op, 100.00 ns, 100.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  10: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 541900.00 ns, 541.9000 us/op
+WorkloadWarmup   2: 1 op, 492000.00 ns, 492.0000 us/op
+WorkloadWarmup   3: 1 op, 532500.00 ns, 532.5000 us/op
+WorkloadWarmup   4: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadWarmup   5: 1 op, 491300.00 ns, 491.3000 us/op
+WorkloadWarmup   6: 1 op, 494000.00 ns, 494.0000 us/op
+WorkloadWarmup   7: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadWarmup   8: 1 op, 509200.00 ns, 509.2000 us/op
+WorkloadWarmup   9: 1 op, 737500.00 ns, 737.5000 us/op
+WorkloadWarmup  10: 1 op, 496500.00 ns, 496.5000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 495100.00 ns, 495.1000 us/op
+WorkloadActual   2: 1 op, 495100.00 ns, 495.1000 us/op
+WorkloadActual   3: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadActual   4: 1 op, 494200.00 ns, 494.2000 us/op
+WorkloadActual   5: 1 op, 499400.00 ns, 499.4000 us/op
+WorkloadActual   6: 1 op, 497300.00 ns, 497.3000 us/op
+WorkloadActual   7: 1 op, 514600.00 ns, 514.6000 us/op
+WorkloadActual   8: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadActual   9: 1 op, 499000.00 ns, 499.0000 us/op
+WorkloadActual  10: 1 op, 498600.00 ns, 498.6000 us/op
+WorkloadActual  11: 1 op, 496400.00 ns, 496.4000 us/op
+WorkloadActual  12: 1 op, 499100.00 ns, 499.1000 us/op
+WorkloadActual  13: 1 op, 497400.00 ns, 497.4000 us/op
+WorkloadActual  14: 1 op, 497400.00 ns, 497.4000 us/op
+WorkloadActual  15: 1 op, 495300.00 ns, 495.3000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadResult   2: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadResult   3: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadResult   4: 1 op, 494000.00 ns, 494.0000 us/op
+WorkloadResult   5: 1 op, 499200.00 ns, 499.2000 us/op
+WorkloadResult   6: 1 op, 497100.00 ns, 497.1000 us/op
+WorkloadResult   7: 1 op, 495800.00 ns, 495.8000 us/op
+WorkloadResult   8: 1 op, 498800.00 ns, 498.8000 us/op
+WorkloadResult   9: 1 op, 498400.00 ns, 498.4000 us/op
+WorkloadResult  10: 1 op, 496200.00 ns, 496.2000 us/op
+WorkloadResult  11: 1 op, 498900.00 ns, 498.9000 us/op
+WorkloadResult  12: 1 op, 497200.00 ns, 497.2000 us/op
+WorkloadResult  13: 1 op, 497200.00 ns, 497.2000 us/op
+WorkloadResult  14: 1 op, 495100.00 ns, 495.1000 us/op
+
+// AfterAll
+// Benchmark Process 11452 has exited with code 0.
+
+Mean = 496.493 μs, StdErr = 0.514 μs (0.10%), N = 14, StdDev = 1.923 μs
+Min = 493.200 μs, Q1 = 494.950 μs, Median = 496.650 μs, Q3 = 498.100 μs, Max = 499.200 μs
+IQR = 3.150 μs, LowerFence = 490.225 μs, UpperFence = 502.825 μs
+ConfidenceInterval = [494.323 μs; 498.662 μs] (CI 99.9%), Margin = 2.170 μs (0.44% of Mean)
+Skewness = -0.08, Kurtosis = 1.58, MValue = 2
+
+// ** Remained 14 (77.8%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1688 1524 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 4 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-PBXERE(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 164900.00 ns, 164.9000 us/op
+WorkloadJitting  1: 1 op, 2179000.00 ns, 2.1790 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 300.00 ns, 300.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   4: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 524300.00 ns, 524.3000 us/op
+WorkloadWarmup   2: 1 op, 494600.00 ns, 494.6000 us/op
+WorkloadWarmup   3: 1 op, 520500.00 ns, 520.5000 us/op
+WorkloadWarmup   4: 1 op, 492700.00 ns, 492.7000 us/op
+WorkloadWarmup   5: 1 op, 495100.00 ns, 495.1000 us/op
+WorkloadWarmup   6: 1 op, 492100.00 ns, 492.1000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 496200.00 ns, 496.2000 us/op
+WorkloadActual   2: 1 op, 496200.00 ns, 496.2000 us/op
+WorkloadActual   3: 1 op, 742600.00 ns, 742.6000 us/op
+WorkloadActual   4: 1 op, 737800.00 ns, 737.8000 us/op
+WorkloadActual   5: 1 op, 576300.00 ns, 576.3000 us/op
+WorkloadActual   6: 1 op, 608100.00 ns, 608.1000 us/op
+WorkloadActual   7: 1 op, 511700.00 ns, 511.7000 us/op
+WorkloadActual   8: 1 op, 498700.00 ns, 498.7000 us/op
+WorkloadActual   9: 1 op, 495500.00 ns, 495.5000 us/op
+WorkloadActual  10: 1 op, 495100.00 ns, 495.1000 us/op
+WorkloadActual  11: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadActual  12: 1 op, 497200.00 ns, 497.2000 us/op
+WorkloadActual  13: 1 op, 495600.00 ns, 495.6000 us/op
+WorkloadActual  14: 1 op, 496200.00 ns, 496.2000 us/op
+WorkloadActual  15: 1 op, 495700.00 ns, 495.7000 us/op
+WorkloadActual  16: 1 op, 493700.00 ns, 493.7000 us/op
+WorkloadActual  17: 1 op, 495100.00 ns, 495.1000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadResult   2: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadResult   3: 1 op, 511500.00 ns, 511.5000 us/op
+WorkloadResult   4: 1 op, 498500.00 ns, 498.5000 us/op
+WorkloadResult   5: 1 op, 495300.00 ns, 495.3000 us/op
+WorkloadResult   6: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadResult   7: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadResult   8: 1 op, 497000.00 ns, 497.0000 us/op
+WorkloadResult   9: 1 op, 495400.00 ns, 495.4000 us/op
+WorkloadResult  10: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadResult  11: 1 op, 495500.00 ns, 495.5000 us/op
+WorkloadResult  12: 1 op, 493500.00 ns, 493.5000 us/op
+WorkloadResult  13: 1 op, 494900.00 ns, 494.9000 us/op
+
+// AfterAll
+// Benchmark Process 13004 has exited with code 0.
+
+Mean = 496.746 μs, StdErr = 1.286 μs (0.26%), N = 13, StdDev = 4.636 μs
+Min = 493.200 μs, Q1 = 494.900 μs, Median = 495.500 μs, Q3 = 496.000 μs, Max = 511.500 μs
+IQR = 1.100 μs, LowerFence = 493.250 μs, UpperFence = 497.650 μs
+ConfidenceInterval = [491.195 μs; 502.298 μs] (CI 99.9%), Margin = 5.551 μs (1.12% of Mean)
+Skewness = 2.41, Kurtosis = 7.94, MValue = 2
+
+// ** Remained 13 (72.2%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1740 1564 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.UnsafeAsPointerWrite(N: 1000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 5 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-YQJYGO(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 177400.00 ns, 177.4000 us/op
+WorkloadJitting  1: 1 op, 1854400.00 ns, 1.8544 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 300.00 ns, 300.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  20: 1 op, 100.00 ns, 100.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 530100.00 ns, 530.1000 us/op
+WorkloadWarmup   2: 1 op, 495900.00 ns, 495.9000 us/op
+WorkloadWarmup   3: 1 op, 523400.00 ns, 523.4000 us/op
+WorkloadWarmup   4: 1 op, 493800.00 ns, 493.8000 us/op
+WorkloadWarmup   5: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadWarmup   6: 1 op, 490100.00 ns, 490.1000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 724400.00 ns, 724.4000 us/op
+WorkloadActual   2: 1 op, 707900.00 ns, 707.9000 us/op
+WorkloadActual   3: 1 op, 1040600.00 ns, 1.0406 ms/op
+WorkloadActual   4: 1 op, 713200.00 ns, 713.2000 us/op
+WorkloadActual   5: 1 op, 494000.00 ns, 494.0000 us/op
+WorkloadActual   6: 1 op, 493500.00 ns, 493.5000 us/op
+WorkloadActual   7: 1 op, 493400.00 ns, 493.4000 us/op
+WorkloadActual   8: 1 op, 493100.00 ns, 493.1000 us/op
+WorkloadActual   9: 1 op, 491400.00 ns, 491.4000 us/op
+WorkloadActual  10: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadActual  11: 1 op, 495700.00 ns, 495.7000 us/op
+WorkloadActual  12: 1 op, 496000.00 ns, 496.0000 us/op
+WorkloadActual  13: 1 op, 494900.00 ns, 494.9000 us/op
+WorkloadActual  14: 1 op, 493500.00 ns, 493.5000 us/op
+WorkloadActual  15: 1 op, 500300.00 ns, 500.3000 us/op
+WorkloadActual  16: 1 op, 493500.00 ns, 493.5000 us/op
+WorkloadActual  17: 1 op, 499300.00 ns, 499.3000 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 493800.00 ns, 493.8000 us/op
+WorkloadResult   2: 1 op, 493300.00 ns, 493.3000 us/op
+WorkloadResult   3: 1 op, 493200.00 ns, 493.2000 us/op
+WorkloadResult   4: 1 op, 492900.00 ns, 492.9000 us/op
+WorkloadResult   5: 1 op, 491200.00 ns, 491.2000 us/op
+WorkloadResult   6: 1 op, 494700.00 ns, 494.7000 us/op
+WorkloadResult   7: 1 op, 495500.00 ns, 495.5000 us/op
+WorkloadResult   8: 1 op, 495800.00 ns, 495.8000 us/op
+WorkloadResult   9: 1 op, 494700.00 ns, 494.7000 us/op
+WorkloadResult  10: 1 op, 493300.00 ns, 493.3000 us/op
+WorkloadResult  11: 1 op, 500100.00 ns, 500.1000 us/op
+WorkloadResult  12: 1 op, 493300.00 ns, 493.3000 us/op
+WorkloadResult  13: 1 op, 499100.00 ns, 499.1000 us/op
+
+// AfterAll
+// Benchmark Process 2316 has exited with code 0.
+
+Mean = 494.685 μs, StdErr = 0.692 μs (0.14%), N = 13, StdDev = 2.497 μs
+Min = 491.200 μs, Q1 = 493.300 μs, Median = 493.800 μs, Q3 = 495.500 μs, Max = 500.100 μs
+IQR = 2.200 μs, LowerFence = 490.000 μs, UpperFence = 498.800 μs
+ConfidenceInterval = [491.695 μs; 497.674 μs] (CI 99.9%), Margin = 2.990 μs (0.60% of Mean)
+Skewness = 0.92, Kurtosis = 2.8, MValue = 2
+
+// ** Remained 12 (66.7%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1740 1564 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.DirectBufferWrite(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 6 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-SJBLWQ(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 172500.00 ns, 172.5000 us/op
+WorkloadJitting  1: 1 op, 54596100.00 ns, 54.5961 ms/op
+
+OverheadWarmup   1: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   7: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   9: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 100.00 ns, 100.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 52051400.00 ns, 52.0514 ms/op
+WorkloadWarmup   2: 1 op, 51521800.00 ns, 51.5218 ms/op
+WorkloadWarmup   3: 1 op, 50543400.00 ns, 50.5434 ms/op
+WorkloadWarmup   4: 1 op, 30991100.00 ns, 30.9911 ms/op
+WorkloadWarmup   5: 1 op, 15841900.00 ns, 15.8419 ms/op
+WorkloadWarmup   6: 1 op, 16465500.00 ns, 16.4655 ms/op
+WorkloadWarmup   7: 1 op, 15736600.00 ns, 15.7366 ms/op
+WorkloadWarmup   8: 1 op, 16344500.00 ns, 16.3445 ms/op
+WorkloadWarmup   9: 1 op, 15727900.00 ns, 15.7279 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16470400.00 ns, 16.4704 ms/op
+WorkloadActual   2: 1 op, 15673300.00 ns, 15.6733 ms/op
+WorkloadActual   3: 1 op, 16280200.00 ns, 16.2802 ms/op
+WorkloadActual   4: 1 op, 15547500.00 ns, 15.5475 ms/op
+WorkloadActual   5: 1 op, 16975100.00 ns, 16.9751 ms/op
+WorkloadActual   6: 1 op, 15711700.00 ns, 15.7117 ms/op
+WorkloadActual   7: 1 op, 16328900.00 ns, 16.3289 ms/op
+WorkloadActual   8: 1 op, 15587700.00 ns, 15.5877 ms/op
+WorkloadActual   9: 1 op, 16256300.00 ns, 16.2563 ms/op
+WorkloadActual  10: 1 op, 16002600.00 ns, 16.0026 ms/op
+WorkloadActual  11: 1 op, 15879200.00 ns, 15.8792 ms/op
+WorkloadActual  12: 1 op, 16003600.00 ns, 16.0036 ms/op
+WorkloadActual  13: 1 op, 15967900.00 ns, 15.9679 ms/op
+WorkloadActual  14: 1 op, 16036300.00 ns, 16.0363 ms/op
+WorkloadActual  15: 1 op, 16032100.00 ns, 16.0321 ms/op
+WorkloadActual  16: 1 op, 15915000.00 ns, 15.9150 ms/op
+WorkloadActual  17: 1 op, 15758500.00 ns, 15.7585 ms/op
+WorkloadActual  18: 1 op, 15935100.00 ns, 15.9351 ms/op
+WorkloadActual  19: 1 op, 15893400.00 ns, 15.8934 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 16470200.00 ns, 16.4702 ms/op
+WorkloadResult   2: 1 op, 15673100.00 ns, 15.6731 ms/op
+WorkloadResult   3: 1 op, 16280000.00 ns, 16.2800 ms/op
+WorkloadResult   4: 1 op, 15547300.00 ns, 15.5473 ms/op
+WorkloadResult   5: 1 op, 15711500.00 ns, 15.7115 ms/op
+WorkloadResult   6: 1 op, 16328700.00 ns, 16.3287 ms/op
+WorkloadResult   7: 1 op, 15587500.00 ns, 15.5875 ms/op
+WorkloadResult   8: 1 op, 16256100.00 ns, 16.2561 ms/op
+WorkloadResult   9: 1 op, 16002400.00 ns, 16.0024 ms/op
+WorkloadResult  10: 1 op, 15879000.00 ns, 15.8790 ms/op
+WorkloadResult  11: 1 op, 16003400.00 ns, 16.0034 ms/op
+WorkloadResult  12: 1 op, 15967700.00 ns, 15.9677 ms/op
+WorkloadResult  13: 1 op, 16036100.00 ns, 16.0361 ms/op
+WorkloadResult  14: 1 op, 16031900.00 ns, 16.0319 ms/op
+WorkloadResult  15: 1 op, 15914800.00 ns, 15.9148 ms/op
+WorkloadResult  16: 1 op, 15758300.00 ns, 15.7583 ms/op
+WorkloadResult  17: 1 op, 15934900.00 ns, 15.9349 ms/op
+WorkloadResult  18: 1 op, 15893200.00 ns, 15.8932 ms/op
+
+// AfterAll
+// Benchmark Process 15384 has exited with code 0.
+
+Mean = 15.960 ms, StdErr = 0.060 ms (0.38%), N = 18, StdDev = 0.255 ms
+Min = 15.547 ms, Q1 = 15.788 ms, Median = 15.951 ms, Q3 = 16.035 ms, Max = 16.470 ms
+IQR = 0.247 ms, LowerFence = 15.419 ms, UpperFence = 16.405 ms
+ConfidenceInterval = [15.721 ms; 16.198 ms] (CI 99.9%), Margin = 0.239 ms (1.50% of Mean)
+Skewness = 0.24, Kurtosis = 2.16, MValue = 2
+
+// ** Remained 11 (61.1%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1440 1356 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesArrayCopy(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 7 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-OVREAQ(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 175300.00 ns, 175.3000 us/op
+WorkloadJitting  1: 1 op, 54509100.00 ns, 54.5091 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  20: 1 op, 100.00 ns, 100.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 52724800.00 ns, 52.7248 ms/op
+WorkloadWarmup   2: 1 op, 51523100.00 ns, 51.5231 ms/op
+WorkloadWarmup   3: 1 op, 50656300.00 ns, 50.6563 ms/op
+WorkloadWarmup   4: 1 op, 35396300.00 ns, 35.3963 ms/op
+WorkloadWarmup   5: 1 op, 16107500.00 ns, 16.1075 ms/op
+WorkloadWarmup   6: 1 op, 16290900.00 ns, 16.2909 ms/op
+WorkloadWarmup   7: 1 op, 16058900.00 ns, 16.0589 ms/op
+WorkloadWarmup   8: 1 op, 15847100.00 ns, 15.8471 ms/op
+WorkloadWarmup   9: 1 op, 16139600.00 ns, 16.1396 ms/op
+WorkloadWarmup  10: 1 op, 15910500.00 ns, 15.9105 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16445500.00 ns, 16.4455 ms/op
+WorkloadActual   2: 1 op, 15782000.00 ns, 15.7820 ms/op
+WorkloadActual   3: 1 op, 15913700.00 ns, 15.9137 ms/op
+WorkloadActual   4: 1 op, 15729000.00 ns, 15.7290 ms/op
+WorkloadActual   5: 1 op, 15993400.00 ns, 15.9934 ms/op
+WorkloadActual   6: 1 op, 15856600.00 ns, 15.8566 ms/op
+WorkloadActual   7: 1 op, 15892300.00 ns, 15.8923 ms/op
+WorkloadActual   8: 1 op, 16349400.00 ns, 16.3494 ms/op
+WorkloadActual   9: 1 op, 16085100.00 ns, 16.0851 ms/op
+WorkloadActual  10: 1 op, 16238200.00 ns, 16.2382 ms/op
+WorkloadActual  11: 1 op, 16074300.00 ns, 16.0743 ms/op
+WorkloadActual  12: 1 op, 16269800.00 ns, 16.2698 ms/op
+WorkloadActual  13: 1 op, 16058800.00 ns, 16.0588 ms/op
+WorkloadActual  14: 1 op, 16400800.00 ns, 16.4008 ms/op
+WorkloadActual  15: 1 op, 15914200.00 ns, 15.9142 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 16445300.00 ns, 16.4453 ms/op
+WorkloadResult   2: 1 op, 15781800.00 ns, 15.7818 ms/op
+WorkloadResult   3: 1 op, 15913500.00 ns, 15.9135 ms/op
+WorkloadResult   4: 1 op, 15728800.00 ns, 15.7288 ms/op
+WorkloadResult   5: 1 op, 15993200.00 ns, 15.9932 ms/op
+WorkloadResult   6: 1 op, 15856400.00 ns, 15.8564 ms/op
+WorkloadResult   7: 1 op, 15892100.00 ns, 15.8921 ms/op
+WorkloadResult   8: 1 op, 16349200.00 ns, 16.3492 ms/op
+WorkloadResult   9: 1 op, 16084900.00 ns, 16.0849 ms/op
+WorkloadResult  10: 1 op, 16238000.00 ns, 16.2380 ms/op
+WorkloadResult  11: 1 op, 16074100.00 ns, 16.0741 ms/op
+WorkloadResult  12: 1 op, 16269600.00 ns, 16.2696 ms/op
+WorkloadResult  13: 1 op, 16058600.00 ns, 16.0586 ms/op
+WorkloadResult  14: 1 op, 16400600.00 ns, 16.4006 ms/op
+WorkloadResult  15: 1 op, 15914000.00 ns, 15.9140 ms/op
+
+// AfterAll
+// Benchmark Process 13600 has exited with code 0.
+
+Mean = 16.067 ms, StdErr = 0.059 ms (0.37%), N = 15, StdDev = 0.228 ms
+Min = 15.729 ms, Q1 = 15.903 ms, Median = 16.059 ms, Q3 = 16.254 ms, Max = 16.445 ms
+IQR = 0.351 ms, LowerFence = 15.376 ms, UpperFence = 16.780 ms
+ConfidenceInterval = [15.823 ms; 16.310 ms] (CI 99.9%), Margin = 0.244 ms (1.52% of Mean)
+Skewness = 0.25, Kurtosis = 1.62, MValue = 2
+
+// ** Remained 10 (55.6%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1356 1660 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesBufferBlockCopy(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 8 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-BQRVZT(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 174600.00 ns, 174.6000 us/op
+WorkloadJitting  1: 1 op, 54734800.00 ns, 54.7348 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 1500.00 ns, 1.5000 us/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 57276600.00 ns, 57.2766 ms/op
+WorkloadWarmup   2: 1 op, 52017500.00 ns, 52.0175 ms/op
+WorkloadWarmup   3: 1 op, 51725200.00 ns, 51.7252 ms/op
+WorkloadWarmup   4: 1 op, 27304400.00 ns, 27.3044 ms/op
+WorkloadWarmup   5: 1 op, 16241700.00 ns, 16.2417 ms/op
+WorkloadWarmup   6: 1 op, 16779000.00 ns, 16.7790 ms/op
+WorkloadWarmup   7: 1 op, 16174000.00 ns, 16.1740 ms/op
+WorkloadWarmup   8: 1 op, 16807300.00 ns, 16.8073 ms/op
+WorkloadWarmup   9: 1 op, 16455100.00 ns, 16.4551 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16596700.00 ns, 16.5967 ms/op
+WorkloadActual   2: 1 op, 15997700.00 ns, 15.9977 ms/op
+WorkloadActual   3: 1 op, 16350300.00 ns, 16.3503 ms/op
+WorkloadActual   4: 1 op, 15936200.00 ns, 15.9362 ms/op
+WorkloadActual   5: 1 op, 16418300.00 ns, 16.4183 ms/op
+WorkloadActual   6: 1 op, 15893300.00 ns, 15.8933 ms/op
+WorkloadActual   7: 1 op, 16308200.00 ns, 16.3082 ms/op
+WorkloadActual   8: 1 op, 15946700.00 ns, 15.9467 ms/op
+WorkloadActual   9: 1 op, 16098800.00 ns, 16.0988 ms/op
+WorkloadActual  10: 1 op, 15850600.00 ns, 15.8506 ms/op
+WorkloadActual  11: 1 op, 16422800.00 ns, 16.4228 ms/op
+WorkloadActual  12: 1 op, 15899800.00 ns, 15.8998 ms/op
+WorkloadActual  13: 1 op, 16509800.00 ns, 16.5098 ms/op
+WorkloadActual  14: 1 op, 15932700.00 ns, 15.9327 ms/op
+WorkloadActual  15: 1 op, 16805500.00 ns, 16.8055 ms/op
+WorkloadActual  16: 1 op, 16241600.00 ns, 16.2416 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 16596500.00 ns, 16.5965 ms/op
+WorkloadResult   2: 1 op, 15997500.00 ns, 15.9975 ms/op
+WorkloadResult   3: 1 op, 16350100.00 ns, 16.3501 ms/op
+WorkloadResult   4: 1 op, 15936000.00 ns, 15.9360 ms/op
+WorkloadResult   5: 1 op, 16418100.00 ns, 16.4181 ms/op
+WorkloadResult   6: 1 op, 15893100.00 ns, 15.8931 ms/op
+WorkloadResult   7: 1 op, 16308000.00 ns, 16.3080 ms/op
+WorkloadResult   8: 1 op, 15946500.00 ns, 15.9465 ms/op
+WorkloadResult   9: 1 op, 16098600.00 ns, 16.0986 ms/op
+WorkloadResult  10: 1 op, 15850400.00 ns, 15.8504 ms/op
+WorkloadResult  11: 1 op, 16422600.00 ns, 16.4226 ms/op
+WorkloadResult  12: 1 op, 15899600.00 ns, 15.8996 ms/op
+WorkloadResult  13: 1 op, 16509600.00 ns, 16.5096 ms/op
+WorkloadResult  14: 1 op, 15932500.00 ns, 15.9325 ms/op
+WorkloadResult  15: 1 op, 16805300.00 ns, 16.8053 ms/op
+WorkloadResult  16: 1 op, 16241400.00 ns, 16.2414 ms/op
+
+// AfterAll
+// Benchmark Process 10624 has exited with code 0.
+
+Mean = 16.200 ms, StdErr = 0.074 ms (0.46%), N = 16, StdDev = 0.296 ms
+Min = 15.850 ms, Q1 = 15.935 ms, Median = 16.170 ms, Q3 = 16.419 ms, Max = 16.805 ms
+IQR = 0.484 ms, LowerFence = 15.209 ms, UpperFence = 17.145 ms
+ConfidenceInterval = [15.899 ms; 16.502 ms] (CI 99.9%), Margin = 0.302 ms (1.86% of Mean)
+Skewness = 0.42, Kurtosis = 1.8, MValue = 2
+
+// ** Remained 9 (50.0%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1524 1424 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayArrayCopy(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 9 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-QFJSDI(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 162400.00 ns, 162.4000 us/op
+WorkloadJitting  1: 1 op, 53799500.00 ns, 53.7995 ms/op
+
+OverheadWarmup   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   7: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   8: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  14: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 100.00 ns, 100.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 52777600.00 ns, 52.7776 ms/op
+WorkloadWarmup   2: 1 op, 51452800.00 ns, 51.4528 ms/op
+WorkloadWarmup   3: 1 op, 50589100.00 ns, 50.5891 ms/op
+WorkloadWarmup   4: 1 op, 33108800.00 ns, 33.1088 ms/op
+WorkloadWarmup   5: 1 op, 16433400.00 ns, 16.4334 ms/op
+WorkloadWarmup   6: 1 op, 16552700.00 ns, 16.5527 ms/op
+WorkloadWarmup   7: 1 op, 16451700.00 ns, 16.4517 ms/op
+WorkloadWarmup   8: 1 op, 16547000.00 ns, 16.5470 ms/op
+WorkloadWarmup   9: 1 op, 16684200.00 ns, 16.6842 ms/op
+WorkloadWarmup  10: 1 op, 16554700.00 ns, 16.5547 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16408700.00 ns, 16.4087 ms/op
+WorkloadActual   2: 1 op, 16260300.00 ns, 16.2603 ms/op
+WorkloadActual   3: 1 op, 16446400.00 ns, 16.4464 ms/op
+WorkloadActual   4: 1 op, 16249200.00 ns, 16.2492 ms/op
+WorkloadActual   5: 1 op, 16156900.00 ns, 16.1569 ms/op
+WorkloadActual   6: 1 op, 16335300.00 ns, 16.3353 ms/op
+WorkloadActual   7: 1 op, 16031600.00 ns, 16.0316 ms/op
+WorkloadActual   8: 1 op, 16398800.00 ns, 16.3988 ms/op
+WorkloadActual   9: 1 op, 15942900.00 ns, 15.9429 ms/op
+WorkloadActual  10: 1 op, 16310200.00 ns, 16.3102 ms/op
+WorkloadActual  11: 1 op, 16649500.00 ns, 16.6495 ms/op
+WorkloadActual  12: 1 op, 16552600.00 ns, 16.5526 ms/op
+WorkloadActual  13: 1 op, 16202400.00 ns, 16.2024 ms/op
+WorkloadActual  14: 1 op, 16504000.00 ns, 16.5040 ms/op
+WorkloadActual  15: 1 op, 16044500.00 ns, 16.0445 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 16408500.00 ns, 16.4085 ms/op
+WorkloadResult   2: 1 op, 16260100.00 ns, 16.2601 ms/op
+WorkloadResult   3: 1 op, 16446200.00 ns, 16.4462 ms/op
+WorkloadResult   4: 1 op, 16249000.00 ns, 16.2490 ms/op
+WorkloadResult   5: 1 op, 16156700.00 ns, 16.1567 ms/op
+WorkloadResult   6: 1 op, 16335100.00 ns, 16.3351 ms/op
+WorkloadResult   7: 1 op, 16031400.00 ns, 16.0314 ms/op
+WorkloadResult   8: 1 op, 16398600.00 ns, 16.3986 ms/op
+WorkloadResult   9: 1 op, 15942700.00 ns, 15.9427 ms/op
+WorkloadResult  10: 1 op, 16310000.00 ns, 16.3100 ms/op
+WorkloadResult  11: 1 op, 16649300.00 ns, 16.6493 ms/op
+WorkloadResult  12: 1 op, 16552400.00 ns, 16.5524 ms/op
+WorkloadResult  13: 1 op, 16202200.00 ns, 16.2022 ms/op
+WorkloadResult  14: 1 op, 16503800.00 ns, 16.5038 ms/op
+WorkloadResult  15: 1 op, 16044300.00 ns, 16.0443 ms/op
+
+// AfterAll
+// Benchmark Process 4340 has exited with code 0.
+
+Mean = 16.299 ms, StdErr = 0.052 ms (0.32%), N = 15, StdDev = 0.202 ms
+Min = 15.943 ms, Q1 = 16.179 ms, Median = 16.310 ms, Q3 = 16.427 ms, Max = 16.649 ms
+IQR = 0.248 ms, LowerFence = 15.808 ms, UpperFence = 16.799 ms
+ConfidenceInterval = [16.083 ms; 16.515 ms] (CI 99.9%), Margin = 0.216 ms (1.32% of Mean)
+Skewness = -0.1, Kurtosis = 1.91, MValue = 2
+
+// ** Remained 8 (44.4%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1424 1512 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 10 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-CSZLDM(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 173500.00 ns, 173.5000 us/op
+WorkloadJitting  1: 1 op, 54700400.00 ns, 54.7004 ms/op
+
+OverheadWarmup   1: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  10: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 53062600.00 ns, 53.0626 ms/op
+WorkloadWarmup   2: 1 op, 51585700.00 ns, 51.5857 ms/op
+WorkloadWarmup   3: 1 op, 51014000.00 ns, 51.0140 ms/op
+WorkloadWarmup   4: 1 op, 50684700.00 ns, 50.6847 ms/op
+WorkloadWarmup   5: 1 op, 50542700.00 ns, 50.5427 ms/op
+WorkloadWarmup   6: 1 op, 28850900.00 ns, 28.8509 ms/op
+WorkloadWarmup   7: 1 op, 15747400.00 ns, 15.7474 ms/op
+WorkloadWarmup   8: 1 op, 15830200.00 ns, 15.8302 ms/op
+WorkloadWarmup   9: 1 op, 15781800.00 ns, 15.7818 ms/op
+WorkloadWarmup  10: 1 op, 15864700.00 ns, 15.8647 ms/op
+WorkloadWarmup  11: 1 op, 15597700.00 ns, 15.5977 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16263100.00 ns, 16.2631 ms/op
+WorkloadActual   2: 1 op, 15594300.00 ns, 15.5943 ms/op
+WorkloadActual   3: 1 op, 15935100.00 ns, 15.9351 ms/op
+WorkloadActual   4: 1 op, 15720000.00 ns, 15.7200 ms/op
+WorkloadActual   5: 1 op, 16324100.00 ns, 16.3241 ms/op
+WorkloadActual   6: 1 op, 15742500.00 ns, 15.7425 ms/op
+WorkloadActual   7: 1 op, 15863700.00 ns, 15.8637 ms/op
+WorkloadActual   8: 1 op, 15895400.00 ns, 15.8954 ms/op
+WorkloadActual   9: 1 op, 15978400.00 ns, 15.9784 ms/op
+WorkloadActual  10: 1 op, 18489200.00 ns, 18.4892 ms/op
+WorkloadActual  11: 1 op, 15833100.00 ns, 15.8331 ms/op
+WorkloadActual  12: 1 op, 16297300.00 ns, 16.2973 ms/op
+WorkloadActual  13: 1 op, 15866200.00 ns, 15.8662 ms/op
+WorkloadActual  14: 1 op, 15844500.00 ns, 15.8445 ms/op
+WorkloadActual  15: 1 op, 15934200.00 ns, 15.9342 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 16262900.00 ns, 16.2629 ms/op
+WorkloadResult   2: 1 op, 15594100.00 ns, 15.5941 ms/op
+WorkloadResult   3: 1 op, 15934900.00 ns, 15.9349 ms/op
+WorkloadResult   4: 1 op, 15719800.00 ns, 15.7198 ms/op
+WorkloadResult   5: 1 op, 16323900.00 ns, 16.3239 ms/op
+WorkloadResult   6: 1 op, 15742300.00 ns, 15.7423 ms/op
+WorkloadResult   7: 1 op, 15863500.00 ns, 15.8635 ms/op
+WorkloadResult   8: 1 op, 15895200.00 ns, 15.8952 ms/op
+WorkloadResult   9: 1 op, 15978200.00 ns, 15.9782 ms/op
+WorkloadResult  10: 1 op, 15832900.00 ns, 15.8329 ms/op
+WorkloadResult  11: 1 op, 16297100.00 ns, 16.2971 ms/op
+WorkloadResult  12: 1 op, 15866000.00 ns, 15.8660 ms/op
+WorkloadResult  13: 1 op, 15844300.00 ns, 15.8443 ms/op
+WorkloadResult  14: 1 op, 15934000.00 ns, 15.9340 ms/op
+
+// AfterAll
+// Benchmark Process 12140 has exited with code 0.
+
+Mean = 15.935 ms, StdErr = 0.058 ms (0.37%), N = 14, StdDev = 0.219 ms
+Min = 15.594 ms, Q1 = 15.836 ms, Median = 15.881 ms, Q3 = 15.967 ms, Max = 16.324 ms
+IQR = 0.132 ms, LowerFence = 15.638 ms, UpperFence = 16.165 ms
+ConfidenceInterval = [15.688 ms; 16.182 ms] (CI 99.9%), Margin = 0.247 ms (1.55% of Mean)
+Skewness = 0.56, Kurtosis = 2.15, MValue = 2
+
+// ** Remained 7 (38.9%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1608 1440 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.UnsafeAsPointerWrite(N: 100000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 11 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-CPVZEV(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 200500.00 ns, 200.5000 us/op
+WorkloadJitting  1: 1 op, 54304100.00 ns, 54.3041 ms/op
+
+OverheadWarmup   1: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadWarmup   2: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 52232000.00 ns, 52.2320 ms/op
+WorkloadWarmup   2: 1 op, 50612400.00 ns, 50.6124 ms/op
+WorkloadWarmup   3: 1 op, 50736300.00 ns, 50.7363 ms/op
+WorkloadWarmup   4: 1 op, 50468600.00 ns, 50.4686 ms/op
+WorkloadWarmup   5: 1 op, 49650600.00 ns, 49.6506 ms/op
+WorkloadWarmup   6: 1 op, 35161200.00 ns, 35.1612 ms/op
+WorkloadWarmup   7: 1 op, 17099200.00 ns, 17.0992 ms/op
+WorkloadWarmup   8: 1 op, 15970900.00 ns, 15.9709 ms/op
+WorkloadWarmup   9: 1 op, 15724600.00 ns, 15.7246 ms/op
+WorkloadWarmup  10: 1 op, 15793800.00 ns, 15.7938 ms/op
+WorkloadWarmup  11: 1 op, 15953600.00 ns, 15.9536 ms/op
+WorkloadWarmup  12: 1 op, 15863300.00 ns, 15.8633 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 16299700.00 ns, 16.2997 ms/op
+WorkloadActual   2: 1 op, 15719600.00 ns, 15.7196 ms/op
+WorkloadActual   3: 1 op, 15840100.00 ns, 15.8401 ms/op
+WorkloadActual   4: 1 op, 15621700.00 ns, 15.6217 ms/op
+WorkloadActual   5: 1 op, 16009500.00 ns, 16.0095 ms/op
+WorkloadActual   6: 1 op, 15972900.00 ns, 15.9729 ms/op
+WorkloadActual   7: 1 op, 15859900.00 ns, 15.8599 ms/op
+WorkloadActual   8: 1 op, 15958800.00 ns, 15.9588 ms/op
+WorkloadActual   9: 1 op, 15943000.00 ns, 15.9430 ms/op
+WorkloadActual  10: 1 op, 15928200.00 ns, 15.9282 ms/op
+WorkloadActual  11: 1 op, 16048500.00 ns, 16.0485 ms/op
+WorkloadActual  12: 1 op, 15966400.00 ns, 15.9664 ms/op
+WorkloadActual  13: 1 op, 16125200.00 ns, 16.1252 ms/op
+WorkloadActual  14: 1 op, 15757900.00 ns, 15.7579 ms/op
+WorkloadActual  15: 1 op, 15833400.00 ns, 15.8334 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 15719400.00 ns, 15.7194 ms/op
+WorkloadResult   2: 1 op, 15839900.00 ns, 15.8399 ms/op
+WorkloadResult   3: 1 op, 15621500.00 ns, 15.6215 ms/op
+WorkloadResult   4: 1 op, 16009300.00 ns, 16.0093 ms/op
+WorkloadResult   5: 1 op, 15972700.00 ns, 15.9727 ms/op
+WorkloadResult   6: 1 op, 15859700.00 ns, 15.8597 ms/op
+WorkloadResult   7: 1 op, 15958600.00 ns, 15.9586 ms/op
+WorkloadResult   8: 1 op, 15942800.00 ns, 15.9428 ms/op
+WorkloadResult   9: 1 op, 15928000.00 ns, 15.9280 ms/op
+WorkloadResult  10: 1 op, 16048300.00 ns, 16.0483 ms/op
+WorkloadResult  11: 1 op, 15966200.00 ns, 15.9662 ms/op
+WorkloadResult  12: 1 op, 16125000.00 ns, 16.1250 ms/op
+WorkloadResult  13: 1 op, 15757700.00 ns, 15.7577 ms/op
+WorkloadResult  14: 1 op, 15833200.00 ns, 15.8332 ms/op
+
+// AfterAll
+// Benchmark Process 3060 has exited with code 0.
+
+Mean = 15.899 ms, StdErr = 0.036 ms (0.23%), N = 14, StdDev = 0.136 ms
+Min = 15.621 ms, Q1 = 15.835 ms, Median = 15.935 ms, Q3 = 15.971 ms, Max = 16.125 ms
+IQR = 0.136 ms, LowerFence = 15.631 ms, UpperFence = 16.175 ms
+ConfidenceInterval = [15.745 ms; 16.052 ms] (CI 99.9%), Margin = 0.153 ms (0.96% of Mean)
+Skewness = -0.37, Kurtosis = 2.24, MValue = 2
+
+// ** Remained 6 (33.3%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1560 1504 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.DirectBufferWrite(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 12 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-WQEJKO(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 161200.00 ns, 161.2000 us/op
+WorkloadJitting  1: 1 op, 342364400.00 ns, 342.3644 ms/op
+
+OverheadWarmup   1: 1 op, 700.00 ns, 700.0000 ns/op
+OverheadWarmup   2: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   7: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 100.00 ns, 100.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 160872300.00 ns, 160.8723 ms/op
+WorkloadWarmup   2: 1 op, 149094900.00 ns, 149.0949 ms/op
+WorkloadWarmup   3: 1 op, 149220800.00 ns, 149.2208 ms/op
+WorkloadWarmup   4: 1 op, 144411200.00 ns, 144.4112 ms/op
+WorkloadWarmup   5: 1 op, 146551800.00 ns, 146.5518 ms/op
+WorkloadWarmup   6: 1 op, 145084800.00 ns, 145.0848 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 146005300.00 ns, 146.0053 ms/op
+WorkloadActual   2: 1 op, 143734800.00 ns, 143.7348 ms/op
+WorkloadActual   3: 1 op, 149736900.00 ns, 149.7369 ms/op
+WorkloadActual   4: 1 op, 146022000.00 ns, 146.0220 ms/op
+WorkloadActual   5: 1 op, 145621500.00 ns, 145.6215 ms/op
+WorkloadActual   6: 1 op, 143467700.00 ns, 143.4677 ms/op
+WorkloadActual   7: 1 op, 146071600.00 ns, 146.0716 ms/op
+WorkloadActual   8: 1 op, 144663000.00 ns, 144.6630 ms/op
+WorkloadActual   9: 1 op, 147235600.00 ns, 147.2356 ms/op
+WorkloadActual  10: 1 op, 144197100.00 ns, 144.1971 ms/op
+WorkloadActual  11: 1 op, 162482300.00 ns, 162.4823 ms/op
+WorkloadActual  12: 1 op, 150928700.00 ns, 150.9287 ms/op
+WorkloadActual  13: 1 op, 145910300.00 ns, 145.9103 ms/op
+WorkloadActual  14: 1 op, 143766100.00 ns, 143.7661 ms/op
+WorkloadActual  15: 1 op, 147197900.00 ns, 147.1979 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 146005100.00 ns, 146.0051 ms/op
+WorkloadResult   2: 1 op, 143734600.00 ns, 143.7346 ms/op
+WorkloadResult   3: 1 op, 149736700.00 ns, 149.7367 ms/op
+WorkloadResult   4: 1 op, 146021800.00 ns, 146.0218 ms/op
+WorkloadResult   5: 1 op, 145621300.00 ns, 145.6213 ms/op
+WorkloadResult   6: 1 op, 143467500.00 ns, 143.4675 ms/op
+WorkloadResult   7: 1 op, 146071400.00 ns, 146.0714 ms/op
+WorkloadResult   8: 1 op, 144662800.00 ns, 144.6628 ms/op
+WorkloadResult   9: 1 op, 147235400.00 ns, 147.2354 ms/op
+WorkloadResult  10: 1 op, 144196900.00 ns, 144.1969 ms/op
+WorkloadResult  11: 1 op, 150928500.00 ns, 150.9285 ms/op
+WorkloadResult  12: 1 op, 145910100.00 ns, 145.9101 ms/op
+WorkloadResult  13: 1 op, 143765900.00 ns, 143.7659 ms/op
+WorkloadResult  14: 1 op, 147197700.00 ns, 147.1977 ms/op
+
+// AfterAll
+// Benchmark Process 15548 has exited with code 0.
+
+Mean = 146.040 ms, StdErr = 0.588 ms (0.40%), N = 14, StdDev = 2.200 ms
+Min = 143.468 ms, Q1 = 144.313 ms, Median = 145.958 ms, Q3 = 146.916 ms, Max = 150.929 ms
+IQR = 2.603 ms, LowerFence = 140.409 ms, UpperFence = 150.820 ms
+ConfidenceInterval = [143.558 ms; 148.522 ms] (CI 99.9%), Margin = 2.482 ms (1.70% of Mean)
+Skewness = 0.81, Kurtosis = 2.67, MValue = 2
+
+// ** Remained 5 (27.8%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1320 1608 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesArrayCopy(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 13 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-MJDPEN(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 175300.00 ns, 175.3000 us/op
+WorkloadJitting  1: 1 op, 345902100.00 ns, 345.9021 ms/op
+
+OverheadWarmup   1: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadWarmup   2: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadWarmup   3: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   9: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  10: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  19: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 160026400.00 ns, 160.0264 ms/op
+WorkloadWarmup   2: 1 op, 145052900.00 ns, 145.0529 ms/op
+WorkloadWarmup   3: 1 op, 142065300.00 ns, 142.0653 ms/op
+WorkloadWarmup   4: 1 op, 144403400.00 ns, 144.4034 ms/op
+WorkloadWarmup   5: 1 op, 153680800.00 ns, 153.6808 ms/op
+WorkloadWarmup   6: 1 op, 143002400.00 ns, 143.0024 ms/op
+WorkloadWarmup   7: 1 op, 141290700.00 ns, 141.2907 ms/op
+WorkloadWarmup   8: 1 op, 143698100.00 ns, 143.6981 ms/op
+WorkloadWarmup   9: 1 op, 140887000.00 ns, 140.8870 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 142079300.00 ns, 142.0793 ms/op
+WorkloadActual   2: 1 op, 140921500.00 ns, 140.9215 ms/op
+WorkloadActual   3: 1 op, 142877800.00 ns, 142.8778 ms/op
+WorkloadActual   4: 1 op, 144053400.00 ns, 144.0534 ms/op
+WorkloadActual   5: 1 op, 143837300.00 ns, 143.8373 ms/op
+WorkloadActual   6: 1 op, 141310000.00 ns, 141.3100 ms/op
+WorkloadActual   7: 1 op, 144711200.00 ns, 144.7112 ms/op
+WorkloadActual   8: 1 op, 140851300.00 ns, 140.8513 ms/op
+WorkloadActual   9: 1 op, 142147400.00 ns, 142.1474 ms/op
+WorkloadActual  10: 1 op, 139741700.00 ns, 139.7417 ms/op
+WorkloadActual  11: 1 op, 143230800.00 ns, 143.2308 ms/op
+WorkloadActual  12: 1 op, 141338500.00 ns, 141.3385 ms/op
+WorkloadActual  13: 1 op, 144103900.00 ns, 144.1039 ms/op
+WorkloadActual  14: 1 op, 141339600.00 ns, 141.3396 ms/op
+WorkloadActual  15: 1 op, 144355000.00 ns, 144.3550 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 142079100.00 ns, 142.0791 ms/op
+WorkloadResult   2: 1 op, 140921300.00 ns, 140.9213 ms/op
+WorkloadResult   3: 1 op, 142877600.00 ns, 142.8776 ms/op
+WorkloadResult   4: 1 op, 144053200.00 ns, 144.0532 ms/op
+WorkloadResult   5: 1 op, 143837100.00 ns, 143.8371 ms/op
+WorkloadResult   6: 1 op, 141309800.00 ns, 141.3098 ms/op
+WorkloadResult   7: 1 op, 144711000.00 ns, 144.7110 ms/op
+WorkloadResult   8: 1 op, 140851100.00 ns, 140.8511 ms/op
+WorkloadResult   9: 1 op, 142147200.00 ns, 142.1472 ms/op
+WorkloadResult  10: 1 op, 139741500.00 ns, 139.7415 ms/op
+WorkloadResult  11: 1 op, 143230600.00 ns, 143.2306 ms/op
+WorkloadResult  12: 1 op, 141338300.00 ns, 141.3383 ms/op
+WorkloadResult  13: 1 op, 144103700.00 ns, 144.1037 ms/op
+WorkloadResult  14: 1 op, 141339400.00 ns, 141.3394 ms/op
+WorkloadResult  15: 1 op, 144354800.00 ns, 144.3548 ms/op
+
+// AfterAll
+// Benchmark Process 15800 has exited with code 0.
+
+Mean = 142.460 ms, StdErr = 0.396 ms (0.28%), N = 15, StdDev = 1.535 ms
+Min = 139.742 ms, Q1 = 141.324 ms, Median = 142.147 ms, Q3 = 143.945 ms, Max = 144.711 ms
+IQR = 2.621 ms, LowerFence = 137.392 ms, UpperFence = 147.877 ms
+ConfidenceInterval = [140.819 ms; 144.101 ms] (CI 99.9%), Margin = 1.641 ms (1.15% of Mean)
+Skewness = -0.05, Kurtosis = 1.54, MValue = 2
+
+// ** Remained 4 (22.2%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1552 1424 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterGetBytesBufferBlockCopy(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 14 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-DUCVMJ(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 188900.00 ns, 188.9000 us/op
+WorkloadJitting  1: 1 op, 339408100.00 ns, 339.4081 ms/op
+
+OverheadWarmup   1: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadWarmup   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   5: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   3: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   4: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadActual   5: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 160473200.00 ns, 160.4732 ms/op
+WorkloadWarmup   2: 1 op, 144338300.00 ns, 144.3383 ms/op
+WorkloadWarmup   3: 1 op, 141939700.00 ns, 141.9397 ms/op
+WorkloadWarmup   4: 1 op, 145777500.00 ns, 145.7775 ms/op
+WorkloadWarmup   5: 1 op, 142187600.00 ns, 142.1876 ms/op
+WorkloadWarmup   6: 1 op, 144736800.00 ns, 144.7368 ms/op
+WorkloadWarmup   7: 1 op, 142996500.00 ns, 142.9965 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 145376100.00 ns, 145.3761 ms/op
+WorkloadActual   2: 1 op, 143561300.00 ns, 143.5613 ms/op
+WorkloadActual   3: 1 op, 145159500.00 ns, 145.1595 ms/op
+WorkloadActual   4: 1 op, 142301800.00 ns, 142.3018 ms/op
+WorkloadActual   5: 1 op, 144361100.00 ns, 144.3611 ms/op
+WorkloadActual   6: 1 op, 142575000.00 ns, 142.5750 ms/op
+WorkloadActual   7: 1 op, 146011800.00 ns, 146.0118 ms/op
+WorkloadActual   8: 1 op, 142776000.00 ns, 142.7760 ms/op
+WorkloadActual   9: 1 op, 145293400.00 ns, 145.2934 ms/op
+WorkloadActual  10: 1 op, 142756500.00 ns, 142.7565 ms/op
+WorkloadActual  11: 1 op, 144266400.00 ns, 144.2664 ms/op
+WorkloadActual  12: 1 op, 142640700.00 ns, 142.6407 ms/op
+WorkloadActual  13: 1 op, 145321100.00 ns, 145.3211 ms/op
+WorkloadActual  14: 1 op, 143200400.00 ns, 143.2004 ms/op
+WorkloadActual  15: 1 op, 144352900.00 ns, 144.3529 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 145375900.00 ns, 145.3759 ms/op
+WorkloadResult   2: 1 op, 143561100.00 ns, 143.5611 ms/op
+WorkloadResult   3: 1 op, 145159300.00 ns, 145.1593 ms/op
+WorkloadResult   4: 1 op, 142301600.00 ns, 142.3016 ms/op
+WorkloadResult   5: 1 op, 144360900.00 ns, 144.3609 ms/op
+WorkloadResult   6: 1 op, 142574800.00 ns, 142.5748 ms/op
+WorkloadResult   7: 1 op, 146011600.00 ns, 146.0116 ms/op
+WorkloadResult   8: 1 op, 142775800.00 ns, 142.7758 ms/op
+WorkloadResult   9: 1 op, 145293200.00 ns, 145.2932 ms/op
+WorkloadResult  10: 1 op, 142756300.00 ns, 142.7563 ms/op
+WorkloadResult  11: 1 op, 144266200.00 ns, 144.2662 ms/op
+WorkloadResult  12: 1 op, 142640500.00 ns, 142.6405 ms/op
+WorkloadResult  13: 1 op, 145320900.00 ns, 145.3209 ms/op
+WorkloadResult  14: 1 op, 143200200.00 ns, 143.2002 ms/op
+WorkloadResult  15: 1 op, 144352700.00 ns, 144.3527 ms/op
+
+// AfterAll
+// Benchmark Process 12004 has exited with code 0.
+
+Mean = 143.997 ms, StdErr = 0.321 ms (0.22%), N = 15, StdDev = 1.244 ms
+Min = 142.302 ms, Q1 = 142.766 ms, Median = 144.266 ms, Q3 = 145.226 ms, Max = 146.012 ms
+IQR = 2.460 ms, LowerFence = 139.076 ms, UpperFence = 148.917 ms
+ConfidenceInterval = [142.667 ms; 145.327 ms] (CI 99.9%), Margin = 1.330 ms (0.92% of Mean)
+Skewness = 0.08, Kurtosis = 1.35, MValue = 2
+
+// ** Remained 3 (16.7%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1320 1512 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayArrayCopy(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 15 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-HBHBQK(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 183900.00 ns, 183.9000 us/op
+WorkloadJitting  1: 1 op, 344648700.00 ns, 344.6487 ms/op
+
+OverheadWarmup   1: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   7: 1 op, 300.00 ns, 300.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadActual   4: 1 op, 800.00 ns, 800.0000 ns/op
+OverheadActual   5: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadActual   6: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  18: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  19: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  20: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 159239800.00 ns, 159.2398 ms/op
+WorkloadWarmup   2: 1 op, 148124100.00 ns, 148.1241 ms/op
+WorkloadWarmup   3: 1 op, 144203800.00 ns, 144.2038 ms/op
+WorkloadWarmup   4: 1 op, 144992200.00 ns, 144.9922 ms/op
+WorkloadWarmup   5: 1 op, 144033300.00 ns, 144.0333 ms/op
+WorkloadWarmup   6: 1 op, 143622400.00 ns, 143.6224 ms/op
+WorkloadWarmup   7: 1 op, 144793700.00 ns, 144.7937 ms/op
+WorkloadWarmup   8: 1 op, 142111000.00 ns, 142.1110 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 143585400.00 ns, 143.5854 ms/op
+WorkloadActual   2: 1 op, 144029200.00 ns, 144.0292 ms/op
+WorkloadActual   3: 1 op, 143491000.00 ns, 143.4910 ms/op
+WorkloadActual   4: 1 op, 143662500.00 ns, 143.6625 ms/op
+WorkloadActual   5: 1 op, 143695200.00 ns, 143.6952 ms/op
+WorkloadActual   6: 1 op, 143894500.00 ns, 143.8945 ms/op
+WorkloadActual   7: 1 op, 143768700.00 ns, 143.7687 ms/op
+WorkloadActual   8: 1 op, 143860900.00 ns, 143.8609 ms/op
+WorkloadActual   9: 1 op, 143428400.00 ns, 143.4284 ms/op
+WorkloadActual  10: 1 op, 143222100.00 ns, 143.2221 ms/op
+WorkloadActual  11: 1 op, 143640100.00 ns, 143.6401 ms/op
+WorkloadActual  12: 1 op, 143302300.00 ns, 143.3023 ms/op
+WorkloadActual  13: 1 op, 144577500.00 ns, 144.5775 ms/op
+WorkloadActual  14: 1 op, 143319800.00 ns, 143.3198 ms/op
+WorkloadActual  15: 1 op, 143594900.00 ns, 143.5949 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 143585200.00 ns, 143.5852 ms/op
+WorkloadResult   2: 1 op, 144029000.00 ns, 144.0290 ms/op
+WorkloadResult   3: 1 op, 143490800.00 ns, 143.4908 ms/op
+WorkloadResult   4: 1 op, 143662300.00 ns, 143.6623 ms/op
+WorkloadResult   5: 1 op, 143695000.00 ns, 143.6950 ms/op
+WorkloadResult   6: 1 op, 143894300.00 ns, 143.8943 ms/op
+WorkloadResult   7: 1 op, 143768500.00 ns, 143.7685 ms/op
+WorkloadResult   8: 1 op, 143860700.00 ns, 143.8607 ms/op
+WorkloadResult   9: 1 op, 143428200.00 ns, 143.4282 ms/op
+WorkloadResult  10: 1 op, 143221900.00 ns, 143.2219 ms/op
+WorkloadResult  11: 1 op, 143639900.00 ns, 143.6399 ms/op
+WorkloadResult  12: 1 op, 143302100.00 ns, 143.3021 ms/op
+WorkloadResult  13: 1 op, 143319600.00 ns, 143.3196 ms/op
+WorkloadResult  14: 1 op, 143594700.00 ns, 143.5947 ms/op
+
+// AfterAll
+// Benchmark Process 13660 has exited with code 0.
+
+Mean = 143.607 ms, StdErr = 0.063 ms (0.04%), N = 14, StdDev = 0.237 ms
+Min = 143.222 ms, Q1 = 143.444 ms, Median = 143.617 ms, Q3 = 143.750 ms, Max = 144.029 ms
+IQR = 0.306 ms, LowerFence = 142.984 ms, UpperFence = 144.210 ms
+ConfidenceInterval = [143.339 ms; 143.874 ms] (CI 99.9%), Margin = 0.268 ms (0.19% of Mean)
+Skewness = 0.03, Kurtosis = 1.84, MValue = 2
+
+// ** Remained 2 (11.1%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1572 1472 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 16 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-NXPPAX(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 168500.00 ns, 168.5000 us/op
+WorkloadJitting  1: 1 op, 338307800.00 ns, 338.3078 ms/op
+
+OverheadWarmup   1: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadWarmup   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadWarmup   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   4: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadWarmup   7: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   2: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadActual   5: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 156274300.00 ns, 156.2743 ms/op
+WorkloadWarmup   2: 1 op, 148810000.00 ns, 148.8100 ms/op
+WorkloadWarmup   3: 1 op, 149008200.00 ns, 149.0082 ms/op
+WorkloadWarmup   4: 1 op, 149059300.00 ns, 149.0593 ms/op
+WorkloadWarmup   5: 1 op, 143541100.00 ns, 143.5411 ms/op
+WorkloadWarmup   6: 1 op, 148111100.00 ns, 148.1111 ms/op
+WorkloadWarmup   7: 1 op, 144948600.00 ns, 144.9486 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 151466800.00 ns, 151.4668 ms/op
+WorkloadActual   2: 1 op, 142818300.00 ns, 142.8183 ms/op
+WorkloadActual   3: 1 op, 151039900.00 ns, 151.0399 ms/op
+WorkloadActual   4: 1 op, 144017000.00 ns, 144.0170 ms/op
+WorkloadActual   5: 1 op, 148689900.00 ns, 148.6899 ms/op
+WorkloadActual   6: 1 op, 143546500.00 ns, 143.5465 ms/op
+WorkloadActual   7: 1 op, 150233800.00 ns, 150.2338 ms/op
+WorkloadActual   8: 1 op, 143312600.00 ns, 143.3126 ms/op
+WorkloadActual   9: 1 op, 147223500.00 ns, 147.2235 ms/op
+WorkloadActual  10: 1 op, 143350800.00 ns, 143.3508 ms/op
+WorkloadActual  11: 1 op, 147426600.00 ns, 147.4266 ms/op
+WorkloadActual  12: 1 op, 143997500.00 ns, 143.9975 ms/op
+WorkloadActual  13: 1 op, 146577600.00 ns, 146.5776 ms/op
+WorkloadActual  14: 1 op, 143266800.00 ns, 143.2668 ms/op
+WorkloadActual  15: 1 op, 146750400.00 ns, 146.7504 ms/op
+WorkloadActual  16: 1 op, 142963900.00 ns, 142.9639 ms/op
+WorkloadActual  17: 1 op, 147113700.00 ns, 147.1137 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 151466600.00 ns, 151.4666 ms/op
+WorkloadResult   2: 1 op, 142818100.00 ns, 142.8181 ms/op
+WorkloadResult   3: 1 op, 151039700.00 ns, 151.0397 ms/op
+WorkloadResult   4: 1 op, 144016800.00 ns, 144.0168 ms/op
+WorkloadResult   5: 1 op, 148689700.00 ns, 148.6897 ms/op
+WorkloadResult   6: 1 op, 143546300.00 ns, 143.5463 ms/op
+WorkloadResult   7: 1 op, 150233600.00 ns, 150.2336 ms/op
+WorkloadResult   8: 1 op, 143312400.00 ns, 143.3124 ms/op
+WorkloadResult   9: 1 op, 147223300.00 ns, 147.2233 ms/op
+WorkloadResult  10: 1 op, 143350600.00 ns, 143.3506 ms/op
+WorkloadResult  11: 1 op, 147426400.00 ns, 147.4264 ms/op
+WorkloadResult  12: 1 op, 143997300.00 ns, 143.9973 ms/op
+WorkloadResult  13: 1 op, 146577400.00 ns, 146.5774 ms/op
+WorkloadResult  14: 1 op, 143266600.00 ns, 143.2666 ms/op
+WorkloadResult  15: 1 op, 146750200.00 ns, 146.7502 ms/op
+WorkloadResult  16: 1 op, 142963700.00 ns, 142.9637 ms/op
+WorkloadResult  17: 1 op, 147113500.00 ns, 147.1135 ms/op
+
+// AfterAll
+// Benchmark Process 9884 has exited with code 0.
+
+Mean = 146.105 ms, StdErr = 0.720 ms (0.49%), N = 17, StdDev = 2.968 ms
+Min = 142.818 ms, Q1 = 143.351 ms, Median = 146.577 ms, Q3 = 147.426 ms, Max = 151.467 ms
+IQR = 4.076 ms, LowerFence = 137.237 ms, UpperFence = 153.540 ms
+ConfidenceInterval = [143.215 ms; 148.996 ms] (CI 99.9%), Margin = 2.890 ms (1.98% of Mean)
+Skewness = 0.45, Kurtosis = 1.7, MValue = 2
+
+// ** Remained 1 (5.6%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet d3edb32b-72a5-4183-b0ad-4f668123c2f4.dll --anonymousPipes 1396 1348 --benchmarkName "GameBreaker.Benchmarks.Serial.BinaryBuffer.Write.UnsafeAsPointerWrite(N: 1000000)" --job "InvocationCount=1, UnrollFactor=1" --benchmarkId 17 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\d3edb32b-72a5-4183-b0ad-4f668123c2f4\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-ZROULE(InvocationCount=1, UnrollFactor=1)
+
+OverheadJitting  1: 1 op, 166300.00 ns, 166.3000 us/op
+WorkloadJitting  1: 1 op, 344498700.00 ns, 344.4987 ms/op
+
+OverheadWarmup   1: 1 op, 600.00 ns, 600.0000 ns/op
+OverheadWarmup   2: 1 op, 700.00 ns, 700.0000 ns/op
+OverheadWarmup   3: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadWarmup   4: 1 op, 400.00 ns, 400.0000 ns/op
+OverheadWarmup   5: 1 op, 200.00 ns, 200.0000 ns/op
+
+OverheadActual   1: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   2: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   3: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   4: 1 op, 500.00 ns, 500.0000 ns/op
+OverheadActual   5: 1 op, 300.00 ns, 300.0000 ns/op
+OverheadActual   6: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   7: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   8: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual   9: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  10: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  11: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  12: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  13: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  14: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  15: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  16: 1 op, 200.00 ns, 200.0000 ns/op
+OverheadActual  17: 1 op, 200.00 ns, 200.0000 ns/op
+
+WorkloadWarmup   1: 1 op, 157307400.00 ns, 157.3074 ms/op
+WorkloadWarmup   2: 1 op, 144075700.00 ns, 144.0757 ms/op
+WorkloadWarmup   3: 1 op, 148145400.00 ns, 148.1454 ms/op
+WorkloadWarmup   4: 1 op, 141574900.00 ns, 141.5749 ms/op
+WorkloadWarmup   5: 1 op, 145055200.00 ns, 145.0552 ms/op
+WorkloadWarmup   6: 1 op, 140564300.00 ns, 140.5643 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 146269600.00 ns, 146.2696 ms/op
+WorkloadActual   2: 1 op, 142761000.00 ns, 142.7610 ms/op
+WorkloadActual   3: 1 op, 145084200.00 ns, 145.0842 ms/op
+WorkloadActual   4: 1 op, 141837700.00 ns, 141.8377 ms/op
+WorkloadActual   5: 1 op, 143793100.00 ns, 143.7931 ms/op
+WorkloadActual   6: 1 op, 143094900.00 ns, 143.0949 ms/op
+WorkloadActual   7: 1 op, 145947900.00 ns, 145.9479 ms/op
+WorkloadActual   8: 1 op, 142386800.00 ns, 142.3868 ms/op
+WorkloadActual   9: 1 op, 146447900.00 ns, 146.4479 ms/op
+WorkloadActual  10: 1 op, 141439500.00 ns, 141.4395 ms/op
+WorkloadActual  11: 1 op, 155339200.00 ns, 155.3392 ms/op
+WorkloadActual  12: 1 op, 167386800.00 ns, 167.3868 ms/op
+WorkloadActual  13: 1 op, 149676400.00 ns, 149.6764 ms/op
+WorkloadActual  14: 1 op, 144375600.00 ns, 144.3756 ms/op
+WorkloadActual  15: 1 op, 148753600.00 ns, 148.7536 ms/op
+WorkloadActual  16: 1 op, 144055200.00 ns, 144.0552 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 146269400.00 ns, 146.2694 ms/op
+WorkloadResult   2: 1 op, 142760800.00 ns, 142.7608 ms/op
+WorkloadResult   3: 1 op, 145084000.00 ns, 145.0840 ms/op
+WorkloadResult   4: 1 op, 141837500.00 ns, 141.8375 ms/op
+WorkloadResult   5: 1 op, 143792900.00 ns, 143.7929 ms/op
+WorkloadResult   6: 1 op, 143094700.00 ns, 143.0947 ms/op
+WorkloadResult   7: 1 op, 145947700.00 ns, 145.9477 ms/op
+WorkloadResult   8: 1 op, 142386600.00 ns, 142.3866 ms/op
+WorkloadResult   9: 1 op, 146447700.00 ns, 146.4477 ms/op
+WorkloadResult  10: 1 op, 141439300.00 ns, 141.4393 ms/op
+WorkloadResult  11: 1 op, 149676200.00 ns, 149.6762 ms/op
+WorkloadResult  12: 1 op, 144375400.00 ns, 144.3754 ms/op
+WorkloadResult  13: 1 op, 148753400.00 ns, 148.7534 ms/op
+WorkloadResult  14: 1 op, 144055000.00 ns, 144.0550 ms/op
+
+// AfterAll
+// Benchmark Process 7276 has exited with code 0.
+
+Mean = 144.709 ms, StdErr = 0.664 ms (0.46%), N = 14, StdDev = 2.485 ms
+Min = 141.439 ms, Q1 = 142.844 ms, Median = 144.215 ms, Q3 = 146.189 ms, Max = 149.676 ms
+IQR = 3.345 ms, LowerFence = 137.827 ms, UpperFence = 151.206 ms
+ConfidenceInterval = [141.905 ms; 147.512 ms] (CI 99.9%), Margin = 2.803 ms (1.94% of Mean)
+Skewness = 0.54, Kurtosis = 2.11, MValue = 2
+
+// ** Remained 0 (0.0%) benchmark(s) to run. Estimated finish 2023-03-20 20:52 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.Serial.BinaryBuffer.Write-report.csv
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.Serial.BinaryBuffer.Write-report-github.md
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.Serial.BinaryBuffer.Write-report.html
+
+// * Detailed results *
+Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 496.875 μs, StdErr = 2.115 μs (0.43%), N = 20, StdDev = 9.460 μs
+Min = 489.900 μs, Q1 = 492.675 μs, Median = 493.800 μs, Q3 = 495.500 μs, Max = 530.900 μs
+IQR = 2.825 μs, LowerFence = 488.438 μs, UpperFence = 499.738 μs
+ConfidenceInterval = [488.661 μs; 505.089 μs] (CI 99.9%), Margin = 8.214 μs (1.65% of Mean)
+Skewness = 2.49, Kurtosis = 8.78, MValue = 2
+-------------------- Histogram --------------------
+[488.070 μs ; 506.515 μs) | @@@@@@@@@@@@@@@@@@
+[506.515 μs ; 517.423 μs) | @
+[517.423 μs ; 535.474 μs) | @
+---------------------------------------------------
+
+Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 495.621 μs, StdErr = 0.677 μs (0.14%), N = 14, StdDev = 2.535 μs
+Min = 491.700 μs, Q1 = 493.850 μs, Median = 495.200 μs, Q3 = 497.000 μs, Max = 501.200 μs
+IQR = 3.150 μs, LowerFence = 489.125 μs, UpperFence = 501.725 μs
+ConfidenceInterval = [492.762 μs; 498.481 μs] (CI 99.9%), Margin = 2.859 μs (0.58% of Mean)
+Skewness = 0.56, Kurtosis = 2.44, MValue = 2
+-------------------- Histogram --------------------
+[490.320 μs ; 502.580 μs) | @@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 485.338 μs, StdErr = 0.542 μs (0.11%), N = 13, StdDev = 1.955 μs
+Min = 483.200 μs, Q1 = 483.800 μs, Median = 484.400 μs, Q3 = 487.300 μs, Max = 488.700 μs
+IQR = 3.500 μs, LowerFence = 478.550 μs, UpperFence = 492.550 μs
+ConfidenceInterval = [482.998 μs; 487.679 μs] (CI 99.9%), Margin = 2.341 μs (0.48% of Mean)
+Skewness = 0.47, Kurtosis = 1.45, MValue = 2
+-------------------- Histogram --------------------
+[482.109 μs ; 489.791 μs) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 496.493 μs, StdErr = 0.514 μs (0.10%), N = 14, StdDev = 1.923 μs
+Min = 493.200 μs, Q1 = 494.950 μs, Median = 496.650 μs, Q3 = 498.100 μs, Max = 499.200 μs
+IQR = 3.150 μs, LowerFence = 490.225 μs, UpperFence = 502.825 μs
+ConfidenceInterval = [494.323 μs; 498.662 μs] (CI 99.9%), Margin = 2.170 μs (0.44% of Mean)
+Skewness = -0.08, Kurtosis = 1.58, MValue = 2
+-------------------- Histogram --------------------
+[492.153 μs ; 500.247 μs) | @@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 496.746 μs, StdErr = 1.286 μs (0.26%), N = 13, StdDev = 4.636 μs
+Min = 493.200 μs, Q1 = 494.900 μs, Median = 495.500 μs, Q3 = 496.000 μs, Max = 511.500 μs
+IQR = 1.100 μs, LowerFence = 493.250 μs, UpperFence = 497.650 μs
+ConfidenceInterval = [491.195 μs; 502.298 μs] (CI 99.9%), Margin = 5.551 μs (1.12% of Mean)
+Skewness = 2.41, Kurtosis = 7.94, MValue = 2
+-------------------- Histogram --------------------
+[490.612 μs ; 514.088 μs) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 494.685 μs, StdErr = 0.692 μs (0.14%), N = 13, StdDev = 2.497 μs
+Min = 491.200 μs, Q1 = 493.300 μs, Median = 493.800 μs, Q3 = 495.500 μs, Max = 500.100 μs
+IQR = 2.200 μs, LowerFence = 490.000 μs, UpperFence = 498.800 μs
+ConfidenceInterval = [491.695 μs; 497.674 μs] (CI 99.9%), Margin = 2.990 μs (0.60% of Mean)
+Skewness = 0.92, Kurtosis = 2.8, MValue = 2
+-------------------- Histogram --------------------
+[489.806 μs ; 501.494 μs) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 15.960 ms, StdErr = 0.060 ms (0.38%), N = 18, StdDev = 0.255 ms
+Min = 15.547 ms, Q1 = 15.788 ms, Median = 15.951 ms, Q3 = 16.035 ms, Max = 16.470 ms
+IQR = 0.247 ms, LowerFence = 15.419 ms, UpperFence = 16.405 ms
+ConfidenceInterval = [15.721 ms; 16.198 ms] (CI 99.9%), Margin = 0.239 ms (1.50% of Mean)
+Skewness = 0.24, Kurtosis = 2.16, MValue = 2
+-------------------- Histogram --------------------
+[15.496 ms ; 16.117 ms) | @@@@@@@@@@@@@@
+[16.117 ms ; 16.527 ms) | @@@@
+---------------------------------------------------
+
+Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 16.067 ms, StdErr = 0.059 ms (0.37%), N = 15, StdDev = 0.228 ms
+Min = 15.729 ms, Q1 = 15.903 ms, Median = 16.059 ms, Q3 = 16.254 ms, Max = 16.445 ms
+IQR = 0.351 ms, LowerFence = 15.376 ms, UpperFence = 16.780 ms
+ConfidenceInterval = [15.823 ms; 16.310 ms] (CI 99.9%), Margin = 0.244 ms (1.52% of Mean)
+Skewness = 0.25, Kurtosis = 1.62, MValue = 2
+-------------------- Histogram --------------------
+[15.607 ms ; 16.130 ms) | @@@@@@@@@@
+[16.130 ms ; 16.505 ms) | @@@@@
+---------------------------------------------------
+
+Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 16.200 ms, StdErr = 0.074 ms (0.46%), N = 16, StdDev = 0.296 ms
+Min = 15.850 ms, Q1 = 15.935 ms, Median = 16.170 ms, Q3 = 16.419 ms, Max = 16.805 ms
+IQR = 0.484 ms, LowerFence = 15.209 ms, UpperFence = 17.145 ms
+ConfidenceInterval = [15.899 ms; 16.502 ms] (CI 99.9%), Margin = 0.302 ms (1.86% of Mean)
+Skewness = 0.42, Kurtosis = 1.8, MValue = 2
+-------------------- Histogram --------------------
+[15.815 ms ; 16.212 ms) | @@@@@@@@
+[16.212 ms ; 16.868 ms) | @@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 16.299 ms, StdErr = 0.052 ms (0.32%), N = 15, StdDev = 0.202 ms
+Min = 15.943 ms, Q1 = 16.179 ms, Median = 16.310 ms, Q3 = 16.427 ms, Max = 16.649 ms
+IQR = 0.248 ms, LowerFence = 15.808 ms, UpperFence = 16.799 ms
+ConfidenceInterval = [16.083 ms; 16.515 ms] (CI 99.9%), Margin = 0.216 ms (1.32% of Mean)
+Skewness = -0.1, Kurtosis = 1.91, MValue = 2
+-------------------- Histogram --------------------
+[15.889 ms ; 16.757 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 15.935 ms, StdErr = 0.058 ms (0.37%), N = 14, StdDev = 0.219 ms
+Min = 15.594 ms, Q1 = 15.836 ms, Median = 15.881 ms, Q3 = 15.967 ms, Max = 16.324 ms
+IQR = 0.132 ms, LowerFence = 15.638 ms, UpperFence = 16.165 ms
+ConfidenceInterval = [15.688 ms; 16.182 ms] (CI 99.9%), Margin = 0.247 ms (1.55% of Mean)
+Skewness = 0.56, Kurtosis = 2.15, MValue = 2
+-------------------- Histogram --------------------
+[15.475 ms ; 15.986 ms) | @@@@@@@@@@@
+[15.986 ms ; 16.443 ms) | @@@
+---------------------------------------------------
+
+Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=100000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 15.899 ms, StdErr = 0.036 ms (0.23%), N = 14, StdDev = 0.136 ms
+Min = 15.621 ms, Q1 = 15.835 ms, Median = 15.935 ms, Q3 = 15.971 ms, Max = 16.125 ms
+IQR = 0.136 ms, LowerFence = 15.631 ms, UpperFence = 16.175 ms
+ConfidenceInterval = [15.745 ms; 16.052 ms] (CI 99.9%), Margin = 0.153 ms (0.96% of Mean)
+Skewness = -0.37, Kurtosis = 2.24, MValue = 2
+-------------------- Histogram --------------------
+[15.547 ms ; 16.199 ms) | @@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.DirectBufferWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 146.040 ms, StdErr = 0.588 ms (0.40%), N = 14, StdDev = 2.200 ms
+Min = 143.468 ms, Q1 = 144.313 ms, Median = 145.958 ms, Q3 = 146.916 ms, Max = 150.929 ms
+IQR = 2.603 ms, LowerFence = 140.409 ms, UpperFence = 150.820 ms
+ConfidenceInterval = [143.558 ms; 148.522 ms] (CI 99.9%), Margin = 2.482 ms (1.70% of Mean)
+Skewness = 0.81, Kurtosis = 2.67, MValue = 2
+-------------------- Histogram --------------------
+[143.454 ms ; 148.689 ms) | @@@@@@@@@@@@
+[148.689 ms ; 151.836 ms) | @@
+---------------------------------------------------
+
+Write.BitConverterGetBytesArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 142.460 ms, StdErr = 0.396 ms (0.28%), N = 15, StdDev = 1.535 ms
+Min = 139.742 ms, Q1 = 141.324 ms, Median = 142.147 ms, Q3 = 143.945 ms, Max = 144.711 ms
+IQR = 2.621 ms, LowerFence = 137.392 ms, UpperFence = 147.877 ms
+ConfidenceInterval = [140.819 ms; 144.101 ms] (CI 99.9%), Margin = 1.641 ms (1.15% of Mean)
+Skewness = -0.05, Kurtosis = 1.54, MValue = 2
+-------------------- Histogram --------------------
+[138.925 ms ; 145.528 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterGetBytesBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 143.997 ms, StdErr = 0.321 ms (0.22%), N = 15, StdDev = 1.244 ms
+Min = 142.302 ms, Q1 = 142.766 ms, Median = 144.266 ms, Q3 = 145.226 ms, Max = 146.012 ms
+IQR = 2.460 ms, LowerFence = 139.076 ms, UpperFence = 148.917 ms
+ConfidenceInterval = [142.667 ms; 145.327 ms] (CI 99.9%), Margin = 1.330 ms (0.92% of Mean)
+Skewness = 0.08, Kurtosis = 1.35, MValue = 2
+-------------------- Histogram --------------------
+[141.640 ms ; 146.269 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayArrayCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 143.607 ms, StdErr = 0.063 ms (0.04%), N = 14, StdDev = 0.237 ms
+Min = 143.222 ms, Q1 = 143.444 ms, Median = 143.617 ms, Q3 = 143.750 ms, Max = 144.029 ms
+IQR = 0.306 ms, LowerFence = 142.984 ms, UpperFence = 144.210 ms
+ConfidenceInterval = [143.339 ms; 143.874 ms] (CI 99.9%), Margin = 0.268 ms (0.19% of Mean)
+Skewness = 0.03, Kurtosis = 1.84, MValue = 2
+-------------------- Histogram --------------------
+[143.093 ms ; 144.158 ms) | @@@@@@@@@@@@@@
+---------------------------------------------------
+
+Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 146.105 ms, StdErr = 0.720 ms (0.49%), N = 17, StdDev = 2.968 ms
+Min = 142.818 ms, Q1 = 143.351 ms, Median = 146.577 ms, Q3 = 147.426 ms, Max = 151.467 ms
+IQR = 4.076 ms, LowerFence = 137.237 ms, UpperFence = 153.540 ms
+ConfidenceInterval = [143.215 ms; 148.996 ms] (CI 99.9%), Margin = 2.890 ms (1.98% of Mean)
+Skewness = 0.45, Kurtosis = 1.7, MValue = 2
+-------------------- Histogram --------------------
+[141.902 ms ; 144.932 ms) | @@@@@@@@
+[144.932 ms ; 149.149 ms) | @@@@@@
+[149.149 ms ; 152.365 ms) | @@@
+---------------------------------------------------
+
+Write.UnsafeAsPointerWrite: Job-GJGJBK(InvocationCount=1, UnrollFactor=1) [N=1000000]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 144.709 ms, StdErr = 0.664 ms (0.46%), N = 14, StdDev = 2.485 ms
+Min = 141.439 ms, Q1 = 142.844 ms, Median = 144.215 ms, Q3 = 146.189 ms, Max = 149.676 ms
+IQR = 3.345 ms, LowerFence = 137.827 ms, UpperFence = 151.206 ms
+ConfidenceInterval = [141.905 ms; 147.512 ms] (CI 99.9%), Margin = 2.803 ms (1.94% of Mean)
+Skewness = 0.54, Kurtosis = 2.11, MValue = 2
+-------------------- Histogram --------------------
+[140.086 ms ; 144.538 ms) | @@@@@@@@
+[144.538 ms ; 150.707 ms) | @@@@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
+AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.101
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-GJGJBK : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+
+InvocationCount=1  UnrollFactor=1  
+
+|                                            Method |       N |         Mean |       Error |      StdDev |
+|-------------------------------------------------- |-------- |-------------:|------------:|------------:|
+|                                 DirectBufferWrite |    1000 |     496.9 μs |     8.21 μs |     9.46 μs |
+|                     BitConverterGetBytesArrayCopy |    1000 |     495.6 μs |     2.86 μs |     2.53 μs |
+|               BitConverterGetBytesBufferBlockCopy |    1000 |     485.3 μs |     2.34 μs |     1.95 μs |
+|       BitConverterTryWriteBytesByteArrayArrayCopy |    1000 |     496.5 μs |     2.17 μs |     1.92 μs |
+| BitConverterTryWriteBytesByteArrayBufferBlockCopy |    1000 |     496.7 μs |     5.55 μs |     4.64 μs |
+|                              UnsafeAsPointerWrite |    1000 |     494.7 μs |     2.99 μs |     2.50 μs |
+|                                 DirectBufferWrite |  100000 |  15,959.8 μs |   238.66 μs |   255.36 μs |
+|                     BitConverterGetBytesArrayCopy |  100000 |  16,066.7 μs |   243.76 μs |   228.01 μs |
+|               BitConverterGetBytesBufferBlockCopy |  100000 |  16,200.4 μs |   301.58 μs |   296.19 μs |
+|       BitConverterTryWriteBytesByteArrayArrayCopy |  100000 |  16,299.4 μs |   215.89 μs |   201.94 μs |
+| BitConverterTryWriteBytesByteArrayBufferBlockCopy |  100000 |  15,934.9 μs |   246.65 μs |   218.65 μs |
+|                              UnsafeAsPointerWrite |  100000 |  15,898.7 μs |   153.40 μs |   135.98 μs |
+|                                 DirectBufferWrite | 1000000 | 146,039.7 μs | 2,481.84 μs | 2,200.08 μs |
+|                     BitConverterGetBytesArrayCopy | 1000000 | 142,459.7 μs | 1,641.03 μs | 1,535.02 μs |
+|               BitConverterGetBytesBufferBlockCopy | 1000000 | 143,996.7 μs | 1,329.98 μs | 1,244.07 μs |
+|       BitConverterTryWriteBytesByteArrayArrayCopy | 1000000 | 143,606.6 μs |   267.85 μs |   237.44 μs |
+| BitConverterTryWriteBytesByteArrayBufferBlockCopy | 1000000 | 146,105.4 μs | 2,890.14 μs | 2,967.96 μs |
+|                              UnsafeAsPointerWrite | 1000000 | 144,708.6 μs | 2,803.15 μs | 2,484.92 μs |
+
+// * Warnings *
+MinIterationTime
+  Write.DirectBufferWrite: InvocationCount=1, UnrollFactor=1                                 -> The minimum observed iteration time is 490.1000 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterGetBytesArrayCopy: InvocationCount=1, UnrollFactor=1                     -> The minimum observed iteration time is 491.9000 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterGetBytesBufferBlockCopy: InvocationCount=1, UnrollFactor=1               -> The minimum observed iteration time is 483.4000 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterTryWriteBytesByteArrayArrayCopy: InvocationCount=1, UnrollFactor=1       -> The minimum observed iteration time is 493.4000 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.UnsafeAsPointerWrite: InvocationCount=1, UnrollFactor=1                              -> The minimum observed iteration time is 491.4000 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.DirectBufferWrite: InvocationCount=1, UnrollFactor=1                                 -> The minimum observed iteration time is 15.5475 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterGetBytesArrayCopy: InvocationCount=1, UnrollFactor=1                     -> The minimum observed iteration time is 15.7290 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterGetBytesBufferBlockCopy: InvocationCount=1, UnrollFactor=1               -> The minimum observed iteration time is 15.8506 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterTryWriteBytesByteArrayArrayCopy: InvocationCount=1, UnrollFactor=1       -> The minimum observed iteration time is 15.9429 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: InvocationCount=1, UnrollFactor=1 -> The minimum observed iteration time is 15.5943 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  Write.UnsafeAsPointerWrite: InvocationCount=1, UnrollFactor=1                              -> The minimum observed iteration time is 15.6217 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+
+// * Hints *
+Outliers
+  Write.DirectBufferWrite: InvocationCount=1, UnrollFactor=1                                 -> 5 outliers were removed (556.30 μs..770.70 μs)
+  Write.BitConverterGetBytesArrayCopy: InvocationCount=1, UnrollFactor=1                     -> 1 outlier  was  removed (737.90 μs)
+  Write.BitConverterGetBytesBufferBlockCopy: InvocationCount=1, UnrollFactor=1               -> 4 outliers were removed (553.90 μs..967.60 μs)
+  Write.BitConverterTryWriteBytesByteArrayArrayCopy: InvocationCount=1, UnrollFactor=1       -> 1 outlier  was  removed (514.60 μs)
+  Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: InvocationCount=1, UnrollFactor=1 -> 4 outliers were removed (576.30 μs..742.60 μs)
+  Write.UnsafeAsPointerWrite: InvocationCount=1, UnrollFactor=1                              -> 4 outliers were removed (707.90 μs..1.04 ms)
+  Write.DirectBufferWrite: InvocationCount=1, UnrollFactor=1                                 -> 1 outlier  was  removed (16.98 ms)
+  Write.BitConverterTryWriteBytesByteArrayBufferBlockCopy: InvocationCount=1, UnrollFactor=1 -> 1 outlier  was  removed (18.49 ms)
+  Write.UnsafeAsPointerWrite: InvocationCount=1, UnrollFactor=1                              -> 1 outlier  was  removed (16.30 ms)
+  Write.DirectBufferWrite: InvocationCount=1, UnrollFactor=1                                 -> 1 outlier  was  removed (162.48 ms)
+  Write.BitConverterTryWriteBytesByteArrayArrayCopy: InvocationCount=1, UnrollFactor=1       -> 1 outlier  was  removed (144.58 ms)
+  Write.UnsafeAsPointerWrite: InvocationCount=1, UnrollFactor=1                              -> 2 outliers were removed (155.34 ms, 167.39 ms)
+
+// * Legends *
+  N      : Value of the 'N' parameter
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  1 μs   : 1 Microsecond (0.000001 sec)
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:41 (41.75 sec), executed benchmarks: 18
+
+Global total time: 00:00:47 (47.17 sec), executed benchmarks: 18
+// * Artifacts cleanup *

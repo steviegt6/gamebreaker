@@ -23,6 +23,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using GameBreaker.Serial.Numerics;
 
@@ -83,21 +84,21 @@ namespace GameBreaker.Serial {
 
         /// <inheritdoc cref="IBinaryWriter.Write(byte)"/>
         public virtual void Write(byte value) {
-            EnsureCapacity(Offset + 1);
-            Buffer[Offset++] = value;
+            EnsureCapacity(Offset + sizeof(byte));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, byte>(ref b) = value;
+            Offset += sizeof(byte);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(bool,bool)"/>
         public virtual void Write(bool value, bool wide) {
-            if (wide) {
+            if (wide)
                 Write(value ? 1 : 0);
-            }
-            else {
-                EnsureCapacity(Offset + 1);
-                Buffer[Offset++] = (byte)(value ? 1 : 0);
-            }
+            else
+                Write((byte) (value ? 1 : 0));
         }
 
+        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(BufferRegion)"/>
         public virtual void Write(BufferRegion value) {
             EnsureCapacity(Offset + value.Length);
@@ -105,6 +106,7 @@ namespace GameBreaker.Serial {
             Offset += value.Length;
         }
 
+        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(byte[])"/>
         public virtual void Write(byte[] value) {
             EnsureCapacity(Offset + value.Length);
@@ -112,6 +114,7 @@ namespace GameBreaker.Serial {
             Offset += value.Length;
         }
 
+        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(char[])"/>
         public virtual void Write(char[] value) {
             EnsureCapacity(Offset + value.Length);
@@ -121,100 +124,82 @@ namespace GameBreaker.Serial {
         
         /// <inheritdoc cref="IBinaryWriter.Write(short)"/>
         public virtual void Write(short value) {
-            EnsureCapacity(Offset + 2);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
+            EnsureCapacity(Offset + sizeof(short));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, short>(ref b) = value;
+            Offset += sizeof(short);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(ushort)"/>
         public virtual void Write(ushort value) {
-            EnsureCapacity(Offset + 2);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
+            EnsureCapacity(Offset + sizeof(ushort));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, ushort>(ref b) = value;
+            Offset += sizeof(ushort);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(Int24)"/>
         public virtual void Write(Int24 value) {
-            EnsureCapacity(Offset + 3);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
+            EnsureCapacity(Offset + Int24.SIZE);
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, Int24>(ref b) = value;
+            Offset += Int24.SIZE;
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(UInt24)"/>
         public virtual void Write(UInt24 value) {
-            EnsureCapacity(Offset + 3);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
+            EnsureCapacity(Offset + UInt24.SIZE);
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, UInt24>(ref b) = value;
+            Offset += UInt24.SIZE;
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(int)"/>
         public virtual void Write(int value) {
-            EnsureCapacity(Offset + 4);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
+            EnsureCapacity(Offset + sizeof(int));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, int>(ref b) = value;
+            Offset += sizeof(int);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(uint)"/>
         public virtual void Write(uint value) {
-            EnsureCapacity(Offset + 4);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
+            EnsureCapacity(Offset + sizeof(uint));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, uint>(ref b) = value;
+            Offset += sizeof(uint);
         }
         
         /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
         public virtual void Write(long value) {
-            EnsureCapacity(Offset + 8);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 32) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 40) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 48) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 56) & 0xFF);
+            EnsureCapacity(Offset + sizeof(long));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, long>(ref b) = value;
+            Offset += sizeof(long);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(ulong)"/>
         public virtual void Write(ulong value) {
-            EnsureCapacity(Offset + 8);
-            Buffer[Offset++] = (byte)(value & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 8) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 16) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 24) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 32) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 40) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 48) & 0xFF);
-            Buffer[Offset++] = (byte)((value >> 56) & 0xFF);
+            EnsureCapacity(Offset + sizeof(ulong));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, ulong>(ref b) = value;
+            Offset += sizeof(ulong);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(float)"/>
         public virtual void Write(float value) {
-            EnsureCapacity(Offset + 4);
-            byte[] bytes = BitConverter.GetBytes(value);
-            Buffer[Offset++] = bytes[0];
-            Buffer[Offset++] = bytes[1];
-            Buffer[Offset++] = bytes[2];
-            Buffer[Offset++] = bytes[3];
+            EnsureCapacity(Offset + sizeof(float));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, float>(ref b) = value;
+            Offset += sizeof(float);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Write(double)"/>
         public virtual void Write(double value) {
-            EnsureCapacity(Offset + 8);
-            byte[] bytes = BitConverter.GetBytes(value);
-            Buffer[Offset++] = bytes[0];
-            Buffer[Offset++] = bytes[1];
-            Buffer[Offset++] = bytes[2];
-            Buffer[Offset++] = bytes[3];
-            Buffer[Offset++] = bytes[4];
-            Buffer[Offset++] = bytes[5];
-            Buffer[Offset++] = bytes[6];
-            Buffer[Offset++] = bytes[7];
+            EnsureCapacity(Offset + sizeof(double));
+            ref var b = ref Buffer[Offset];
+            Unsafe.As<byte, double>(ref b) = value;
+            Offset += sizeof(double);
         }
 
         /// <inheritdoc cref="IBinaryWriter.Flush"/>

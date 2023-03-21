@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.Write-20230319-192844</title>
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.Write-20230319-212438</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,38 +17,32 @@ BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
 AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 .NET SDK=7.0.101
   [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
-  Job-DUZNZJ : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-VZGRLD : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
 </code></pre>
 <pre><code>InvocationCount=1  UnrollFactor=1  
 </code></pre>
 
 <table>
-<thead><tr><th>                                     Method</th><th>Length</th><th>   Mean</th><th>Error</th><th> StdDev</th><th> Median</th>
+<thead><tr><th>                                     Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th>
 </tr>
-</thead><tbody><tr><td>DirectBufferWrite</td><td>100</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>100</td><td>1,102.0833 ns</td><td>106.2014 ns</td><td>306.4153 ns</td><td>1,000.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>100</td><td>1,171.4286 ns</td><td>92.8865 ns</td><td>260.4636 ns</td><td>1,100.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>100</td><td>1,488.0435 ns</td><td>149.3925 ns</td><td>421.3642 ns</td><td>1,400.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>100</td><td>1,126.5957 ns</td><td>93.5389 ns</td><td>266.8718 ns</td><td>1,100.0000 ns</td>
-</tr><tr><td>UnsafeAsPointerWrite</td><td>100</td><td>37.8947 ns</td><td>23.3961 ns</td><td>67.1279 ns</td><td>0.0000 ns</td>
-</tr><tr><td>DirectBufferWrite</td><td>100000</td><td>73.1959 ns</td><td>25.6185 ns</td><td>74.3240 ns</td><td>100.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>100000</td><td>1,246.8750 ns</td><td>108.2035 ns</td><td>312.1920 ns</td><td>1,200.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>100000</td><td>1,131.9149 ns</td><td>102.1830 ns</td><td>291.5339 ns</td><td>1,100.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>100000</td><td>1,372.0430 ns</td><td>131.2144 ns</td><td>372.2334 ns</td><td>1,400.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>100000</td><td>1,030.5263 ns</td><td>73.6848 ns</td><td>211.4155 ns</td><td>1,000.0000 ns</td>
-</tr><tr><td>UnsafeAsPointerWrite</td><td>100000</td><td>46.8750 ns</td><td>22.4636 ns</td><td>64.8125 ns</td><td>0.0000 ns</td>
-</tr><tr><td>DirectBufferWrite</td><td>100000000</td><td>720.2128 ns</td><td>145.5247 ns</td><td>415.1900 ns</td><td>700.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>100000000</td><td>3,955.2083 ns</td><td>419.0576 ns</td><td>1,209.0771 ns</td><td>3,950.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>100000000</td><td>4,253.6842 ns</td><td>410.1817 ns</td><td>1,176.8883 ns</td><td>4,000.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>100000000</td><td>4,670.5263 ns</td><td>438.9766 ns</td><td>1,259.5063 ns</td><td>4,700.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>100000000</td><td>4,587.7778 ns</td><td>491.2156 ns</td><td>1,369.3128 ns</td><td>4,300.0000 ns</td>
-</tr><tr><td>UnsafeAsPointerWrite</td><td>100000000</td><td>809.7826 ns</td><td>121.9216 ns</td><td>343.8821 ns</td><td>800.0000 ns</td>
-</tr><tr><td>DirectBufferWrite</td><td>1000000000</td><td>432.9897 ns</td><td>153.8854 ns</td><td>446.4493 ns</td><td>300.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>1000000000</td><td>5,094.0860 ns</td><td>733.4149 ns</td><td>2,080.5759 ns</td><td>4,850.0000 ns</td>
-</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>1000000000</td><td>5,105.0562 ns</td><td>592.0394 ns</td><td>1,640.5384 ns</td><td>4,750.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>1000000000</td><td>5,175.8065 ns</td><td>489.8794 ns</td><td>1,389.7062 ns</td><td>5,050.0000 ns</td>
-</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>1000000000</td><td>4,666.4835 ns</td><td>624.4923 ns</td><td>1,751.1434 ns</td><td>4,550.0000 ns</td>
-</tr><tr><td>UnsafeAsPointerWrite</td><td>1000000000</td><td>227.8947 ns</td><td>116.9482 ns</td><td>335.5462 ns</td><td>0.0000 ns</td>
+</thead><tbody><tr><td>DirectBufferWrite</td><td>1000</td><td>590.5 &mu;s</td><td>22.58 &mu;s</td><td>66.58 &mu;s</td><td>593.1 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>1000</td><td>582.9 &mu;s</td><td>28.47 &mu;s</td><td>82.13 &mu;s</td><td>553.1 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>1000</td><td>584.0 &mu;s</td><td>21.88 &mu;s</td><td>64.17 &mu;s</td><td>603.5 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>1000</td><td>595.9 &mu;s</td><td>27.58 &mu;s</td><td>79.56 &mu;s</td><td>598.5 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>1000</td><td>584.5 &mu;s</td><td>25.59 &mu;s</td><td>74.25 &mu;s</td><td>574.2 &mu;s</td>
+</tr><tr><td>UnsafeAsPointerWrite</td><td>1000</td><td>588.1 &mu;s</td><td>27.88 &mu;s</td><td>81.77 &mu;s</td><td>575.1 &mu;s</td>
+</tr><tr><td>DirectBufferWrite</td><td>100000</td><td>17,636.5 &mu;s</td><td>343.46 &mu;s</td><td>395.53 &mu;s</td><td>17,571.4 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>100000</td><td>17,637.8 &mu;s</td><td>344.02 &mu;s</td><td>337.88 &mu;s</td><td>17,637.8 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>100000</td><td>17,648.5 &mu;s</td><td>349.84 &mu;s</td><td>429.64 &mu;s</td><td>17,458.5 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>100000</td><td>17,795.9 &mu;s</td><td>355.16 &mu;s</td><td>364.72 &mu;s</td><td>17,759.1 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>100000</td><td>17,559.2 &mu;s</td><td>332.00 &mu;s</td><td>310.55 &mu;s</td><td>17,467.8 &mu;s</td>
+</tr><tr><td>UnsafeAsPointerWrite</td><td>100000</td><td>17,993.0 &mu;s</td><td>357.48 &mu;s</td><td>397.34 &mu;s</td><td>18,038.1 &mu;s</td>
+</tr><tr><td>DirectBufferWrite</td><td>1000000</td><td>166,733.3 &mu;s</td><td>3,243.93 &mu;s</td><td>3,034.37 &mu;s</td><td>164,873.1 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesArrayCopy</td><td>1000000</td><td>167,020.1 &mu;s</td><td>3,282.32 &mu;s</td><td>3,070.28 &mu;s</td><td>168,336.7 &mu;s</td>
+</tr><tr><td>BitConverterGetBytesBufferBlockCopy</td><td>1000000</td><td>167,874.5 &mu;s</td><td>3,060.98 &mu;s</td><td>2,863.24 &mu;s</td><td>168,950.5 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayArrayCopy</td><td>1000000</td><td>168,571.1 &mu;s</td><td>2,059.21 &mu;s</td><td>1,926.19 &mu;s</td><td>168,847.6 &mu;s</td>
+</tr><tr><td>BitConverterTryWriteBytesByteArrayBufferBlockCopy</td><td>1000000</td><td>168,572.6 &mu;s</td><td>2,053.39 &mu;s</td><td>1,920.74 &mu;s</td><td>168,898.6 &mu;s</td>
+</tr><tr><td>UnsafeAsPointerWrite</td><td>1000000</td><td>168,767.4 &mu;s</td><td>2,823.46 &mu;s</td><td>2,641.07 &mu;s</td><td>169,817.8 &mu;s</td>
 </tr></tbody></table>
 </body>
 </html>

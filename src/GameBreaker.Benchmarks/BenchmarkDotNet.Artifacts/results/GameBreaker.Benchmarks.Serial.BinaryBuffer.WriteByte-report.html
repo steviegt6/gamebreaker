@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteByte-20230320-214454</title>
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteByte-20230320-224316</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,7 +17,7 @@ BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
 AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 .NET SDK=7.0.101
   [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
-  Job-FBKXCO : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-RULYUL : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
 </code></pre>
 <pre><code>InvocationCount=1  UnrollFactor=1  
 </code></pre>
@@ -25,12 +25,12 @@ AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 <table>
 <thead><tr><th>            Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>DirectBufferWriteByte</td><td>1000</td><td>6.742 &mu;s</td><td>0.1016 &mu;s</td><td>0.0793 &mu;s</td><td>6.700 &mu;s</td><td>600 B</td>
-</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000</td><td>6.075 &mu;s</td><td>0.1227 &mu;s</td><td>0.2304 &mu;s</td><td>6.000 &mu;s</td><td>600 B</td>
-</tr><tr><td>DirectBufferWriteByte</td><td>100000</td><td>433.723 &mu;s</td><td>2.0318 &mu;s</td><td>1.6966 &mu;s</td><td>433.900 &mu;s</td><td>600 B</td>
-</tr><tr><td>UnsafeAsPointerWriteByte</td><td>100000</td><td>385.620 &mu;s</td><td>1.2579 &mu;s</td><td>1.1767 &mu;s</td><td>385.600 &mu;s</td><td>600 B</td>
-</tr><tr><td>DirectBufferWriteByte</td><td>1000000</td><td>3,322.415 &mu;s</td><td>60.7631 &mu;s</td><td>129.4910 &mu;s</td><td>3,403.400 &mu;s</td><td>600 B</td>
-</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000000</td><td>3,210.059 &mu;s</td><td>107.1792 &mu;s</td><td>293.4012 &mu;s</td><td>3,236.000 &mu;s</td><td>600 B</td>
+</thead><tbody><tr><td>DirectBufferWriteByte</td><td>1000</td><td>6.965 &mu;s</td><td>0.1178 &mu;s</td><td>0.2095 &mu;s</td><td>6.900 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000</td><td>6.500 &mu;s</td><td>0.2531 &mu;s</td><td>0.7139 &mu;s</td><td>6.100 &mu;s</td><td>600 B</td>
+</tr><tr><td>DirectBufferWriteByte</td><td>100000</td><td>435.042 &mu;s</td><td>3.4035 &mu;s</td><td>2.6572 &mu;s</td><td>435.050 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>100000</td><td>387.200 &mu;s</td><td>4.9529 &mu;s</td><td>3.8669 &mu;s</td><td>385.950 &mu;s</td><td>600 B</td>
+</tr><tr><td>DirectBufferWriteByte</td><td>1000000</td><td>3,357.251 &mu;s</td><td>66.9474 &mu;s</td><td>162.9592 &mu;s</td><td>3,434.600 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000000</td><td>3,368.541 &mu;s</td><td>149.1028 &mu;s</td><td>439.6330 &mu;s</td><td>3,274.750 &mu;s</td><td>600 B</td>
 </tr></tbody></table>
 </body>
 </html>

@@ -1,21 +1,46 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
+using GameBreaker.Serial;
+using GameBreaker.Tests.Serial;
 
-namespace GameBreaker.Benchmarks.Serial.BinaryBuffer; 
+namespace GameBreaker.Benchmarks.Serial.BinaryBuffer;
 
 [MemoryDiagnoser]
 public class WriteBufferRegion {
     // ReSharper disable once UnassignedField.Global
-    [Params(1_000, 100_000, 1_000_000)]
+    [Params(1_000, 100_000)]
     public int N;
-    
-    private Memory<byte>[] regions = null!;
-    
+
+    private byte[][] regions = null!;
+    private IBinaryWriter bufferRegionCopyToWriter = null!;
+    private IBinaryWriter bufferRegionUnsafePointerWriter = null!;
+
     [IterationSetup]
     public void Setup() {
-        regions = new Memory<byte>[N];
+        var size = sizeof(byte) * 1000 * N;
+        bufferRegionCopyToWriter = new BufferRegionCopyToWriter(size);
+        bufferRegionUnsafePointerWriter =
+            new BufferRegionUnsafePointerWriter(size);
         
+        regions = new byte[N][];
+
+        var rand = new Random();
+
+        for (var i = 0; i < N; i++) {
+            regions[i] = new byte[1000];
+            rand.NextBytes(regions[i]);
+        }
+    }
+
+    [Benchmark]
+    public void BufferRegionCopyTo() {
         for (var i = 0; i < N; i++)
-            regions[i] = new Memory<byte>(new byte[1]);
+            bufferRegionCopyToWriter.Write(regions[i].AsMemory());
+    }
+
+    [Benchmark]
+    public void BufferRegionUnsafePointer() {
+        for (var i = 0; i < N; i++)
+            bufferRegionUnsafePointerWriter.Write(regions[i].AsMemory());
     }
 }

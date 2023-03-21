@@ -956,7 +956,6 @@ public static class WriteTests {
     [Test]
     public static void TestWriteBufferRegion() {
         const int size = sizeof(byte) * 1000 * 100;
-
         IBinaryWriter one = new BufferRegionCopyToWriter(size);
         IBinaryWriter two = new BufferRegionUnsafePointerWriter(size);
 

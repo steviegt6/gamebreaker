@@ -69,6 +69,9 @@ namespace GameBreaker.Serial {
             Encoding = new UTF8Encoding(false);
         }
 
+        // TODO: Provide option to resize to `size` instead of `Length` * 2?
+        // Mostly for systems with lower memory that may want to minimize
+        // allocations. Detrimental to speed, however. It's a tradeoff.
         private void EnsureCapacity(int size) {
             if (Buffer.Length >= size)
                 return;

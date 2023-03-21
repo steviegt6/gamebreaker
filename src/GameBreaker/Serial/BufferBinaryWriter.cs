@@ -98,7 +98,6 @@ namespace GameBreaker.Serial {
                 Write((byte) (value ? 1 : 0));
         }
 
-        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(BufferRegion)"/>
         public virtual void Write(BufferRegion value) {
             EnsureCapacity(Offset + value.Length);
@@ -121,7 +120,7 @@ namespace GameBreaker.Serial {
             foreach (char c in value)
                 Buffer[Offset++] = Convert.ToByte(c);
         }
-        
+
         /// <inheritdoc cref="IBinaryWriter.Write(short)"/>
         public virtual void Write(short value) {
             EnsureCapacity(Offset + sizeof(short));
@@ -169,7 +168,7 @@ namespace GameBreaker.Serial {
             Unsafe.As<byte, uint>(ref b) = value;
             Offset += sizeof(uint);
         }
-        
+
         /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
         public virtual void Write(long value) {
             EnsureCapacity(Offset + sizeof(long));

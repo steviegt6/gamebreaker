@@ -105,7 +105,6 @@ namespace GameBreaker.Serial {
             Offset += value.Length;
         }
 
-        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(byte[])"/>
         public virtual void Write(byte[] value) {
             EnsureCapacity(Offset + value.Length);

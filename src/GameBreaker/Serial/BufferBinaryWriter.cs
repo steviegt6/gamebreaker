@@ -112,11 +112,12 @@ namespace GameBreaker.Serial {
             Offset += value.Length;
         }
 
-        // TODO
         /// <inheritdoc cref="IBinaryWriter.Write(char[])"/>
         public virtual void Write(char[] value) {
             EnsureCapacity(Offset + value.Length);
-            foreach (char c in value)
+            
+            // TODO: Specific encoding would be nice. What to do?
+            foreach (var c in value)
                 Buffer[Offset++] = Convert.ToByte(c);
         }
 

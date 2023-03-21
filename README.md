@@ -2,7 +2,6 @@
 
 > GameMaker reverse-engineering and modding tools.
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|
 GameBreaker is (or, rather, plans to be) a complete suite for
 reverse-engineering and modifying GameMaker games compiled to bytecode for VM
 runners.

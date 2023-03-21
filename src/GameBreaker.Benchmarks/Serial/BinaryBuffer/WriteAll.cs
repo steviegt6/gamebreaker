@@ -46,7 +46,7 @@ public class WriteAll {
                  + sizeof(ulong)
                  + sizeof(float)
                  + sizeof(double) * N;
-        directBufferWriter = new BufferBinaryWriter(size);
+        directBufferWriter = new DirectBufferWriter(size);
         getBytesArrayCopyWriter = new GetBytesArrayCopyWriter(size);
         getBytesBufferBlockCopyWriter = new GetBytesBufferBlockCopyWriter(size);
         tryWriteBytesArrayCopyWriter = new TryWriteBytesArrayCopyWriter(size);

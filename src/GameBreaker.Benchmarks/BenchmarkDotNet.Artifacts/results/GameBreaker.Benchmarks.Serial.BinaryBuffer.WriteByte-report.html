@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteByte-20230320-212450</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
+AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.101
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-ZHYCAJ : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=1  UnrollFactor=1  
+</code></pre>
+
+<table>
+<thead><tr><th>            Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>DirectBufferWriteByte</td><td>1000</td><td>7.004 &mu;s</td><td>0.1410 &mu;s</td><td>0.3788 &mu;s</td><td>6.900 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000</td><td>6.108 &mu;s</td><td>0.1143 &mu;s</td><td>0.1525 &mu;s</td><td>6.100 &mu;s</td><td>600 B</td>
+</tr><tr><td>DirectBufferWriteByte</td><td>100000</td><td>435.562 &mu;s</td><td>7.7572 &mu;s</td><td>6.4776 &mu;s</td><td>434.000 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>100000</td><td>383.592 &mu;s</td><td>2.7701 &mu;s</td><td>2.1627 &mu;s</td><td>383.450 &mu;s</td><td>600 B</td>
+</tr><tr><td>DirectBufferWriteByte</td><td>1000000</td><td>3,333.735 &mu;s</td><td>65.0795 &mu;s</td><td>134.4005 &mu;s</td><td>3,410.350 &mu;s</td><td>600 B</td>
+</tr><tr><td>UnsafeAsPointerWriteByte</td><td>1000000</td><td>3,163.484 &mu;s</td><td>78.2635 &mu;s</td><td>208.9011 &mu;s</td><td>3,243.300 &mu;s</td><td>600 B</td>
+</tr></tbody></table>
+</body>
+</html>

@@ -2,11 +2,12 @@
 using BenchmarkDotNet.Attributes;
 using GameBreaker.Serial;
 using GameBreaker.Serial.Numerics;
+using GameBreaker.Tests.Serial;
 
 namespace GameBreaker.Benchmarks.Serial.BinaryBuffer;
 
 [MemoryDiagnoser]
-public class Write {
+public class WriteAll {
     // ReSharper disable once UnassignedField.Global
     [Params(1_000, 100_000, 1_000_000)]
     public int N;
@@ -32,7 +33,8 @@ public class Write {
 
     [IterationSetup]
     public void Setup() {
-        var size = sizeof(bool)
+        var size = sizeof(bool) // narrow boolean
+                 + sizeof(int) // wide boolean
                  + sizeof(byte)
                  + sizeof(short)
                  + sizeof(ushort)
@@ -45,11 +47,11 @@ public class Write {
                  + sizeof(float)
                  + sizeof(double) * N;
         directBufferWriter = new BufferBinaryWriter(size);
-        getBytesArrayCopyWriter = new BufferBinaryWriter(size);
-        getBytesBufferBlockCopyWriter = new BufferBinaryWriter(size);
-        tryWriteBytesArrayCopyWriter = new BufferBinaryWriter(size);
-        tryWriteBytesBlockCopyWriter = new BufferBinaryWriter(size);
-        unsafeAsPointerWriter = new BufferBinaryWriter(size);
+        getBytesArrayCopyWriter = new GetBytesArrayCopyWriter(size);
+        getBytesBufferBlockCopyWriter = new GetBytesBufferBlockCopyWriter(size);
+        tryWriteBytesArrayCopyWriter = new TryWriteBytesArrayCopyWriter(size);
+        tryWriteBytesBlockCopyWriter = new TryWriteBytesBlockCopyWriter(size);
+        unsafeAsPointerWriter = new UnsafeAsPointerWriter(size);
 
         b = new bool[N];
         u8 = new byte[N];
@@ -85,7 +87,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void DirectBufferWrite() {
+    public void DirectBufferWriteAll() {
         for (var i = 0; i < N; i++) {
             directBufferWriter.Write(b[i], wide: false);
             directBufferWriter.Write(b[i], wide: true);
@@ -104,7 +106,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void BitConverterGetBytesArrayCopy() {
+    public void BitConverterGetBytesArrayCopyAll() {
         for (var i = 0; i < N; i++) {
             getBytesArrayCopyWriter.Write(b[i], wide: false);
             getBytesArrayCopyWriter.Write(b[i], wide: true);
@@ -123,7 +125,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void BitConverterGetBytesBufferBlockCopy() {
+    public void BitConverterGetBytesBufferBlockCopyAll() {
         for (var i = 0; i < N; i++) {
             getBytesBufferBlockCopyWriter.Write(b[i], wide: false);
             getBytesBufferBlockCopyWriter.Write(b[i], wide: true);
@@ -142,7 +144,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void BitConverterTryWriteBytesByteArrayArrayCopy() {
+    public void BitConverterTryWriteBytesByteArrayArrayCopyAll() {
         for (var i = 0; i < N; i++) {
             tryWriteBytesArrayCopyWriter.Write(b[i], wide: false);
             tryWriteBytesArrayCopyWriter.Write(b[i], wide: true);
@@ -161,7 +163,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void BitConverterTryWriteBytesByteArrayBufferBlockCopy() {
+    public void BitConverterTryWriteBytesByteArrayBufferBlockCopyAll() {
         for (var i = 0; i < N; i++) {
             tryWriteBytesBlockCopyWriter.Write(b[i], wide: false);
             tryWriteBytesBlockCopyWriter.Write(b[i], wide: true);
@@ -180,7 +182,7 @@ public class Write {
     }
 
     [Benchmark]
-    public void UnsafeAsPointerWrite() {
+    public void UnsafeAsPointerWriteAll() {
         for (var i = 0; i < N; i++) {
             unsafeAsPointerWriter.Write(b[i], wide: false);
             unsafeAsPointerWriter.Write(b[i], wide: true);

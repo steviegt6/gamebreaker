@@ -681,7 +681,8 @@ public sealed class UnsafeAsPointerWriter : AbstractBinaryWriter {
 public static class WriteTests {
     [Test]
     public static void TestWrite() {
-        const int size = sizeof(bool)
+        const int size = sizeof(bool) // narrow boolean
+                       + sizeof(int) // wide boolean
                        + sizeof(byte)
                        + sizeof(short)
                        + sizeof(ushort)

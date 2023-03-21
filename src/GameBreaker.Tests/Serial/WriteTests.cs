@@ -833,7 +833,7 @@ public sealed class BufferRegionUnsafeSimdWriter : AbstractBinaryWriter {
                 Sse2.LoadVector128(pValue + 16).Store(pBuffer + offset + 16);
                 Sse2.LoadVector128(pValue + 32).Store(pBuffer + offset + 32);
                 Sse2.LoadVector128(pValue + 48).Store(pBuffer + offset + 48);
-                
+
                 offset += 64;
                 pValue += 64;
                 remaining -= 64;
@@ -852,6 +852,270 @@ public sealed class BufferRegionUnsafeSimdWriter : AbstractBinaryWriter {
 
     public override void Write(byte[] value) {
         throw new NotImplementedException();
+    }
+
+    public override void Write(char[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(short value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ushort value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Int24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(UInt24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(int value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(uint value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(long value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ulong value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(float value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(double value) {
+        throw new NotImplementedException();
+    }
+}
+
+public sealed class ByteArrayArrayCopyWriter : AbstractBinaryWriter {
+    public ByteArrayArrayCopyWriter(int size) : base(size) { }
+
+    public override void Write(byte value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Memory<byte> value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(byte[] value) {
+        EnsureCapacity(Offset + value.Length);
+        Array.Copy(value, 0, Buffer, Offset, value.Length);
+        Offset += value.Length;
+    }
+
+    public override void Write(char[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(short value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ushort value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Int24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(UInt24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(int value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(uint value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(long value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ulong value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(float value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(double value) {
+        throw new NotImplementedException();
+    }
+}
+
+public sealed class ByteArrayBufferBlockCopyWriter : AbstractBinaryWriter {
+    public ByteArrayBufferBlockCopyWriter(int size) : base(size) { }
+
+    public override void Write(byte value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Memory<byte> value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(byte[] value) {
+        EnsureCapacity(Offset + value.Length);
+        System.Buffer.BlockCopy(value, 0, Buffer, Offset, value.Length);
+        Offset += value.Length;
+    }
+
+    public override void Write(char[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(short value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ushort value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Int24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(UInt24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(int value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(uint value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(long value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ulong value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(float value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(double value) {
+        throw new NotImplementedException();
+    }
+}
+
+public sealed class ByteArrayUnsafePointerWriter : AbstractBinaryWriter {
+    public ByteArrayUnsafePointerWriter(int size) : base(size) { }
+
+    public override void Write(byte value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Memory<byte> value) {
+        throw new NotImplementedException();
+    }
+
+    public override unsafe void Write(byte[] value) {
+        EnsureCapacity(Offset + value.Length);
+
+        fixed (byte* pSrc = value)
+        fixed (byte* pDst = Buffer) {
+            var pSrcByte = pSrc;
+            var pDstByte = pDst + Offset;
+
+            for (var i = 0; i < value.Length; i++) {
+                *pDstByte = *pSrcByte;
+                pDstByte++;
+                pSrcByte++;
+            }
+        }
+
+        Offset += value.Length;
+    }
+
+    public override void Write(char[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(short value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ushort value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Int24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(UInt24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(int value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(uint value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(long value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ulong value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(float value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(double value) {
+        throw new NotImplementedException();
+    }
+}
+
+public sealed class ByteArrayUnsafeCopyBlockWriter : AbstractBinaryWriter {
+    public ByteArrayUnsafeCopyBlockWriter(int size) : base(size) { }
+
+    public override void Write(byte value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Memory<byte> value) {
+        throw new NotImplementedException();
+    }
+
+    public override unsafe void Write(byte[] value) {
+        EnsureCapacity(Offset + value.Length);
+
+        fixed (byte* pSrc = value)
+        fixed (byte* pDst = Buffer)
+            Unsafe.CopyBlock(pDst + Offset, pSrc, (uint) value.Length);
+
+        Offset += value.Length;
     }
 
     public override void Write(char[] value) {
@@ -1040,7 +1304,7 @@ public static class WriteTests {
             Assert.That(sixBytes, Is.EqualTo(oneBytes));
         });
     }
-    
+
     [Test]
     public static void TestWriteBufferRegion() {
         const int size = sizeof(byte) * 1000 * 100;
@@ -1059,13 +1323,44 @@ public static class WriteTests {
             two.Write(memory);
             three.Write(memory);
         }
-        
+
         var oneBytes = one.Buffer;
         var twoBytes = two.Buffer;
         var threeBytes = three.Buffer;
         Assert.Multiple(() => {
             Assert.That(twoBytes, Is.EqualTo(oneBytes));
             Assert.That(threeBytes, Is.EqualTo(oneBytes));
+        });
+    }
+
+    [Test]
+    public static void TestWriteByteArray() {
+        const int size = sizeof(byte) * 1000 * 100;
+        IBinaryWriter one = new ByteArrayArrayCopyWriter(size);
+        IBinaryWriter two = new ByteArrayBufferBlockCopyWriter(size);
+        IBinaryWriter three = new ByteArrayUnsafePointerWriter(size);
+        IBinaryWriter four = new ByteArrayUnsafeCopyBlockWriter(size);
+
+        var rand = new Random();
+
+        for (var i = 0; i < 1000; i++) {
+            var buffer = new byte[100];
+            rand.NextBytes(buffer);
+
+            one.Write(buffer);
+            two.Write(buffer);
+            three.Write(buffer);
+            four.Write(buffer);
+        }
+
+        var oneBytes = one.Buffer;
+        var twoBytes = two.Buffer;
+        var threeBytes = three.Buffer;
+        var fourBytes = four.Buffer;
+        Assert.Multiple(() => {
+            Assert.That(twoBytes, Is.EqualTo(oneBytes));
+            Assert.That(threeBytes, Is.EqualTo(oneBytes));
+            Assert.That(fourBytes, Is.EqualTo(oneBytes));
         });
     }
 }

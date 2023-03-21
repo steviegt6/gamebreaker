@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteByteArray-20230321-160306</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
+AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.101
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-HUUWBV : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=1  UnrollFactor=1  
+</code></pre>
+
+<table>
+<thead><tr><th>            Method</th><th>N</th><th> Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>ByteArrayArrayCopy</td><td>1000</td><td>167.4 &mu;s</td><td>41.52 &mu;s</td><td>122.4 &mu;s</td><td>176.6 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayBufferBlockCopy</td><td>1000</td><td>186.8 &mu;s</td><td>45.90 &mu;s</td><td>135.3 &mu;s</td><td>201.2 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayUnsafePointer</td><td>1000</td><td>1,460.2 &mu;s</td><td>313.91 &mu;s</td><td>925.6 &mu;s</td><td>2,037.8 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayUnsafeCopyBlock</td><td>1000</td><td>176.4 &mu;s</td><td>49.56 &mu;s</td><td>145.4 &mu;s</td><td>117.7 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayArrayCopy</td><td>100000</td><td>13,965.2 &mu;s</td><td>267.39 &mu;s</td><td>307.9 &mu;s</td><td>13,972.9 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayBufferBlockCopy</td><td>100000</td><td>13,779.6 &mu;s</td><td>263.12 &mu;s</td><td>332.8 &mu;s</td><td>13,810.8 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayUnsafePointer</td><td>100000</td><td>24,361.0 &mu;s</td><td>394.36 &mu;s</td><td>349.6 &mu;s</td><td>24,196.0 &mu;s</td><td>600 B</td>
+</tr><tr><td>ByteArrayUnsafeCopyBlock</td><td>100000</td><td>17,400.1 &mu;s</td><td>340.31 &mu;s</td><td>559.1 &mu;s</td><td>17,401.7 &mu;s</td><td>600 B</td>
+</tr></tbody></table>
+</body>
+</html>

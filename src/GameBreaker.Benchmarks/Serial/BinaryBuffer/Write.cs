@@ -11,18 +11,18 @@ public class Write {
     [Params(1_000, 100_000, 1_000_000)]
     public int N;
 
-    private bool b;
-    private byte u8;
-    private short i16;
-    private ushort u16;
-    private Int24 i24;
-    private UInt24 u24;
-    private int i32;
-    private uint u32;
-    private long i64;
-    private ulong u64;
-    private float f32;
-    private double f64;
+    private bool[] b = null!;
+    private byte[] u8 = null!;
+    private short[] i16 = null!;
+    private ushort[] u16 = null!;
+    private Int24[] i24 = null!;
+    private UInt24[] u24 = null!;
+    private int[] i32 = null!;
+    private uint[] u32 = null!;
+    private long[] i64 = null!;
+    private ulong[] u64 = null!;
+    private float[] f32 = null!;
+    private double[] f64 = null!;
     private IBinaryWriter directBufferWriter = null!;
     private IBinaryWriter getBytesArrayCopyWriter = null!;
     private IBinaryWriter getBytesBufferBlockCopyWriter = null!;
@@ -51,134 +51,150 @@ public class Write {
         tryWriteBytesBlockCopyWriter = new BufferBinaryWriter(size);
         unsafeAsPointerWriter = new BufferBinaryWriter(size);
 
+        b = new bool[N];
+        u8 = new byte[N];
+        i16 = new short[N];
+        u16 = new ushort[N];
+        i24 = new Int24[N];
+        u24 = new UInt24[N];
+        i32 = new int[N];
+        u32 = new uint[N];
+        i64 = new long[N];
+        u64 = new ulong[N];
+        f32 = new float[N];
+        f64 = new double[N];
+
         var rand = new Random();
-        b = rand.Next(0, 2) == 0;
-        u8 = (byte)rand.Next(byte.MinValue, byte.MaxValue);
-        i16 = (short)rand.Next(short.MinValue, short.MaxValue);
-        u16 = (ushort)rand.Next(ushort.MinValue, ushort.MaxValue);
-        i24 = new Int24(rand.Next(Int24.MinValue, Int24.MaxValue));
-        u24 = new UInt24((uint) rand.Next(0, (int) UInt24.MaxValue));
-        i32 = rand.Next(int.MinValue, int.MaxValue);
-        u32 = (uint)rand.Next(int.MinValue, int.MaxValue);
-        i64 = (long)rand.Next(int.MinValue, int.MaxValue) << 32
-            | (uint)rand.Next(int.MinValue, int.MaxValue);
-        u64 = (ulong)rand.Next(int.MinValue, int.MaxValue) << 32
-            | (uint)rand.Next(int.MinValue, int.MaxValue);
-        f32 = (float)rand.NextDouble();
-        f64 = rand.NextDouble();
+
+        for (var i = 0; i < N; i++) {
+            b[i] = rand.Next(0, 2) == 0;
+            u8[i] = (byte)rand.Next(byte.MinValue, byte.MaxValue);
+            i16[i] = (short)rand.Next(short.MinValue, short.MaxValue);
+            u16[i] = (ushort)rand.Next(ushort.MinValue, ushort.MaxValue);
+            i24[i] = new Int24(rand.Next(Int24.MinValue, Int24.MaxValue));
+            u24[i] = new UInt24((uint) rand.Next(0, (int) UInt24.MaxValue));
+            i32[i] = rand.Next(int.MinValue, int.MaxValue);
+            u32[i] = (uint)rand.Next(int.MinValue, int.MaxValue);
+            i64[i] = (long)rand.Next(int.MinValue, int.MaxValue) << 32
+                   | (uint)rand.Next(int.MinValue, int.MaxValue);
+            u64[i] = (ulong)rand.Next(int.MinValue, int.MaxValue) << 32
+                   | (uint)rand.Next(int.MinValue, int.MaxValue);
+            f32[i] = (float)rand.NextDouble();
+            f64[i] = rand.NextDouble();
+        }
     }
 
     [Benchmark]
     public void DirectBufferWrite() {
         for (var i = 0; i < N; i++) {
-            directBufferWriter.Write(b, wide: false);
-            directBufferWriter.Write(b, wide: true);
-            directBufferWriter.Write(u8);
-            directBufferWriter.Write(i16);
-            directBufferWriter.Write(u16);
-            directBufferWriter.Write(i24);
-            directBufferWriter.Write(u24);
-            directBufferWriter.Write(i32);
-            directBufferWriter.Write(u32);
-            directBufferWriter.Write(i64);
-            directBufferWriter.Write(u64);
-            directBufferWriter.Write(f32);
-            directBufferWriter.Write(f64);
+            directBufferWriter.Write(b[i], wide: false);
+            directBufferWriter.Write(b[i], wide: true);
+            directBufferWriter.Write(u8[i]);
+            directBufferWriter.Write(i16[i]);
+            directBufferWriter.Write(u16[i]);
+            directBufferWriter.Write(i24[i]);
+            directBufferWriter.Write(u24[i]);
+            directBufferWriter.Write(i32[i]);
+            directBufferWriter.Write(u32[i]);
+            directBufferWriter.Write(i64[i]);
+            directBufferWriter.Write(u64[i]);
+            directBufferWriter.Write(f32[i]);
+            directBufferWriter.Write(f64[i]);
         }
     }
 
     [Benchmark]
     public void BitConverterGetBytesArrayCopy() {
         for (var i = 0; i < N; i++) {
-            getBytesArrayCopyWriter.Write(b, wide: false);
-            getBytesArrayCopyWriter.Write(b, wide: true);
-            getBytesArrayCopyWriter.Write(u8);
-            getBytesArrayCopyWriter.Write(i16);
-            getBytesArrayCopyWriter.Write(u16);
-            getBytesArrayCopyWriter.Write(i24);
-            getBytesArrayCopyWriter.Write(u24);
-            getBytesArrayCopyWriter.Write(i32);
-            getBytesArrayCopyWriter.Write(u32);
-            getBytesArrayCopyWriter.Write(i64);
-            getBytesArrayCopyWriter.Write(u64);
-            getBytesArrayCopyWriter.Write(f32);
-            getBytesArrayCopyWriter.Write(f64);
+            getBytesArrayCopyWriter.Write(b[i], wide: false);
+            getBytesArrayCopyWriter.Write(b[i], wide: true);
+            getBytesArrayCopyWriter.Write(u8[i]);
+            getBytesArrayCopyWriter.Write(i16[i]);
+            getBytesArrayCopyWriter.Write(u16[i]);
+            getBytesArrayCopyWriter.Write(i24[i]);
+            getBytesArrayCopyWriter.Write(u24[i]);
+            getBytesArrayCopyWriter.Write(i32[i]);
+            getBytesArrayCopyWriter.Write(u32[i]);
+            getBytesArrayCopyWriter.Write(i64[i]);
+            getBytesArrayCopyWriter.Write(u64[i]);
+            getBytesArrayCopyWriter.Write(f32[i]);
+            getBytesArrayCopyWriter.Write(f64[i]);
         }
     }
 
     [Benchmark]
     public void BitConverterGetBytesBufferBlockCopy() {
         for (var i = 0; i < N; i++) {
-            getBytesBufferBlockCopyWriter.Write(b, wide: false);
-            getBytesBufferBlockCopyWriter.Write(b, wide: true);
-            getBytesBufferBlockCopyWriter.Write(u8);
-            getBytesBufferBlockCopyWriter.Write(i16);
-            getBytesBufferBlockCopyWriter.Write(u16);
-            getBytesBufferBlockCopyWriter.Write(i24);
-            getBytesBufferBlockCopyWriter.Write(u24);
-            getBytesBufferBlockCopyWriter.Write(i32);
-            getBytesBufferBlockCopyWriter.Write(u32);
-            getBytesBufferBlockCopyWriter.Write(i64);
-            getBytesBufferBlockCopyWriter.Write(u64);
-            getBytesBufferBlockCopyWriter.Write(f32);
-            getBytesBufferBlockCopyWriter.Write(f64);
+            getBytesBufferBlockCopyWriter.Write(b[i], wide: false);
+            getBytesBufferBlockCopyWriter.Write(b[i], wide: true);
+            getBytesBufferBlockCopyWriter.Write(u8[i]);
+            getBytesBufferBlockCopyWriter.Write(i16[i]);
+            getBytesBufferBlockCopyWriter.Write(u16[i]);
+            getBytesBufferBlockCopyWriter.Write(i24[i]);
+            getBytesBufferBlockCopyWriter.Write(u24[i]);
+            getBytesBufferBlockCopyWriter.Write(i32[i]);
+            getBytesBufferBlockCopyWriter.Write(u32[i]);
+            getBytesBufferBlockCopyWriter.Write(i64[i]);
+            getBytesBufferBlockCopyWriter.Write(u64[i]);
+            getBytesBufferBlockCopyWriter.Write(f32[i]);
+            getBytesBufferBlockCopyWriter.Write(f64[i]);
         }
     }
 
     [Benchmark]
     public void BitConverterTryWriteBytesByteArrayArrayCopy() {
         for (var i = 0; i < N; i++) {
-            tryWriteBytesArrayCopyWriter.Write(b, wide: false);
-            tryWriteBytesArrayCopyWriter.Write(b, wide: true);
-            tryWriteBytesArrayCopyWriter.Write(u8);
-            tryWriteBytesArrayCopyWriter.Write(i16);
-            tryWriteBytesArrayCopyWriter.Write(u16);
-            tryWriteBytesArrayCopyWriter.Write(i24);
-            tryWriteBytesArrayCopyWriter.Write(u24);
-            tryWriteBytesArrayCopyWriter.Write(i32);
-            tryWriteBytesArrayCopyWriter.Write(u32);
-            tryWriteBytesArrayCopyWriter.Write(i64);
-            tryWriteBytesArrayCopyWriter.Write(u64);
-            tryWriteBytesArrayCopyWriter.Write(f32);
-            tryWriteBytesArrayCopyWriter.Write(f64);
+            tryWriteBytesArrayCopyWriter.Write(b[i], wide: false);
+            tryWriteBytesArrayCopyWriter.Write(b[i], wide: true);
+            tryWriteBytesArrayCopyWriter.Write(u8[i]);
+            tryWriteBytesArrayCopyWriter.Write(i16[i]);
+            tryWriteBytesArrayCopyWriter.Write(u16[i]);
+            tryWriteBytesArrayCopyWriter.Write(i24[i]);
+            tryWriteBytesArrayCopyWriter.Write(u24[i]);
+            tryWriteBytesArrayCopyWriter.Write(i32[i]);
+            tryWriteBytesArrayCopyWriter.Write(u32[i]);
+            tryWriteBytesArrayCopyWriter.Write(i64[i]);
+            tryWriteBytesArrayCopyWriter.Write(u64[i]);
+            tryWriteBytesArrayCopyWriter.Write(f32[i]);
+            tryWriteBytesArrayCopyWriter.Write(f64[i]);
         }
     }
 
     [Benchmark]
     public void BitConverterTryWriteBytesByteArrayBufferBlockCopy() {
         for (var i = 0; i < N; i++) {
-            tryWriteBytesBlockCopyWriter.Write(b, wide: false);
-            tryWriteBytesBlockCopyWriter.Write(b, wide: true);
-            tryWriteBytesBlockCopyWriter.Write(u8);
-            tryWriteBytesBlockCopyWriter.Write(i16);
-            tryWriteBytesBlockCopyWriter.Write(u16);
-            tryWriteBytesBlockCopyWriter.Write(i24);
-            tryWriteBytesBlockCopyWriter.Write(u24);
-            tryWriteBytesBlockCopyWriter.Write(i32);
-            tryWriteBytesBlockCopyWriter.Write(u32);
-            tryWriteBytesBlockCopyWriter.Write(i64);
-            tryWriteBytesBlockCopyWriter.Write(u64);
-            tryWriteBytesBlockCopyWriter.Write(f32);
-            tryWriteBytesBlockCopyWriter.Write(f64);
+            tryWriteBytesBlockCopyWriter.Write(b[i], wide: false);
+            tryWriteBytesBlockCopyWriter.Write(b[i], wide: true);
+            tryWriteBytesBlockCopyWriter.Write(u8[i]);
+            tryWriteBytesBlockCopyWriter.Write(i16[i]);
+            tryWriteBytesBlockCopyWriter.Write(u16[i]);
+            tryWriteBytesBlockCopyWriter.Write(i24[i]);
+            tryWriteBytesBlockCopyWriter.Write(u24[i]);
+            tryWriteBytesBlockCopyWriter.Write(i32[i]);
+            tryWriteBytesBlockCopyWriter.Write(u32[i]);
+            tryWriteBytesBlockCopyWriter.Write(i64[i]);
+            tryWriteBytesBlockCopyWriter.Write(u64[i]);
+            tryWriteBytesBlockCopyWriter.Write(f32[i]);
+            tryWriteBytesBlockCopyWriter.Write(f64[i]);
         }
     }
 
     [Benchmark]
     public void UnsafeAsPointerWrite() {
         for (var i = 0; i < N; i++) {
-            unsafeAsPointerWriter.Write(b, wide: false);
-            unsafeAsPointerWriter.Write(b, wide: true);
-            unsafeAsPointerWriter.Write(u8);
-            unsafeAsPointerWriter.Write(i16);
-            unsafeAsPointerWriter.Write(u16);
-            unsafeAsPointerWriter.Write(i24);
-            unsafeAsPointerWriter.Write(u24);
-            unsafeAsPointerWriter.Write(i32);
-            unsafeAsPointerWriter.Write(u32);
-            unsafeAsPointerWriter.Write(i64);
-            unsafeAsPointerWriter.Write(u64);
-            unsafeAsPointerWriter.Write(f32);
-            unsafeAsPointerWriter.Write(f64);
+            unsafeAsPointerWriter.Write(b[i], wide: false);
+            unsafeAsPointerWriter.Write(b[i], wide: true);
+            unsafeAsPointerWriter.Write(u8[i]);
+            unsafeAsPointerWriter.Write(i16[i]);
+            unsafeAsPointerWriter.Write(u16[i]);
+            unsafeAsPointerWriter.Write(i24[i]);
+            unsafeAsPointerWriter.Write(u24[i]);
+            unsafeAsPointerWriter.Write(i32[i]);
+            unsafeAsPointerWriter.Write(u32[i]);
+            unsafeAsPointerWriter.Write(i64[i]);
+            unsafeAsPointerWriter.Write(u64[i]);
+            unsafeAsPointerWriter.Write(f32[i]);
+            unsafeAsPointerWriter.Write(f64[i]);
         }
     }
 }

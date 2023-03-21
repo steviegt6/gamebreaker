@@ -28,25 +28,20 @@ namespace GameBreaker.Serial.Numerics;
 /// <summary>
 ///     Represents a 24-bit signed integer.
 /// </summary>
-[StructLayout(LayoutKind.Explicit, Size = SIZE)]
+[StructLayout(LayoutKind.Sequential, Pack = 1, Size = SIZE)]
 public struct Int24 {
     /// <summary>
     ///     The size of an Int24 in bytes.
     /// </summary>
     public const int SIZE = 3;
-    
+
     /// <summary>
     ///     Represents the number zero.
     /// </summary>
     public static readonly Int24 Zero = new(0);
-    
-    [FieldOffset(0)]
+
     private readonly byte b1;
-
-    [FieldOffset(1)]
     private readonly byte b2;
-
-    [FieldOffset(2)]
     private readonly byte b3;
 
     // ReSharper disable once InconsistentNaming

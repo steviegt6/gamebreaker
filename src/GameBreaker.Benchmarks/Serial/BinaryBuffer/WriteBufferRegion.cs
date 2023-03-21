@@ -14,6 +14,7 @@ public class WriteBufferRegion {
     private byte[][] regions = null!;
     private IBinaryWriter bufferRegionCopyToWriter = null!;
     private IBinaryWriter bufferRegionUnsafePointerWriter = null!;
+    private IBinaryWriter bufferRegionUnsafeSimdWriter = null!;
 
     [IterationSetup]
     public void Setup() {
@@ -21,6 +22,7 @@ public class WriteBufferRegion {
         bufferRegionCopyToWriter = new BufferRegionCopyToWriter(size);
         bufferRegionUnsafePointerWriter =
             new BufferRegionUnsafePointerWriter(size);
+        bufferRegionUnsafeSimdWriter = new BufferRegionUnsafeSimdWriter(size);
         
         regions = new byte[N][];
 
@@ -42,5 +44,11 @@ public class WriteBufferRegion {
     public void BufferRegionUnsafePointer() {
         for (var i = 0; i < N; i++)
             bufferRegionUnsafePointerWriter.Write(regions[i].AsMemory());
+    }
+    
+    [Benchmark]
+    public void BufferRegionUnsafeSimd() {
+        for (var i = 0; i < N; i++)
+            bufferRegionUnsafeSimdWriter.Write(regions[i].AsMemory());
     }
 }

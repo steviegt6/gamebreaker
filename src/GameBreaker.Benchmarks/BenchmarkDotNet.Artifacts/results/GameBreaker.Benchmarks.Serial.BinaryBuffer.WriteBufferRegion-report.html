@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteBufferRegion-20230320-224307</title>
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.WriteBufferRegion-20230320-225917</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,7 +17,7 @@ BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
 AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 .NET SDK=7.0.101
   [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
-  Job-RULYUL : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-QQFSYG : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
 </code></pre>
 <pre><code>InvocationCount=1  UnrollFactor=1  
 </code></pre>
@@ -25,10 +25,12 @@ AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 <table>
 <thead><tr><th>             Method</th><th>N</th><th> Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>BufferRegionCopyTo</td><td>1000</td><td>182.8 &mu;s</td><td>46.12 &mu;s</td><td>136.0 &mu;s</td><td>171.4 &mu;s</td><td>600 B</td>
-</tr><tr><td>BufferRegionUnsafePointer</td><td>1000</td><td>1,726.8 &mu;s</td><td>289.85 &mu;s</td><td>854.6 &mu;s</td><td>2,162.6 &mu;s</td><td>600 B</td>
-</tr><tr><td>BufferRegionCopyTo</td><td>100000</td><td>12,856.2 &mu;s</td><td>183.29 &mu;s</td><td>153.1 &mu;s</td><td>12,843.8 &mu;s</td><td>600 B</td>
-</tr><tr><td>BufferRegionUnsafePointer</td><td>100000</td><td>45,311.3 &mu;s</td><td>152.93 &mu;s</td><td>143.1 &mu;s</td><td>45,308.9 &mu;s</td><td>600 B</td>
+</thead><tbody><tr><td>BufferRegionCopyTo</td><td>1000</td><td>176.8 &mu;s</td><td>44.08 &mu;s</td><td>130.0 &mu;s</td><td>162.6 &mu;s</td><td>600 B</td>
+</tr><tr><td>BufferRegionUnsafePointer</td><td>1000</td><td>1,718.1 &mu;s</td><td>282.19 &mu;s</td><td>832.0 &mu;s</td><td>2,123.1 &mu;s</td><td>600 B</td>
+</tr><tr><td>BufferRegionUnsafeSimd</td><td>1000</td><td>287.5 &mu;s</td><td>48.64 &mu;s</td><td>142.6 &mu;s</td><td>203.7 &mu;s</td><td>600 B</td>
+</tr><tr><td>BufferRegionCopyTo</td><td>100000</td><td>12,910.9 &mu;s</td><td>250.28 &mu;s</td><td>350.9 &mu;s</td><td>12,750.3 &mu;s</td><td>600 B</td>
+</tr><tr><td>BufferRegionUnsafePointer</td><td>100000</td><td>44,941.9 &mu;s</td><td>194.12 &mu;s</td><td>172.1 &mu;s</td><td>44,989.7 &mu;s</td><td>600 B</td>
+</tr><tr><td>BufferRegionUnsafeSimd</td><td>100000</td><td>14,719.6 &mu;s</td><td>278.08 &mu;s</td><td>246.5 &mu;s</td><td>14,639.7 &mu;s</td><td>600 B</td>
 </tr></tbody></table>
 </body>
 </html>

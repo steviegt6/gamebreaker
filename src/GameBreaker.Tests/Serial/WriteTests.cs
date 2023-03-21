@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using GameBreaker.Serial;
 using GameBreaker.Serial.Numerics;
@@ -811,6 +813,92 @@ public sealed class BufferRegionUnsafePointerWriter : AbstractBinaryWriter {
     }
 }
 
+public sealed class BufferRegionUnsafeSimdWriter : AbstractBinaryWriter {
+    public BufferRegionUnsafeSimdWriter(int size) : base(size) { }
+
+    public override void Write(byte value) {
+        throw new NotImplementedException();
+    }
+
+    public override unsafe void Write(Memory<byte> value) {
+        fixed (byte* pBuffer = Buffer)
+        fixed (byte* pSpan = value.Span) {
+            var pValue = pSpan;
+            var length = value.Length;
+            var remaining = length;
+            var offset = Offset;
+
+            while (remaining >= 64) {
+                Sse2.LoadVector128(pValue).Store(pBuffer + offset);
+                Sse2.LoadVector128(pValue + 16).Store(pBuffer + offset + 16);
+                Sse2.LoadVector128(pValue + 32).Store(pBuffer + offset + 32);
+                Sse2.LoadVector128(pValue + 48).Store(pBuffer + offset + 48);
+                
+                offset += 64;
+                pValue += 64;
+                remaining -= 64;
+            }
+
+            while (remaining > 0) {
+                pBuffer[offset] = *pValue;
+                offset++;
+                pValue++;
+                remaining--;
+            }
+
+            Offset = offset;
+        }
+    }
+
+    public override void Write(byte[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(char[] value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(short value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ushort value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Int24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(UInt24 value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(int value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(uint value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(long value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(ulong value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(float value) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(double value) {
+        throw new NotImplementedException();
+    }
+}
+
 [TestFixture]
 public static class WriteTests {
     [Test]
@@ -958,6 +1046,7 @@ public static class WriteTests {
         const int size = sizeof(byte) * 1000 * 100;
         IBinaryWriter one = new BufferRegionCopyToWriter(size);
         IBinaryWriter two = new BufferRegionUnsafePointerWriter(size);
+        IBinaryWriter three = new BufferRegionUnsafeSimdWriter(size);
 
         var rand = new Random();
 
@@ -968,10 +1057,15 @@ public static class WriteTests {
 
             one.Write(memory);
             two.Write(memory);
+            three.Write(memory);
         }
         
         var oneBytes = one.Buffer;
         var twoBytes = two.Buffer;
-        Assert.That(twoBytes, Is.EqualTo(oneBytes));
+        var threeBytes = three.Buffer;
+        Assert.Multiple(() => {
+            Assert.That(twoBytes, Is.EqualTo(oneBytes));
+            Assert.That(threeBytes, Is.EqualTo(oneBytes));
+        });
     }
 }

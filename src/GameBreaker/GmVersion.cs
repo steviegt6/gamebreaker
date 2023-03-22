@@ -31,7 +31,7 @@ namespace GameBreaker;
 ///     and it is instead inferred by changes to the IFF format (new/removed
 ///     chunks, modified chunks, etc.).
 /// </summary>
-public record GmVersion(
+public sealed record GmVersion(
     int Major = 0,
     int Minor = 0,
     int Release = 0,

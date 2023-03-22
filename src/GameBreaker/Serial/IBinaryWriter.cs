@@ -113,11 +113,24 @@ public interface IBinaryWriter : IPositionable,
 ///     Extension methods for <see cref="IBinaryWriter"/>.
 /// </summary>
 public static class BinaryWriterExtensions {
+    /// <summary>
+    ///     Writes a dummy 32-bit integer and returns the new offset.
+    /// </summary>
+    /// <param name="writer">The writer to use.</param>
+    /// <returns>The new offset.</returns>
+    /// <seealso cref="EndLength"/>
     public static int BeginLength(this IBinaryWriter writer) {
         writer.Write(0xBADD0660);
         return writer.Offset;
     }
 
+    /// <summary>
+    ///     Writes the length of the block to the start of the block, indicated
+    ///     by <paramref name="start"/>.
+    /// </summary>
+    /// <param name="writer">The writer to use.</param>
+    /// <param name="start">The start of this length-recorded block.</param>
+    /// <seealso cref="BeginLength"/>
     public static void EndLength(this IBinaryWriter writer, int start) {
         var offset = writer.Offset;
         writer.Offset = start - sizeof(int);
@@ -125,6 +138,13 @@ public static class BinaryWriterExtensions {
         writer.Offset = offset;
     }
 
+    // TODO: WriteAt extensions for all types?
+    /// <summary>
+    ///     Writes a 32-bit signed integer at the given offset.
+    /// </summary>
+    /// <param name="writer">The writer to use.</param>
+    /// <param name="value">The value to write.</param>
+    /// <param name="offset">The offset to write at.</param>
     public static void WriteAt(
         this IBinaryWriter writer,
         int value,

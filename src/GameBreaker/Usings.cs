@@ -20,4 +20,10 @@
  * SOFTWARE.
  */
 
+// Historically, BufferRegion was a wrapper around Memory<byte>. However, this
+// was unnecessary as Memory<byte> effectively accomplishes what BufferRegion
+// set out to do -- provide a way to pass slices of a buffer around while still
+// receiving changes to the original buffer. As such, BufferRegion has been
+// replaced with Memory<byte> and the using directive below is used to make
+// the transition easier.
 global using BufferRegion = System.Memory<byte>;

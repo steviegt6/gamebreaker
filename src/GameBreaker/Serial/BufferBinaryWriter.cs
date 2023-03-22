@@ -59,15 +59,37 @@ namespace GameBreaker.Serial {
 
         /// <summary>
         ///     Initializes a new instance of <see cref="BufferBinaryWriter"/>.
+        ///     <br />
+        ///     Initializes a new byte array of the specified size.
         /// </summary>
         /// <param name="baseSize">
         ///     The base size to initialize the buffer.
         /// </param>
-        public BufferBinaryWriter(int baseSize = DEFAULT_SIZE) {
+        /// <param name="encoding">The <see cref="Encoding"/> to use.</param>
+        public BufferBinaryWriter(
+            int baseSize = DEFAULT_SIZE,
+            Encoding? encoding = null
+        ) {
+            encoding ??= IEncodable.DEFAULT_ENCODING;
             buffer = new byte[baseSize];
             Offset = 0;
 
-            Encoding = new UTF8Encoding(false);
+            Encoding = encoding;
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of <see cref="BufferBinaryWriter"/>.
+        ///     <br />
+        ///     Uses the specified byte array as the backing buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer this writer should use.</param>
+        /// <param name="encoding">The <see cref="Encoding"/> to use.</param>
+        public BufferBinaryWriter(byte[] buffer, Encoding? encoding = null) {
+            encoding ??= IEncodable.DEFAULT_ENCODING;
+            this.buffer = buffer;
+            Offset = 0;
+
+            Encoding = encoding;
         }
 
         // TODO: Provide option to resize to `size` instead of `Length` * 2?
@@ -115,7 +137,7 @@ namespace GameBreaker.Serial {
         /// <inheritdoc cref="IBinaryWriter.Write(char[])"/>
         public virtual void Write(char[] value) {
             EnsureCapacity(Offset + value.Length);
-            
+
             // TODO: Specific encoding would be nice. What to do?
             foreach (var c in value)
                 Buffer[Offset++] = Convert.ToByte(c);

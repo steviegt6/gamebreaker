@@ -66,14 +66,17 @@ public class BufferBinaryReader : IBinaryReader {
 
 #region IBinaryReader Impl (Methods)
     /// <inheritdoc cref="IBinaryReader.ReadByte"/>
-    public virtual byte ReadByte() {
+    public virtual unsafe byte ReadByte() {
         Debug.Assert(Offset >= 0 && Offset + 1 <= Length);
-        return Buffer[Offset++];
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(byte);
+            return *ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadBoolean"/>
     public virtual bool ReadBoolean(bool wide) {
-        return GmBitConverter.ToBoolean(Buffer, ref offset, wide: wide);
+        return wide ? ReadInt32() != 0 : ReadByte() != 0;
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadChars"/>
@@ -94,63 +97,93 @@ public class BufferBinaryReader : IBinaryReader {
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadInt16"/>
-    public virtual short ReadInt16() {
+    public virtual unsafe short ReadInt16() {
         Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
-        return GmBitConverter.ToInt16(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(short);
+            return *(short*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadUInt16"/>
-    public virtual ushort ReadUInt16() {
+    public virtual unsafe ushort ReadUInt16() {
         Debug.Assert(Offset >= 0 && Offset + 2 <= Length);
-        return GmBitConverter.ToUInt16(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(ushort);
+            return *(ushort*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadInt24"/>
-    public virtual Int24 ReadInt24() {
+    public virtual unsafe Int24 ReadInt24() {
         Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
-        return GmBitConverter.ToInt24(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(Int24);
+            return *(Int24*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadUInt24"/>
-    public virtual UInt24 ReadUInt24() {
+    public virtual unsafe UInt24 ReadUInt24() {
         Debug.Assert(Offset >= 0 && Offset + 3 <= Length);
-        return GmBitConverter.ToUInt24(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(UInt24);
+            return *(UInt24*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadInt32"/>
-    public virtual int ReadInt32() {
+    public virtual unsafe int ReadInt32() {
         Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-        return GmBitConverter.ToInt32(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(int);
+            return *(int*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadUInt32"/>
-    public virtual uint ReadUInt32() {
+    public virtual unsafe uint ReadUInt32() {
         Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-        return GmBitConverter.ToUInt32(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(uint);
+            return *(uint*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadInt64"/>
-    public virtual long ReadInt64() {
+    public virtual unsafe long ReadInt64() {
         Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-        return GmBitConverter.ToInt64(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(long);
+            return *(long*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadUInt64"/>
-    public virtual ulong ReadUInt64() {
+    public virtual unsafe ulong ReadUInt64() {
         Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-        return GmBitConverter.ToUInt64(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(ulong);
+            return *(ulong*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadSingle"/>
-    public virtual float ReadSingle() {
+    public virtual unsafe float ReadSingle() {
         Debug.Assert(Offset >= 0 && Offset + 4 <= Length);
-        return GmBitConverter.ToSingle(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(float);
+            return *(float*)ptr;
+        }
     }
 
     /// <inheritdoc cref="IBinaryReader.ReadDouble"/>
-    public virtual double ReadDouble() {
+    public virtual unsafe double ReadDouble() {
         Debug.Assert(Offset >= 0 && Offset + 8 <= Length);
-        return GmBitConverter.ToDouble(Buffer, ref offset);
+        fixed (byte* ptr = &Buffer[Offset]) {
+            Offset += sizeof(double);
+            return *(double*)ptr;
+        }
     }
 #endregion
 

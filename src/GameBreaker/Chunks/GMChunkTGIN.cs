@@ -80,6 +80,31 @@ namespace GameBreaker.Chunks
 
                 reader.Offset = returnTo;
             }
+            
+            // Check if this version is 2023.1 or later.
+            if (!reader.VersionInfo.IsVersionAtLeast(2023, 1)) {
+                var returnTo = reader.Offset;
+
+                reader.Offset += 4; // Skip count.
+
+                var firstPtr = reader.ReadUInt32();
+                
+                // Navigate to the fourth list pointer, which is different
+                // depending on whether this is 2023.1+ or not (either "FontIDs"
+                // or "SpineSpriteIDs").
+                reader.Offset = (int)(firstPtr + 16 + (sizeof(uint) * 3));
+                var fourthPtr = reader.ReadUInt32();
+                
+                // We read either the "TexturePageIDs" count or the pointer to
+                // the fifth list pointer. If it's a count, it will be less
+                // than the previous pointer. Similarly, we can rely on the next
+                // pointer being greater than the fourth pointer. This lets us
+                // safely assume that this is a 2023.1+ file.
+                if (reader.ReadUInt32() <= fourthPtr)
+                    reader.VersionInfo.SetVersion(2023, 1);
+
+                reader.Offset = returnTo;
+            }
         }
     }
 }

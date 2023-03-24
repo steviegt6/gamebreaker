@@ -64,7 +64,8 @@ namespace GameBreaker.Models
 
             writer.WritePointer(TexturePageIDs);
             writer.WritePointer(SpriteIDs);
-            writer.WritePointer(SpineSpriteIDs);
+            if (!writer.Data.VersionInfo.IsVersionAtLeast(2023, 1)) 
+                writer.WritePointer(SpineSpriteIDs);
             writer.WritePointer(FontIDs);
             writer.WritePointer(TilesetIDs);
 
@@ -72,8 +73,12 @@ namespace GameBreaker.Models
             TexturePageIDs.Serialize(writer);
             writer.WriteObjectPointer(SpriteIDs);
             SpriteIDs.Serialize(writer);
-            writer.WriteObjectPointer(SpineSpriteIDs);
-            SpineSpriteIDs.Serialize(writer);
+
+            if (!writer.Data.VersionInfo.IsVersionAtLeast(2023, 1)) {
+                writer.WriteObjectPointer(SpineSpriteIDs);
+                SpineSpriteIDs.Serialize(writer);
+            }
+
             writer.WriteObjectPointer(FontIDs);
             FontIDs.Serialize(writer);
             writer.WriteObjectPointer(TilesetIDs);
@@ -91,7 +96,8 @@ namespace GameBreaker.Models
             }
             TexturePageIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
             SpriteIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
-            SpineSpriteIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
+            if (!reader.Data.VersionInfo.IsVersionAtLeast(2023, 1))
+                SpineSpriteIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
             FontIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
             TilesetIDs = reader.ReadPointerObject<GMList<ResourceID>>(unique: true);
         }

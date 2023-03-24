@@ -127,9 +127,8 @@ public sealed class PointerCastReader : AbstractBinaryReader {
 
     public override unsafe byte ReadByte() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *ptr;
             Offset += sizeof(byte);
-            return val;
+            return *ptr;
         }
     }
 
@@ -143,81 +142,71 @@ public sealed class PointerCastReader : AbstractBinaryReader {
 
     public override unsafe short ReadInt16() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(short*)ptr;
             Offset += sizeof(short);
-            return val;
+            return *(short*)ptr;
         }
     }
 
     public override unsafe ushort ReadUInt16() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(ushort*)ptr;
             Offset += sizeof(ushort);
-            return val;
+            return *(ushort*)ptr;
         }
     }
 
     public override unsafe Int24 ReadInt24() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(Int24*)ptr;
             Offset += sizeof(Int24);
-            return val;
+            return *(Int24*)ptr;
         }
     }
 
     public override unsafe UInt24 ReadUInt24() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(UInt24*)ptr;
             Offset += sizeof(UInt24);
-            return val;
+            return *(UInt24*)ptr;
         }
     }
 
     public override unsafe int ReadInt32() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(int*)ptr;
             Offset += sizeof(int);
-            return val;
+            return *(int*)ptr;
         }
     }
 
     public override unsafe uint ReadUInt32() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(uint*)ptr;
             Offset += sizeof(uint);
-            return val;
+            return *(uint*)ptr;
         }
     }
 
     public override unsafe long ReadInt64() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(long*)ptr;
             Offset += sizeof(long);
-            return val;
+            return *(long*)ptr;
         }
     }
 
     public override unsafe ulong ReadUInt64() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(ulong*)ptr;
             Offset += sizeof(ulong);
-            return val;
+            return *(ulong*)ptr;
         }
     }
 
     public override unsafe float ReadSingle() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(float*)ptr;
             Offset += sizeof(float);
-            return val;
+            return *(float*)ptr;
         }
     }
 
     public override unsafe double ReadDouble() {
         fixed (byte* ptr = &Buffer[Offset]) {
-            var val = *(double*)ptr;
             Offset += sizeof(double);
-            return val;
+            return *(double*)ptr;
         }
     }
 }

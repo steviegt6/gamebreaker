@@ -84,9 +84,9 @@ public class BufferBinaryReader : IBinaryReader {
     /// <inheritdoc cref="IBinaryReader.ReadChars"/>
     public virtual string ReadChars(int count) {
         Debug.Assert(Offset >= 0 && Offset + count <= Length);
-        var sb = new StringBuilder();
-        for (int i = 0; i < count; i++)
-            sb.Append(Convert.ToChar(Buffer[Offset++]));
+        var sb = new StringBuilder(count);
+        for (var i = 0; i < count; i++)
+            sb.Append((char) ReadByte());
         return sb.ToString();
     }
 

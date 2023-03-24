@@ -65,6 +65,7 @@ public class BufferBinaryReader : IBinaryReader {
     }
 
 #region IBinaryReader Impl (Methods)
+    // TODO: Benchmark whether pinning here is actually faster...
     /// <inheritdoc cref="IBinaryReader.ReadByte"/>
     public virtual unsafe byte ReadByte() {
         Debug.Assert(Offset >= 0 && Offset + 1 <= Length);
@@ -79,6 +80,7 @@ public class BufferBinaryReader : IBinaryReader {
         return wide ? ReadInt32() != 0 : ReadByte() != 0;
     }
 
+    // TODO: Investigate possible optimizations.
     /// <inheritdoc cref="IBinaryReader.ReadChars"/>
     public virtual string ReadChars(int count) {
         Debug.Assert(Offset >= 0 && Offset + count <= Length);
@@ -88,6 +90,7 @@ public class BufferBinaryReader : IBinaryReader {
         return sb.ToString();
     }
 
+    // TODO: Investigate possible optimizations.
     /// <inheritdoc cref="IBinaryReader.ReadBytes"/>
     public virtual BufferRegion ReadBytes(int count) {
         Debug.Assert(Offset >= 0 && Offset + count <= Length);

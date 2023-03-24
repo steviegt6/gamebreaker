@@ -228,66 +228,50 @@ public static class ReadTests {
                        + sizeof(ulong)
                        + sizeof(float)
                        + sizeof(double) * 100;
-
         var writer = new BufferBinaryWriter(size);
         var rand = new Random();
-        var bWArr = new bool[100];
-        var bNArr = new bool[100];
-        var u8Arr = new byte[100];
-        var i16Arr = new short[100];
-        var u16Arr = new ushort[100];
-        var i24Arr = new Int24[100];
-        var u24Arr = new UInt24[100];
-        var i32Arr = new int[100];
-        var u32Arr = new uint[100];
-        var i64Arr = new long[100];
-        var u64Arr = new ulong[100];
-        var f32Arr = new float[100];
-        var f64Arr = new double[100];
+        var b = new bool[100];
+        var u8 = new byte[100];
+        var i16 = new short[100];
+        var u16 = new ushort[100];
+        var i24 = new Int24[100];
+        var u24 = new UInt24[100];
+        var i32 = new int[100];
+        var u32 = new uint[100];
+        var i64 = new long[100];
+        var u64 = new ulong[100];
+        var f32 = new float[100];
+        var f64 = new double[100];
 
         for (var i = 0; i < 100; i++) {
-            var b = rand.Next(0, 2) == 0;
-            var u8 = (byte)rand.Next(byte.MinValue, byte.MaxValue);
-            var i16 = (short)rand.Next(short.MinValue, short.MaxValue);
-            var u16 = (ushort)rand.Next(ushort.MinValue, ushort.MaxValue);
-            var i24 = new Int24(rand.Next(Int24.MinValue, Int24.MaxValue));
-            var u24 = new UInt24((uint) rand.Next(0, (int) UInt24.MaxValue));
-            var i32 = rand.Next(int.MinValue, int.MaxValue);
-            var u32 = (uint)rand.Next(int.MinValue, int.MaxValue);
-            var i64 = (long)rand.Next(int.MinValue, int.MaxValue) << 32
-                    | (uint)rand.Next(int.MinValue, int.MaxValue);
-            var u64 = (ulong)rand.Next(int.MinValue, int.MaxValue) << 32
-                    | (uint)rand.Next(int.MinValue, int.MaxValue);
-            var f32 = (float)rand.NextDouble();
-            var f64 = rand.NextDouble();
+            b[i] = rand.Next(0, 2) == 0;
+            u8[i] = (byte)rand.Next(byte.MinValue, byte.MaxValue);
+            i16[i] = (short)rand.Next(short.MinValue, short.MaxValue);
+            u16[i] = (ushort)rand.Next(ushort.MinValue, ushort.MaxValue);
+            i24[i] = new Int24(rand.Next(Int24.MinValue, Int24.MaxValue));
+            u24[i] = new UInt24((uint) rand.Next(0, (int) UInt24.MaxValue));
+            i32[i] = rand.Next(int.MinValue, int.MaxValue);
+            u32[i] = (uint)rand.Next(int.MinValue, int.MaxValue);
+            i64[i] = (long)rand.Next(int.MinValue, int.MaxValue) << 32
+                   | (uint)rand.Next(int.MinValue, int.MaxValue);
+            u64[i] = (ulong)rand.Next(int.MinValue, int.MaxValue) << 32
+                   | (uint)rand.Next(int.MinValue, int.MaxValue);
+            f32[i] = (float)rand.NextDouble();
+            f64[i] = rand.NextDouble();
 
-            bWArr[i] = b;
-            bNArr[i] = b;
-            u8Arr[i] = u8;
-            i16Arr[i] = i16;
-            u16Arr[i] = u16;
-            i24Arr[i] = i24;
-            u24Arr[i] = u24;
-            i32Arr[i] = i32;
-            u32Arr[i] = u32;
-            i64Arr[i] = i64;
-            u64Arr[i] = u64;
-            f32Arr[i] = f32;
-            f64Arr[i] = f64;
-
-            writer.Write(b, wide: false);
-            writer.Write(b, wide: true);
-            writer.Write(u8);
-            writer.Write(i16);
-            writer.Write(u16);
-            writer.Write(i24);
-            writer.Write(u24);
-            writer.Write(i32);
-            writer.Write(u32);
-            writer.Write(i64);
-            writer.Write(u64);
-            writer.Write(f32);
-            writer.Write(f64);
+            writer.Write(b[i], wide: false);
+            writer.Write(b[i], wide: true);
+            writer.Write(u8[i]);
+            writer.Write(i16[i]);
+            writer.Write(u16[i]);
+            writer.Write(i24[i]);
+            writer.Write(u24[i]);
+            writer.Write(i32[i]);
+            writer.Write(u32[i]);
+            writer.Write(i64[i]);
+            writer.Write(u64[i]);
+            writer.Write(f32[i]);
+            writer.Write(f64[i]);
         }
 
         var buffer = writer.Buffer;
@@ -296,35 +280,35 @@ public static class ReadTests {
 
         for (var i = 0; i < 100; i++) {
             Assert.Multiple(() => {
-                Assert.That(one.ReadBoolean(false), Is.EqualTo(bWArr[i]));
-                Assert.That(one.ReadBoolean(true), Is.EqualTo(bNArr[i]));
-                Assert.That(one.ReadByte(), Is.EqualTo(u8Arr[i]));
-                Assert.That(one.ReadInt16(), Is.EqualTo(i16Arr[i]));
-                Assert.That(one.ReadUInt16(), Is.EqualTo(u16Arr[i]));
-                Assert.That(one.ReadInt24(), Is.EqualTo(i24Arr[i]));
-                Assert.That(one.ReadUInt24(), Is.EqualTo(u24Arr[i]));
-                Assert.That(one.ReadInt32(), Is.EqualTo(i32Arr[i]));
-                Assert.That(one.ReadUInt32(), Is.EqualTo(u32Arr[i]));
-                Assert.That(one.ReadInt64(), Is.EqualTo(i64Arr[i]));
-                Assert.That(one.ReadUInt64(), Is.EqualTo(u64Arr[i]));
-                Assert.That(one.ReadSingle(), Is.EqualTo(f32Arr[i]));
-                Assert.That(one.ReadDouble(), Is.EqualTo(f64Arr[i]));
+                Assert.That(one.ReadBoolean(wide: false), Is.EqualTo(b[i]));
+                Assert.That(one.ReadBoolean(wide: true), Is.EqualTo(b[i]));
+                Assert.That(one.ReadByte(), Is.EqualTo(u8[i]));
+                Assert.That(one.ReadInt16(), Is.EqualTo(i16[i]));
+                Assert.That(one.ReadUInt16(), Is.EqualTo(u16[i]));
+                Assert.That(one.ReadInt24(), Is.EqualTo(i24[i]));
+                Assert.That(one.ReadUInt24(), Is.EqualTo(u24[i]));
+                Assert.That(one.ReadInt32(), Is.EqualTo(i32[i]));
+                Assert.That(one.ReadUInt32(), Is.EqualTo(u32[i]));
+                Assert.That(one.ReadInt64(), Is.EqualTo(i64[i]));
+                Assert.That(one.ReadUInt64(), Is.EqualTo(u64[i]));
+                Assert.That(one.ReadSingle(), Is.EqualTo(f32[i]));
+                Assert.That(one.ReadDouble(), Is.EqualTo(f64[i]));
             });
 
             Assert.Multiple(() => {
-                Assert.That(two.ReadBoolean(false), Is.EqualTo(bWArr[i]));
-                Assert.That(two.ReadBoolean(true), Is.EqualTo(bNArr[i]));
-                Assert.That(two.ReadByte(), Is.EqualTo(u8Arr[i]));
-                Assert.That(two.ReadInt16(), Is.EqualTo(i16Arr[i]));
-                Assert.That(two.ReadUInt16(), Is.EqualTo(u16Arr[i]));
-                Assert.That(two.ReadInt24(), Is.EqualTo(i24Arr[i]));
-                Assert.That(two.ReadUInt24(), Is.EqualTo(u24Arr[i]));
-                Assert.That(two.ReadInt32(), Is.EqualTo(i32Arr[i]));
-                Assert.That(two.ReadUInt32(), Is.EqualTo(u32Arr[i]));
-                Assert.That(two.ReadInt64(), Is.EqualTo(i64Arr[i]));
-                Assert.That(two.ReadUInt64(), Is.EqualTo(u64Arr[i]));
-                Assert.That(two.ReadSingle(), Is.EqualTo(f32Arr[i]));
-                Assert.That(two.ReadDouble(), Is.EqualTo(f64Arr[i]));
+                Assert.That(two.ReadBoolean(wide: false), Is.EqualTo(b[i]));
+                Assert.That(two.ReadBoolean(wide: true), Is.EqualTo(b[i]));
+                Assert.That(two.ReadByte(), Is.EqualTo(u8[i]));
+                Assert.That(two.ReadInt16(), Is.EqualTo(i16[i]));
+                Assert.That(two.ReadUInt16(), Is.EqualTo(u16[i]));
+                Assert.That(two.ReadInt24(), Is.EqualTo(i24[i]));
+                Assert.That(two.ReadUInt24(), Is.EqualTo(u24[i]));
+                Assert.That(two.ReadInt32(), Is.EqualTo(i32[i]));
+                Assert.That(two.ReadUInt32(), Is.EqualTo(u32[i]));
+                Assert.That(two.ReadInt64(), Is.EqualTo(i64[i]));
+                Assert.That(two.ReadUInt64(), Is.EqualTo(u64[i]));
+                Assert.That(two.ReadSingle(), Is.EqualTo(f32[i]));
+                Assert.That(two.ReadDouble(), Is.EqualTo(f64[i]));
             });
         }
     }

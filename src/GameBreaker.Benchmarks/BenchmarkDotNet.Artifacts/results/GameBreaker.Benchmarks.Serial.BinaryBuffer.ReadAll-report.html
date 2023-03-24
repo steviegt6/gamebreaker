@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>GameBreaker.Benchmarks.Serial.BinaryBuffer.ReadAll-20230323-202500</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
+AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.101
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  Job-JIABXR : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=1  UnrollFactor=1  
+</code></pre>
+
+<table>
+<thead><tr><th>       Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>BitConverterReadAll</td><td>1000</td><td>90.97 &mu;s</td><td>1.597 &mu;s</td><td>1.334 &mu;s</td><td>90.60 &mu;s</td><td>600 B</td>
+</tr><tr><td>PointerCastReadAll</td><td>1000</td><td>51.07 &mu;s</td><td>1.005 &mu;s</td><td>1.535 &mu;s</td><td>50.50 &mu;s</td><td>600 B</td>
+</tr><tr><td>BitConverterReadAll</td><td>100000</td><td>3,059.36 &mu;s</td><td>60.429 &mu;s</td><td>62.056 &mu;s</td><td>3,050.60 &mu;s</td><td>600 B</td>
+</tr><tr><td>PointerCastReadAll</td><td>100000</td><td>2,467.19 &mu;s</td><td>48.626 &mu;s</td><td>79.894 &mu;s</td><td>2,427.80 &mu;s</td><td>600 B</td>
+</tr><tr><td>BitConverterReadAll</td><td>1000000</td><td>28,857.10 &mu;s</td><td>304.194 &mu;s</td><td>269.660 &mu;s</td><td>28,764.60 &mu;s</td><td>600 B</td>
+</tr><tr><td>PointerCastReadAll</td><td>1000000</td><td>24,317.58 &mu;s</td><td>190.332 &mu;s</td><td>158.936 &mu;s</td><td>24,319.70 &mu;s</td><td>600 B</td>
+</tr></tbody></table>
+</body>
+</html>

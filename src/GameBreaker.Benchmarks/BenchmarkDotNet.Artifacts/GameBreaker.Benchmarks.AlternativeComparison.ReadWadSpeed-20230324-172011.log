@@ -1,0 +1,248 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\4d4a1142-d5e5-4fed-bae8-0d8d13dca210
+// command took 10.24s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\4d4a1142-d5e5-4fed-bae8-0d8d13dca210
+// command took 32.53s and exited with 1
+// start dotnet  build -c Release --no-restore --no-dependencies /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\4d4a1142-d5e5-4fed-bae8-0d8d13dca210
+// command took 6.14s and exited with 0
+// ***** Done, took 00:00:49 (49.98 sec)   *****
+// Found 2 benchmarks:
+//   ReadWadSpeed.GameBreakerReadWads: DefaultJob [N=1]
+//   ReadWadSpeed.UndertaleModLibReadWads: DefaultJob [N=1]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: ReadWadSpeed.GameBreakerReadWads: DefaultJob [N=1]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 4d4a1142-d5e5-4fed-bae8-0d8d13dca210.dll --anonymousPipes 1892 1888 --benchmarkName "GameBreaker.Benchmarks.AlternativeComparison.ReadWadSpeed.GameBreakerReadWads(N: 1)" --job Default --benchmarkId 0 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\4d4a1142-d5e5-4fed-bae8-0d8d13dca210\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 177700.00 ns, 177.7000 us/op
+WorkloadJitting  1: 1 op, 681852700.00 ns, 681.8527 ms/op
+
+OverheadJitting  2: 1 op, 1200.00 ns, 1.2000 us/op
+WorkloadJitting  2: 1 op, 683638400.00 ns, 683.6384 ms/op
+
+WorkloadWarmup   1: 1 op, 409062300.00 ns, 409.0623 ms/op
+WorkloadWarmup   2: 1 op, 416717200.00 ns, 416.7172 ms/op
+WorkloadWarmup   3: 1 op, 424473400.00 ns, 424.4734 ms/op
+WorkloadWarmup   4: 1 op, 417706400.00 ns, 417.7064 ms/op
+WorkloadWarmup   5: 1 op, 407974900.00 ns, 407.9749 ms/op
+WorkloadWarmup   6: 1 op, 424486400.00 ns, 424.4864 ms/op
+WorkloadWarmup   7: 1 op, 395417900.00 ns, 395.4179 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 409568900.00 ns, 409.5689 ms/op
+WorkloadActual   2: 1 op, 408443900.00 ns, 408.4439 ms/op
+WorkloadActual   3: 1 op, 410108800.00 ns, 410.1088 ms/op
+WorkloadActual   4: 1 op, 398330300.00 ns, 398.3303 ms/op
+WorkloadActual   5: 1 op, 418078700.00 ns, 418.0787 ms/op
+WorkloadActual   6: 1 op, 411731500.00 ns, 411.7315 ms/op
+WorkloadActual   7: 1 op, 411233100.00 ns, 411.2331 ms/op
+WorkloadActual   8: 1 op, 400113400.00 ns, 400.1134 ms/op
+WorkloadActual   9: 1 op, 417007100.00 ns, 417.0071 ms/op
+WorkloadActual  10: 1 op, 404043900.00 ns, 404.0439 ms/op
+WorkloadActual  11: 1 op, 410580100.00 ns, 410.5801 ms/op
+WorkloadActual  12: 1 op, 408316600.00 ns, 408.3166 ms/op
+WorkloadActual  13: 1 op, 407772300.00 ns, 407.7723 ms/op
+WorkloadActual  14: 1 op, 416237300.00 ns, 416.2373 ms/op
+WorkloadActual  15: 1 op, 398502100.00 ns, 398.5021 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 409568900.00 ns, 409.5689 ms/op
+WorkloadResult   2: 1 op, 408443900.00 ns, 408.4439 ms/op
+WorkloadResult   3: 1 op, 410108800.00 ns, 410.1088 ms/op
+WorkloadResult   4: 1 op, 398330300.00 ns, 398.3303 ms/op
+WorkloadResult   5: 1 op, 418078700.00 ns, 418.0787 ms/op
+WorkloadResult   6: 1 op, 411731500.00 ns, 411.7315 ms/op
+WorkloadResult   7: 1 op, 411233100.00 ns, 411.2331 ms/op
+WorkloadResult   8: 1 op, 400113400.00 ns, 400.1134 ms/op
+WorkloadResult   9: 1 op, 417007100.00 ns, 417.0071 ms/op
+WorkloadResult  10: 1 op, 404043900.00 ns, 404.0439 ms/op
+WorkloadResult  11: 1 op, 410580100.00 ns, 410.5801 ms/op
+WorkloadResult  12: 1 op, 408316600.00 ns, 408.3166 ms/op
+WorkloadResult  13: 1 op, 407772300.00 ns, 407.7723 ms/op
+WorkloadResult  14: 1 op, 416237300.00 ns, 416.2373 ms/op
+WorkloadResult  15: 1 op, 398502100.00 ns, 398.5021 ms/op
+// GC:  11 10 3 251123904 1
+// Threading:  16 0 1
+
+// AfterAll
+// Benchmark Process 13796 has exited with code 0.
+
+Mean = 408.671 ms, StdErr = 1.609 ms (0.39%), N = 15, StdDev = 6.232 ms
+Min = 398.330 ms, Q1 = 405.908 ms, Median = 409.569 ms, Q3 = 411.482 ms, Max = 418.079 ms
+IQR = 5.574 ms, LowerFence = 397.547 ms, UpperFence = 419.844 ms
+ConfidenceInterval = [402.009 ms; 415.333 ms] (CI 99.9%), Margin = 6.662 ms (1.63% of Mean)
+Skewness = -0.27, Kurtosis = 1.95, MValue = 2
+
+// ** Remained 1 (50.0%) benchmark(s) to run. Estimated finish 2023-03-24 17:21 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: ReadWadSpeed.UndertaleModLibReadWads: DefaultJob [N=1]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 4d4a1142-d5e5-4fed-bae8-0d8d13dca210.dll --anonymousPipes 1872 1824 --benchmarkName "GameBreaker.Benchmarks.AlternativeComparison.ReadWadSpeed.UndertaleModLibReadWads(N: 1)" --job Default --benchmarkId 1 in C:\Users\xxlen\Documents\Repositories\steviegt6\gamebreaker\src\GameBreaker.Benchmarks\bin\Release\net7.0\4d4a1142-d5e5-4fed-bae8-0d8d13dca210\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 165500.00 ns, 165.5000 us/op
+WorkloadJitting  1: 1 op, 2387795900.00 ns, 2.3878 s/op
+
+OverheadJitting  2: 1 op, 900.00 ns, 900.0000 ns/op
+WorkloadJitting  2: 1 op, 1846645600.00 ns, 1.8466 s/op
+
+WorkloadWarmup   1: 1 op, 1866713000.00 ns, 1.8667 s/op
+WorkloadWarmup   2: 1 op, 1824662200.00 ns, 1.8247 s/op
+WorkloadWarmup   3: 1 op, 1812067500.00 ns, 1.8121 s/op
+WorkloadWarmup   4: 1 op, 1825168800.00 ns, 1.8252 s/op
+WorkloadWarmup   5: 1 op, 1797093900.00 ns, 1.7971 s/op
+WorkloadWarmup   6: 1 op, 1799717700.00 ns, 1.7997 s/op
+WorkloadWarmup   7: 1 op, 1830448300.00 ns, 1.8304 s/op
+WorkloadWarmup   8: 1 op, 1811466400.00 ns, 1.8115 s/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 1842430600.00 ns, 1.8424 s/op
+WorkloadActual   2: 1 op, 1825231000.00 ns, 1.8252 s/op
+WorkloadActual   3: 1 op, 1870529900.00 ns, 1.8705 s/op
+WorkloadActual   4: 1 op, 1826174900.00 ns, 1.8262 s/op
+WorkloadActual   5: 1 op, 1847580200.00 ns, 1.8476 s/op
+WorkloadActual   6: 1 op, 1894512900.00 ns, 1.8945 s/op
+WorkloadActual   7: 1 op, 1870938600.00 ns, 1.8709 s/op
+WorkloadActual   8: 1 op, 1965637000.00 ns, 1.9656 s/op
+WorkloadActual   9: 1 op, 1905777800.00 ns, 1.9058 s/op
+WorkloadActual  10: 1 op, 1941498900.00 ns, 1.9415 s/op
+WorkloadActual  11: 1 op, 1808580300.00 ns, 1.8086 s/op
+WorkloadActual  12: 1 op, 1825498400.00 ns, 1.8255 s/op
+WorkloadActual  13: 1 op, 1842269400.00 ns, 1.8423 s/op
+WorkloadActual  14: 1 op, 1895688700.00 ns, 1.8957 s/op
+WorkloadActual  15: 1 op, 1874088600.00 ns, 1.8741 s/op
+WorkloadActual  16: 1 op, 1922307700.00 ns, 1.9223 s/op
+WorkloadActual  17: 1 op, 1894759900.00 ns, 1.8948 s/op
+WorkloadActual  18: 1 op, 1923947500.00 ns, 1.9239 s/op
+WorkloadActual  19: 1 op, 1831829800.00 ns, 1.8318 s/op
+WorkloadActual  20: 1 op, 2058451400.00 ns, 2.0585 s/op
+WorkloadActual  21: 1 op, 1872700800.00 ns, 1.8727 s/op
+WorkloadActual  22: 1 op, 1846520300.00 ns, 1.8465 s/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 1842430600.00 ns, 1.8424 s/op
+WorkloadResult   2: 1 op, 1825231000.00 ns, 1.8252 s/op
+WorkloadResult   3: 1 op, 1870529900.00 ns, 1.8705 s/op
+WorkloadResult   4: 1 op, 1826174900.00 ns, 1.8262 s/op
+WorkloadResult   5: 1 op, 1847580200.00 ns, 1.8476 s/op
+WorkloadResult   6: 1 op, 1894512900.00 ns, 1.8945 s/op
+WorkloadResult   7: 1 op, 1870938600.00 ns, 1.8709 s/op
+WorkloadResult   8: 1 op, 1965637000.00 ns, 1.9656 s/op
+WorkloadResult   9: 1 op, 1905777800.00 ns, 1.9058 s/op
+WorkloadResult  10: 1 op, 1941498900.00 ns, 1.9415 s/op
+WorkloadResult  11: 1 op, 1808580300.00 ns, 1.8086 s/op
+WorkloadResult  12: 1 op, 1825498400.00 ns, 1.8255 s/op
+WorkloadResult  13: 1 op, 1842269400.00 ns, 1.8423 s/op
+WorkloadResult  14: 1 op, 1895688700.00 ns, 1.8957 s/op
+WorkloadResult  15: 1 op, 1874088600.00 ns, 1.8741 s/op
+WorkloadResult  16: 1 op, 1922307700.00 ns, 1.9223 s/op
+WorkloadResult  17: 1 op, 1894759900.00 ns, 1.8948 s/op
+WorkloadResult  18: 1 op, 1923947500.00 ns, 1.9239 s/op
+WorkloadResult  19: 1 op, 1831829800.00 ns, 1.8318 s/op
+WorkloadResult  20: 1 op, 1872700800.00 ns, 1.8727 s/op
+WorkloadResult  21: 1 op, 1846520300.00 ns, 1.8465 s/op
+// GC:  12 11 3 236259448 1
+// Threading:  0 0 1
+
+// AfterAll
+// Benchmark Process 8304 has exited with code 0.
+
+Mean = 1.873 s, StdErr = 0.009 s (0.50%), N = 21, StdDev = 0.043 s
+Min = 1.809 s, Q1 = 1.842 s, Median = 1.871 s, Q3 = 1.896 s, Max = 1.966 s
+IQR = 0.053 s, LowerFence = 1.762 s, UpperFence = 1.976 s
+ConfidenceInterval = [1.837 s; 1.909 s] (CI 99.9%), Margin = 0.036 s (1.92% of Mean)
+Skewness = 0.43, Kurtosis = 2.11, MValue = 2
+
+// ** Remained 0 (0.0%) benchmark(s) to run. Estimated finish 2023-03-24 17:22 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.AlternativeComparison.ReadWadSpeed-report.csv
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.AlternativeComparison.ReadWadSpeed-report-github.md
+  BenchmarkDotNet.Artifacts\results\GameBreaker.Benchmarks.AlternativeComparison.ReadWadSpeed-report.html
+
+// * Detailed results *
+ReadWadSpeed.GameBreakerReadWads: DefaultJob [N=1]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 408.671 ms, StdErr = 1.609 ms (0.39%), N = 15, StdDev = 6.232 ms
+Min = 398.330 ms, Q1 = 405.908 ms, Median = 409.569 ms, Q3 = 411.482 ms, Max = 418.079 ms
+IQR = 5.574 ms, LowerFence = 397.547 ms, UpperFence = 419.844 ms
+ConfidenceInterval = [402.009 ms; 415.333 ms] (CI 99.9%), Margin = 6.662 ms (1.63% of Mean)
+Skewness = -0.27, Kurtosis = 1.95, MValue = 2
+-------------------- Histogram --------------------
+[397.175 ms ; 405.654 ms) | @@@@
+[405.654 ms ; 421.395 ms) | @@@@@@@@@@@
+---------------------------------------------------
+
+ReadWadSpeed.UndertaleModLibReadWads: DefaultJob [N=1]
+Runtime = .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 1.873 s, StdErr = 0.009 s (0.50%), N = 21, StdDev = 0.043 s
+Min = 1.809 s, Q1 = 1.842 s, Median = 1.871 s, Q3 = 1.896 s, Max = 1.966 s
+IQR = 0.053 s, LowerFence = 1.762 s, UpperFence = 1.976 s
+ConfidenceInterval = [1.837 s; 1.909 s] (CI 99.9%), Margin = 0.036 s (1.92% of Mean)
+Skewness = 0.43, Kurtosis = 2.11, MValue = 2
+-------------------- Histogram --------------------
+[1.808 s ; 1.848 s) | @@@@@@@@@
+[1.848 s ; 1.909 s) | @@@@@@@@
+[1.909 s ; 1.986 s) | @@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2728/22H2/2022Update)
+AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.101
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+  DefaultJob : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+
+
+|                  Method | N |       Mean |    Error |   StdDev |       Gen0 |       Gen1 |      Gen2 | Allocated |
+|------------------------ |-- |-----------:|---------:|---------:|-----------:|-----------:|----------:|----------:|
+|     GameBreakerReadWads | 1 |   408.7 ms |  6.66 ms |  6.23 ms | 11000.0000 | 10000.0000 | 3000.0000 | 239.49 MB |
+| UndertaleModLibReadWads | 1 | 1,872.8 ms | 35.95 ms | 42.80 ms | 12000.0000 | 11000.0000 | 3000.0000 | 225.31 MB |
+
+// * Hints *
+Outliers
+  ReadWadSpeed.UndertaleModLibReadWads: Default -> 1 outlier  was  removed (2.06 s)
+
+// * Legends *
+  N         : Value of the 'N' parameter
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Gen0      : GC Generation 0 collects per 1000 operations
+  Gen1      : GC Generation 1 collects per 1000 operations
+  Gen2      : GC Generation 2 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ms      : 1 Millisecond (0.001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:01:16 (76.4 sec), executed benchmarks: 2
+
+Global total time: 00:02:07 (127.7 sec), executed benchmarks: 2
+// * Artifacts cleanup *

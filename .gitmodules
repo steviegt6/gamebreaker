@@ -1,0 +1,3 @@
+[submodule "src/UndertaleModTool"]
+	path = src/UndertaleModTool
+	url = https://github.com/krzys-h/UndertaleModTool.git

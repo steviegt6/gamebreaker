@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using BenchmarkDotNet.Attributes;
 using GameBreaker.Serial;
@@ -34,7 +35,7 @@ public class ReadWadSpeed {
         }
     }
 
-    private static string[] GetWadFiles() {
+    private static IEnumerable<string> GetWadFiles() {
         // Benchmarks set the current directory to the temp folder in bin.
         var dir = Environment.CurrentDirectory;
         dir = Path.Combine(

@@ -8,7 +8,8 @@ AMD Ryzen 7 5700G with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
 
 
 ```
-|                  Method | N |       Mean |    Error |   StdDev |       Gen0 |       Gen1 |      Gen2 | Allocated |
-|------------------------ |-- |-----------:|---------:|---------:|-----------:|-----------:|----------:|----------:|
-|     GameBreakerReadWads | 1 |   408.7 ms |  6.66 ms |  6.23 ms | 11000.0000 | 10000.0000 | 3000.0000 | 239.49 MB |
-| UndertaleModLibReadWads | 1 | 1,872.8 ms | 35.95 ms | 42.80 ms | 12000.0000 | 11000.0000 | 3000.0000 | 225.31 MB |
+|                  Method | N |       Mean |    Error |    StdDev |     Median |       Gen0 |       Gen1 |      Gen2 | Allocated |
+|------------------------ |-- |-----------:|---------:|----------:|-----------:|-----------:|-----------:|----------:|----------:|
+|     GameBreakerReadWads | 1 |   582.9 ms | 11.61 ms |  27.36 ms |   581.8 ms | 11000.0000 | 10000.0000 | 3000.0000 | 239.49 MB |
+|      DogScepterReadWads | 1 |   482.9 ms |  9.62 ms |  19.21 ms |   485.1 ms | 10000.0000 |  9000.0000 | 3000.0000 | 238.12 MB |
+| UndertaleModLibReadWads | 1 | 1,967.7 ms | 40.62 ms | 117.21 ms | 1,927.7 ms | 12000.0000 | 11000.0000 | 3000.0000 | 225.32 MB |

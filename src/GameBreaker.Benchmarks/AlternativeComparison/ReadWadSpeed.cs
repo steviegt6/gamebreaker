@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using BenchmarkDotNet.Attributes;
+using DogScepterLib.Core;
 using GameBreaker.Serial;
 using UndertaleModLib;
 
@@ -20,6 +21,17 @@ public class ReadWadSpeed {
                 using var stream = File.OpenRead(wad);
                 using var binaryReader = BufferBinaryReader.FromStream(stream);
                 using var dataReader = new GmDataReader(binaryReader, wad);
+                dataReader.Deserialize();
+            }
+        }
+    }
+
+    [Benchmark]
+    public void DogScepterReadWads() {
+        for (var i = 0; i < N; i++) {
+            foreach (var wad in GetWadFiles()) {
+                using var stream = File.OpenRead(wad);
+                var dataReader = new GMDataReader(stream, wad);
                 dataReader.Deserialize();
             }
         }

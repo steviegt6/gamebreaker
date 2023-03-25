@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBreaker.Benchmarks", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UndertaleModLib", "UndertaleModTool\UndertaleModLib\UndertaleModLib.csproj", "{8B1E1A56-BFD5-4A8D-A9F8-0C5D5471C330}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogScepterLib", "DogScepter\DogScepterLib\DogScepterLib.csproj", "{67699D73-BAE2-405B-BD92-38F376EACB5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{8B1E1A56-BFD5-4A8D-A9F8-0C5D5471C330}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B1E1A56-BFD5-4A8D-A9F8-0C5D5471C330}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B1E1A56-BFD5-4A8D-A9F8-0C5D5471C330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67699D73-BAE2-405B-BD92-38F376EACB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67699D73-BAE2-405B-BD92-38F376EACB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67699D73-BAE2-405B-BD92-38F376EACB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67699D73-BAE2-405B-BD92-38F376EACB5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

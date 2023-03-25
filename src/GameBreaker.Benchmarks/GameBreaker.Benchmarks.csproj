@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DogScepter\DogScepterLib\DogScepterLib.csproj" />
       <ProjectReference Include="..\GameBreaker\GameBreaker.csproj" />
       <ProjectReference Include="..\GameBreaker.Tests\GameBreaker.Tests.csproj" />
       <ProjectReference Include="..\UndertaleModTool\UndertaleModLib\UndertaleModLib.csproj" />

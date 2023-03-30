@@ -11,7 +11,7 @@ namespace GameBreaker.Benchmarks.AlternativeComparison;
 [MemoryDiagnoser]
 public class ReadWadSpeed {
     // ReSharper disable once UnassignedField.Global
-    [Params(1)]
+    [Params(1, 10)]
     public int N;
 
     [Benchmark]

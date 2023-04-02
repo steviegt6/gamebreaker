@@ -19,8 +19,7 @@ public class ReadWadSpeed {
         for (var i = 0; i < N; i++) {
             foreach (var wad in GetWadFiles()) {
                 using var stream = File.OpenRead(wad);
-                using var binaryReader = BufferBinaryReader.FromStream(stream);
-                using var dataReader = new GmDataReader(binaryReader, wad);
+                using var dataReader = GmDataReader.FromStream(stream, wad);
                 dataReader.Deserialize();
             }
         }

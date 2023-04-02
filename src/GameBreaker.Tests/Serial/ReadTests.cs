@@ -228,7 +228,7 @@ public static class ReadTests {
                        + sizeof(ulong)
                        + sizeof(float)
                        + sizeof(double) * 100;
-        var writer = new BufferBinaryWriter(size);
+        var writer = new GmDataWriter(size, null!, null!);
         var rand = new Random();
         var b = new bool[100];
         var u8 = new byte[100];

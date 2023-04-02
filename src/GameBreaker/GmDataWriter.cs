@@ -24,33 +24,31 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using GameBreaker.Models;
 using GameBreaker.Serial;
 using GameBreaker.Serial.Numerics;
 
-namespace GameBreaker
-{
-    public class GmDataWriter : IDataWriter
-    {
-        protected IBinaryWriter Writer { get; }
-        
-#region IBinaryWriter Impl (Properties)
-        public virtual int Offset {
-            get => Writer.Offset;
+namespace GameBreaker {
+    public sealed class GmDataWriter : IDataWriter {
+        private int offset;
+        private int length;
+        private byte[] buffer;
+        private Encoding encoding;
 
-            set => Writer.Offset = value;
+        public int Offset {
+            get => offset;
+            set => offset = value;
         }
 
-        public virtual int Length => Writer.Length;
+        public int Length => length;
 
-        public virtual byte[] Buffer => Writer.Buffer;
+        public byte[] Buffer => buffer;
 
-        public virtual Encoding Encoding => Writer.Encoding;
+        public Encoding Encoding => encoding;
 
-#endregion
-        
 #region IDataWriter Impl (Properties)
         public GMData Data { get; }
 
@@ -61,17 +59,30 @@ namespace GameBreaker
         /// Maps used for tracking locations of pointer-referenced objects and the locations to patch
         public Dictionary<IGMSerializable, int> PointerOffsets { get; } = new();
 
-        public virtual Dictionary<GMVariable, List<(int, GMCode.Bytecode.Instruction.VariableType)>> VariableReferences { get; } = new();
+        public Dictionary<GMVariable,
+                List<(int, GMCode.Bytecode.Instruction.VariableType)>>
+            VariableReferences { get; } = new();
 
-        public virtual Dictionary<GMFunctionEntry, List<(int, GMCode.Bytecode.Instruction.VariableType)>> FunctionReferences { get; } = new();
+        public Dictionary<GMFunctionEntry,
+                List<(int, GMCode.Bytecode.Instruction.VariableType)>>
+            FunctionReferences { get; } = new();
 #endregion
 
-        public Dictionary<IGMSerializable, List<int>> PendingPointerWrites = new ();
-        public Dictionary<GMString, List<int>> PendingStringPointerWrites = new ();
+        public Dictionary<IGMSerializable, List<int>> PendingPointerWrites =
+            new ();
 
-        public GmDataWriter(IBinaryWriter writer, GMData data, string path)
-        {
-            Writer = writer;
+        public Dictionary<GMString, List<int>> PendingStringPointerWrites =
+            new ();
+
+        public GmDataWriter(
+            int size,
+            GMData data,
+            string path,
+            Encoding? encoding = null
+        ) {
+            buffer = new byte[size];
+            this.encoding = encoding ?? IEncodable.DEFAULT_ENCODING;
+
             Data = data;
             Warnings = new List<GMWarning>();
 
@@ -80,8 +91,8 @@ namespace GameBreaker
                 Data.Directory = Path.GetDirectoryName(path);
         }
 
-        public virtual void Flush(Stream stream) {
-            Writer.Flush(stream);
+        public void Flush(Stream stream) {
+            stream.Write(buffer, 0, length);
 
             // Finalize all other file write operations if any exist
             Data.FileWrites.Complete();
@@ -89,125 +100,193 @@ namespace GameBreaker
         }
 
 #region IBinaryWriter Impl (Methods)
-        public virtual void Write(byte value) {
-            Writer.Write(value);
+        // TODO: Provide option to resize to `size` instead of `Length` * 2?
+        // Mostly for systems with lower memory that may want to minimize
+        // allocations. Detrimental to speed, however. It's a tradeoff.
+        private void EnsureCapacity(int size) {
+            if (length >= size)
+                return;
+
+            var newSize = Math.Max(length * 2, size);
+            Array.Resize(ref buffer, newSize);
+            length = size;
         }
 
-        public virtual void Write(bool value, bool wide) {
-            Writer.Write(value, wide);
+        /// <inheritdoc cref="IBinaryWriter.Write(byte)"/>
+        public void Write(byte value) {
+            EnsureCapacity(offset + sizeof(byte));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, byte>(ref b) = value;
+            offset += sizeof(byte);
         }
 
-        public virtual void Write(BufferRegion value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(bool,bool)"/>
+        public void Write(bool value, bool wide) {
+            if (wide)
+                Write(value ? 1 : 0);
+            else
+                Write((byte) (value ? 1 : 0));
         }
 
-        public virtual void Write(byte[] value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(BufferRegion)"/>
+        public void Write(BufferRegion value) {
+            EnsureCapacity(offset + value.Length);
+            value.CopyTo(buffer.AsMemory().Slice(offset, value.Length));
+            offset += value.Length;
         }
 
-        public virtual void Write(char[] value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(byte[])"/>
+        public void Write(byte[] value) {
+            EnsureCapacity(offset + value.Length);
+            System.Buffer.BlockCopy(value, 0, buffer, offset, value.Length);
+            offset += value.Length;
         }
 
-        public virtual void Write(short value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(char[])"/>
+        public void Write(char[] value) {
+            EnsureCapacity(offset + value.Length);
+
+            // TODO: Specific encoding would be nice. What to do?
+            foreach (var c in value)
+                buffer[offset++] = Convert.ToByte(c);
         }
 
-        public virtual void Write(ushort value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(short)"/>
+        public void Write(short value) {
+            EnsureCapacity(offset + sizeof(short));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, short>(ref b) = value;
+            offset += sizeof(short);
         }
 
-        public virtual void Write(Int24 value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(ushort)"/>
+        public void Write(ushort value) {
+            EnsureCapacity(offset + sizeof(ushort));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, ushort>(ref b) = value;
+            offset += sizeof(ushort);
         }
 
-        public virtual void Write(UInt24 value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(Int24)"/>
+        public void Write(Int24 value) {
+            EnsureCapacity(offset + Int24.SIZE);
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, Int24>(ref b) = value;
+            offset += Int24.SIZE;
         }
 
-        public virtual void Write(int value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(UInt24)"/>
+        public void Write(UInt24 value) {
+            EnsureCapacity(offset + UInt24.SIZE);
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, UInt24>(ref b) = value;
+            offset += UInt24.SIZE;
         }
 
-        public virtual void Write(uint value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(int)"/>
+        public void Write(int value) {
+            EnsureCapacity(offset + sizeof(int));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, int>(ref b) = value;
+            offset += sizeof(int);
         }
 
-        public virtual void Write(long value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(uint)"/>
+        public void Write(uint value) {
+            EnsureCapacity(offset + sizeof(uint));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, uint>(ref b) = value;
+            offset += sizeof(uint);
         }
 
-        public virtual void Write(ulong value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(long)"/>
+        public void Write(long value) {
+            EnsureCapacity(offset + sizeof(long));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, long>(ref b) = value;
+            offset += sizeof(long);
         }
 
-        public virtual void Write(float value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(ulong)"/>
+        public void Write(ulong value) {
+            EnsureCapacity(offset + sizeof(ulong));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, ulong>(ref b) = value;
+            offset += sizeof(ulong);
         }
 
-        public virtual void Write(double value) {
-            Writer.Write(value);
+        /// <inheritdoc cref="IBinaryWriter.Write(float)"/>
+        public void Write(float value) {
+            EnsureCapacity(offset + sizeof(float));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, float>(ref b) = value;
+            offset += sizeof(float);
+        }
+
+        /// <inheritdoc cref="IBinaryWriter.Write(double)"/>
+        public void Write(double value) {
+            EnsureCapacity(offset + sizeof(double));
+            ref var b = ref buffer[offset];
+            Unsafe.As<byte, double>(ref b) = value;
+            offset += sizeof(double);
         }
 #endregion
 
 #region IDataWriter Impl (Methods)
-        public void Write()
-        {
+        public void Write() {
             // Write the root chunk, FORM
             Write("FORM".ToCharArray());
             Data.FORM.Serialize(this);
 
             // Handle serialization of pointer offsets
-            Parallel.ForEach(PendingPointerWrites, kvp =>
-            {
-                if (PointerOffsets.TryGetValue(kvp.Key, out int ptr))
-                {
-                    // Iterate through each reference and write the pointer
-                    foreach (int addr in kvp.Value)
-                        this.WriteAt(addr, ptr);
-                }
-                else
-                {
-                    // Iterate through each reference and write null
-                    foreach (int addr in kvp.Value)
-                        this.WriteAt(addr, 0);
-                }
-            });
-            Parallel.ForEach(PendingStringPointerWrites, kvp =>
-            {
-                if (PointerOffsets.TryGetValue(kvp.Key, out int ptr))
-                {
-                    // Adjust offset to string contents beginning
-                    ptr += 4;
+            Parallel.ForEach(PendingPointerWrites,
+                             kvp => {
+                                 if (PointerOffsets.TryGetValue(
+                                         kvp.Key,
+                                         out int ptr)) {
+                                     // Iterate through each reference and write the pointer
+                                     foreach (int addr in kvp.Value)
+                                         this.WriteAt(addr, ptr);
+                                 }
+                                 else {
+                                     // Iterate through each reference and write null
+                                     foreach (int addr in kvp.Value)
+                                         this.WriteAt(addr, 0);
+                                 }
+                             });
+            Parallel.ForEach(PendingStringPointerWrites,
+                             kvp => {
+                                 if (PointerOffsets.TryGetValue(
+                                         kvp.Key,
+                                         out int ptr)) {
+                                     // Adjust offset to string contents beginning
+                                     ptr += 4;
 
-                    // Iterate through each reference and write the pointer
-                    foreach (int addr in kvp.Value)
-                        this.WriteAt(addr, ptr);
-                }
-                else
-                {
-                    // Iterate through each reference and write null
-                    foreach (int addr in kvp.Value)
-                        this.WriteAt(addr, 0);
-                }
-            });
+                                     // Iterate through each reference and write the pointer
+                                     foreach (int addr in kvp.Value)
+                                         this.WriteAt(addr, ptr);
+                                 }
+                                 else {
+                                     // Iterate through each reference and write null
+                                     foreach (int addr in kvp.Value)
+                                         this.WriteAt(addr, 0);
+                                 }
+                             });
         }
 
-        public virtual void WriteGMString(string value) {
-            var len = Encoding.GetByteCount(value);
+        public void WriteGMString(string value) {
+            var len = encoding.GetByteCount(value);
             Write(len);
-            Encoding.GetBytes(value, 0, value.Length, Buffer, Offset);
-            Offset += len;
-            Buffer[Offset++] = 0;
+            encoding.GetBytes(value, 0, value.Length, buffer, offset);
+            offset += len;
+            buffer[offset++] = 0;
         }
 
         /// <summary>
         /// Write a 32-bit pointer value in this position, for an object
         /// </summary>
-        public virtual void WritePointer(IGMSerializable obj)
-        {
-            if (obj == null)
-            {
+        public void WritePointer(IGMSerializable obj) {
+            if (obj == null) {
                 // This object doesn't exist, so it will never have a pointer value...
                 Write(0);
                 return;
@@ -216,9 +295,12 @@ namespace GameBreaker
             // Add this location to a list for this object
             List<int> pending;
             if (PendingPointerWrites.TryGetValue(obj, out pending))
-                pending.Add(Offset);
+                pending.Add(offset);
             else
-                PendingPointerWrites.Add(obj, new List<int> { Offset });
+                PendingPointerWrites.Add(obj,
+                                         new List<int> {
+                                             offset
+                                         });
 
             // Placeholder pointer value, will be overwritten in the future
             Write(0xBADD0660);
@@ -227,10 +309,8 @@ namespace GameBreaker
         /// <summary>
         /// Write a 32-bit *string-only* pointer value in this position, for an object
         /// </summary>
-        public virtual void WritePointerString(GMString obj)
-        {
-            if (obj == null)
-            {
+        public void WritePointerString(GMString obj) {
+            if (obj == null) {
                 // This string object doesn't exist, so it will never have a pointer value...
                 Write(0);
                 return;
@@ -239,9 +319,12 @@ namespace GameBreaker
             // Add this location to a list for this string object
             List<int> pending;
             if (PendingStringPointerWrites.TryGetValue(obj, out pending))
-                pending.Add(Offset);
+                pending.Add(offset);
             else
-                PendingStringPointerWrites.Add(obj, new List<int> { Offset });
+                PendingStringPointerWrites.Add(obj,
+                                               new List<int> {
+                                                   offset
+                                               });
 
             // Placeholder pointer value, will be overwritten in the future
             Write(0xBADD0660);
@@ -250,22 +333,13 @@ namespace GameBreaker
         /// <summary>
         /// Sets the current offset to be the pointer location for the specified object
         /// </summary>
-        public virtual void WriteObjectPointer(IGMSerializable obj)
-        {
-            PointerOffsets.Add(obj, Offset);
+        public void WriteObjectPointer(IGMSerializable obj) {
+            PointerOffsets.Add(obj, offset);
         }
 #endregion
 
 #region IDispoable Impl
-        protected virtual void Dispose(bool disposing) {
-            if (disposing)
-                Writer.Dispose();
-        }
-
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        void IDisposable.Dispose() { }
 #endregion
     }
 }

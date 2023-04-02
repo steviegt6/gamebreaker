@@ -36,21 +36,21 @@ using GameBreaker.Serial.Numerics;
 
 namespace GameBreaker;
 
-public class GmDataReader : IDataReader {
-    protected IBinaryReader Reader { get; }
+public sealed class GmDataReader : IDataReader {
+    private int offset;
+    private byte[] buffer;
+    private Encoding encoding;
 
-#region IBinaryReader Impl (Properties)
-    public virtual int Offset {
-        get => Reader.Offset;
-        set => Reader.Offset = value;
+    public int Offset {
+        get => offset;
+        set => offset = value;
     }
 
-    public virtual int Length => Reader.Length;
+    public int Length => buffer.Length;
 
-    public virtual byte[] Buffer => Reader.Buffer;
+    public byte[] Buffer => buffer;
 
-    public virtual Encoding Encoding => Reader.Encoding;
-#endregion
+    public Encoding Encoding => encoding;
 
 #region IDataReader Impl (Properties)
     public GMData Data { get; }
@@ -66,16 +66,17 @@ public class GmDataReader : IDataReader {
     public List<(GMTextureData, int)> TexturesToDecompress { get; }
 #endregion
 
-    public GmDataReader(IBinaryReader reader, string path) {
-        Reader = reader;
+    public GmDataReader(byte[] buffer, string path, Encoding? encoding = null) {
+        this.buffer = buffer;
+        this.encoding = encoding ?? IEncodable.DEFAULT_ENCODING;
 
         Data = new GMData();
-        Data.WorkingBuffer = Buffer;
+        Data.WorkingBuffer = this.buffer;
 
         // Get hash for comparing later
         using (var sha1 = SHA1.Create())
-            Data.Hash = sha1.ComputeHash(Buffer);
-        Data.Length = Buffer.Length;
+            Data.Hash = sha1.ComputeHash(this.buffer);
+        Data.Length = this.buffer.Length;
 
         // Get directory of the data file for later usage
         if (path != null) {
@@ -91,65 +92,144 @@ public class GmDataReader : IDataReader {
     }
 
 #region IBinaryReader Impl (Methods)
-    public virtual byte ReadByte() {
-        return Reader.ReadByte();
+    // TODO: Benchmark whether pinning here is actually faster...
+    /// <inheritdoc cref="IBinaryReader.ReadByte"/>
+    public unsafe byte ReadByte() {
+        Debug.Assert(offset >= 0 && offset + 1 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(byte);
+            return *ptr;
+        }
     }
 
-    public virtual bool ReadBoolean(bool wide) {
-        return Reader.ReadBoolean(wide);
+    /// <inheritdoc cref="IBinaryReader.ReadBoolean"/>
+    public bool ReadBoolean(bool wide) {
+        return wide ? ReadInt32() != 0 : ReadByte() != 0;
     }
 
-    public virtual string ReadChars(int count) {
-        return Reader.ReadChars(count);
+    // TODO: Investigate possible optimizations.
+    /// <inheritdoc cref="IBinaryReader.ReadChars"/>
+    public string ReadChars(int count) {
+        Debug.Assert(offset >= 0 && offset + count <= Length);
+        var sb = new StringBuilder(count);
+        for (var i = 0; i < count; i++)
+            sb.Append((char) ReadByte());
+        return sb.ToString();
     }
 
-    public virtual BufferRegion ReadBytes(int count) {
-        return Reader.ReadBytes(count);
+    // TODO: Investigate possible optimizations.
+    /// <inheritdoc cref="IBinaryReader.ReadBytes"/>
+    public BufferRegion ReadBytes(int count) {
+        Debug.Assert(offset >= 0 && offset + count <= Length);
+        var val = new BufferRegion(buffer, offset, count);
+        offset += count;
+        return val;
     }
 
-    public virtual short ReadInt16() {
-        return Reader.ReadInt16();
+    /// <inheritdoc cref="IBinaryReader.ReadInt16"/>
+    public unsafe short ReadInt16() {
+        Debug.Assert(offset >= 0 && offset + 2 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(short);
+            return *(short*)ptr;
+        }
     }
 
-    public virtual ushort ReadUInt16() {
-        return Reader.ReadUInt16();
+    /// <inheritdoc cref="IBinaryReader.ReadUInt16"/>
+    public unsafe ushort ReadUInt16() {
+        Debug.Assert(offset >= 0 && offset + 2 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(ushort);
+            return *(ushort*)ptr;
+        }
     }
 
-    public virtual Int24 ReadInt24() {
-        return Reader.ReadInt24();
+    /// <inheritdoc cref="IBinaryReader.ReadInt24"/>
+    public unsafe Int24 ReadInt24() {
+        Debug.Assert(offset >= 0 && offset + 3 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(Int24);
+            return *(Int24*)ptr;
+        }
     }
 
-    public virtual UInt24 ReadUInt24() {
-        return Reader.ReadUInt24();
+    /// <inheritdoc cref="IBinaryReader.ReadUInt24"/>
+    public unsafe UInt24 ReadUInt24() {
+        Debug.Assert(offset >= 0 && offset + 3 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(UInt24);
+            return *(UInt24*)ptr;
+        }
     }
 
-    public virtual int ReadInt32() {
-        return Reader.ReadInt32();
+    /// <inheritdoc cref="IBinaryReader.ReadInt32"/>
+    public unsafe int ReadInt32() {
+        Debug.Assert(offset >= 0 && offset + 4 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(int);
+            return *(int*)ptr;
+        }
     }
 
-    public virtual uint ReadUInt32() {
-        return Reader.ReadUInt32();
+    /// <inheritdoc cref="IBinaryReader.ReadUInt32"/>
+    public unsafe uint ReadUInt32() {
+        Debug.Assert(offset >= 0 && offset + 4 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(uint);
+            return *(uint*)ptr;
+        }
     }
 
-    public virtual long ReadInt64() {
-        return Reader.ReadInt64();
+    /// <inheritdoc cref="IBinaryReader.ReadInt64"/>
+    public unsafe long ReadInt64() {
+        Debug.Assert(offset >= 0 && offset + 8 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(long);
+            return *(long*)ptr;
+        }
     }
 
-    public virtual ulong ReadUInt64() {
-        return Reader.ReadUInt64();
+    /// <inheritdoc cref="IBinaryReader.ReadUInt64"/>
+    public unsafe ulong ReadUInt64() {
+        Debug.Assert(offset >= 0 && offset + 8 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(ulong);
+            return *(ulong*)ptr;
+        }
     }
 
-    public virtual float ReadSingle() {
-        return Reader.ReadSingle();
+    /// <inheritdoc cref="IBinaryReader.ReadSingle"/>
+    public unsafe float ReadSingle() {
+        Debug.Assert(offset >= 0 && offset + 4 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(float);
+            return *(float*)ptr;
+        }
     }
 
-    public virtual double ReadDouble() {
-        return Reader.ReadDouble();
+    /// <inheritdoc cref="IBinaryReader.ReadDouble"/>
+    public unsafe double ReadDouble() {
+        Debug.Assert(offset >= 0 && offset + 8 <= Length);
+
+        fixed (byte* ptr = &buffer[offset]) {
+            offset += sizeof(double);
+            return *(double*)ptr;
+        }
     }
 #endregion
 
 #region IDataReader Impl (Methods)
-    public virtual void Deserialize(bool clearData = true) {
+    public void Deserialize(bool clearData = true) {
 #if DEBUG
         Stopwatch s = new Stopwatch();
         s.Start();
@@ -157,7 +237,8 @@ public class GmDataReader : IDataReader {
 
         // Parse the root chunk of the file, FORM
         if (ReadChars(4) != "FORM")
-            throw new InvalidFormHeaderException("Root chunk is not \"FORM\"; invalid file.");
+            throw new InvalidFormHeaderException(
+                "Root chunk is not \"FORM\"; invalid file.");
 
         Data.FORM = new GMChunkFORM();
         Data.FORM.Deserialize(this);
@@ -172,7 +253,7 @@ public class GmDataReader : IDataReader {
             Parallel.ForEach(TexturesToDecompress,
                              tex => {
                                  // Decompress BZip2 data, leaving just QOI data
-                                 using MemoryStream bufferWrapper = new(Buffer);
+                                 using MemoryStream bufferWrapper = new(buffer);
                                  bufferWrapper.Seek(
                                      tex.Item2,
                                      SeekOrigin.Begin);
@@ -193,7 +274,7 @@ public class GmDataReader : IDataReader {
     /// <summary>
     /// Returns (a possibly empty) object of the object type, at the specified pointer address
     /// </summary>
-    public virtual T ReadPointer<T>(int ptr) where T : IGMSerializable, new() {
+    public T ReadPointer<T>(int ptr) where T : IGMSerializable, new() {
         if (ptr == 0)
             return default;
         if (PointerOffsets.TryGetValue(ptr, out IGMSerializable s))
@@ -207,7 +288,7 @@ public class GmDataReader : IDataReader {
     /// <summary>
     /// Returns (a possibly empty) object of the object type, at the pointer in the file
     /// </summary>
-    public virtual T ReadPointer<T>() where T : IGMSerializable, new() {
+    public T ReadPointer<T>() where T : IGMSerializable, new() {
         return ReadPointer<T>(ReadInt32());
     }
 
@@ -215,7 +296,7 @@ public class GmDataReader : IDataReader {
     /// Follows the specified pointer for an object type, deserializes it and returns it.
     /// Also has helper callbacks for list reading.
     /// </summary>
-    public virtual T ReadPointerObject<T>(
+    public T ReadPointerObject<T>(
         int ptr,
         bool returnAfter = true,
         bool unique = false
@@ -235,13 +316,13 @@ public class GmDataReader : IDataReader {
                 PointerOffsets[ptr] = res;
         }
 
-        int returnTo = Offset;
-        Offset = ptr;
+        int returnTo = offset;
+        offset = ptr;
 
         res.Deserialize(this);
 
         if (returnAfter)
-            Offset = returnTo;
+            offset = returnTo;
 
         return res;
     }
@@ -249,7 +330,7 @@ public class GmDataReader : IDataReader {
     /// <summary>
     /// Follows a pointer (in the file) for an object type, deserializes it and returns it.
     /// </summary>
-    public virtual T ReadPointerObject<T>(bool unique = false)
+    public T ReadPointerObject<T>(bool unique = false)
         where T : IGMSerializable, new() {
         return ReadPointerObject<T>(ReadInt32(), unique: unique);
     }
@@ -257,41 +338,61 @@ public class GmDataReader : IDataReader {
     /// <summary>
     /// Reads a string without parsing it
     /// </summary>
-    public virtual GMString ReadStringPointer() {
+    public GMString ReadStringPointer() {
         return ReadPointer<GMString>(ReadInt32() - 4);
     }
 
     /// <summary>
     /// Reads a string AND parses it
     /// </summary>
-    public virtual GMString ReadStringPointerObject() {
+    public GMString ReadStringPointerObject() {
         return ReadPointerObject<GMString>(ReadInt32() - 4);
     }
 
     /// <summary>
     /// Reads a GameMaker-style string
     /// </summary>
-    public virtual string ReadGMString() {
-        Offset += 4; // Skip length; unreliable
-        int baseOffset = Offset;
-        while (Buffer[Offset] != 0)
-            Offset++;
-        int length = Offset - baseOffset;
-        string res = Encoding.GetString(Buffer, baseOffset, length);
-        Offset++; // go past null terminator
+    public string ReadGMString() {
+        offset += 4; // Skip length; unreliable
+        int baseOffset = offset;
+        while (buffer[offset] != 0)
+            offset++;
+        int length = offset - baseOffset;
+        string res = encoding.GetString(buffer, baseOffset, length);
+        offset++; // go past null terminator
         return res;
     }
 #endregion
 
 #region IDisposable Impl
-    protected virtual void Dispose(bool disposing) {
-        if (disposing)
-            Reader.Dispose();
-    }
-
-    public void Dispose() {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+    void IDisposable.Dispose() { }
 #endregion
+
+    /// <summary>
+    ///     Initializes a <see cref="GmDataReader"/> instance from the given
+    ///     <paramref name="stream"/>. The stream will be closed after reading.
+    /// </summary>
+    /// <param name="stream">The stream to read from.</param>
+    /// <param name="path">TODO</param>
+    /// <param name="encoding">The encoding to use.</param>
+    /// <returns>The initialized <see cref="GmDataReader"/>.</returns>
+    public static GmDataReader FromStream(
+        Stream stream,
+        string path,
+        Encoding? encoding = null
+    ) {
+        if (stream.Length > int.MaxValue)
+            throw new IOException("Stream is too large");
+
+        var buf = new byte[stream.Length];
+
+        stream.Seek(0, SeekOrigin.Begin);
+        var bytes = stream.Read(buf, 0, buf.Length);
+        stream.Close();
+
+        if (bytes != buf.Length)
+            throw new IOException("Stream read failed");
+
+        return new GmDataReader(buf, path, encoding);
+    }
 }

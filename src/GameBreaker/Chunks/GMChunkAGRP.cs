@@ -53,8 +53,7 @@ namespace GameBreaker.Chunks
                     {
                         GMData data = AudioData[pair.Key];
                         writer.Data.Logger?.Invoke($"Writing audio group \"{fname}\"...");
-                        var bWriter = new BufferBinaryWriter(data.Length);
-                        using (GmDataWriter groupWriter = new GmDataWriter(bWriter, data, fs.Name))
+                        using (var groupWriter = new GmDataWriter(data.Length, data, fs.Name))
                         {
                             groupWriter.Write();
                             groupWriter.Flush(fs);
@@ -90,8 +89,7 @@ namespace GameBreaker.Chunks
                         reader.Data.Logger?.Invoke($"Reading audio group \"{fname}\"...");
                         using (FileStream fs = new FileStream(path, FileMode.Open))
                         {
-                            var bReader = BufferBinaryReader.FromStream(fs);
-                            using GmDataReader groupReader = new GmDataReader(bReader, fs.Name);
+                            using GmDataReader groupReader = GmDataReader.FromStream(fs, fs.Name);
                             groupReader.Data.Logger = reader.Data.Logger;
                             groupReader.Deserialize();
                             AudioData[i] = groupReader.Data;

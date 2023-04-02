@@ -43,7 +43,7 @@ public class ReadAll {
                  + sizeof(ulong)
                  + sizeof(float)
                  + sizeof(double) * N;
-        var writer = new BufferBinaryWriter(size);
+        var writer = new GmDataWriter(size, null!, null!);
         var rand = new Random();
         b = new bool[N];
         u8 = new byte[N];

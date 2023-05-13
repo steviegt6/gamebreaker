@@ -1189,19 +1189,19 @@ public sealed class ByteArrayUnsafeCopyBlockWriter : AbstractBinaryWriter {
 public static class WriteTests {
     [Test]
     public static void TestWriteBasicData() {
-        const int size = sizeof(bool) // narrow boolean
-                       + sizeof(int) // wide boolean
-                       + sizeof(byte)
-                       + sizeof(short)
-                       + sizeof(ushort)
-                       + Int24.SIZE
-                       + UInt24.SIZE
-                       + sizeof(int)
-                       + sizeof(uint)
-                       + sizeof(long)
-                       + sizeof(ulong)
-                       + sizeof(float)
-                       + sizeof(double) * 100;
+        var size = sizeof(bool) // narrow boolean
+                 + sizeof(int) // wide boolean
+                 + sizeof(byte)
+                 + sizeof(short)
+                 + sizeof(ushort)
+                 + Int24.SIZE
+                 + UInt24.SIZE
+                 + sizeof(int)
+                 + sizeof(uint)
+                 + sizeof(long)
+                 + sizeof(ulong)
+                 + sizeof(float)
+                 + sizeof(double) * 100;
         IBinaryWriter one = new DirectBufferWriter(size);
         IBinaryWriter two = new GetBytesArrayCopyWriter(size);
         IBinaryWriter three = new GetBytesBufferBlockCopyWriter(size);

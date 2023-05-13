@@ -28,47 +28,47 @@ namespace GameBreaker.Serial.Numerics;
 /// <summary>
 ///     Represents a 24-bit signed integer.
 /// </summary>
-[StructLayout(LayoutKind.Sequential, Pack = 1, Size = SIZE)]
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct Int24 {
-    /// <summary>
-    ///     The size of an Int24 in bytes.
-    /// </summary>
-    public const int SIZE = 3;
+    public static readonly int SIZE = Marshal.SizeOf<Int24>();
 
     /// <summary>
     ///     Represents the number zero.
     /// </summary>
     public static readonly Int24 Zero = new(0);
 
+    private readonly byte b0;
     private readonly byte b1;
     private readonly byte b2;
-    private readonly byte b3;
 
     // ReSharper disable once InconsistentNaming
     /// <summary>
-    ///     Represents the smallest possible value of an Int24. This field is
-    ///     constant.
+    ///     Represents the smallest possible value of <see cref="Int24"/>. This
+    ///     field is constant.
     /// </summary>
-    public const int MinValue = -8388608;
+    public const int MinValue = -8388608; // -2^23
 
     // ReSharper disable once InconsistentNaming
     /// <summary>
-    ///     Represents the largest possible value of an Int24. This field is
-    ///     constant.
+    ///     Represents the largest possible value of <see cref="Int24"/>. This
+    ///     field is constant.
     /// </summary>
-    public const int MaxValue = 8388607;
+    public const int MaxValue = 8388607; // 2^23 - 1
 
     public Int24(int value) {
-        if (value is < MinValue or > MaxValue)
-            throw new ArgumentOutOfRangeException(nameof(value));
-
-        b1 = (byte) (value & 0xFF);
-        b2 = (byte) ((value >> 8) & 0xFF);
-        b3 = (byte) ((value >> 16) & 0xFF);
+        b0 = (byte) (value & 0xFF);
+        b1 = (byte) ((value >> 8) & 0xFF);
+        b2 = (byte) ((value >> 16) & 0xFF);
     }
 
     public static implicit operator int(Int24 value) {
-        return value.b1 | (value.b2 << 8) | (value.b3 << 16);
+        var res = value.b0 | (value.b1 << 8) | (value.b2 << 16);
+
+        // Sign extend
+        if ((res & 0x800000) != 0)
+            return res | unchecked((int) 0xFF000000);
+
+        return res;
     }
 
     public static implicit operator Int24(int value) {

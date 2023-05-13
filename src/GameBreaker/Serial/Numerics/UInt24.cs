@@ -28,47 +28,41 @@ namespace GameBreaker.Serial.Numerics;
 /// <summary>
 ///     Represents a 24-bit unsigned integer.
 /// </summary>
-[StructLayout(LayoutKind.Sequential, Pack = 1, Size = SIZE)]
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct UInt24 {
-    /// <summary>
-    ///     The size of a UInt24 in bytes.
-    /// </summary>
-    public const int SIZE = 3;
+    public static readonly int SIZE = Marshal.SizeOf<UInt24>();
 
     /// <summary>
     ///     Represents the number zero.
     /// </summary>
     public static readonly UInt24 Zero = new(0);
 
+    private readonly byte b0;
     private readonly byte b1;
     private readonly byte b2;
-    private readonly byte b3;
 
     // ReSharper disable once InconsistentNaming
     /// <summary>
-    ///    Represents the smallest possible value of an UInt24. This field is
-    ///    constant.
+    ///     Represents the smallest possible value of <see cref="UInt24"/>. This
+    ///     field is constant.
     /// </summary>
     public const uint MinValue = 0;
 
     // ReSharper disable once InconsistentNaming
     /// <summary>
-    ///    Represents the largest possible value of an UInt24. This field is
-    ///    constant.
+    ///     Represents the largest possible value of <see cref="UInt24"/>. This
+    ///     field is constant.
     /// </summary>
-    public const uint MaxValue = 16777215;
+    public const uint MaxValue = 16777215; // 2^24 - 1
 
     public UInt24(uint value) {
-        if (value is < MinValue or > MaxValue)
-            throw new ArgumentOutOfRangeException(nameof(value));
-
-        b1 = (byte) (value & 0xFF);
-        b2 = (byte) ((value >> 8) & 0xFF);
-        b3 = (byte) ((value >> 16) & 0xFF);
+        b0 = (byte) (value & 0xFF);
+        b1 = (byte) ((value >> 8) & 0xFF);
+        b2 = (byte) ((value >> 16) & 0xFF);
     }
 
     public static implicit operator uint(UInt24 value) {
-        return value.b1 | (uint) (value.b2 << 8) | (uint) (value.b3 << 16);
+        return value.b0 | (uint) (value.b1 << 8) | (uint) (value.b2 << 16);
     }
 
     public static implicit operator UInt24(uint value) {

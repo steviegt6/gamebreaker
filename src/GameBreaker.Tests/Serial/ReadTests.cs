@@ -237,19 +237,19 @@ public sealed class PointerCastReader : AbstractBinaryReader {
 public static class ReadTests {
     [Test]
     public static void TestReadBasicData() {
-        const int size = sizeof(bool) // narrow boolean
-                       + sizeof(int) // wide boolean
-                       + sizeof(byte)
-                       + sizeof(short)
-                       + sizeof(ushort)
-                       + Int24.SIZE
-                       + UInt24.SIZE
-                       + sizeof(int)
-                       + sizeof(uint)
-                       + sizeof(long)
-                       + sizeof(ulong)
-                       + sizeof(float)
-                       + sizeof(double) * 100;
+        var size = sizeof(bool) // narrow boolean
+                 + sizeof(int) // wide boolean
+                 + sizeof(byte)
+                 + sizeof(short)
+                 + sizeof(ushort)
+                 + Int24.SIZE
+                 + UInt24.SIZE
+                 + sizeof(int)
+                 + sizeof(uint)
+                 + sizeof(long)
+                 + sizeof(ulong)
+                 + sizeof(float)
+                 + sizeof(double) * 100;
         var writer = new GmDataWriter(size, null!, null!);
         var rand = new Random();
         var b = new bool[100];
